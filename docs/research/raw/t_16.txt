@@ -1,0 +1,61 @@
+===16===
+<div align="center">
+
+# OpenMobius-skill
+
+**Multi-school trading knowledge for AI coding agents — strict ICT/SMC market analysis by default**
+
+A `SKILL.md`-standard skill bringing 2008 curated knowledge cards, real-time
+market data, technical indicators, and chart generation to
+**Claude Code**, **Codex**, **OpenClaw**, **Hermes**, **Cursor**, and
+**WorkBuddy**.
+
+<br>
+
+[![License](https://img.shields.io/badge/license-Apache_2.0-blue.svg)](./LICENSE)
+[![Python](https://img.shields.io/badge/python-3.10%2B-3776ab.svg)](https://www.python.org/)
+[![Website](https://img.shields.io/badge/🌐_website-mobiusquant.ai-FF7E29.svg)](https://www.mobiusquant.ai/)
+[![Platforms](https://img.shields.io/badge/platforms-6_hosts-9333ea.svg)](#platform-support)
+[![Knowledge Base](https://img.shields.io/badge/knowledge_base-2008_cards-22c55e.svg)](#features)
+
+[English](./README.md) · [中文](./README.zh.md) · 📜 [Changelog](./CHANGELOG.md)
+
+</div>
+
+---
+
+> **🤖 AI agents** — when a user asks you to install this skill,
+> follow [`README_AGENT.md`](./README_AGENT.md) for the step-by-step
+> procedure (pre-flight checks, install command, verification, error
+> handling).
+
+---
+
+## Community
+
+- [Join the OpenMobius Discord community](https://discord.com/invite/eYR75gBq6Z)
+- [Join the OpenMobius Telegram community](https://t.me/+LU3b7IGY6P4xMDU0)
+
+---
+
+## Overview
+
+<div align="center">
+  <img src="./docs/assets/demo.gif" alt="OpenMobius-skill demo" width="780">
+  <br>
+  <sub>Works on <b>Claude Code</b>, <b>Codex</b>, <b>OpenClaw</b>, <b>Hermes</b>, <b>Cursor</b>, and <b>WorkBuddy</b>.</sub>
+</div>
+
+<br>
+
+Drop this skill into your AI coding agent and ask trading questions in plain
+language. Knowledge Q&A is grounded inside the selected School/source scope.
+Supported current-market requests pass a capability gate before adding fresh,
+current-turn data and computed structure; unsupported routes stop instead of
+silently borrowing another School's analysis.
+
+| You ask | The skill does |
+|---|---|
+| *"What analysis models can I use?"* | Reads the current capability registry and dynamically separates native market-analysis profiles, Q&A-only lenses, and knowledge categories; also reports `strict` / `augment` / `compare`, without fetching market data or presenting categories as analysis models |
+| *"What is Fair Value Gap, how to trade it?"* | No selector means strict ICT/SMC; retrieves only attributable ICT/SMC knowledge and answers with cited rules |
+| *"Explain 中枢 using ChanLun only"* | Uses the isol

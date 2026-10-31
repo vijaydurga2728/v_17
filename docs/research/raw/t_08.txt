@@ -1,0 +1,62 @@
+===08===
+# ICT Trading Agent
+
+An AI-powered trading agent implementing Inner Circle Trader (ICT) methodology for algorithmic forex/crypto trading.
+
+## Overview
+
+This agent encodes ICT (Michael Huddleston's) trading concepts into algorithmic rules for automated signal generation and backtesting. It implements:
+
+- **Core Concepts**: FVG, Order Blocks, Market Structure, Liquidity, Displacement
+- **Trading Models**: Silver Bullet, Judas Swing, Power of Three, OTE Retracement
+- **Time-Based Filters**: Killzones, Macro Times, Session Analysis
+- **Multi-Timeframe Analysis**: HTF→ITF→LTF workflow
+- **Risk Management**: Position cycling, prop firm rules, max drawdown limits
+
+## Project Structure
+
+```
+ict_trainer/
+├── src/ict_agent/              # Core library
+│   ├── vex_brain_v2.py         # ⭐ MAIN BRAIN (76KB) - Use this!
+│   ├── vex_brain.py            # V1 brain (reference)
+│   ├── vex_core.py             # Core utilities
+│   ├── vex_system.py           # System integration
+│   ├── vex_anticipation.py     # Predictive analysis
+│   │
+│   ├── detectors/              # ICT concept detection
+│   │   ├── fvg.py              # Fair Value Gap
+│   │   ├── order_block.py      # Order Blocks
+│   │   ├── market_structure.py # BOS/CHoCH
+│   │   ├── liquidity.py        # Liquidity pools
+│   │   └── displacement.py     # Displacement
+│   │
+│   ├── models/                 # ICT trading models
+│   │   ├── silver_bullet.py    # Silver Bullet setups
+│   │   ├── judas_swing.py      # Judas Swing
+│   │   ├── power_of_three.py   # AMD cycle
+│   │   └── turtle_soup.py      # Turtle Soup
+│   │
+│   ├── engine/                 # Trading engine
+│   │   ├── killzone.py         # Session timing
+│   │   ├── asian_range.py      # Asian range calc
+│   │   ├── cbdr.py             # CBDR logic
+│   │   └── mtf_analyzer.py     # Multi-timeframe
+│   │
+│   ├── execution/              # Live trading
+│   │   ├── oanda_executor.py   # OANDA API
+│   │   ├── autonomous_trader.py # Auto trading
+│   │   └── risk_guardian.py    # Risk limits
+│   │
+│   ├── learning/               # Self-improvement
+│   │   ├── knowledge_manager.py # Knowledge base
+│   │   └── trade_learner.py    # Learn from trades
+│   │
+│   └── data/                   # Data handling
+│       └── oanda_fetcher.py    # OANDA data fetch
+│
+├── scripts/                    # Executable scripts
+│   ├── trading/                # Live trading
+│   │   └── vex_unleashed.py    # ⭐ Main autonomous trader
+│   ├── backtest/               # Backtesting
+│   ├── an

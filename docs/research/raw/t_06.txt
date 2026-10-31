@@ -1,0 +1,73 @@
+===06===
+# ICT Trading Bot
+
+A fully systematic, backtested trading bot implementing **ICT (Inner Circle Trader)** methodology. Detects institutional price-action structures in market data and generates entries/exits with strict risk management.
+
+---
+
+## What It Does
+
+The bot identifies five core ICT concepts and combines them into a rules-based trading system:
+
+| Concept | Description |
+|---------|-------------|
+| **Fair Value Gap (FVG)** | 3-candle price imbalance where the market tends to return and fill |
+| **Order Block (OB)** | Last opposing candle before a strong institutional displacement move |
+| **Breaker Block** | Mitigated OB that flips polarity — former support becomes resistance |
+| **Market Structure Shift (MSS)** | Break of a swing high/low confirmed by a displacement candle |
+| **OTE** | Optimal Trade Entry — Fibonacci 61.8–78.6% retracement scoring |
+
+**Entry logic:** MSS confirms direction → price returns to an unmitigated FVG or OB → Kill Zone active (or Mon–Thu on daily) → ADX trending → daily bias aligned → enter.
+
+**Exit logic:** ATR-based stop below/above zone edge, partial exit 50% at 1.5R (trail stop to breakeven), full exit at 2.0R.
+
+---
+
+## Project Structure
+
+```
+ict-bot/
+├── ict_data.py            # Data download + daily bias (50/200 EMA)
+├── ict_structures.py      # FVG, OB, Breaker, MSS, Kill Zone, ADX, OTE
+├── ict_backtest.py        # 1h single-instrument backtest engine
+├── ict_portfolio.py       # Daily multi-instrument portfolio engine
+├── ict_viz.py             # Annotated charts, equity curve, drawdown plots
+├── build_notebook.py      # Generates ICT_Bot.ipynb (2yr hourly)
+├── build_notebook_15y.py  # Generates ICT_Bot_15Y.ipynb (15yr daily)
+├── ICT_Bot.ipynb          # SPY 1h notebook — 2 years
+├── ICT_Bot_15Y.ipynb      # SPY+QQQ+GLD+TLT daily notebook — 15 years
+└── DEVLOG.md              # Full development log
+```
+
+---
+
+## Results
+
+### Hourly Backtest — SPY, 2 Years (v2)
+
+| Metric | Value |
+|--------|-------|
+| Total trades | 67 |
+| Win rate | 40.3% |
+| Avg R per trade | +0.39R |
+| Profit factor | 1.43× |
+| Sharpe (annual) | +0.46 |
+| Max drawdown | -16.4% |
+| Total P&L | **+$17,572 (+17.6%)** |
+| CAGR | 4.81% |
+| Beta (β) | 0.07 |
+| Alpha (α, Jensen) | -1.28%/yr |
+| Calmar (γ) | 0.29 |
+
+---
+
+### Daily Portfolio Backtest — SPY + QQQ + GLD + TLT, 15 Years (v3)
+
+| Metric | Value |
+|--------|-------|
+| Total trades | 121 |
+| Trades / year | ~8.1 |
+| Win rate | 52.1% |
+| Avg R per trade | +0.38R |
+| Profit factor | 1.52× |
+| Shar

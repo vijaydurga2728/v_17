@@ -1,0 +1,48 @@
+===11===
+------------------------------------------------------- |
+| `master`  | [![version](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fnautechsystems%2Fnautilus_trader%2Fmaster%2Fversion.json)](https://packages.nautechsystems.io/simple/nautilus-trader/index.html)  | [![build](https://github.com/nautechsystems/nautilus_trader/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/nautechsystems/nautilus_trader/actions/workflows/build.yml)  |
+| `nightly` | [![version](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fnautechsystems%2Fnautilus_trader%2Fnightly%2Fversion.json)](https://packages.nautechsystems.io/simple/nautilus-trader/index.html) | [![build](https://github.com/nautechsystems/nautilus_trader/actions/workflows/build.yml/badge.svg?branch=nightly)](https://github.com/nautechsystems/nautilus_trader/actions/workflows/build.yml) |
+| `develop` | [![version](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fnautechsystems%2Fnautilus_trader%2Fdevelop%2Fversion.json)](https://packages.nautechsystems.io/simple/nautilus-trader/index.html) | [![build](https://github.com/nautechsystems/nautilus_trader/actions/workflows/build.yml/badge.svg?branch=develop)](https://github.com/nautechsystems/nautilus_trader/actions/workflows/build.yml) |
+
+| Platform           | Rust   | Python    |
+| :----------------- | :----- | :-------- |
+| `Linux (x86_64)`   | 1.99.1 | 3.13-3.14 |
+| `Linux (ARM64)`    | 1.99.1 | 3.13-3.14 |
+| `macOS (ARM64)`    | 1.99.1 | 3.13-3.14 |
+| `Windows (x86_64)` | 1.99.1 | 3.13-3.14 |
+
+- **Docs**: <https://nautilustrader.io/docs/>
+- **Website**: <https://nautilustrader.io>
+- **Support**: [support@nautilustrader.io](mailto:support@nautilustrader.io)
+
+## Introduction
+
+NautilusTrader is an open-source, production-grade, Rust-native engine for multi-asset,
+multi-venue trading systems.
+
+The system spans research, deterministic simulation, and live execution within a single
+event-driven architecture, with Python serving as the control plane for strategy logic,
+configuration, and orchestration.
+
+This separation provides the performance and safety of a compiled trading engine with
+the flexibility of Python for system composition and strategy development.
+Trading systems can also be written entirely in Rust for mission-critical workloads.
+
+The same strategy and execution-algorithm code can run across backtest and live systems, reducing
+deployment divergence. Live execution still introduces venue, transport, timing, persistence,
+external-activity, and reconciliation behavior that a simulation may not reproduce. See
+[Backtest and live differences](docs/concepts/live.md#backtest-and-live-differences).
+
+NautilusTrader is asset-class-agnostic. Any venue with a REST API or WebSocket feed can be
+integrated through modular adapters. Current integrations span crypto exchanges (CEX and
+DEX), traditional markets (FX, equities, futures, options), and betting exchanges.
+
+![nautilus-trader](https://github.com/nautechsystems/nautilus_trader/raw/develop/assets/nautilus-trader.png "nautilus-trader")
+
+## Features
+
+- **Fast**: Rust core with the [mimalloc](https://crates.io/crates/mimalloc) allocator and asynchronous networking using [tokio](https://crates.io/crates/tokio).
+- **Reliable**: Type- and thread-safety backed by Rust, with optional Redis-backed state persistence.
+- **Portable**: Runs on Linux, macOS, and Windows. Deploy using Docker.
+- **Flexible**: Modular adapters integrate any REST API or WebSocket feed.
+- **Advanced**: Time in force `IOC`, `FOK`, `GTC`, `GTD`, `DAY`, `AT_THE_OPEN`, `AT_THE_CLOSE`, advanced order types and conditional trig

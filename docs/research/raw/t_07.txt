@@ -1,0 +1,64 @@
+===07===
+# ICT Trading Strategy Framework
+
+[![Tests](https://github.com/islero/ICT-NT/actions/workflows/test.yml/badge.svg)](https://github.com/islero/ICT-NT/actions/workflows/test.yml)
+[![Code Quality](https://github.com/islero/ICT-NT/actions/workflows/code-quality.yml/badge.svg)](https://github.com/islero/ICT-NT/actions/workflows/code-quality.yml)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
+A sophisticated algorithmic trading framework built on [NautilusTrader](https://github.com/nautechsystems/nautilus_trader) that implements Inner Circle Trader (ICT) concepts and Turtle Soup strategies for systematic trading.
+
+## Features
+
+- **Rule-Based Trading System**: Flexible, modular rule engine for building complex trading strategies
+- **ICT Concepts Implementation**:
+  - Fair Value Gaps (FVG)
+  - Smart Pivot Points
+  - Liquidity Pools
+  - Market Structure Analysis
+  - Daily/Weekly Context Rules
+- **Turtle Soup Strategy**: Multi-timeframe implementation with position management
+- **Advanced Position Management**:
+  - Trailing stop loss
+  - Partial close rules
+  - Move to breakeven
+  - SMA-based exit signals
+- **Risk Management**: Fixed risk sizing and reward-risk ratio validation
+- **Backtesting**: High-performance backtesting engine with detailed analytics
+
+## Performance
+
+Latest backtest results on E-mini S&P 500 Futures (ESZ5):
+
+```
+============================================================
+BACKTEST RESULTS
+============================================================
+Trader ID:        BACKTESTER-001
+Run ID:           f48cfad3-2e2c-4c67-bd15-503910f1c56f
+Backtest Period:  2025-01-01 23:01:00 → 2025-10-20 00:00:00
+Elapsed Time:     0.03 seconds
+Iterations:       282,241
+Total Orders:     246
+Total Positions:  79
+
+============================================================
+PNL STATISTICS (USD)
+============================================================
+PnL (total):      $4,055.50
+PnL% (total):     13.52%
+Expectancy:       $51.34
+Win Rate:         35.44%
+Max Winner:       $1,320.00
+Avg Winner:       $713.21
+Min Winner:       $588.00
+Max Loser:        $-389.25
+Avg Loser:        $-312.04
+Min Loser:        $-199.50
+
+============================================================
+RETURN STATISTICS
+============================================================
+Sharpe Ratio (252d):   1.8668
+Sortino Ratio (252d):  3.5886
+Profit Factor:         1.

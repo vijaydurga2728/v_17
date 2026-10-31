@@ -1,0 +1,95 @@
+===13===
+ADME.ru.md)
+
+## Why LumiBot?
+
+- **Native AI trading:** agents research, reason and place orders from your prompts.
+- **Backtest before trading:** evaluate AI decisions and Python rules on historical data, with charts, trades and logs.
+- **Same strategy for backtesting and trading:** keep your strategy class; change the data source and broker runner.
+- **Multiple asset classes:** stocks, options, futures, forex, crypto and prediction markets through [supported brokers](https://lumibot.lumiwealth.com/brokers.all.html).
+- **The decision reaches a broker.** Inspect the orders, fills and decision records. [How execution works](https://lumibot.lumiwealth.com/execution_gap.html).
+
+**Build faster with BotSpot MCP.** Connect your assistant for free to get LumiBot
+strategy-building skills, research data and tools for backtests and deployment.
+[See what your assistant gets](#connect-your-ai-assistant).
+
+## Three ways to build a strategy
+
+- **[AI-native strategies](#run-your-first-ai-backtest):** write prompts for trading agents.
+- **[Python strategies](#backtest-a-strategy):** write your rules in Python.
+- **[Hybrid strategies](#build-a-hybrid-strategy):** combine Python rules and AI decisions.
+
+## Run your first AI backtest
+
+**The trading rules go in the prompt.** Edit `system_prompt` below to change
+what the agent does. `initialize()` creates it once; `on_trading_iteration()`
+calls it on every iteration. This example has one agent that makes the trading
+decisions and places orders.
+
+Use Python 3.10+. This example uses Yahoo daily prices and an OpenAI model;
+model calls incur charges.
+
+```bash
+pip install lumibot
+export OPENAI_API_KEY="your-openai-api-key"
+```
+
+Save as `my_ai_strategy.py`:
+
+```python
+from datetime import datetime
+from lumibot.backtesting import YahooDataBacktesting
+from lumibot.strategies import Strategy
+
+
+class MyAIStrategy(Strategy):
+    def initialize(self):
+        self.sleeptime = "1D"
+        self.agents.create(
+            name="trader",
+            default_model="openai/gpt-6-luna",
+            reasoning_effort="medium",
+            allow_trading=True,
+            system_prompt=(
+                "Trade SPY using its last 20 completed daily bars. "
+                "Buy when the latest completed close is above their average; "
+                "sell an existing position when it is below. Otherwise hold. "
+                "Keep the position at or below 10% of portfolio value. "
+                "Check cash, positions and open orders before acting. "
+                "No shorting or leverage. Do not duplicate pending orders. "
+                "Use only information available as of the strategy time."
+            ),
+        )
+
+    def on_trading_iteration(self):
+        self.agents["trader"].run(
+            task_prompt="Review SPY, apply your rules and verify any orders.",
+            context={"as_of": self.get_datetime().isoformat()},
+        )
+
+
+if __name__ == "__main__":
+    MyAIStrategy.backtest(
+        YahooDataBacktesting,
+        datetime(2026, 4, 6),
+        datetime(2026, 4, 11),
+        budget=100_000,
+        benchmark_asset="SPY",
+    )
+
+```
+
+```bash
+python my_ai_strategy.py
+```
+
+Review the decisions, orders and backtest charts. This demonstrates the API;
+it is not a claim that this trading rule is profitable.
+
+For a complete two-agent team, [read the researcher-and-trader example](lumibot/example_strategies/ai_researcher_trader.py) and [follow its walkthrough](https://lumibot.lumiwealth.com/agents_quickstart.html):
+
+```bash
+python -m lumibot.example_strategies.ai_researcher_trader
+```
+
+**Recorded run (made with Gemini):** the existing two-agent example has [source, decisions and trade records](docs/assets/ai-tra

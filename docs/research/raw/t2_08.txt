@@ -1,0 +1,126 @@
+===08===
+er.py     # Multi-timeframe
+│   │
+│   ├── execution/              # Live trading
+│   │   ├── oanda_executor.py   # OANDA API
+│   │   ├── autonomous_trader.py # Auto trading
+│   │   └── risk_guardian.py    # Risk limits
+│   │
+│   ├── learning/               # Self-improvement
+│   │   ├── knowledge_manager.py # Knowledge base
+│   │   └── trade_learner.py    # Learn from trades
+│   │
+│   └── data/                   # Data handling
+│       └── oanda_fetcher.py    # OANDA data fetch
+│
+├── scripts/                    # Executable scripts
+│   ├── trading/                # Live trading
+│   │   └── vex_unleashed.py    # ⭐ Main autonomous trader
+│   ├── backtest/               # Backtesting
+│   ├── analysis/               # Trade analysis
+│   ├── debug/                  # Diagnostics
+│   ├── utils/                  # Utilities
+│   │   └── vex_hub.py          # Web dashboard
+│   └── tests/                  # Quick tests
+│
+├── journal/                    # Trade journaling
+├── knowledge_base/             # ICT knowledge
+└── data/                       # Data storage
+├── scripts/                # Example scripts
+│   ├── run_backtest.py
+│   └── live_trading_demo.py
+│
+├── config/                 # Configuration files
+│   └── default_config.yaml
+│
+├── knowledge_base/         # ICT reference library
+│   └── ICT_MASTER_LIBRARY.md
+│
+├── tests/                  # Unit tests
+├── requirements.txt
+└── pyproject.toml
+```
+
+## Installation
+
+```bash
+# Clone the repository
+cd ict_trainer
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Install in development mode
+pip install -e .
+```
+
+## Quick Start
+
+### Run a Backtest
+
+```python
+from ict_agent.engine.agent import ICTTradingAgent, AgentConfig
+from ict_agent.backtest.engine import BacktestEngine
+from ict_agent.data.fetcher import DataFetcher
+
+# Fetch data
+fetcher = DataFetcher(source="yfinance")
+htf_data = fetcher.fetch("EURUSD", "1d", limit=100)
+itf_data = fetcher.fetch("EURUSD", "1h", limit=500)
+ltf_data = fetcher.fetch("EURUSD", "15m", limit=2000)
+
+# Run backtest
+engine = BacktestEngine()
+metrics = engine.run("EURUSD", htf_data, itf_data, ltf_data)
+
+# View results
+print(metrics.summary())
+```
+
+### Generate Trading Signals
+
+```python
+from ict_agent.engine.agent import ICTTradingAgent
+from ict_agent.engine.mtf_analyzer import Bias
+
+agent = ICTTradingAgent()
+
+# Analyze market
+signal = agent.analyze(
+    symbol="EURUSD",
+    htf_data=htf_data,
+    itf_data=itf_data,
+    ltf_data=ltf_data,
+)
+
+if signal:
+    print(f"Signal: {signal.signal_type.value}")
+    print(f"Model: {signal.model.value}")
+    print(f"Entry: {signal.entry_price}")
+    print(f"Stop: {signal.stop_loss}")
+    print(f"Target: {signal.target_1}")
+    print(f"Confluences: {signal.confluences.count}")
+```
+
+## ICT Concepts Implemented
+
+### Core Concepts
+
+| Concept | Description | Detection |
+|---------|-------------|-----------|
+| **FVG** | Fair Value Gap - imbalance in price | Gap between candle[i-2].high and candle[i].low |
+| **Order Block** | Last opposite candle before displacement | Bullish OB = last bearish candle before bullish move |
+| **Market Structure** | HH/HL (bullish) or LH/LL (bearish) | Swing detection + displacement validation |
+| **BOS/SMS** | Break/Shift of Structure | Break with vs against trend |
+| **Liquidity** | Stop orders above/below swings | Swing highs (BSL) and lows (SSL) |
+| **Displacement** | Strong institutional candle | Body > 1.5x ATR, >60% body ratio |
+
+### Trading Models
+
+| Model | Description | Entry |
+|-------|-------------|-------|
+| **Silver Bullet** | 1-hour precision windows | FVG during 3-4
