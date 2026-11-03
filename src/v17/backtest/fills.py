@@ -5,7 +5,12 @@ from typing import Literal
 
 import pandas as pd
 
-from v17.backtest.cost import apply_entry_slippage, half_spread
+from v17.backtest.cost import (
+    PIP_SCALE,
+    PIP_VALUE_PER_LOT,
+    apply_entry_slippage,
+    half_spread,
+)
 from v17.common.types import Side, Symbol
 
 _PIP_SCALE = Decimal("10000")
@@ -21,11 +26,21 @@ def entry_fill(side: Side, next_bar_open: Decimal, symbol: Symbol) -> Decimal:
 
 
 def exit_fill_on_bar(
-    side: Side, sl: Decimal, tp: Decimal, bar: pd.Series
+    side: Side,
+    sl: Decimal,
+    tp: Decimal,
+    bar: pd.Series | None = None,
+    bar_open: Decimal | None = None,
+    bar_high: Decimal | None = None,
+    bar_low: Decimal | None = None,
 ) -> tuple[Literal["sl", "tp", "none"], Decimal | None]:
-    bar_open = Decimal(str(float(bar["open"])))
-    bar_high = Decimal(str(float(bar["high"])))
-    bar_low = Decimal(str(float(bar["low"])))
+    if bar is not None:
+        bar_open = Decimal(str(float(bar["open"])))
+        bar_high = Decimal(str(float(bar["high"])))
+        bar_low = Decimal(str(float(bar["low"])))
+    elif bar_open is None or bar_high is None or bar_low is None:
+        raise ValueError("Either bar or (bar_open, bar_high, bar_low) must be provided")
+
     if side == Side.BUY:
         if bar_low <= sl:
             return "sl", min(bar_open, sl)
@@ -45,9 +60,17 @@ def pnl_usd(
     exit_price: Decimal,
     size_lots: Decimal,
     pip_value_per_lot: Decimal = Decimal("10"),
+    symbol: Symbol | None = None,
 ) -> Decimal:
-    if side == Side.BUY:
-        pips = (exit_price - entry) * _PIP_SCALE
+    if symbol is not None:
+        scale = Decimal(str(PIP_SCALE.get(symbol, 10000)))
+        pip_val = PIP_VALUE_PER_LOT.get(symbol, pip_value_per_lot)
     else:
-        pips = (entry - exit_price) * _PIP_SCALE
-    return pips * pip_value_per_lot * size_lots
+        scale = _PIP_SCALE
+        pip_val = pip_value_per_lot
+
+    if side == Side.BUY:
+        pips = (exit_price - entry) * scale
+    else:
+        pips = (entry - exit_price) * scale
+    return pips * pip_val * size_lots

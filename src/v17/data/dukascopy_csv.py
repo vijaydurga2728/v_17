@@ -89,18 +89,39 @@ def read_file(path: Path, side: Literal["bid", "ask"]) -> pd.DataFrame:
     return out
 
 
-def _pip_scale(sample_price: float) -> int:
-    _ = sample_price
-    return 10000
+def _pip_scale(sample_price: float, symbol: str | None = None) -> int:
+    """Pip scale per symbol family.
+
+    FX major pairs: 10000 (1 pip = 0.0001).
+    JPY pairs: 100 (1 pip = 0.01).
+    Indices and commodities: 1 (1 point = 1.0).
+    Symbol-aware when provided; sample_price fallback for legacy callers.
+    """
+    if symbol is not None:
+        if symbol.endswith("JPY"):
+            return 100
+        if symbol in {"USATECHIDXUSD", "USA500IDXUSD", "USA30IDXUSD"}:
+            return 1
+        if symbol in {"XAUUSD", "XAGUSD", "BTCUSD"}:
+            return 1
+        return 10000
+    # Heuristic fallback by price magnitude.
+    if sample_price >= 1000.0:
+        return 1  # index/crypto scale
+    if sample_price >= 50.0:
+        return 100  # JPY-ish
+    return 10000  # FX majors
 
 
-def stitch_pair(bid_paths: list[Path], ask_paths: list[Path]) -> pd.DataFrame:
+def stitch_pair(
+    bid_paths: list[Path], ask_paths: list[Path], symbol: str | None = None
+) -> pd.DataFrame:
     bids = pd.concat([read_file(p, "bid") for p in bid_paths], ignore_index=True)
     asks = pd.concat([read_file(p, "ask") for p in ask_paths], ignore_index=True)
     bids = bids.drop_duplicates(subset=["ts"]).sort_values("ts").reset_index(drop=True)
     asks = asks.drop_duplicates(subset=["ts"]).sort_values("ts").reset_index(drop=True)
     df = pd.merge(bids, asks, on="ts", how="inner", validate="one_to_one")
-    scale = _pip_scale(float(df["close_bid"].iloc[0]))
+    scale = _pip_scale(float(df["close_bid"].iloc[0]), symbol)
     out = pd.DataFrame(
         {
             "ts": df["ts"],

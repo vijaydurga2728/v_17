@@ -15,5 +15,6 @@ data/state/
 data/raw/
 logs/
 runs/
+.scratch_mcpt/
 .env
 *.sqlite

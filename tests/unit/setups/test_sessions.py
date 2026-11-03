@@ -25,10 +25,10 @@ def test_sb_window_est_winter() -> None:
 
 
 def test_judas_window_bst() -> None:
-    # 07:00 London BST = 06:00 UTC
+    # 07:00-10:00 London BST = 06:00-09:00 UTC (London Open Killzone)
     assert in_judas_window(datetime(2024, 6, 5, 6, 0, tzinfo=UTC)) is True
-    assert in_judas_window(datetime(2024, 6, 5, 7, 29, tzinfo=UTC)) is True
-    assert in_judas_window(datetime(2024, 6, 5, 7, 30, tzinfo=UTC)) is False
+    assert in_judas_window(datetime(2024, 6, 5, 8, 59, tzinfo=UTC)) is True
+    assert in_judas_window(datetime(2024, 6, 5, 9, 0, tzinfo=UTC)) is False
 
 
 def test_asian_range_utc_bounds() -> None:

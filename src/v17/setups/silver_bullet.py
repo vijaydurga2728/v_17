@@ -6,9 +6,16 @@ from typing import Final
 
 import pandas as pd
 
+from v17.backtest.cost import (
+    MIN_PIP_SL_BY_SYMBOL,
+    TP_FALLBACK_PIPS_BY_SYMBOL,
+    ZONE_TOLERANCE_BY_SYMBOL,
+    pip_size,
+)
 from v17.common.dtos import Signal, StructureSnapshot, Zone
 from v17.common.types import TF, Bias, Side
-from v17.setups.sessions import in_silver_bullet_window
+from v17.setups.judas_swing import _swept_asian_extreme
+from v17.setups.sessions import asian_high_low, in_silver_bullet_window
 from v17.setups.signal_id import make_signal_id
 from v17.setups.targets import passes_rr, pip_distance, rr
 
@@ -17,6 +24,7 @@ TP_FALLBACK_PIPS: Final = Decimal("22")
 SWEEP_LOOKBACK_MIN: Final = 240
 MSS_LOOKBACK_MIN: Final = 30
 ZONE_TOLERANCE_PIPS: Final = Decimal("10")
+# _PIP is now symbol-dependent via pip_size(). Kept as fallback for FX majors.
 _PIP: Final = Decimal("0.0001")
 
 
@@ -27,9 +35,13 @@ class SilverBullet:
         self,
         min_pip_sl: Decimal = MIN_PIP_SL,
         tp_fallback_pips: Decimal = TP_FALLBACK_PIPS,
+        require_sweep: bool = True,
+        require_mss: bool = True,
     ) -> None:
         self.min_pip_sl = min_pip_sl
         self.tp_fallback_pips = tp_fallback_pips
+        self.require_sweep = require_sweep
+        self.require_mss = require_mss
 
     def evaluate(
         self, snap: StructureSnapshot, now: datetime, bars_1m: pd.DataFrame
@@ -41,18 +53,36 @@ class SilverBullet:
         side = Side.BUY if snap.bias == Bias.BULL else Side.SELL
 
         last_close = Decimal(str(float(bars_1m["close"].iloc[-1])))
-        zone = _pick_zone(snap.zones, side, last_close, now)
+        zone = _pick_zone(snap.zones, side, last_close, now, snap.symbol)
         if zone is None:
             return None
 
         want_sweep = "ssl" if side == Side.BUY else "bsl"
-        sweep_ok = any(
-            s.kind == want_sweep
-            and (now - s.at) <= timedelta(minutes=SWEEP_LOOKBACK_MIN)
+        recent_sweeps = [
+            s
             for s in snap.sweeps
-        )
-        # Sweep and MSS kept as CONFLUENCE HINTS, not gates. ICT doctrine lists
-        # both as supporting evidence, not required pre-conditions.
+            if s.kind == want_sweep
+            and (now - s.at) <= timedelta(minutes=SWEEP_LOOKBACK_MIN)
+        ]
+        sweep_ok = len(recent_sweeps) > 0
+        sweep_extreme: Decimal | None = recent_sweeps[-1].level if recent_sweeps else None
+
+        if not sweep_ok:
+            try:
+                asian_hi, asian_lo = asian_high_low(bars_1m, now)
+                if side == Side.BUY:
+                    swept_a, extreme_a = _swept_asian_extreme(bars_1m, now, asian_lo, direction="down")
+                else:
+                    swept_a, extreme_a = _swept_asian_extreme(bars_1m, now, asian_hi, direction="up")
+                if swept_a:
+                    sweep_ok = True
+                    sweep_extreme = extreme_a
+            except Exception:
+                pass
+
+        if self.require_sweep and not sweep_ok:
+            return None
+
         mss_ok = any(
             sw.kind == "mss"
             and sw.side == side
@@ -60,16 +90,29 @@ class SilverBullet:
             and (now - sw.at) <= timedelta(minutes=MSS_LOOKBACK_MIN)
             for sw in snap.swings
         )
+        if self.require_mss and not mss_ok:
+            return None
 
+        pip = pip_size(snap.symbol)
         entry = (zone.top + zone.bottom) / 2
         if side == Side.BUY:
-            sl = zone.bottom - Decimal("0.0001")
-            tp = entry + (self.tp_fallback_pips * Decimal("0.0001"))
+            sweep_level = sweep_extreme if sweep_extreme is not None else zone.bottom
+            sl = min(sweep_level, zone.bottom) - pip
+            risk = entry - sl
+            if risk <= 0:
+                return None
+            # Standard ICT Silver Bullet universal 1:2 R:R expansion target
+            tp = entry + (risk * Decimal("2.0"))
         else:
-            sl = zone.top + Decimal("0.0001")
-            tp = entry - (self.tp_fallback_pips * Decimal("0.0001"))
+            sweep_level = sweep_extreme if sweep_extreme is not None else zone.top
+            sl = max(sweep_level, zone.top) + pip
+            risk = sl - entry
+            if risk <= 0:
+                return None
+            tp = entry - (risk * Decimal("2.0"))
 
-        if pip_distance(entry, sl) < self.min_pip_sl:
+        min_sl = MIN_PIP_SL_BY_SYMBOL.get(snap.symbol, self.min_pip_sl)
+        if pip_distance(entry, sl, symbol=snap.symbol) < min_sl:
             return None
         rr_ = rr(entry, sl, tp, side)
         if not passes_rr(rr_):
@@ -97,9 +140,17 @@ class SilverBullet:
 
 
 def _pick_zone(
-    zones: list[Zone], side: Side, last_close: Decimal, now: datetime
+    zones: list[Zone],
+    side: Side,
+    last_close: Decimal,
+    now: datetime,
+    symbol: str | None = None,
 ) -> Zone | None:
-    tol = ZONE_TOLERANCE_PIPS * _PIP
+    if symbol is not None:
+        tol_pips = ZONE_TOLERANCE_BY_SYMBOL.get(symbol, ZONE_TOLERANCE_PIPS)
+        tol = tol_pips * pip_size(symbol)
+    else:
+        tol = ZONE_TOLERANCE_PIPS * _PIP
     best: Zone | None = None
     best_dist: Decimal | None = None
     for z in zones:

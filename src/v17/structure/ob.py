@@ -51,22 +51,26 @@ def detect_obs(
                 top=top,
                 bottom=bottom,
             )
-            out.append(_apply_mitigation(z, highs, lows, ts, i))
+            out.append(_apply_mitigation(z, closes, ts, i))
             break
     return out
 
 
 def _apply_mitigation(
     z: Zone,
-    highs: np.ndarray,
-    lows: np.ndarray,
+    closes: np.ndarray,
     ts: list[pd.Timestamp],
     confirmed_idx: int,
 ) -> Zone:
     top = float(z.top)
     bottom = float(z.bottom)
-    for j in range(confirmed_idx + 1, len(highs)):
-        if lows[j] <= top and highs[j] >= bottom:
-            mit: datetime = ts[j].to_pydatetime()
-            return z.model_copy(update={"mitigated_at": mit})
+    for j in range(confirmed_idx + 1, len(closes)):
+        if z.side == Side.BUY:
+            if closes[j] < bottom:
+                mit: datetime = ts[j].to_pydatetime()
+                return z.model_copy(update={"mitigated_at": mit})
+        else:
+            if closes[j] > top:
+                mit: datetime = ts[j].to_pydatetime()
+                return z.model_copy(update={"mitigated_at": mit})
     return z

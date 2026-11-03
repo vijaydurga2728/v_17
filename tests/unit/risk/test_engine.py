@@ -125,3 +125,68 @@ def test_on_close_dd_breach_kills() -> None:
     acct = _acct(open_positions=1, equity=Decimal("91000"))
     acct2 = DefaultRiskEngine().on_close(_trade(Decimal("-1500")), acct)
     assert acct2.kill_active is True
+
+
+def test_multi_symbol_sizing_index_and_jpy() -> None:
+    engine = DefaultRiskEngine()
+    acct = _acct()
+
+    # NAS100 (USATECHIDXUSD): 10 point stop, $1/point/lot -> should size lots appropriately
+    confluence_mock = {"bias": True, "fvg": True, "ob": True, "mss": True, "sweep": True}
+    sig_nas = Signal(
+        id=SignalId("nas1"),
+        symbol=Symbol("USATECHIDXUSD"),
+        setup="silver_bullet",
+        side=Side.BUY,
+        at=datetime(2026, 1, 1, 14, 30, tzinfo=UTC),
+        entry=Decimal("19000.00"),
+        sl=Decimal("18990.00"),
+        tp=Decimal("19030.00"),
+        rr=Decimal("3.0"),
+        confluence=confluence_mock,
+    )
+    d_nas = engine.check(sig_nas, acct)
+    assert d_nas.allow is True
+    assert d_nas.size_lots is not None and d_nas.size_lots > Decimal("0")
+
+    # USDJPY: 20 pip stop (0.20 price units), pip_scale=100
+    sig_jpy = Signal(
+        id=SignalId("jpy1"),
+        symbol=Symbol("USDJPY"),
+        setup="silver_bullet",
+        side=Side.BUY,
+        at=datetime(2026, 1, 1, 8, 30, tzinfo=UTC),
+        entry=Decimal("150.20"),
+        sl=Decimal("150.00"),
+        tp=Decimal("150.60"),
+        rr=Decimal("2.0"),
+        confluence=confluence_mock,
+    )
+    d_jpy = engine.check(sig_jpy, acct)
+    assert d_jpy.allow is True
+    assert d_jpy.size_lots is not None and d_jpy.size_lots > Decimal("0")
+
+
+def test_circuit_breaker_consecutive_losses_locks_day() -> None:
+    engine = DefaultRiskEngine()
+    # 2 trades today, daily realized PnL is negative
+    acct = _acct(trades_today=2, daily_realized_pnl=Decimal("-1000"))
+    d = engine.check(_signal(), acct)
+    assert d.allow is False
+    assert d.code == "daily_stop_locked"
+
+
+def test_circuit_breaker_drawdown_adaptive_sizing() -> None:
+    engine = DefaultRiskEngine()
+    acct_clean = _acct()
+    d_clean = engine.check(_signal(), acct_clean)
+    assert d_clean.allow is True
+    assert d_clean.size_lots is not None
+
+    # Account with daily loss -> sizes lots at 50%
+    acct_loss = _acct(daily_realized_pnl=Decimal("-500"), trades_today=1)
+    d_loss = engine.check(_signal(), acct_loss)
+    assert d_loss.allow is True
+    assert d_loss.size_lots is not None
+    # Sizing should be approximately half of clean
+    assert d_loss.size_lots < d_clean.size_lots

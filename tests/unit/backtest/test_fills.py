@@ -11,14 +11,14 @@ def _bar(o: float, h: float, lo: float, c: float) -> pd.Series:
 
 
 def test_entry_buy_includes_spread_and_slip() -> None:
-    # half_spread = 0.00004, slip = 0.00003 for EURUSD BUY → +0.00007
+    # FTMO Normal EURUSD: half_spread = 0.00003, slip = 0.00003 → +0.00006
     px = entry_fill(Side.BUY, Decimal("1.1000"), Symbol("EURUSD"))
-    assert px == Decimal("1.10007")
+    assert px == Decimal("1.10006")
 
 
 def test_entry_sell_mirror() -> None:
     px = entry_fill(Side.SELL, Decimal("1.1000"), Symbol("EURUSD"))
-    assert px == Decimal("1.09993")
+    assert px == Decimal("1.09994")
 
 
 def test_exit_buy_sl_hits() -> None:

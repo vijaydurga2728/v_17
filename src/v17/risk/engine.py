@@ -2,15 +2,19 @@ from __future__ import annotations
 
 from decimal import Decimal
 
+from v17.backtest.cost import (
+    MIN_PIP_SL_BY_SYMBOL,
+    PIP_SCALE,
+    PIP_VALUE_PER_LOT,
+)
 from v17.common.dtos import AccountState, Decision, Signal, Trade
+from v17.common.types import Side, Symbol
 from v17.risk.consistency import would_breach_consistency
 from v17.risk.daily_guard import daily_stop_breached
 from v17.risk.dd_guard import dd_breached
 from v17.risk.ftmo_rules import FTMO_CHALLENGE_10K
 from v17.risk.risk_rules import RISK
 from v17.risk.sizing import compute_lots
-
-_PIP_SCALE = Decimal("10000")
 
 
 class DefaultRiskEngine:
@@ -22,7 +26,26 @@ class DefaultRiskEngine:
         self.ftmo: dict[str, object] = dict(ftmo or FTMO_CHALLENGE_10K)
         self.risk: dict[str, object] = dict(risk or RISK)
 
-    def check(self, signal: Signal, account: AccountState) -> Decision:
+    def _pip_value_for(self, symbol: Symbol) -> Decimal:
+        # Per-symbol pip value from cost.PIP_VALUE_PER_LOT; fall back to the
+        # risk-rules default when a symbol is not mapped (safe for new FX pairs).
+        v = PIP_VALUE_PER_LOT.get(symbol)
+        if v is not None:
+            return v
+        return Decimal(str(self.risk["pip_value_per_lot_usd"]))
+
+    def _pip_scale_for(self, symbol: Symbol) -> Decimal:
+        return Decimal(str(PIP_SCALE.get(symbol, 10000)))
+
+    def _min_pip_sl_for(self, symbol: Symbol) -> Decimal:
+        v = MIN_PIP_SL_BY_SYMBOL.get(symbol)
+        if v is not None:
+            return v
+        return Decimal(str(self.risk["min_pip_sl"]))
+
+    def check(
+        self, signal: Signal, account: AccountState, entry: Decimal | None = None
+    ) -> Decision:
         if account.kill_active:
             return Decision(allow=False, reason="kill switch active", code="kill_active")
         max_dd = Decimal(str(self.ftmo["max_overall_dd_pct"]))
@@ -31,6 +54,8 @@ class DefaultRiskEngine:
         soft_stop = Decimal(str(self.ftmo["soft_daily_stop_pct"]))
         if daily_stop_breached(account, soft_stop):
             return Decision(allow=False, reason="daily soft stop", code="daily_stop_locked")
+        if account.trades_today >= 2 and account.daily_realized_pnl < Decimal("0"):
+            return Decision(allow=False, reason="daily loss limit circuit breaker", code="daily_stop_locked")
         max_positions_raw = self.risk["max_concurrent_positions"]
         max_positions = int(max_positions_raw) if isinstance(max_positions_raw, int) else 1
         if account.open_positions >= max_positions:
@@ -42,8 +67,15 @@ class DefaultRiskEngine:
         min_rr = Decimal(str(self.risk["min_rr"]))
         if signal.rr < min_rr:
             return Decision(allow=False, reason=f"rr {signal.rr} < {min_rr}", code="rr_too_low")
-        stop_pips = abs(signal.entry - signal.sl) * _PIP_SCALE
-        min_pip_sl = Decimal(str(self.risk["min_pip_sl"]))
+
+        effective_entry = entry if entry is not None else signal.entry
+        if signal.side == Side.BUY and effective_entry <= signal.sl:
+            return Decision(allow=False, reason="entry at or below sl", code="sl_invalid")
+        if signal.side == Side.SELL and effective_entry >= signal.sl:
+            return Decision(allow=False, reason="entry at or above sl", code="sl_invalid")
+
+        stop_pips = abs(effective_entry - signal.sl) * self._pip_scale_for(signal.symbol)
+        min_pip_sl = self._min_pip_sl_for(signal.symbol)
         if stop_pips < min_pip_sl:
             return Decision(allow=False, reason="stop too tight", code="sl_too_tight")
 
@@ -57,6 +89,12 @@ class DefaultRiskEngine:
             return Decision(allow=False, reason="consistency rule", code="consistency_rule")
 
         std_pct = Decimal(str(self.risk["per_trade_pct"]))
+        peak_dd_pct = Decimal("0")
+        if account.peak_equity > Decimal("0"):
+            peak_dd_pct = (account.peak_equity - account.equity) / account.peak_equity * Decimal("100")
+        if account.daily_realized_pnl < Decimal("0") or peak_dd_pct >= Decimal("4.0"):
+            std_pct = std_pct * Decimal("0.5")
+
         safe_profit = remaining_day_profit * Decimal("0.95")
         if signal.rr > Decimal("0"):
             max_pct_for_consistency = (
@@ -73,7 +111,7 @@ class DefaultRiskEngine:
             equity=account.equity,
             per_trade_pct=trade_pct,
             stop_distance_pips=stop_pips,
-            pip_value_per_lot=Decimal(str(self.risk["pip_value_per_lot_usd"])),
+            pip_value_per_lot=self._pip_value_for(signal.symbol),
             lot_step=Decimal(str(self.risk["lot_step"])),
             min_lot=Decimal(str(self.risk["min_lot"])),
         )
@@ -106,8 +144,10 @@ class DefaultRiskEngine:
         new_best_day = max(account.best_day_pnl, new_daily)
         soft = Decimal(str(self.ftmo["soft_daily_stop_pct"]))
         max_dd = Decimal(str(self.ftmo["max_overall_dd_pct"]))
-        locked = account.is_locked_today or (
-            new_daily / account.starting_equity * Decimal("100") <= -soft
+        locked = (
+            account.is_locked_today
+            or (new_daily / account.starting_equity * Decimal("100") <= -soft)
+            or (account.trades_today >= 2 and new_daily < Decimal("0"))
         )
         kill = account.kill_active or (
             (account.starting_equity - new_equity) / account.starting_equity * Decimal("100")

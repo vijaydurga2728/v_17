@@ -10,7 +10,8 @@ from v17.common.types import Side, Symbol
 
 
 def test_half_spread_eurusd() -> None:
-    assert half_spread(Symbol("EURUSD")) == Decimal("0.00004")
+    # FTMO Normal EURUSD = 0.6 pips midpoint; half-spread = 0.3 pips = 0.00003.
+    assert half_spread(Symbol("EURUSD")) == Decimal("0.00003")
 
 
 def test_entry_slippage_buy_up() -> None:

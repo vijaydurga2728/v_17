@@ -16,6 +16,7 @@ def detect_fvgs(df_tf: pd.DataFrame, tf: TF, max_age_bars: int = 30) -> list[Zon
     df = df_tf.reset_index(drop=True)
     highs = df["high"].to_numpy()
     lows = df["low"].to_numpy()
+    closes = df["close"].to_numpy()
     ts = df["ts"].tolist()
     bar_dur = timedelta(minutes=tf_minutes(tf))
     n = len(df)
@@ -32,7 +33,7 @@ def detect_fvgs(df_tf: pd.DataFrame, tf: TF, max_age_bars: int = 30) -> list[Zon
                 top=top,
                 bottom=bottom,
             )
-            out.append(_apply_mitigation(z, highs, lows, ts, i))
+            out.append(_apply_mitigation(z, closes, ts, i))
         elif highs[i] < lows[i - 2]:
             top = Decimal(str(lows[i - 2]))
             bottom = Decimal(str(highs[i]))
@@ -44,22 +45,28 @@ def detect_fvgs(df_tf: pd.DataFrame, tf: TF, max_age_bars: int = 30) -> list[Zon
                 top=top,
                 bottom=bottom,
             )
-            out.append(_apply_mitigation(z, highs, lows, ts, i))
+            out.append(_apply_mitigation(z, closes, ts, i))
     return out
 
 
 def _apply_mitigation(
     z: Zone,
-    highs: np.ndarray,
-    lows: np.ndarray,
+    closes: np.ndarray,
     ts: list[pd.Timestamp],
     confirmed_idx: int,
 ) -> Zone:
     top = float(z.top)
     bottom = float(z.bottom)
-    # Check mitigation from the candle immediately following the confirmed 3-bar pattern
-    for j in range(confirmed_idx + 1, len(highs)):
-        if lows[j] <= top and highs[j] >= bottom:
-            mit: datetime = ts[j].to_pydatetime()
-            return z.model_copy(update={"mitigated_at": mit})
+    # ICT Invalidation: an FVG is only invalidated when a candle body CLOSES
+    # through the opposing boundary (closes < bottom for BUY, closes > top for SELL).
+    # Normal wick retracement / testing the gap is the valid entry opportunity.
+    for j in range(confirmed_idx + 1, len(closes)):
+        if z.side == Side.BUY:
+            if closes[j] < bottom:
+                mit: datetime = ts[j].to_pydatetime()
+                return z.model_copy(update={"mitigated_at": mit})
+        else:
+            if closes[j] > top:
+                mit: datetime = ts[j].to_pydatetime()
+                return z.model_copy(update={"mitigated_at": mit})
     return z

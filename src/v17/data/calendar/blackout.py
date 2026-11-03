@@ -8,6 +8,16 @@ from v17.common.types import Symbol
 AFFECTED: dict[Symbol, set[str]] = {
     Symbol("EURUSD"): {"USD", "EUR"},
     Symbol("GBPUSD"): {"USD", "GBP"},
+    Symbol("EURGBP"): {"EUR", "GBP"},
+    Symbol("AUDUSD"): {"USD", "AUD"},
+    Symbol("USDCAD"): {"USD", "CAD"},
+    Symbol("USDCHF"): {"USD", "CHF"},
+    Symbol("USDJPY"): {"USD", "JPY"},
+    Symbol("NZDUSD"): {"USD", "NZD"},
+    # Indices: US news dominates.
+    Symbol("USATECHIDXUSD"): {"USD"},
+    Symbol("USA500IDXUSD"): {"USD"},
+    Symbol("USA30IDXUSD"): {"USD"},
 }
 
 

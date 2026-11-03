@@ -63,7 +63,7 @@ def main() -> None:
             else:
                 side = Side.BUY if snap.bias == Bias.BULL else Side.SELL
                 last_close = Decimal(str(float(bars["close"].iloc[i])))
-                zone = _pick_zone(snap.zones, side, last_close, ts)
+                zone = _pick_zone(snap.zones, side, last_close, ts, SYMBOL)
                 if zone is None:
                     sb_drops["no_zone"] += 1
                 else:

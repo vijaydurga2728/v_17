@@ -29,4 +29,10 @@ class Bias(StrEnum):
     NONE = "none"
 
 
-SUPPORTED_SYMBOLS: tuple[Symbol, ...] = (Symbol("EURUSD"), Symbol("GBPUSD"))
+SUPPORTED_SYMBOLS: tuple[Symbol, ...] = (
+    Symbol("EURUSD"),
+    Symbol("GBPUSD"),
+    Symbol("EURGBP"),
+    Symbol("USDJPY"),
+    Symbol("USATECHIDXUSD"),
+)

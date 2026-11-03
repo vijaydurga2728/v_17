@@ -12,7 +12,7 @@ from v17.common.types import TF
 from v17.structure.smc_adapter import prepare_smc_df
 
 
-def detect_sweeps(df_tf: pd.DataFrame, tf: TF, swing_length: int = 10) -> list[Sweep]:
+def detect_sweeps(df_tf: pd.DataFrame, tf: TF, swing_length: int = 5) -> list[Sweep]:
     smc_df = prepare_smc_df(df_tf)
     swings = smc.swing_highs_lows(smc_df, swing_length=swing_length)
     levels: list[tuple[int, float, int]] = []

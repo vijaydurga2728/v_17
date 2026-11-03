@@ -26,7 +26,7 @@ def ingest(symbol: str = typer.Option(..., "--symbol")) -> None:
     s.ensure_dirs()
     csv_dir = s.dukascopy_csv_dir or (s.data / "raw")
     bids, asks = _bid_ask_paths(csv_dir, symbol)
-    df = stitch_pair(bids, asks)
+    df = stitch_pair(bids, asks, symbol=symbol)
     write_1m(df, Symbol(symbol), s.parquet_root)
     typer.echo(f"wrote {len(df)} rows for {symbol} to {s.parquet_root}")
 
