@@ -21,6 +21,8 @@ dependencies = [
   "alembic>=1.13",
   "matplotlib>=3.9",
   "apscheduler>=3.10",
+  "polars>=1.0",
+  "finnhub-python>=2.4.19",
 ]
 
 [project.optional-dependencies]
