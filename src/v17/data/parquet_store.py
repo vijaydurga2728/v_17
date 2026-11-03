@@ -49,3 +49,36 @@ def read_1m(
     df = pd.concat(frames, ignore_index=True)
     mask = (df["ts"] >= pd.Timestamp(start)) & (df["ts"] <= pd.Timestamp(end))
     return df.loc[mask].sort_values("ts").reset_index(drop=True)
+
+
+from v17.data.partition_guard import HOLDOUT_START_UTC_NS, assert_dev_only
+
+
+def _partition_of(ts_ns: int) -> str:
+    return "holdout" if ts_ns >= HOLDOUT_START_UTC_NS else "dev"
+
+
+def write_bars_partitioned(df: pd.DataFrame, root: Path) -> None:
+    df = df.copy()
+    df["_partition"] = df["ts_utc"].map(_partition_of)
+    ts = pd.to_datetime(df["ts_utc"], utc=True)
+    df["_year"] = ts.dt.year
+    df["_month"] = ts.dt.month
+    for (symbol, part, year, month), group in df.groupby(["symbol", "_partition", "_year", "_month"]):
+        out_dir = Path(root) / "bars" / symbol / part / f"year={year}" / f"month={month:02d}"
+        out_dir.mkdir(parents=True, exist_ok=True)
+        payload = group.drop(columns=["_partition", "_year", "_month"])
+        pq.write_table(pa.Table.from_pandas(payload), out_dir / "data.parquet")
+
+
+def read_bars(root: Path, symbol: str, partition: str = "dev", dev_only: bool = True) -> pd.DataFrame:
+    if dev_only:
+        assert_dev_only(partition)
+    base = Path(root) / "bars" / symbol / partition
+    if not base.exists():
+        return pd.DataFrame()
+    files = list(base.rglob("data.parquet"))
+    if not files:
+        return pd.DataFrame()
+    tables = [pq.read_table(f) for f in files]
+    return pa.concat_tables(tables).to_pandas()
