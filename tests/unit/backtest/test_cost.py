@@ -31,3 +31,18 @@ def test_commission_ftmo_normal_is_zero() -> None:
     # FTMO Normal account is spread-only; no per-lot commission.
     assert commission(Decimal("1.0"), Symbol("EURUSD")) == Decimal("0.0")
     assert commission(Decimal("1.0"), Symbol("GBPUSD")) == Decimal("0.0")
+
+
+def test_cost_scaling_usdjpy() -> None:
+    # USDJPY spread 1.2 pips -> half-spread = 0.6 pips = 0.006 (pip_size = 0.01)
+    assert half_spread(Symbol("USDJPY")) == Decimal("0.006")
+    # Slippage 0.3 pips = 0.003
+    assert apply_entry_slippage(Side.BUY, Decimal("150.00"), Symbol("USDJPY")) == Decimal("150.003")
+
+
+def test_cost_scaling_indices_nas100() -> None:
+    # USATECHIDXUSD spread 1.4 points -> half-spread = 0.7 points (pip_size = 1.0)
+    assert half_spread(Symbol("USATECHIDXUSD")) == Decimal("0.7")
+    # Slippage 0.5 points = 0.5
+    assert apply_entry_slippage(Side.BUY, Decimal("18000.0"), Symbol("USATECHIDXUSD")) == Decimal("18000.5")
+    assert apply_exit_slippage(Side.BUY, Decimal("18000.0"), Symbol("USATECHIDXUSD")) == Decimal("17999.5")

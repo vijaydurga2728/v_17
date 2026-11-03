@@ -73,17 +73,17 @@ COST_MODEL: dict[str, dict[str, Decimal]] = {
 # because price-level is 10,000× larger and zones often sit 50-200 points
 # from current price at killzone minutes.
 ZONE_TOLERANCE_BY_SYMBOL: dict[str, Decimal] = {
-    "EURUSD": Decimal("10"),
-    "GBPUSD": Decimal("10"),
-    "EURGBP": Decimal("10"),
-    "AUDUSD": Decimal("10"),
-    "USDCAD": Decimal("10"),
-    "USDCHF": Decimal("10"),
-    "NZDUSD": Decimal("10"),
-    "USDJPY": Decimal("10"),
-    "USATECHIDXUSD": Decimal("100"),  # NAS100 points
-    "USA500IDXUSD": Decimal("15"),    # US500 points
-    "USA30IDXUSD": Decimal("100"),    # US30 points
+    "EURUSD": Decimal("2.5"),
+    "GBPUSD": Decimal("2.5"),
+    "EURGBP": Decimal("2.5"),
+    "AUDUSD": Decimal("2.5"),
+    "USDCAD": Decimal("2.5"),
+    "USDCHF": Decimal("2.5"),
+    "NZDUSD": Decimal("2.5"),
+    "USDJPY": Decimal("3"),
+    "USATECHIDXUSD": Decimal("5"),    # NAS100 points
+    "USA500IDXUSD": Decimal("2"),     # US500 points
+    "USA30IDXUSD": Decimal("15"),     # US30 points
 }
 
 
@@ -170,17 +170,17 @@ def _cfg(symbol: Symbol) -> dict[str, Decimal]:
 
 
 def apply_entry_slippage(side: Side, price: Decimal, symbol: Symbol) -> Decimal:
-    slip = _cfg(symbol)["slippage_pips_per_side"] * _PIP
+    slip = _cfg(symbol)["slippage_pips_per_side"] * pip_size(symbol)
     return price + slip if side == Side.BUY else price - slip
 
 
 def apply_exit_slippage(side: Side, price: Decimal, symbol: Symbol) -> Decimal:
-    slip = _cfg(symbol)["slippage_pips_per_side"] * _PIP
+    slip = _cfg(symbol)["slippage_pips_per_side"] * pip_size(symbol)
     return price - slip if side == Side.BUY else price + slip
 
 
 def half_spread(symbol: Symbol) -> Decimal:
-    return _cfg(symbol)["spread_pips"] * _PIP / Decimal("2")
+    return _cfg(symbol)["spread_pips"] * pip_size(symbol) / Decimal("2")
 
 
 def commission(size_lots: Decimal, symbol: Symbol) -> Decimal:

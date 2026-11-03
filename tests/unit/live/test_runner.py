@@ -7,7 +7,7 @@ from pathlib import Path
 import pytest
 
 from v17.common.clock import FrozenClock
-from v17.common.dtos import AccountState, Bar, CalendarEvent, Position, Tick
+from v17.common.dtos import AccountState, Bar, CalendarEvent, OrderRequest, OrderResult, Position, Tick
 from v17.common.errors import V17StructureError
 from v17.common.types import TF, Side, Symbol, Ticket
 from v17.live.alerter import NullAlerter
@@ -59,14 +59,17 @@ def _make_runner(
     tmp_path: Path,
     fake: FakeMT5,
     with_gate: bool = True,
+    symbols: list[Symbol] | None = None,
 ) -> LiveRunner:
+    syms = symbols or [_SYM]
     if with_gate:
         tmp_path.mkdir(parents=True, exist_ok=True)
         (tmp_path / "GATE_PASSED").touch()
     fake.connect()
-    fake.set_tick(_SYM, _tick())
+    for s in syms:
+        fake.set_tick(s, _tick())
     clock = FrozenClock(_NOW)
-    structure = DefaultStructureEngine(_SYM)
+    structure = DefaultStructureEngine(syms[0])
     from v17.risk.engine import DefaultRiskEngine
     from v17.setups.silver_bullet import SilverBullet
     from v17.setups.judas_swing import JudasSwing
@@ -78,7 +81,7 @@ def _make_runner(
         calendar=_StaticCalendar(),
         alerter=NullAlerter(),
         state_root=tmp_path,
-        symbols=[_SYM],
+        symbols=syms,
         clock=clock,
         initial_account=_account(),
     )
@@ -145,6 +148,40 @@ class TestRunnerReconcile:
         runner._killzone_start()
         runner._reconcile()
         assert runner.state == RunnerState.ARMED
+
+    def test_reconcile_multiple_symbols_restores_all(self, tmp_path: Path) -> None:
+        fake = FakeMT5()
+        runner = _make_runner(tmp_path, fake, symbols=[Symbol("EURUSD"), Symbol("GBPUSD")])
+        runner._killzone_start()
+        fake._positions[1] = Position(
+            ticket=Ticket(1),
+            symbol=Symbol("EURUSD"),
+            side=Side.BUY,
+            size_lots=Decimal("0.01"),
+            opened_at=_NOW,
+            entry=Decimal("1.09998"),
+            sl=Decimal("1.09800"),
+            tp=Decimal("1.10200"),
+            current_price=Decimal("1.09998"),
+            unrealized_pnl=Decimal("0"),
+        )
+        fake._positions[2] = Position(
+            ticket=Ticket(2),
+            symbol=Symbol("GBPUSD"),
+            side=Side.SELL,
+            size_lots=Decimal("0.02"),
+            opened_at=_NOW,
+            entry=Decimal("1.25000"),
+            sl=Decimal("1.25500"),
+            tp=Decimal("1.24000"),
+            current_price=Decimal("1.25000"),
+            unrealized_pnl=Decimal("0"),
+        )
+        runner._reconcile()
+        assert runner.state == RunnerState.IN_TRADE
+        assert len(runner.open_trades) == 2
+        assert Symbol("EURUSD") in runner.open_trades
+        assert Symbol("GBPUSD") in runner.open_trades
 
 
 class TestRunnerTickStep:
@@ -345,3 +382,84 @@ class TestRunnerProcessInTrade:
 
         runner._tick_step(_SYM)
         assert runner.state == RunnerState.IN_TRADE
+
+
+class TestRunnerPostFillRiskCheck:
+    def test_post_fill_breach_triggers_emergency_close(self, tmp_path: Path) -> None:
+        fake = FakeMT5()
+        runner = _make_runner(tmp_path, fake)
+        runner._killzone_start()
+
+        class SlippingFakeMT5(FakeMT5):
+            def order_send(self, order: OrderRequest) -> OrderResult:
+                # Fills at an extreme slippage price that breaches risk (e.g. at/below SL for BUY)
+                t = self._ticks[str(order.symbol)]
+                ticket = Ticket(self._next_ticket)
+                self._next_ticket += 1
+                bad_fill = order.sl - Decimal("0.0010")  # below SL!
+                pos = Position(
+                    ticket=ticket,
+                    symbol=order.symbol,
+                    side=order.side,
+                    size_lots=order.size_lots,
+                    opened_at=t.ts,
+                    entry=bad_fill,
+                    sl=order.sl,
+                    tp=order.tp,
+                    current_price=bad_fill,
+                    unrealized_pnl=Decimal("0"),
+                )
+                self._positions[int(ticket)] = pos
+                return OrderResult(ok=True, ticket=ticket, filled_price=bad_fill, filled_at=t.ts)
+
+        slipping_fake = SlippingFakeMT5()
+        slipping_runner = _make_runner(tmp_path, slipping_fake)
+        slipping_runner._killzone_start()
+
+        # Mock setup engine returning a BUY signal
+        from v17.common.dtos import Signal
+        from v17.common.types import SignalId
+        sig = Signal(
+            id=SignalId("test_sig"),
+            symbol=_SYM,
+            setup="silver_bullet",
+            side=Side.BUY,
+            at=_NOW,
+            entry=Decimal("1.1000"),
+            sl=Decimal("1.0980"),
+            tp=Decimal("1.1040"),
+            rr=Decimal("2.0"),
+            confluence={"bias": True, "fvg": True, "ob": True, "mss": True, "sweep": True},
+        )
+        class DummySetup:
+            def evaluate(self, snap: object, ts: object, bars_1m: object) -> Signal | None:
+                return sig
+
+        slipping_runner._setup_engines = [DummySetup()]  # type: ignore[list-item]
+
+        # Feed a tick with a new bar to trigger armed processing
+        base = Decimal("1.1")
+        for tf in (TF.D1, TF.H4, TF.M15, TF.M1):
+            bars = [
+                Bar(
+                    symbol=_SYM,
+                    tf=tf,
+                    ts=datetime(2026, 1, 6, 0, i % 60, tzinfo=UTC),
+                    open=base + Decimal(str(i)) * Decimal("0.0001"),
+                    high=base + Decimal(str(i)) * Decimal("0.0001") + Decimal("0.0003"),
+                    low=base + Decimal(str(i)) * Decimal("0.0001") - Decimal("0.0003"),
+                    close=base + Decimal(str(i)) * Decimal("0.0001") + Decimal("0.0001"),
+                )
+                for i in range(25)
+            ]
+            slipping_fake.set_bars(_SYM, tf, bars)
+
+        slipping_fake.set_tick(_SYM, _tick(30, 0))
+        slipping_runner._tick_step(_SYM)
+        slipping_fake.set_tick(_SYM, _tick(31, 0))
+        slipping_runner._tick_step(_SYM)
+
+        # Emergency close should have closed the bad fill position
+        assert len(slipping_fake.positions()) == 0
+        assert len(slipping_runner.open_trades) == 0
+        assert slipping_runner.state == RunnerState.ARMED

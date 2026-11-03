@@ -47,6 +47,7 @@ def write_run(
     metrics: dict[str, Any],
     wf: dict[str, Any] | None = None,
     mc: dict[str, Any] | None = None,
+    config: BacktestConfig | None = None,
 ) -> None:
     run_dir.mkdir(parents=True, exist_ok=True)
     pd.DataFrame(_trade_rows(trades)).to_parquet(run_dir / "trades.parquet", compression="zstd")
@@ -56,6 +57,8 @@ def write_run(
         (run_dir / "walkforward.json").write_text(json.dumps(wf, default=_json_default, indent=2))
     if mc is not None:
         (run_dir / "montecarlo.json").write_text(json.dumps(mc, default=_json_default, indent=2))
+    if config is not None:
+        (run_dir / "config.json").write_text(config.model_dump_json(indent=2))
 
 
 def _json_default(x: object) -> object:

@@ -102,7 +102,7 @@ def backtest(
     )
     run_id = run_id_from_cfg(cfg)
     run_dir = get_settings().project_root / "runs" / run_id
-    write_run(run_dir, trades, equity, metrics, None, dict(mc) if mc is not None else None)
+    write_run(run_dir, trades, equity, metrics, None, dict(mc) if mc is not None else None, config=cfg)
     typer.echo(
         f"run_id={run_id} trades={metrics['trades']} pf={metrics['pf']:.2f} "
         f"dd={metrics['max_dd_pct']:.2f}% dir={run_dir}"

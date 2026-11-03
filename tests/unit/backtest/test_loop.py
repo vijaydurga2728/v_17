@@ -38,3 +38,39 @@ def test_loop_runs_without_crash() -> None:
     assert isinstance(trades, list)
     assert isinstance(eq, pd.DataFrame)
     assert "equity" in eq.columns
+
+
+def test_loop_force_closes_at_end_of_data() -> None:
+    # Verify that an open trade at the end of simulation is closed with reason="end_of_data"
+    from v17.common.dtos import Signal
+    from v17.common.types import Side, SignalId
+    pre = precompute(_bars_slice(), Symbol("EURUSD"))
+
+    class AlwaysFiresSetup:
+        name = "silver_bullet"
+        def evaluate(self, snap: object, now: datetime, bars: object) -> Signal | None:
+            # Fire a signal near the end
+            if now == datetime(2024, 6, 5, 23, 50, tzinfo=UTC):
+                return Signal(
+                    id=SignalId("end_test_sig"),
+                    symbol=Symbol("EURUSD"),
+                    setup="silver_bullet",
+                    side=Side.BUY,
+                    at=now,
+                    entry=Decimal("1.0850"),
+                    sl=Decimal("1.0800"),  # wide SL so it doesn't trigger on remaining bars
+                    tp=Decimal("1.0950"),  # wide TP so it doesn't trigger
+                    rr=Decimal("2.0"),
+                    confluence={"bias": True, "fvg": True, "ob": True, "mss": True, "sweep": True},
+                )
+            return None
+
+    loop = EventLoop(Symbol("EURUSD"), [AlwaysFiresSetup()], DefaultRiskEngine(), pre)  # type: ignore[list-item]
+    start = datetime(2024, 6, 3, tzinfo=UTC)
+    end = datetime(2024, 6, 5, 23, 59, tzinfo=UTC)
+    trades, eq = loop.run(start, end, Decimal("100000"))
+    if trades:
+        last_trade = trades[-1]
+        assert last_trade.reason == "end_of_data"
+        assert last_trade.closed_at is not None
+        assert last_trade.close_price is not None

@@ -24,11 +24,17 @@ def validate(run: str = typer.Option(..., "--run")) -> None:
     wf_path = run_dir / "walkforward.json"
     wf = json.loads(wf_path.read_text()) if wf_path.exists() else {}
 
-    cfg = BacktestConfig(
-        symbol=Symbol("EURUSD"),
-        start=datetime(2015, 1, 1, tzinfo=UTC),
-        end=datetime(2026, 1, 1, tzinfo=UTC),
-    )
+    cfg_path = run_dir / "config.json"
+    if cfg_path.exists():
+        cfg = BacktestConfig.model_validate_json(cfg_path.read_text())
+    elif "config" in metrics:
+        cfg = BacktestConfig.model_validate(metrics["config"])
+    else:
+        cfg = BacktestConfig(
+            symbol=Symbol(metrics.get("symbol", "EURUSD")),
+            start=datetime.fromisoformat(metrics.get("start", "2015-01-01T00:00:00+00:00")),
+            end=datetime.fromisoformat(metrics.get("end", "2026-01-01T00:00:00+00:00")),
+        )
     report = RunReport(
         run_id=RunId(run),
         config=cfg,
@@ -38,10 +44,10 @@ def validate(run: str = typer.Option(..., "--run")) -> None:
         sharpe=float(metrics.get("sharpe", 0.0)),
         max_dd_pct=float(metrics.get("max_dd_pct", 0.0)),
         net_pnl=Decimal(str(metrics.get("net_pnl", 0))),
-        oos_trades=int(metrics.get("oos_trades", metrics.get("trades", 0))),
-        oos_pf=float(metrics.get("oos_pf", metrics.get("pf", 0.0))),
-        oos_sharpe=float(metrics.get("oos_sharpe", metrics.get("sharpe", 0.0))),
-        oos_max_dd_pct=float(metrics.get("oos_max_dd_pct", metrics.get("max_dd_pct", 0.0))),
+        oos_trades=int(metrics.get("oos_trades", 0)),
+        oos_pf=float(metrics.get("oos_pf", 0.0)),
+        oos_sharpe=float(metrics.get("oos_sharpe", 0.0)),
+        oos_max_dd_pct=float(metrics.get("oos_max_dd_pct", 100.0)),
         walkforward_folds_passed=int(wf.get("folds_passed", 0)),
         mc_p5_pf=float(mc.get("p5_pf", 0.0)),
         mc_p95_max_dd_pct=float(mc.get("p95_max_dd_pct", 0.0)),

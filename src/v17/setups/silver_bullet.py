@@ -21,7 +21,7 @@ from v17.setups.targets import passes_rr, pip_distance, rr
 
 MIN_PIP_SL: Final = Decimal("2")
 TP_FALLBACK_PIPS: Final = Decimal("22")
-SWEEP_LOOKBACK_MIN: Final = 240
+SWEEP_LOOKBACK_MIN: Final = 90
 MSS_LOOKBACK_MIN: Final = 30
 ZONE_TOLERANCE_PIPS: Final = Decimal("10")
 # _PIP is now symbol-dependent via pip_size(). Kept as fallback for FX majors.
@@ -112,7 +112,15 @@ class SilverBullet:
             tp = entry - (risk * Decimal("2.0"))
 
         min_sl = MIN_PIP_SL_BY_SYMBOL.get(snap.symbol, self.min_pip_sl)
-        if pip_distance(entry, sl, symbol=snap.symbol) < min_sl:
+        risk_pips = pip_distance(entry, sl, symbol=snap.symbol)
+        if risk_pips < min_sl:
+            return None
+        max_sl = (
+            Decimal("30")
+            if snap.symbol.endswith("IDXUSD")
+            else (Decimal("20") if "JPY" in snap.symbol else Decimal("15"))
+        )
+        if risk_pips > max_sl:
             return None
         rr_ = rr(entry, sl, tp, side)
         if not passes_rr(rr_):

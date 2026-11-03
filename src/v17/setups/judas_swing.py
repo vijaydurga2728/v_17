@@ -56,6 +56,10 @@ class JudasSwing:
 
         try:
             asian_hi, asian_lo = asian_high_low(bars_1m, now)
+            scale = 100 if "JPY" in snap.symbol else 10000
+            if (asian_hi - asian_lo) * scale > 30.0:
+                # Authentic ICT: Asian range must be consolidation (<= 30 pips)
+                return None
         except ValueError:
             return None
 

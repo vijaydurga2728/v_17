@@ -49,14 +49,42 @@ class LiveRunner:
         self._clock = clock
         self._account = initial_account
         self._state = RunnerState.IDLE
-        self._open_trade: Trade | None = None
+        self._open_trades: dict[Symbol, Trade] = {}
         self._bar_builders: dict[Symbol, BarBuilder] = {
             sym: BarBuilder(sym) for sym in symbols
         }
 
     @property
+    def _open_trade(self) -> Trade | None:
+        if not self._open_trades:
+            return None
+        return next(iter(self._open_trades.values()))
+
+    @_open_trade.setter
+    def _open_trade(self, val: Trade | None) -> None:
+        if val is None:
+            self._open_trades.clear()
+        else:
+            self._open_trades[val.symbol] = val
+
+    @property
+    def open_trades(self) -> dict[Symbol, Trade]:
+        return self._open_trades
+
+    @property
     def state(self) -> RunnerState:
         return self._state
+
+    def _day_reset(self) -> None:
+        self._account = self._account.model_copy(
+            update={
+                "trades_today": 0,
+                "is_locked_today": False,
+                "daily_realized_pnl": Decimal("0"),
+                "day_start_equity": self._account.equity,
+            }
+        )
+        _log.info("ftmo_server_day_reset", day_start_equity=str(self._account.equity))
 
     def _killzone_start(self) -> None:
         self._state = RunnerState.PRE_FLIGHT
@@ -82,6 +110,7 @@ class LiveRunner:
                 "trades_today": 0,
                 "is_locked_today": False,
                 "daily_realized_pnl": Decimal("0"),
+                "day_start_equity": self._account.day_start_equity or self._account.equity,
             }
         )
         self._state = RunnerState.ARMED
@@ -101,7 +130,12 @@ class LiveRunner:
         from apscheduler.triggers.cron import CronTrigger  # type: ignore[import-untyped]
 
         _london = "Europe/London"
+        _cet = "CET"
         scheduler = BlockingScheduler(timezone=_london)
+        scheduler.add_job(
+            self._day_reset,
+            CronTrigger(day_of_week="mon-fri", hour=0, minute=0, timezone=_cet),
+        )
         scheduler.add_job(
             self._killzone_start,
             CronTrigger(day_of_week="mon-fri", hour=6, minute=50, timezone=_london),
@@ -131,9 +165,14 @@ class LiveRunner:
         if self._state == RunnerState.ARMED:
             self._process_armed(symbol, tick)
         elif self._state in (RunnerState.IN_TRADE, RunnerState.MANAGED):
-            self._process_in_trade(symbol, tick)
+            if symbol in self._open_trades:
+                self._process_in_trade(symbol, tick)
+            else:
+                self._process_armed(symbol, tick)
 
     def _process_armed(self, symbol: Symbol, tick: Tick) -> None:
+        if symbol in self._open_trades:
+            return
         if self._calendar.is_blackout(symbol, tick.ts):
             return
 
@@ -179,6 +218,26 @@ class LiveRunner:
             assert result.ticket is not None
             assert result.filled_price is not None
             assert result.filled_at is not None
+
+            # Post-fill risk verification against actual execution fill price
+            post_check = self._risk_engine.check(
+                signal, self._account, entry=result.filled_price
+            )
+            if not post_check.allow:
+                _log.critical(
+                    "post_fill_risk_breach",
+                    reason=post_check.reason,
+                    ticket=result.ticket,
+                    filled_price=str(result.filled_price),
+                )
+                self._gateway.order_close(result.ticket)
+                self._alerter.send(
+                    f"EMERGENCY CLOSE: Post-fill risk breach on {signal.symbol} "
+                    f"@{result.filled_price} ({post_check.reason})",
+                    level="critical",
+                )
+                continue
+
             trade = Trade(
                 ticket=result.ticket,
                 signal_id=signal.id,
@@ -190,7 +249,7 @@ class LiveRunner:
                 tp=signal.tp,
                 opened_at=result.filled_at,
             )
-            self._open_trade = trade
+            self._open_trades[signal.symbol] = trade
             self._account = self._risk_engine.on_fill(trade, self._account)
             self._state = RunnerState.IN_TRADE
             _log.info(
@@ -208,28 +267,31 @@ class LiveRunner:
             break
 
     def _process_in_trade(self, symbol: Symbol, tick: Tick) -> None:
-        if self._open_trade is None:
-            self._state = RunnerState.ARMED
+        if symbol not in self._open_trades:
+            if not self._open_trades:
+                self._state = RunnerState.ARMED
             return
 
+        trade = self._open_trades[symbol]
         positions = self._gateway.positions()
         open_tickets = {p.ticket for p in positions}
 
-        if self._open_trade.ticket not in open_tickets:
-            closed = self._open_trade.model_copy(
+        if trade.ticket not in open_tickets:
+            closed = trade.model_copy(
                 update={"closed_at": tick.ts, "reason": "sl_or_tp"}
             )
             self._account = self._risk_engine.on_close(closed, self._account)
             _log.info(
                 "trade_closed",
-                ticket=self._open_trade.ticket,
-                symbol=str(self._open_trade.symbol),
+                ticket=trade.ticket,
+                symbol=str(trade.symbol),
             )
             self._alerter.send(
-                f"CLOSE {self._open_trade.symbol} ticket={self._open_trade.ticket}"
+                f"CLOSE {trade.symbol} ticket={trade.ticket}"
             )
-            self._open_trade = None
-            self._state = RunnerState.ARMED
+            del self._open_trades[symbol]
+            if not self._open_trades:
+                self._state = RunnerState.ARMED
 
     def _tick_poll(self) -> None:
         for symbol in self._symbols:
@@ -237,6 +299,7 @@ class LiveRunner:
 
     def _reconcile(self) -> None:
         positions = self._gateway.positions()
+        self._open_trades.clear()
         for pos in positions:
             if pos.symbol in self._symbols:
                 trade = Trade(
@@ -250,14 +313,14 @@ class LiveRunner:
                     tp=pos.tp,
                     opened_at=pos.opened_at,
                 )
-                self._open_trade = trade
-                self._account = self._account.model_copy(
-                    update={"open_positions": 1}
-                )
-                self._state = RunnerState.IN_TRADE
+                self._open_trades[pos.symbol] = trade
                 _log.info(
                     "reconciled_open_trade",
                     ticket=pos.ticket,
                     symbol=str(pos.symbol),
                 )
-                return
+        if self._open_trades:
+            self._account = self._account.model_copy(
+                update={"open_positions": len(self._open_trades)}
+            )
+            self._state = RunnerState.IN_TRADE

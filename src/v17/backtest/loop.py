@@ -145,6 +145,7 @@ class EventLoop:
                         "daily_realized_pnl": Decimal("0"),
                         "trading_days_count": account.trading_days_count + 1,
                         "trades_today": 0,
+                        "day_start_equity": account.equity,
                     }
                 )
                 fired_today = set()
@@ -250,6 +251,27 @@ class EventLoop:
                 fired_today.add((sig.setup, sig.side, win_id))
                 next_ticket += 1
                 break
+
+        if open_trades:
+            last_ts = ts_list[-1]
+            last_close = Decimal(str(float(bars["close"].iloc[-1])))
+            for ot in open_trades:
+                raw_pnl = pnl_usd(
+                    ot.side, ot.entry, last_close, ot.size_lots, symbol=self.symbol
+                )
+                comm = commission(ot.size_lots, self.symbol)
+                pnl = raw_pnl - comm
+                closed = ot.model_copy(
+                    update={
+                        "closed_at": last_ts,
+                        "close_price": last_close,
+                        "pnl": pnl,
+                        "reason": "end_of_data",
+                    }
+                )
+                trades.append(closed)
+                account = self.risk.on_close(closed, account)
+            open_trades = []
 
         if prev_date is not None:
             equity_rows.append((pd.Timestamp(prev_date), account.equity))

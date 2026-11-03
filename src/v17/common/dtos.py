@@ -221,6 +221,13 @@ class AccountState(_Frozen):
     is_locked_today: bool
     kill_active: bool
     trades_today: int = 0
+    day_start_equity: Decimal | None = None
+
+    @model_validator(mode="after")
+    def _ensure_day_start_equity(self) -> AccountState:
+        if self.day_start_equity is None:
+            object.__setattr__(self, "day_start_equity", self.starting_equity)
+        return self
 
 
 class Decision(_Frozen):
@@ -237,6 +244,7 @@ class Decision(_Frozen):
             "max_trades_today",
             "rr_too_low",
             "sl_too_tight",
+            "sl_invalid",
             "kill_active",
         ]
         | None
