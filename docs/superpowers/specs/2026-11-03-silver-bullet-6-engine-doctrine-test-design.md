@@ -94,7 +94,20 @@ This specification does not restate the rulebook. The rulebook is `research/ict/
 - Transcript citation: Market Structure Lesson 14 (Keys To Daily Bias). Same primary source as JS-02.
 - Operational: BIAS evaluated at 00:00 NY using data strictly before 00:00 NY. No lookahead.
 
-### 3.3 Rules audit obligation
+### 3.3 Audit 1 reclassification note (added 2026-11-03)
+
+Audit 1 (`research/audits/rulebook_vs_transcript_2026-11-03.md`) found that cited transcript backing in `ICT_STRATEGY_RULEBOOK.md` was substantially unverified: zero of thirteen citation-instances passed clean, including all four core Silver Bullet rules whose cited "2023 Silver Bullet Lecture" transcript is absent from the user's corpus.
+
+Classifications have been corrected per the audit's "Proposed corrections" (commit `347baa1`). The spec's gate framing is reinterpreted accordingly:
+
+- **Original framing:** "Does the rulebook, as faithfully transcript-cited ICT doctrine, exhibit a non-random edge?"
+- **Revised framing:** "Does this specific empirical heuristic set — widely-circulated ICT practice as encoded in the rulebook — exhibit a non-random edge on the user's data?"
+
+Statistical infrastructure (6-engine catalog, dual-scheme MCPT at Bonferroni α=0.00833, sealed holdout, portfolio-layer second MCPT, cost model, risk constraints) is unaffected. Only the interpretive label on the verdict shifts.
+
+The reclassification is applied once, pre-gate. No further rulebook changes are permitted before gate completion (spec §13.2 and §18 unchanged).
+
+### 3.4 Rules audit obligation
 
 Before any code is written against the rulebook, three audit passes run (Section 13). Any legitimate transcript-cited correction found by the audit is applied to the rulebook and this spec is amended in-place prior to approval. Once this spec is approved by the user, the rulebook and this spec are both frozen.
 
@@ -494,6 +507,8 @@ The following are explicitly out of scope for this cycle:
 - Machine learning models of any kind.
 - Multi-timeframe HTF confluence beyond D1 bias (no 4H confluence, no weekly bias).
 
+- Reclassification of rules post-gate based on gate results.
+
 Attempting any non-goal mid-cycle requires: full stop, new spec, new sealed holdout, new gate. There is no shortcut.
 
 ---
@@ -510,11 +525,13 @@ These numbers are not pessimism. They are survivorship-adjusted base rates. Any 
 
 If this probability range is unacceptable to the user, the correct action is to not run this cycle. Running the cycle and then rejecting the outcome because "it was supposed to work" is the single worst mistake available.
 
+Note: following the Audit 1 reclassification (§3.3), the test is now explicitly framed as an empirical test of widely-circulated ICT heuristics rather than a citation-faithful doctrine test. The probability bands and verdict interpretation remain the same. The honesty of the gate — frozen rules, no training, MCPT, sealed holdout — is unchanged by the reclassification.
+
 ---
 
 ## 18. Change Control
 
-- This specification is frozen at user approval time.
+- This specification is frozen at user approval time (first approval 2026-11-03, re-approval after Audit 1 reclassification 2026-11-03 — see §3.3).
 - Pre-approval amendments: inline edits, user re-reviews, no versioning.
 - Post-approval: NO AMENDMENTS before gate completion. If a bug is found in SPEC during implementation (e.g., contradiction, undefined behavior), stop, bring it to user, re-decide. Do not amend silently.
 - Post-gate: next cycle. New document. New sealed holdout. New gate. This document becomes historical record.
