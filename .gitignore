@@ -7,6 +7,7 @@ __pycache__/
 .benchmarks/
 .hypothesis/
 .superpowers/
+.worktrees/
 .coverage
 test-output.txt
 data/parquet/
