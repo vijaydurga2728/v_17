@@ -136,3 +136,44 @@ def stitch_pair(
     if not out["ts"].is_monotonic_increasing:
         raise V17DataError("stitched timestamps not monotonic")
     return out
+
+
+def load_paired_bars(bid_path, ask_path, symbol: str) -> pd.DataFrame:
+    """Load paired Dukascopy bid/ask 1-min CSVs, join on timestamp, derive spread.
+
+    Columns returned (float64 unless noted):
+      ts_utc (int64 ns), symbol (str),
+      bid_o, bid_h, bid_l, bid_c, bid_volume,
+      ask_o, ask_h, ask_l, ask_c, ask_volume,
+      spread_mid (ask_c - bid_c)
+    """
+    def _read(p: Path | str, side: str) -> pd.DataFrame:
+        df = pd.read_csv(p, parse_dates=False)
+        df.columns = [c.strip() for c in df.columns]
+        time_col = next(c for c in df.columns if c.lower().startswith("time"))
+        df["_ts"] = pd.to_datetime(df[time_col], format="%Y.%m.%d %H:%M:%S")
+        df["_ts"] = df["_ts"].dt.tz_localize("Europe/Athens").dt.tz_convert("UTC")
+        df["ts_utc"] = df["_ts"].astype("int64")
+        rename = {
+            "Open": f"{side}_o",
+            "High": f"{side}_h",
+            "Low": f"{side}_l",
+            "Close": f"{side}_c",
+            "Volume": f"{side}_volume",
+        }
+        df = df.rename(columns=rename)
+        keep = ["ts_utc", f"{side}_o", f"{side}_h", f"{side}_l", f"{side}_c", f"{side}_volume"]
+        return df[keep]
+
+    bid = _read(Path(bid_path), "bid")
+    ask = _read(Path(ask_path), "ask")
+    out = bid.merge(ask, on="ts_utc", how="inner")
+    out["symbol"] = symbol
+    out["spread_mid"] = out["ask_c"] - out["bid_c"]
+    cols = [
+        "ts_utc", "symbol",
+        "bid_o", "bid_h", "bid_l", "bid_c",
+        "ask_o", "ask_h", "ask_l", "ask_c",
+        "bid_volume", "ask_volume", "spread_mid",
+    ]
+    return out[cols]
