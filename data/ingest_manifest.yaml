@@ -1,0 +1,14 @@
+root: "C:/Users/Vijayakumar R/Documents"
+symbols:
+  - symbol: EURUSD
+    pairs:
+      - bid: "EURUSD_1 Min_Bid_2015.01.01_2026.10.18.csv"
+        ask: "EURUSD_1 Min_Ask_2015.01.01_2026.10.18.csv"
+  - symbol: GBPUSD
+    pairs:
+      - bid: "GBPUSD_1 Min_Bid_2015.01.01_2026.10.18.csv"
+        ask: "GBPUSD_1 Min_Ask_2015.01.01_2026.10.18.csv"
+  - symbol: USATECHIDXUSD
+    pairs:
+      - bid: "USATECHIDXUSD_1 Min_Bid_2015.01.01_2026.10.14.csv"
+        ask: "USATECHIDXUSD_1 Min_Ask_2015.01.01_2026.10.14.csv"

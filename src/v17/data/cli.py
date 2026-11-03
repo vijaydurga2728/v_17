@@ -37,3 +37,32 @@ def ingest_calendar() -> None:
     with httpx.Client() as http:
         events = fetch_current_week(http, s.calendar_root, SystemClock().now())
     typer.echo(f"cached {len(events)} events to {s.calendar_root}")
+
+
+from v17.data.dukascopy_csv import load_paired_bars
+from v17.data.parquet_store import write_bars_partitioned
+
+
+def ingest_from_manifest(manifest: dict, out_root) -> None:
+    root = Path(manifest["root"])
+    out_root = Path(out_root)
+    for sym_entry in manifest["symbols"]:
+        symbol = sym_entry["symbol"]
+        for pair in sym_entry["pairs"]:
+            bid = root / pair["bid"]
+            ask = root / pair["ask"]
+            df = load_paired_bars(bid, ask, symbol=symbol)
+            write_bars_partitioned(df, root=out_root)
+
+
+try:
+    import yaml
+    _ingest_paired_app = typer.Typer()
+
+    @_ingest_paired_app.command("ingest-paired")
+    def ingest_paired_cmd(config: Path, out: Path = Path("data")):
+        with open(config) as f:
+            manifest = yaml.safe_load(f)
+        ingest_from_manifest(manifest, out_root=out)
+except ImportError:
+    pass
