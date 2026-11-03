@@ -1,0 +1,11 @@
+[1;33mThank you for using SmartMoneyConcepts! ⭐ Please show your support by giving a star on the GitHub repository: [4;34mhttps://github.com/joshyattridge/smart-money-concepts[0m
+=== INGEST COMPLETED ===
+EURUSD/dev: 120 files, 3,740,937 rows
+EURUSD/holdout: 22 files, 670,198 rows
+GBPUSD/dev: 120 files, 3,740,937 rows
+GBPUSD/holdout: 22 files, 670,198 rows
+USATECHIDXUSD/dev: 120 files, 3,458,474 rows
+USATECHIDXUSD/holdout: 22 files, 611,672 rows
+cols: ['ts_utc', 'symbol', 'bid_o', 'bid_h', 'bid_l', 'bid_c', 'ask_o', 'ask_h', 'ask_l', 'ask_c', 'bid_volume', 'ask_volume', 'spread_mid', '__index_level_0__']
+rows: 30240
+first row: [{'ts_utc': 1420149600000000000, 'symbol': 'EURUSD', 'bid_o': 1.21038, 'bid_h': 1.21038, 'bid_l': 1.21037, 'bid_c': 1.21037, 'ask_o': 1.21066, 'ask_h': 1.21067, 'ask_l': 1.21059, 'ask_c': 1.21059, 'bid_volume': 6.0, 'ask_volume': 4.5, 'spread_mid': 0.000220000000000109}]

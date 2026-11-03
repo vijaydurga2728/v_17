@@ -3,7 +3,7 @@ from __future__ import annotations
 import typer
 
 from v17.backtest.cli import backtest, montecarlo_cmd, walkforward_cmd
-from v17.data.cli import ingest, ingest_calendar
+from v17.data.cli import ingest, ingest_calendar, ingest_paired_cmd
 from v17.live.cli import live, paper
 from v17.obs.cli import report
 from v17.validation.cli import mcpt_cmd, validate
@@ -11,6 +11,7 @@ from v17.validation.cli import mcpt_cmd, validate
 app = typer.Typer(no_args_is_help=True)
 app.command("ingest")(ingest)
 app.command("ingest-calendar")(ingest_calendar)
+app.command("ingest-paired")(ingest_paired_cmd)
 app.command("backtest")(backtest)
 app.command("walkforward")(walkforward_cmd)
 app.command("montecarlo")(montecarlo_cmd)
