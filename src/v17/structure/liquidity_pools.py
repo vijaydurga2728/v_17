@@ -27,13 +27,13 @@ def enumerate_pools(bars: pd.DataFrame, window_start_ns: int, now_ns: int) -> li
         lo_idx = pre_window["bid_l"].idxmin()
         pools.append({
             "kind": "session_high",
-            "price": float(pre_window.loc[hi_idx, "bid_h"]),
-            "ts_utc": int(pre_window.loc[hi_idx, "ts_utc"]),
+            "price": float(pre_window.at[hi_idx, "bid_h"]),
+            "ts_utc": int(pre_window.at[hi_idx, "ts_utc"]),
         })
         pools.append({
             "kind": "session_low",
-            "price": float(pre_window.loc[lo_idx, "bid_l"]),
-            "ts_utc": int(pre_window.loc[lo_idx, "ts_utc"]),
+            "price": float(pre_window.at[lo_idx, "bid_l"]),
+            "ts_utc": int(pre_window.at[lo_idx, "ts_utc"]),
         })
 
     prev_hr = df[
@@ -45,13 +45,13 @@ def enumerate_pools(bars: pd.DataFrame, window_start_ns: int, now_ns: int) -> li
         lo_idx = prev_hr["bid_l"].idxmin()
         pools.append({
             "kind": "prev_hour_high",
-            "price": float(prev_hr.loc[hi_idx, "bid_h"]),
-            "ts_utc": int(prev_hr.loc[hi_idx, "ts_utc"]),
+            "price": float(prev_hr.at[hi_idx, "bid_h"]),
+            "ts_utc": int(prev_hr.at[hi_idx, "ts_utc"]),
         })
         pools.append({
             "kind": "prev_hour_low",
-            "price": float(prev_hr.loc[lo_idx, "bid_l"]),
-            "ts_utc": int(prev_hr.loc[lo_idx, "ts_utc"]),
+            "price": float(prev_hr.at[lo_idx, "bid_l"]),
+            "ts_utc": int(prev_hr.at[lo_idx, "ts_utc"]),
         })
 
     return pools
