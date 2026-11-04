@@ -1,0 +1,46 @@
+"""Frozen Silver Bullet rulebook constants per spec section 5.
+
+NEVER EDIT WITHOUT USER APPROVAL AND SPEC AMENDMENT. Changes mid-cycle
+invalidate MCPT p-values.
+"""
+
+# D1 bias (SB-A1)
+D1_EMA_PERIOD = 20
+D1_STRUCTURE_SWING_LOOKBACK_DAYS = 20
+
+# Displacement (SB-03)
+ATR_PERIOD_M1 = 14
+DISPLACEMENT_BODY_RATIO_MIN = 0.65
+DISPLACEMENT_RANGE_ATR_MULT = 1.5
+
+# FVG and entry (SB-04)
+FVG_COST_VIABILITY_MULT = 2.0
+
+# Target (SB-05)
+MIN_R_MULTIPLE = 1.5
+STRUCTURAL_FALLBACK_USATECH_PTS = 15
+STRUCTURAL_FALLBACK_FX_PIPS = 20
+
+# Stops (JS-06 pattern)
+SL_BUFFER_FX_MIN_PIPS = 2.0
+SL_BUFFER_FX_MAX_PIPS = 15.0
+SL_BUFFER_USATECH_MAX_PTS = 20.0
+
+# Timing (spec defaults 5, 7)
+PENDING_EXPIRY_MIN_AFTER_WINDOW = 5
+POSITION_HARD_EXIT_MIN_AFTER_WINDOW = 60
+
+# News policy (spec default 4; Policy C only this cycle per 2026-11-03 amendment)
+NEWS_BLACKOUT_BEFORE_MIN = 10
+NEWS_BLACKOUT_AFTER_MIN = 20
+
+# Spread guard (spec default 3)
+SPREAD_GUARD_LOOKBACK_DAYS = 30
+SPREAD_GUARD_MULT = 3.0
+
+# Circuit breakers (spec defaults 8, 9)
+DAILY_LOSS_SOFT_STOP = 0.04
+TOTAL_LOSS_HARD_FREEZE = 0.08
+
+# Risk
+RISK_PER_TRADE = 0.005
