@@ -56,7 +56,7 @@ All items below are frozen at approval time. Changes mid-cycle invalidate MCPT.
 | L20 | Order type | LIMIT at CE (Model 1) or proximal edge (Model 2). No market entries. Pending expiry = window close + 5 min. | Rulebook SB-04 + default #5. |
 | L21 | In-trade management | Static SL per rulebook, static TP opposing-liquidity per SB-05, no trail, no breakeven, no partial. | Default #6. |
 | L22 | Session hard exit | Flat all positions at window-end + 60 minutes. Never cross 17:00 NY rollover. | Default #7. |
-| L23 | News policy | Policy D: Finnhub-sourced high-impact calendar blackout (-10 min / +20 min around USD/EUR/GBP High-impact events) AND spread-guard (reject if measured spread > 3× symbol × minute-of-day 30-day median). | Section 12. |
+| L23 | News policy | **Amended 2026-11-03 (post-Task 2.7).** Policy C active: spread-guard only (reject if measured spread > 3× symbol × minute-of-day 30-day median). Policy D (scheduled calendar blackout) deferred — Finnhub free tier returned 403 on `calendar_economic`; calendar source upgrade to Dukascopy news deferred as non-blocking follow-up before any live deployment. Classification of spread-guard-only: `ENGINEERING_CONSTRAINT`. | Section 12. |
 | L24 | Audit boundary | Pre-gate audit passes only. No rule changes after any gate run. | Section 13. |
 | L25 | Operating mode | Mode 1.5: frozen algo + human monitoring journal, no live overrides. Journal reviewed after 90 days as raw material for a NEW future-cycle engine design, never as a tweak input to this cycle. | Section 11. |
 | L26 | OpenAI usage | Pre-build rulebook audit, transcript distillation, post-trade narrative generation, bug-detector anomaly scans. **Prohibited: pre-trade decision filter, live rule tuning.** | Section 14. |
@@ -378,27 +378,37 @@ The FTMO account is one account. All trades land on one equity. Hedging restrict
 
 ---
 
-## 12. News Policy (Policy D)
+## 12. News Policy — **Amended 2026-11-03: Policy C active, Policy D deferred**
 
-### 12.1 Calendar source
+### 12.0 Amendment summary (2026-11-03)
 
-Finnhub economic calendar API, free tier (~60 req/min). Backfill 2015-01-01 → 2026-10-18. Filter: USD, EUR, GBP events, High impact only.
+Task 2.7 (Finnhub backfill execution) was BLOCKED by the Finnhub free tier: every `calendar_economic` request returned `FinnhubAPIException(status_code: 403): You don't have access to this resource.` across 2015-2020 chunks. The free tier does not include the economic calendar endpoint.
 
-Fallback if Finnhub coverage is insufficient for any period: Investpy or Dukascopy historical news export. Fallback decision is a pre-build engineering choice, not a rulebook choice; any fallback must cover the same impact-tier set.
+Resolution (user-approved): downgrade this cycle's news policy from Policy D (scheduled blackout + spread guard) to **Policy C only (spread-based implicit filter)**. Classification: `ENGINEERING_CONSTRAINT` (constrained by data-source availability, not by rulebook or research choice).
 
-### 12.2 Scheduled blackout
+Rationale: spread-guard empirically catches most news-induced spread spikes within seconds (news causes bid/ask widening immediately). Policy D remains the correct destination but is non-blocking for the gate run — adding Dukascopy-sourced calendar as a Policy D upgrade before live deployment is a deferred follow-up (Task 2.7-FOLLOWUP, out of scope for the current gate cycle).
 
-For each event in the filtered calendar:
-- Blackout window: `[event_time - 10 min, event_time + 20 min]`.
-- During blackout: no new entries. Existing positions managed per normal rules (SL/TP still active). If SL is inside blackout, SL still fires on next tick that triggers it.
+### 12.1 Calendar source — DEFERRED
 
-### 12.3 Spread-based reject
+Finnhub free tier blocked (403 on `calendar_economic`). Dukascopy historical news export is the recommended future source and matches the bar-data origin. No calendar ingested in this cycle.
+
+### 12.2 Scheduled blackout — DEFERRED
+
+Scheduled blackout windows require a populated calendar parquet and are not enforced in this cycle.
+
+### 12.3 Spread-based reject — **ACTIVE (Policy C)**
 
 Per symbol, per minute-of-day (1440 buckets), rolling 30-calendar-day median of measured spread computed from paired bid/ask bars. At entry evaluation time, if current spread > 3 × median → reject entry (log as `SPREAD_SPIKE_REJECT`).
 
-### 12.4 Combined effect
+This is the ONLY news/spike filter applied in this cycle. All gate runs use Policy C only.
 
-Both filters apply. An entry must pass BOTH scheduled calendar window AND spread guard. Either filter alone can reject. This is additive protection, not redundant.
+### 12.4 Combined effect — N/A this cycle
+
+Only the spread guard applies. The "combined AND" design is restored in a future cycle once a real calendar source is ingested.
+
+### 12.5 Gate verdict interpretation adjustment
+
+If the gate passes with Policy C only, the verdict reads "edge survives spread-guard-only news filtering." A conservative interpretation then runs a sensitivity study (post-pass, non-gate) adding a Dukascopy-sourced blackout retrospectively to confirm the edge does not come exclusively from news-driven moments.
 
 ---
 
