@@ -193,3 +193,23 @@ def permute_signal_time(
         choice_idx = int(rng.integers(0, len(pool)))
         out.at[i, "ts_entry_ns"] = int(pool.iloc[choice_idx]["ts_utc"])
     return out
+
+
+# =============================================================================
+# SB MCPT scheme 2 — P&L block bootstrap (spec section 7.1)
+# =============================================================================
+def block_bootstrap_pnl(pnls: np.ndarray, block_size: int, seed: int) -> np.ndarray:
+    """Block bootstrap: draw non-overlapping random-start blocks of block_size
+    with replacement from pnls, trim to original length. Deterministic by seed.
+    """
+    pnls = np.asarray(pnls)
+    n = len(pnls)
+    if n == 0:
+        return pnls.copy()
+    rng = np.random.default_rng(seed)
+    num_blocks = (n + block_size - 1) // block_size
+    max_start = max(1, n - block_size + 1)
+    starts = rng.integers(0, max_start, size=num_blocks)
+    chunks = [pnls[s:s + block_size] for s in starts]
+    out = np.concatenate(chunks)[:n]
+    return out
