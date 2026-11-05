@@ -153,3 +153,43 @@ def calculate_mcpt(
         passed=passed,
         n_permutations=n_permutations,
     )
+
+
+# =============================================================================
+# SB MCPT scheme 1 — signal-time permutation (spec section 7.1)
+# =============================================================================
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from v17.setups.sb_engines import SBEngineConfig
+
+
+def permute_signal_time(
+    trades: pd.DataFrame,
+    bars: pd.DataFrame,
+    config: "SBEngineConfig | None",
+    seed: int,
+) -> pd.DataFrame:
+    """Scheme-1 permutation: shuffle entry timestamps within (symbol, NY-day, window) buckets.
+
+    When config is None: passthrough — timestamps preserved. Used as sanity path per
+    pre-flight ruling R-02.
+    """
+    out = trades.copy().reset_index(drop=True)
+    if config is None or bars.empty:
+        return out
+    rng = np.random.default_rng(seed)
+    ts_ny = pd.to_datetime(bars["ts_utc"], utc=True).dt.tz_convert("America/New_York")
+    w = bars.copy()
+    w["_day"] = ts_ny.dt.date
+    w["_hhmm"] = ts_ny.dt.strftime("%H:%M")
+    win_bars = w[(w["_hhmm"] >= config.window_ny[0]) & (w["_hhmm"] < config.window_ny[1])]
+    for i in range(len(out)):
+        row = out.iloc[i]
+        day = pd.Timestamp(int(row["ts_entry_ns"]), tz="UTC").tz_convert("America/New_York").date()
+        pool = win_bars[(win_bars["symbol"] == row["symbol"]) & (win_bars["_day"] == day)]
+        if pool.empty:
+            continue
+        choice_idx = int(rng.integers(0, len(pool)))
+        out.at[i, "ts_entry_ns"] = int(pool.iloc[choice_idx]["ts_utc"])
+    return out
