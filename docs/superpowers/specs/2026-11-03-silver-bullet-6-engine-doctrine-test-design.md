@@ -45,7 +45,7 @@ All items below are frozen at approval time. Changes mid-cycle invalidate MCPT.
 | L9 | Walk-forward | 7-fold anchored expanding, yearly OOS blocks | Section 6. |
 | L10 | Dev data window | 2015-01-01 → 2024-12-31 UTC | Common availability across SB-eligible instruments. |
 | L11 | Holdout window | 2025-01-01 → 2026-10-18 UTC, sealed, single-shot per engine | Section 6. |
-| L12 | MCPT | 1000 permutations per engine, block bootstrap, block size = 1 trading week | Section 7. |
+| L12 | MCPT | **Amended 2026-11-04 (post-Audit 3).** 1000 permutations per engine, scheme = P&L block bootstrap only (scheme 1 signal-time permutation deferred — see §7 amendment). Block size = 5 trades (approximation of one trading week; Audit 3 flagged this as MEDIUM, see §7.5). | Section 7. |
 | L13 | Significance | Bonferroni-corrected per-engine p < 0.00933 (0.05 / 6 engines, inside dev MCPT). Second MCPT on portfolio-layer p < 0.05 (one test). | Section 7. Note: earlier conversational "p < 0.0056" rounded for simplicity; exact Bonferroni is 0.05/6 = 0.00833. Spec uses the exact value. |
 | L14 | Cost model | Bid/ask paired bars, measured per-minute spread, FTMO Standard commissions ($3/lot/side FX, $0 indices), fixed 0.5 pip FX / 0.5 pt USATECH market-order slippage, zero slippage on limit fills, Wednesday ×3 swap if position open across 17:00 NY (SB closes same day, so this is engineering safety not a cost driver). | Section 8. |
 | L15 | Cost stress | OOS re-run at 1.5× historical spread. PF ≥ 1.1 required. | Section 8. |
@@ -229,16 +229,27 @@ The portfolio gate is deliberately strict because the real FTMO account will enf
 
 ---
 
-## 7. MCPT Methodology
+## 7. MCPT Methodology — **Amended 2026-11-04: scheme-2 only this cycle**
 
-### 7.1 Permutation design
+### 7.0 Amendment summary (2026-11-04)
 
-Two complementary permutation schemes run in parallel; both must agree (p < 0.00833 under scheme 1 AND p < 0.00833 under scheme 2 at Bonferroni) for a per-engine pass. This is the strictest honest form; any single scheme can be fooled by its own weakness.
+Audit 3 (`research/audits/methodology_2026-11-04.md`, commit `454c862`) surfaced two HIGH findings that render scheme 1 (signal-time permutation) a no-op as implemented:
 
-- **Scheme 1 — Signal-time permutation (primary).** For each permutation: within each calendar day's session window, replace the engine's actual entry trigger timestamps with timestamps drawn uniformly at random from the eligible bars of that same window (same symbol, same window, same day). Direction (long/short) is kept consistent with the day's D1 bias so bias-conditional structure is preserved. Market OHLCV data is unchanged. The permuted engine then uses the same SL/TP rules against the real market data. The null hypothesis: "a random entry during the SB window, in the direction of D1 bias, produces equivalent statistics." A real edge rejects this null.
-- **Scheme 2 — P&L block bootstrap (sanity).** Trade P&L signs permuted via block bootstrap (block = 1 trading week). Tests whether realized trade outcomes could be due to a lucky streak.
+- **MF-1:** `mcpt_runner.run_mcpt` calls `permute_signal_time(..., config=None, ...)` which triggers the passthrough branch; every permuted trade set equals the observed set.
+- **MF-2:** Even with `config` threaded in, `permute_signal_time` only relabels `ts_entry_ns`; `pnl_r` is never recomputed against the permuted timestamps. The null distribution collapses to the observed value.
 
-Both schemes 1000 permutations each. Compute runtime budget: ~24-48 CPU hours total across 6 engines at scheme × 1000.
+A correct scheme-1 implementation requires engine re-run on each permuted timestamp set (estimated 60+ CPU hours across 6 engines × 1000 permutations × 7 years dev data), plus substantial new code with its own correctness risk.
+
+Resolution (user-approved): **scheme 2 (P&L block bootstrap) becomes the sole active MCPT scheme for this cycle**. Scheme 1 code is retained for future upgrade but not executed by `run_mcpt`. The verdict interpretation adjusts: "edge distinguishable from a lucky block-shuffled streak" rather than "edge distinguishable from random timing AND lucky streak". The sealed holdout (spec §6.4) remains the live-fill honesty check. Bonferroni correction per engine (α = 0.05 / 6 = 0.00833) is unchanged.
+
+### 7.1 Permutation design — single scheme active
+
+- **Scheme 1 — Signal-time permutation (DEFERRED).** Retained in code (`permute_signal_time` in `src/v17/validation/mcpt.py`) but not called by `run_mcpt`. Production use requires `_rerun_engine_on_permuted_timestamps`. Non-blocking follow-up before live deployment if portfolio gate passes.
+- **Scheme 2 — P&L block bootstrap (ACTIVE).** For each of 1000 permutations per engine: draw block_size = 5 contiguous trades at random starts from the observed trade P&L sequence, concatenate to reach original length, compute `StatsBundle` on the permuted series. Tests: "could the observed sharpe/PF arise from a lucky block-shuffled streak of these exact trades?" A real edge rejects this null.
+
+Block-size note: "5 trades" is the spec approximation of "one trading week". Audit 3 flagged this as MEDIUM — the true weekly trade rate per engine is unknown pre-run. Post-Task 8.1, per-engine trade-count metadata will be reviewed; if block_size significantly over- or under-represents a trading week, we RE-RUN with a corrected block_size (not curve-fit, since block_size is a methodology parameter not a rule parameter).
+
+Scheme-2-only compute budget: ~1-2 CPU hours total across 6 engines × 1000 permutations.
 
 ### 7.2 Statistics computed per permutation
 
@@ -247,7 +258,7 @@ Sharpe (annualized, risk-free rate = 0), Profit Factor, Maximum Drawdown, Trade 
 ### 7.3 Multiple comparison correction
 
 - Within one engine, two statistics (Sharpe and PF) must both pass. Bonferroni-within-engine not applied (same hypothesis measured two ways, not independent comparisons).
-- Across 6 engines, Bonferroni: α = 0.05 / 6 = 0.00833 per engine.
+- Across 6 engines, Bonferroni: α = 0.05 / 6 = 0.00833 per engine (unchanged by scheme-2-only amendment; still six independent engine-level tests).
 - The portfolio-layer test is a single test on a single blended curve → α = 0.05, no further correction.
 
 ### 7.4 Reproducibility requirements

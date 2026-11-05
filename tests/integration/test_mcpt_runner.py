@@ -27,7 +27,9 @@ def test_mcpt_runner_produces_permutations_and_pvalues(tmp_path):
     assert res["n_permutations"] == 100
 
 
-def test_mcpt_runner_signal_time_scheme_runs(tmp_path):
+def test_mcpt_runner_signal_time_scheme_deferred(tmp_path):
+    """Scheme 1 deferred per spec section 7 amendment (2026-11-04, Audit 3)."""
+    import pytest
     trades = pd.DataFrame({
         "ts_entry_ns": pd.date_range("2018-01-01 10:00", periods=10, freq="D", tz="UTC").astype("int64"),
         "pnl_r": [1.0, -0.5] * 5,
@@ -38,9 +40,8 @@ def test_mcpt_runner_signal_time_scheme_runs(tmp_path):
         "ts_utc": pd.date_range("2018-01-01 09:00", "2018-07-01", freq="min", tz="UTC").astype("int64"),
         "symbol": "EURUSD",
     })
-    res = run_mcpt(
-        engine_id="SB-LDN-CE", trades=trades, bars=bars, calendar=pd.DataFrame(),
-        scheme="signal_time", n_permutations=20, out_root=tmp_path,
-    )
-    assert res["n_permutations"] == 20
-    assert (tmp_path / "mcpt" / "SB-LDN-CE" / "signal_time" / "permutations.parquet").exists()
+    with pytest.raises(NotImplementedError, match="DEFERRED"):
+        run_mcpt(
+            engine_id="SB-LDN-CE", trades=trades, bars=bars, calendar=pd.DataFrame(),
+            scheme="signal_time", n_permutations=20, out_root=tmp_path,
+        )
