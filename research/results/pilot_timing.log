@@ -1,0 +1,11 @@
+[1;33mThank you for using SmartMoneyConcepts! ⭐ Please show your support by giving a star on the GitHub repository: [4;34mhttps://github.com/joshyattridge/smart-money-concepts[0m
+[22:26:33] Pilot: SB-NYAM-CE × EURUSD × fold 1
+  OOS: 2018-01-01 00:00:00+00:00 .. 2019-01-01 00:00:00+00:00
+  Loaded 3,740,937 EURUSD dev bars in 1.6s
+  Engine ran in 2690.3s (44.8min)
+  Trades fired: 9
+  First 3 trades:
+    2018-02-23 15:44:00+00:00 SHORT entry=1.23063 sl=1.23203 tp=1.03403 R=140.94
+    2018-04-17 14:54:00+00:00 LONG entry=1.23426 sl=1.23342 tp=1.25553 R=25.32
+    2018-04-20 14:16:00+00:00 LONG entry=1.22724 sl=1.22639 tp=1.25553 R=33.08
+  Projected full gate wall-clock: 225985s = 3766.4min = 62.77h

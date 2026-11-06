@@ -127,26 +127,28 @@ def _opposing_target(
     is_index = symbol in {"USATECHIDXUSD", "USA500IDXUSD", "USA30IDXUSD"}
 
     if side == "LONG":
+        # SB-05: NEAREST opposing pool above entry (not farthest).
         candidates = [
             p["price"]
             for p in pools
             if p["kind"].endswith("_high") and p["price"] > entry
         ]
         if candidates:
-            return max(candidates)
+            return min(candidates)
         fallback_dist = (
             STRUCTURAL_FALLBACK_USATECH_PTS if is_index
             else STRUCTURAL_FALLBACK_FX_PIPS * pip
         )
         return entry + fallback_dist
     else:  # SHORT
+        # SB-05: NEAREST opposing pool below entry (not farthest).
         candidates = [
             p["price"]
             for p in pools
             if p["kind"].endswith("_low") and p["price"] < entry
         ]
         if candidates:
-            return min(candidates)
+            return max(candidates)
         fallback_dist = (
             STRUCTURAL_FALLBACK_USATECH_PTS if is_index
             else STRUCTURAL_FALLBACK_FX_PIPS * pip
@@ -237,6 +239,16 @@ def run_engine_oos(
             swept_pool_kind: Optional[str] = None
             displacement_bar_fvg: Optional[dict] = None
 
+            # Today's NY-session bar slice for pool enumeration (SB-02 session scope):
+            # [00:00 NY today, window_start_ns). Pre-filter once per day.
+            ny_midnight_ns = int(
+                pd.Timestamp(ny_date, tz="America/New_York").tz_convert("UTC").value
+            )
+            day_sym_bars = all_sym[
+                (all_sym["ts_utc"] >= ny_midnight_ns)
+                & (all_sym["ts_utc"] < window_end_ns)
+            ]
+
             for local_i, row in day_window_bars.iterrows():
                 bar_ts = int(row["ts_utc"])
                 bar = row.to_dict()
@@ -259,9 +271,9 @@ def run_engine_oos(
                 if spread_guard.should_reject(bar_ts, current_spread):
                     continue
 
-                # Enumerate liquidity pools (pre-window context up to current bar)
+                # Enumerate liquidity pools from today's NY-session bars only (SB-02).
                 pools = enumerate_pools(
-                    all_sym, window_start_ns=window_start_ns, now_ns=bar_ts + 1
+                    day_sym_bars, window_start_ns=window_start_ns, now_ns=bar_ts + 1
                 )
 
                 # Sweep confirmation (running state)
