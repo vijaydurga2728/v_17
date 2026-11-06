@@ -1,0 +1,50 @@
+[
+  {
+    "ts_entry_ns": 1523976840000000000,
+    "side": "LONG",
+    "entry_price": 1.23426,
+    "sl_price": 1.23342,
+    "tp_price": 1.23613,
+    "r_multiple": 2.2261904761906495
+  },
+  {
+    "ts_entry_ns": 1524233760000000000,
+    "side": "LONG",
+    "entry_price": 1.227245,
+    "sl_price": 1.22639,
+    "tp_price": 1.22959,
+    "r_multiple": 2.742690058480132
+  },
+  {
+    "ts_entry_ns": 1531233240000000000,
+    "side": "LONG",
+    "entry_price": 1.1707,
+    "sl_price": 1.17018,
+    "tp_price": 1.1722,
+    "r_multiple": 2.8846153846146456
+  },
+  {
+    "ts_entry_ns": 1537282440000000000,
+    "side": "LONG",
+    "entry_price": 1.16966,
+    "sl_price": 1.1686,
+    "tp_price": 1.17243,
+    "r_multiple": 2.6132075471703606
+  },
+  {
+    "ts_entry_ns": 1541170620000000000,
+    "side": "SHORT",
+    "entry_price": 1.1424699999999999,
+    "sl_price": 1.14331,
+    "tp_price": 1.14051,
+    "r_multiple": 2.3333333333328046
+  },
+  {
+    "ts_entry_ns": 1541433120000000000,
+    "side": "SHORT",
+    "entry_price": 1.13983,
+    "sl_price": 1.1408,
+    "tp_price": 1.13776,
+    "r_multiple": 2.1340206185561867
+  }
+]
