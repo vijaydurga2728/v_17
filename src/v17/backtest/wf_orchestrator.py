@@ -168,6 +168,7 @@ def run_all_engines_all_folds(
                     engine, Path(data_root), Path(out_root), calendar, folds, dry_run,
                 )
                 futures[fut] = engine.engine_id
+            failures: list[tuple[str, Exception]] = []
             for fut in as_completed(futures):
                 eid = futures[fut]
                 try:
@@ -175,9 +176,14 @@ def run_all_engines_all_folds(
                     print(f"[orchestrator] DONE {eid}", flush=True)
                 except Exception as exc:
                     print(f"[orchestrator] FAIL {eid}: {exc}", flush=True)
-                    raise
+                    failures.append((eid, exc))
+            if failures:
+                msgs = "; ".join(f"{eid}: {exc}" for eid, exc in failures)
+                raise RuntimeError(f"Workers failed: {msgs}")
+    except RuntimeError:
+        raise  # propagate worker failures
     except Exception:
-        # Sequential fallback (e.g., spawn not available, or worker exception).
+        # Sequential fallback (e.g., spawn not available on this platform).
         for engine in ENGINE_CATALOG:
             _run_one_engine(
                 engine, Path(data_root), Path(out_root), calendar, folds, dry_run
