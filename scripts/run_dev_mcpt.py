@@ -41,7 +41,8 @@ def main() -> None:
     if missing:
         print(f"  Running orchestrator for {len(missing)} engine(s): {[e.engine_id for e in missing]}")
         run_all_engines_all_folds(
-            data_root=Path("data"), out_root=results_root, dry_run=False
+            data_root=Path("data"), out_root=results_root, dry_run=False,
+            max_workers=2,  # memory-safe on 16GB: 2 engines × ~2GB each
         )
     else:
         print("  All trade parquets already exist — skipping orchestrator phase.")
