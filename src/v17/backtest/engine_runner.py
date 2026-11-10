@@ -7,6 +7,7 @@ so trades fire with real SL/TP/R:R.
 Public API preserved:
   - TradeLog dataclass
   - run_engine_oos(config, bars, calendar, fold) -> TradeLog
+  - run_engine_oos_batch(config, bars, calendar, folds) -> list[TradeLog]
 
 Optimised (Task 8.0):
   O1 — FVGs precomputed once per symbol (not per bar).
@@ -16,6 +17,11 @@ Optimised (Task 8.0):
   O5 — ATR_14 already fold-scoped; unchanged.
   O6 — bar dict built only when all prior gates pass.
   SG  — SpreadGuard precomputes per-MoD trailing-30d medians upfront.
+
+Task 8.0b additions:
+  B — run_engine_oos_batch: preprocessing per symbol done once across all folds.
+  C — _simulate_fill: walk bars from entry to resolve TP/SL/TIME exit.
+  D — _commission / cost model wired; pnl_cash stored per trade.
 """
 from __future__ import annotations
 
@@ -341,6 +347,437 @@ class _FastSpreadGuard:
         if np.isnan(median):
             return False
         return current_spread > SPREAD_GUARD_MULT * median
+
+
+# ---------------------------------------------------------------------------
+# Phase C — fill simulator
+# ---------------------------------------------------------------------------
+
+_FX_SYMBOLS: frozenset[str] = frozenset({"EURUSD", "GBPUSD"})
+_RISK_PER_TRADE: float = 50.0  # $50 at 0.5% of $10k
+_COMMISSION_FX_RT: float = 6.0  # $6 round-turn for FX
+_COMMISSION_IDX_RT: float = 0.0  # indices commission-free
+
+
+def _commission_round_turn(symbol: str) -> float:
+    """Return round-turn commission in dollars for a standard 0.5%-risk trade."""
+    return _COMMISSION_FX_RT if symbol in _FX_SYMBOLS else _COMMISSION_IDX_RT
+
+
+def _simulate_fill(
+    signal: "SBSignal",
+    all_sym: pd.DataFrame,
+    hard_exit_ns: int,
+) -> dict:
+    """Walk M1 bars from signal.ts_entry_ns to hard_exit_ns; resolve first touch.
+
+    Rules (worst-case same-bar resolution):
+      LONG : SL hit when bar.bid_l <= sl_price; TP hit when bar.bid_h >= tp_price.
+             If both in same bar → SL first (worst case).
+      SHORT: SL hit when bar.bid_h >= sl_price; TP hit when bar.bid_l <= tp_price.
+             If both in same bar → SL first (worst case).
+      TIME : exit at bar.bid_c (LONG) or bar.ask_c (SHORT) of hard_exit bar.
+
+    pnl_r:
+      TP   → +r_multiple
+      SL   → -1.0
+      TIME → (exit_price - entry_price) / (entry_price - sl_price) LONG
+              (entry_price - exit_price) / (sl_price - entry_price) SHORT
+    """
+    entry = signal.entry_price
+    sl = signal.sl_price
+    tp = signal.tp_price
+    r_mult = signal.r_multiple
+    side = signal.side
+
+    if sl == 0.0 or tp == 0.0:
+        # Sentinel values → no valid trade; treat as TIME exit at entry.
+        return {"exit_reason": "TIME", "exit_price": entry, "pnl_r": 0.0}
+
+    risk_dist = abs(entry - sl)
+
+    # Bars from entry_ts (inclusive) to hard_exit_ns (inclusive).
+    mask = (all_sym["ts_utc"] >= signal.ts_entry_ns) & (all_sym["ts_utc"] <= hard_exit_ns)
+    walk = all_sym[mask]
+
+    exit_reason = "TIME"
+    exit_price = entry  # fallback if no bars
+
+    for _, row in walk.iterrows():
+        bh = float(row["bid_h"])
+        bl = float(row["bid_l"])
+        bc = float(row["bid_c"])
+        # ask_c needed for SHORT time exit.
+        ac = float(row.get("ask_c", bc + float(row.get("spread_mid", 0.0))))
+
+        if side == "LONG":
+            sl_hit = bl <= sl
+            tp_hit = bh >= tp
+            if sl_hit:
+                exit_reason = "SL"
+                exit_price = sl
+                break
+            if tp_hit:
+                exit_reason = "TP"
+                exit_price = tp
+                break
+            exit_price = bc  # running TIME candidate
+            _time_exit_col = bc
+        else:  # SHORT
+            sl_hit = bh >= sl
+            tp_hit = bl <= tp
+            if sl_hit:
+                exit_reason = "SL"
+                exit_price = sl
+                break
+            if tp_hit:
+                exit_reason = "TP"
+                exit_price = tp
+                break
+            exit_price = ac  # SHORT time exit at ask
+            _time_exit_col = ac
+
+    # pnl_r
+    if exit_reason == "TP":
+        pnl_r = float(r_mult)
+    elif exit_reason == "SL":
+        pnl_r = -1.0
+    else:
+        # TIME exit — proportional R.
+        if risk_dist == 0.0:
+            pnl_r = 0.0
+        elif side == "LONG":
+            pnl_r = (exit_price - entry) / risk_dist
+        else:
+            pnl_r = (entry - exit_price) / risk_dist
+
+    return {"exit_reason": exit_reason, "exit_price": exit_price, "pnl_r": pnl_r}
+
+
+def _attach_outcome(
+    sig: "SBSignal",
+    all_sym: pd.DataFrame,
+    window_end_ns: int,
+) -> dict:
+    """Return trade dict with fill outcome and cost model attached (Phase C + D)."""
+    hard_exit_ns = window_end_ns + 60 * _NS_PER_MIN  # +60min past window end
+    result = _simulate_fill(sig, all_sym, hard_exit_ns)
+    commission = _commission_round_turn(sig.symbol)
+    pnl_cash = result["pnl_r"] * _RISK_PER_TRADE - commission
+    rec = dataclasses.asdict(sig)
+    rec["exit_reason"] = result["exit_reason"]
+    rec["exit_price"] = result["exit_price"]
+    rec["pnl_r"] = result["pnl_r"]
+    rec["pnl_cash"] = pnl_cash
+    return rec
+
+
+# ---------------------------------------------------------------------------
+# Phase A — batch engine: preprocess symbol state once, loop folds
+# ---------------------------------------------------------------------------
+
+def _run_symbol_all_folds(
+    config: "SBEngineConfig",
+    symbol: str,
+    all_sym: pd.DataFrame,
+    calendar: pd.DataFrame,
+    folds: "list[Fold]",
+    fold_logs: "list[TradeLog]",
+) -> None:
+    """Inner worker: for one symbol, run all folds.
+
+    Preprocessing done once; per-fold cost is OOS slice + ATR + SpreadGuard + loop.
+    Results appended into fold_logs (parallel to folds list).
+    """
+    if all_sym.empty:
+        return
+
+    # Once per symbol.
+    d1_bars = _build_d1_bars(all_sym)
+    fvg_cache = _FVGCache(all_sym)
+    currencies = SYMBOL_CURRENCY_MAP.get(symbol, [])
+
+    all_ts_np = all_sym["ts_utc"].to_numpy(dtype=np.int64)
+    all_bh_np = all_sym["bid_h"].to_numpy(dtype=np.float64)
+    all_bl_np = all_sym["bid_l"].to_numpy(dtype=np.float64)
+
+    fsm = SilverBulletFSM(config)
+
+    for fold_idx, fold in enumerate(folds):
+        # OOS slice only — cheap slice, no copy of full array.
+        oos_mask = (all_sym["ts_utc"] >= fold.oos_start) & (all_sym["ts_utc"] < fold.oos_end)
+        oos_bars = all_sym[oos_mask].copy().reset_index(drop=True)
+        if oos_bars.empty:
+            continue
+
+        # ATR on OOS slice (fold-scoped, cheap).
+        atr_series = _compute_atr14(oos_bars)
+
+        # OOS numpy arrays.
+        arr_ts = oos_bars["ts_utc"].to_numpy(dtype=np.int64)
+        arr_bh = oos_bars["bid_h"].to_numpy(dtype=np.float64)
+        arr_bl = oos_bars["bid_l"].to_numpy(dtype=np.float64)
+        arr_bo = oos_bars["bid_o"].to_numpy(dtype=np.float64)
+        arr_bc = oos_bars["bid_c"].to_numpy(dtype=np.float64)
+        arr_sp = oos_bars["spread_mid"].to_numpy(dtype=np.float64)
+        arr_atr = atr_series.reindex(oos_bars.index).to_numpy(dtype=np.float64)
+
+        # SpreadGuard for OOS timestamps.
+        fast_sg = _FastSpreadGuard(all_sym, symbol, arr_ts)
+
+        # NY dates in OOS.
+        oos_ts_pd = pd.to_datetime(arr_ts, utc=True)
+        ny_dates: list[date] = sorted(
+            set(oos_ts_pd.tz_convert("America/New_York").date.tolist())
+        )
+
+        fired_days: set[date] = set()
+
+        for ny_date in ny_dates:
+            if ny_date in fired_days:
+                continue
+
+            window_start_ns, window_end_ns = _window_ns(ny_date, config.window_ny)
+
+            d1_bias = compute_d1_bias(d1_bars, as_of_utc_ns=window_start_ns)
+            if d1_bias == "NONE":
+                continue
+
+            ny_midnight_ns = int(
+                pd.Timestamp(ny_date, tz="America/New_York").tz_convert("UTC").value
+            )
+
+            pre_win_mask = (all_ts_np >= ny_midnight_ns) & (all_ts_np < window_start_ns)
+            if pre_win_mask.any():
+                pre_bh = all_bh_np[pre_win_mask]
+                pre_bl = all_bl_np[pre_win_mask]
+                pre_ts = all_ts_np[pre_win_mask]
+                session_high_price = float(pre_bh.max())
+                session_low_price = float(pre_bl.min())
+                sh_ts = int(pre_ts[pre_bh.argmax()])
+                sl_ts = int(pre_ts[pre_bl.argmin()])
+            else:
+                session_high_price = None
+                session_low_price = None
+                sh_ts = 0
+                sl_ts = 0
+
+            prev_hr_mask = (
+                (all_ts_np >= window_start_ns - _NS_PER_HOUR)
+                & (all_ts_np < window_start_ns)
+            )
+            if prev_hr_mask.any():
+                ph_bh = all_bh_np[prev_hr_mask]
+                ph_bl = all_bl_np[prev_hr_mask]
+                ph_ts = all_ts_np[prev_hr_mask]
+                prev_hour_high_price = float(ph_bh.max())
+                prev_hour_low_price = float(ph_bl.min())
+                phh_ts = int(ph_ts[ph_bh.argmax()])
+                phl_ts = int(ph_ts[ph_bl.argmin()])
+            else:
+                prev_hour_high_price = None
+                prev_hour_low_price = None
+                phh_ts = 0
+                phl_ts = 0
+
+            pools: list[dict] = []
+            if session_high_price is not None:
+                pools.append({"kind": "session_high", "price": session_high_price, "ts_utc": sh_ts})
+                pools.append({"kind": "session_low", "price": session_low_price, "ts_utc": sl_ts})
+            if prev_hour_high_price is not None:
+                pools.append({"kind": "prev_hour_high", "price": prev_hour_high_price, "ts_utc": phh_ts})
+                pools.append({"kind": "prev_hour_low", "price": prev_hour_low_price, "ts_utc": phl_ts})
+
+            if not pools:
+                continue
+
+            if d1_bias == "BULLISH":
+                low_pool_prices = [p["price"] for p in pools if p["kind"].endswith("_low")]
+                sweep_threshold = min(low_pool_prices) if low_pool_prices else None
+            else:
+                high_pool_prices = [p["price"] for p in pools if p["kind"].endswith("_high")]
+                sweep_threshold = max(high_pool_prices) if high_pool_prices else None
+
+            if sweep_threshold is None:
+                continue
+
+            win_lo = int(np.searchsorted(arr_ts, window_start_ns, side="left"))
+            win_hi = int(np.searchsorted(arr_ts, window_end_ns, side="left"))
+            if win_lo >= win_hi:
+                continue
+
+            sweep_confirmed = False
+            sweep_extreme: Optional[float] = None
+            swept_pool_kind: Optional[str] = None
+            displacement_bar_fvg: Optional[dict] = None
+
+            for i in range(win_lo, win_hi):
+                bar_ts = int(arr_ts[i])
+
+                if bar_ts >= window_end_ns:
+                    break
+
+                atr_14 = arr_atr[i]
+                if np.isnan(atr_14) or atr_14 <= 0:
+                    continue
+
+                if is_in_blackout(bar_ts, calendar, currencies):
+                    continue
+
+                current_spread = arr_sp[i]
+                if fast_sg.should_reject_fast(bar_ts, current_spread):
+                    continue
+
+                if not sweep_confirmed:
+                    if d1_bias == "BULLISH":
+                        bid_l_i = arr_bl[i]
+                        for p in pools:
+                            if p["kind"].endswith("_low") and bid_l_i < p["price"]:
+                                sweep_confirmed = True
+                                swept_pool_kind = p["kind"]
+                                sweep_extreme = bid_l_i
+                                break
+                    else:
+                        bid_h_i = arr_bh[i]
+                        for p in pools:
+                            if p["kind"].endswith("_high") and bid_h_i > p["price"]:
+                                sweep_confirmed = True
+                                swept_pool_kind = p["kind"]
+                                sweep_extreme = bid_h_i
+                                break
+
+                if not sweep_confirmed:
+                    continue
+
+                if d1_bias == "BULLISH" and sweep_extreme is not None:
+                    v = arr_bl[i]
+                    if v < sweep_extreme:
+                        sweep_extreme = v
+                elif d1_bias == "BEARISH" and sweep_extreme is not None:
+                    v = arr_bh[i]
+                    if v > sweep_extreme:
+                        sweep_extreme = v
+
+                expected_kind = "bullish" if d1_bias == "BULLISH" else "bearish"
+                fvg_match = fvg_cache.latest_at_ts(bar_ts, expected_kind)
+
+                if fvg_match is not None:
+                    bar = {
+                        "ts_utc": bar_ts,
+                        "symbol": symbol,
+                        "bid_o": float(arr_bo[i]),
+                        "bid_h": float(arr_bh[i]),
+                        "bid_l": float(arr_bl[i]),
+                        "bid_c": float(arr_bc[i]),
+                        "spread_mid": float(current_spread),
+                    }
+                    if is_displacement(bar, atr_14):
+                        displacement_bar_fvg = fvg_match
+
+                if displacement_bar_fvg is None:
+                    continue
+
+                if fvg_match is None:
+                    bar = {
+                        "ts_utc": bar_ts,
+                        "symbol": symbol,
+                        "bid_o": float(arr_bo[i]),
+                        "bid_h": float(arr_bh[i]),
+                        "bid_l": float(arr_bl[i]),
+                        "bid_c": float(arr_bc[i]),
+                        "spread_mid": float(current_spread),
+                    }
+
+                as_of_ns = bar_ts + _NS_PER_MIN
+                fvgs_ctx = fvg_cache.visible_at(as_of_ns)
+
+                context = {
+                    "d1_bias": d1_bias,
+                    "atr_14": atr_14,
+                    "spread": current_spread,
+                    "spread_median": 0.0,
+                    "calendar_blackout": False,
+                    "window_open": True,
+                    "liquidity_pools": pools,
+                    "fvgs": fvgs_ctx,
+                    "sweep_confirmed": sweep_confirmed,
+                    "swept_pool_kind": swept_pool_kind,
+                    "displacement_bar_fvg": displacement_bar_fvg,
+                }
+
+                sig: Optional[SBSignal] = fsm.step(bar, context)
+                if sig is None:
+                    continue
+
+                bid_l_i = arr_bl[i]
+                bid_h_i = arr_bh[i]
+                if config.entry_model == "CE":
+                    ce = sig.entry_price
+                    if not (bid_l_i <= ce <= bid_h_i):
+                        continue
+                else:
+                    target_edge = sig.entry_price
+                    if not (bid_l_i <= target_edge <= bid_h_i):
+                        continue
+
+                if sweep_extreme is None:
+                    continue
+                opposing = _opposing_target(sig.side, sig.entry_price, pools, symbol)
+                try:
+                    sltp = compute_sl_tp(
+                        side=sig.side,
+                        entry=sig.entry_price,
+                        sweep_extreme=sweep_extreme,
+                        opposing_target=opposing,
+                        symbol=symbol,
+                    )
+                except SBRejectError:
+                    continue
+
+                sig = dataclasses.replace(
+                    sig,
+                    sl_price=sltp.sl,
+                    tp_price=sltp.tp,
+                    r_multiple=sltp.r_multiple,
+                )
+
+                # Attach fill outcome + cost (Phase C + D).
+                trade_rec = _attach_outcome(sig, all_sym, window_end_ns)
+                fold_logs[fold_idx].trades.append(trade_rec)
+                fired_days.add(ny_date)
+                break  # one trade per (symbol, day, engine)
+
+
+def run_engine_oos_batch(
+    config: SBEngineConfig,
+    bars: pd.DataFrame,
+    calendar: pd.DataFrame,
+    folds: "list[Fold]",
+) -> "list[TradeLog]":
+    """Run config over MANY folds, preprocessing symbol state ONCE per symbol.
+
+    Returns list[TradeLog] parallel to folds — one TradeLog per fold.
+    Each trade in log.trades is a dict (not SBSignal) with keys:
+      engine_id, symbol, side, ts_entry_ns, entry_price, sl_price, tp_price,
+      r_multiple, fvg_top, fvg_bottom, exit_reason, exit_price, pnl_r, pnl_cash.
+    """
+    fold_logs: list[TradeLog] = [
+        TradeLog(engine_id=config.engine_id, fold_id=fold.fold_id)
+        for fold in folds
+    ]
+
+    for symbol in config.symbols:
+        all_sym = bars[bars["symbol"] == symbol].copy()
+        _run_symbol_all_folds(
+            config=config,
+            symbol=symbol,
+            all_sym=all_sym,
+            calendar=calendar,
+            folds=folds,
+            fold_logs=fold_logs,
+        )
+
+    return fold_logs
 
 
 # ---------------------------------------------------------------------------
