@@ -74,3 +74,157 @@ def pnl_usd(
     else:
         pips = (entry - exit_price) * scale
     return pips * pip_val * size_lots
+
+
+# =============================================================================
+# ORB cycle: float-based pending-STOP + market fill simulators (Task 7).
+# =============================================================================
+# These are independent of the Decimal-based legacy API above. They operate on
+# M1 bars presented as a pandas DataFrame with integer `ts_ns` and float OHLC.
+# Side is a string ("long"/"short") to avoid coupling to v17.common.types.Side.
+
+
+def simulate_fill_stop(
+    bars: pd.DataFrame,
+    armed_idx: int,
+    side: str,
+    stop_price: float,
+    sl: float,
+    tp: float,
+    time_cap_ns: int,
+    slippage_pts: float,
+) -> dict | None:
+    """Simulate a pending STOP order armed at bar `armed_idx`.
+
+    Short: trigger when any bar.high >= stop_price (trade fades up into stop).
+    Long:  trigger when any bar.low  <= stop_price (trade fades down into stop).
+    Entry price includes adverse slippage: +slippage_pts (short) / -slippage_pts
+    inverted to adverse for long = +slippage_pts above stop for long, meaning
+    the long enters HIGHER than stop by slippage. For a long STOP placed BELOW
+    price (classic buy-stop above current), that's unusual; ORB-reversal long
+    buy-stops at OR_low AFTER a breakdown + close-back-inside. Convention:
+    adverse slippage always moves the entry against the trader.
+
+    Returns None if the STOP never triggers before time_cap_ns.
+    Returns dict with entry_price, entry_idx, exit_price, exit_idx, exit_reason
+    when filled and resolved (TP, SL, TIME).
+    """
+    if armed_idx < 0 or armed_idx >= len(bars):
+        return None
+
+    highs = bars["high"].to_numpy()
+    lows = bars["low"].to_numpy()
+    ts_ns = bars["ts_ns"].to_numpy()
+    armed_ts = ts_ns[armed_idx]
+
+    entry_idx = None
+    entry_price = None
+    for i in range(armed_idx, len(bars)):
+        if ts_ns[i] - armed_ts > time_cap_ns:
+            return None
+        if side == "short":
+            if highs[i] >= stop_price:
+                entry_idx = i
+                entry_price = stop_price + slippage_pts
+                break
+        elif side == "long":
+            if lows[i] <= stop_price:
+                entry_idx = i
+                entry_price = stop_price - slippage_pts
+                break
+        else:
+            raise ValueError(f"side must be 'long' or 'short'; got {side!r}")
+
+    if entry_idx is None:
+        return None
+
+    # Walk forward to resolve TP / SL / time cap.
+    for j in range(entry_idx, len(bars)):
+        if ts_ns[j] - armed_ts > time_cap_ns:
+            return {
+                "entry_price": entry_price,
+                "entry_idx": entry_idx,
+                "exit_price": bars["close"].iloc[j],
+                "exit_idx": j,
+                "exit_reason": "TIME",
+            }
+        if side == "short":
+            if highs[j] >= sl:
+                return {"entry_price": entry_price, "entry_idx": entry_idx,
+                        "exit_price": sl, "exit_idx": j, "exit_reason": "SL"}
+            if lows[j] <= tp:
+                return {"entry_price": entry_price, "entry_idx": entry_idx,
+                        "exit_price": tp, "exit_idx": j, "exit_reason": "TP"}
+        else:  # long
+            if lows[j] <= sl:
+                return {"entry_price": entry_price, "entry_idx": entry_idx,
+                        "exit_price": sl, "exit_idx": j, "exit_reason": "SL"}
+            if highs[j] >= tp:
+                return {"entry_price": entry_price, "entry_idx": entry_idx,
+                        "exit_price": tp, "exit_idx": j, "exit_reason": "TP"}
+
+    # Ran out of bars before TP/SL/TIME hit.
+    return {
+        "entry_price": entry_price,
+        "entry_idx": entry_idx,
+        "exit_price": bars["close"].iloc[-1],
+        "exit_idx": len(bars) - 1,
+        "exit_reason": "TIME",
+    }
+
+
+def simulate_fill_market(
+    bars: pd.DataFrame,
+    entry_idx: int,
+    side: str,
+    sl: float,
+    tp: float,
+    time_cap_ns: int,
+    slippage_pts: float,
+) -> dict:
+    """Simulate a market order filled at bars.open[entry_idx], adverse slippage applied.
+
+    `slippage_pts` has no default — callers MUST pass it explicitly so cost
+    model misconfiguration cannot silently under-report costs.
+    """
+    if entry_idx < 0 or entry_idx >= len(bars):
+        raise IndexError(f"entry_idx {entry_idx} out of range for bars len {len(bars)}")
+
+    opens = bars["open"].to_numpy()
+    highs = bars["high"].to_numpy()
+    lows = bars["low"].to_numpy()
+    ts_ns = bars["ts_ns"].to_numpy()
+    entry_ts = ts_ns[entry_idx]
+
+    if side == "short":
+        entry_price = opens[entry_idx] - slippage_pts
+    elif side == "long":
+        entry_price = opens[entry_idx] + slippage_pts
+    else:
+        raise ValueError(f"side must be 'long' or 'short'; got {side!r}")
+
+    for j in range(entry_idx, len(bars)):
+        if ts_ns[j] - entry_ts > time_cap_ns:
+            return {
+                "entry_price": entry_price, "entry_idx": entry_idx,
+                "exit_price": bars["close"].iloc[j], "exit_idx": j, "exit_reason": "TIME",
+            }
+        if side == "short":
+            if highs[j] >= sl:
+                return {"entry_price": entry_price, "entry_idx": entry_idx,
+                        "exit_price": sl, "exit_idx": j, "exit_reason": "SL"}
+            if lows[j] <= tp:
+                return {"entry_price": entry_price, "entry_idx": entry_idx,
+                        "exit_price": tp, "exit_idx": j, "exit_reason": "TP"}
+        else:
+            if lows[j] <= sl:
+                return {"entry_price": entry_price, "entry_idx": entry_idx,
+                        "exit_price": sl, "exit_idx": j, "exit_reason": "SL"}
+            if highs[j] >= tp:
+                return {"entry_price": entry_price, "entry_idx": entry_idx,
+                        "exit_price": tp, "exit_idx": j, "exit_reason": "TP"}
+
+    return {
+        "entry_price": entry_price, "entry_idx": entry_idx,
+        "exit_price": bars["close"].iloc[-1], "exit_idx": len(bars) - 1, "exit_reason": "TIME",
+    }
