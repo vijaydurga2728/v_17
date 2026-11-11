@@ -1,0 +1,5 @@
+[orb-dev-wf] bars_root=C:\personal\v_17\.worktrees\sb-6-engine-gate\data
+[orb-dev-wf] loaded 3,458,474 bars for USATECHIDXUSD
+[orb-dev-wf] wrote out\orb\dev\ORB-NAS100\trades.parquet (1215 trades)
+[orb-dev-wf] wrote out\orb\dev\ORB-NAS100\stats.json
+[orb-dev-wf] stats: {'sharpe': 0.7140620176670784, 'pf': 1.1421600164947157, 'max_dd': 53.10338849082911, 'r2': 0.788562601665397, 'trade_count': 1215, 'win_rate': 0.16790123456790124, 'avg_r': 0.10341883574889982, 'per_fold_pnl_r': {1: 49.68944844269131, 2: -13.682804021606035, 3: 4.022118407607488, 4: 52.87931434577858, 5: -13.819632909087698, 6: 15.351960043032452, 7: 31.213481126497193}}
