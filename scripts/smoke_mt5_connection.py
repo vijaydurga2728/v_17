@@ -47,7 +47,7 @@ def main() -> int:
     if not env_path.exists():
         print(f"[mt5-smoke] missing {env_path}")
         return 1
-    load_dotenv(env_path)
+    load_dotenv(env_path, override=True)
 
     login_s = os.environ.get("MT5_LOGIN", "")
     password = os.environ.get("MT5_PASSWORD", "")
