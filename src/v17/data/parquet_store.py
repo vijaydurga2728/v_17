@@ -82,3 +82,20 @@ def read_bars(root: Path, symbol: str, partition: str = "dev", dev_only: bool = 
         return pd.DataFrame()
     tables = [pq.read_table(f) for f in files]
     return pa.concat_tables(tables).to_pandas()
+
+
+def read_bars_h1(symbol: str, partition: str = "dev", root: Path | None = None) -> pd.DataFrame:
+    """Read H1 cache bars from `data/bars_h1/<symbol>/<partition>/year=YYYY/`.
+
+    Defaults to repo-local `data/bars_h1`. Returns sorted-by-ts_utc DataFrame.
+    """
+    base_root = root if root is not None else Path("data")
+    base = Path(base_root) / "bars_h1" / symbol / partition
+    if not base.exists():
+        return pd.DataFrame()
+    files = list(base.rglob("data.parquet"))
+    if not files:
+        return pd.DataFrame()
+    tables = [pq.read_table(f) for f in files]
+    df = pa.concat_tables(tables).to_pandas()
+    return df.sort_values("ts_utc").reset_index(drop=True)
