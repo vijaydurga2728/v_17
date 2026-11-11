@@ -49,3 +49,13 @@ def test_fails_g5_when_cost_stress_pf_below_11():
     report = evaluate_secondary(agg, cost_stress_pf=1.05)
     assert report.G5_pass is False
     assert report.all_pass is False
+
+
+def test_g2_accepts_relaxed_floor_for_orb():
+    agg = pd.DataFrame({
+        "pnl_r": [1.0] * 30,
+        "fold_id": [1] * 30,
+        "ts_entry_ns": [i * 1_000_000_000 for i in range(30)],
+    })
+    report = evaluate_secondary(agg, cost_stress_pf=1.5, min_trade_count=25)
+    assert report.G2_pass is True

@@ -24,13 +24,17 @@ class GateReport:
         ])
 
 
-def evaluate_secondary(agg_trades: pd.DataFrame, cost_stress_pf: float) -> GateReport:
+def evaluate_secondary(
+    agg_trades: pd.DataFrame,
+    cost_stress_pf: float,
+    min_trade_count: int = 50,
+) -> GateReport:
     stats = compute_stats(
         agg_trades["pnl_r"].to_numpy(),
         agg_trades["ts_entry_ns"].to_numpy(),
     )
     G1 = stats.pf >= 1.3
-    G2 = stats.trade_count >= 50
+    G2 = stats.trade_count >= min_trade_count
     per_fold = agg_trades.groupby("fold_id")["pnl_r"].sum()
     G3 = bool((per_fold > 0).all()) if len(per_fold) > 0 else False
     G4 = stats.r2 >= 0.80

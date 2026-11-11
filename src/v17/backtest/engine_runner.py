@@ -136,7 +136,11 @@ def run_engine_oos_batch(
 
     # 3) Precompute per-day OR/session window ns boundaries + day boundaries.
     #    Key by NY date (not UTC) so sessions align to NY calendar.
-    day_keys = np.array([_ny_date_from_ns(int(t)) for t in ts_ns])
+    #    Vectorized: pd.to_datetime on int64 ns -> tz_convert NY -> .date.
+    _dt_utc = pd.to_datetime(ts_ns, unit="ns", utc=True)
+    _dt_ny = _dt_utc.tz_convert("America/New_York")
+    day_keys = _dt_ny.date  # numpy array of datetime.date
+    day_keys = np.asarray(day_keys)
     unique_days, first_idx = np.unique(day_keys, return_index=True)
     # Sort by first_idx so we iterate chronologically.
     order = np.argsort(first_idx)
@@ -155,34 +159,66 @@ def run_engine_oos_batch(
             "sess_end": sess_end,
         })
 
-    # 4) Precompute session VWAP per day (cached on mid bar index).
-    vwap = pd.Series(np.nan, index=mid.index, dtype=float)
-    for info in day_info:
-        v = compute_session_vwap(mid, info["sess_start"], info["sess_end"])
-        # Merge non-NaN values into the master series.
-        valid = ~v.isna()
-        vwap.iloc[valid.to_numpy().nonzero()[0]] = v[valid].to_numpy()
+    # 4) Precompute session VWAP per day — vectorized across all days at once.
+    #    Build sess_start/sess_end per bar via day_info lookup, then compute
+    #    cumulative weighted TP grouped by (date, in-session) key.
+    sess_start_arr = np.array([info["sess_start"] for info in day_info], dtype=np.int64)
+    sess_end_arr = np.array([info["sess_end"] for info in day_info], dtype=np.int64)
+    # Map each bar to its day index via pandas Categorical over day_keys.
+    day_to_idx = {d: i for i, d in enumerate(unique_days)}
+    bar_day_idx = np.array([day_to_idx[d] for d in day_keys], dtype=np.int64)
+    bar_sess_start = sess_start_arr[bar_day_idx]
+    bar_sess_end = sess_end_arr[bar_day_idx]
+    in_session = (ts_ns >= bar_sess_start) & (ts_ns <= bar_sess_end)
+
+    tp = (mid["high"].to_numpy() + mid["low"].to_numpy() + mid["close"].to_numpy()) / 3.0
+    vol_arr = mid["volume"].to_numpy(dtype=float)
+    vol_safe = np.where(vol_arr <= 0, 1.0, vol_arr)
+    # Per-day cumulative VWAP: reset cumulation on day boundaries.
+    # Trick: compute cumsum of (tp*vol) and cumsum of vol, subtract per-day baseline.
+    w = tp * vol_safe
+    cw = np.cumsum(np.where(in_session, w, 0.0))
+    cv = np.cumsum(np.where(in_session, vol_safe, 0.0))
+    # Baseline = cumsum value at first index of each day's in-session region.
+    # For each day, find the first bar where in_session is True.
+    vwap_arr = np.full(len(mid), np.nan, dtype=float)
+    # Group by bar_day_idx and compute cumulative vwap per group manually via np.diff.
+    # Use pandas groupby cumsum for simplicity — single pass, vectorized.
+    w_in = np.where(in_session, w, 0.0)
+    v_in = np.where(in_session, vol_safe, 0.0)
+    df_tmp = pd.DataFrame({"g": bar_day_idx, "w": w_in, "v": v_in, "in_sess": in_session})
+    cw_g = df_tmp.groupby("g")["w"].cumsum().to_numpy()
+    cv_g = df_tmp.groupby("g")["v"].cumsum().to_numpy()
+    cv_g_safe = np.where(cv_g <= 0, 1.0, cv_g)
+    vwap_arr_computed = cw_g / cv_g_safe
+    vwap_arr = np.where(in_session, vwap_arr_computed, np.nan)
+    vwap = pd.Series(vwap_arr, index=mid.index)
 
     slippage = COST_SLIPPAGE_PTS[config.symbol]
+
+    # Precompute per-day index ranges so fold loop is O(days_in_fold), not O(days^2).
+    day_first = {d: int(first_idx[i]) for i, d in enumerate(unique_days)}
+    # Last index per day = first index of the NEXT day - 1 (or len-1 for the last day).
+    sorted_first = sorted(day_first.items(), key=lambda kv: kv[1])
+    day_last: dict = {}
+    for i, (d, f_i) in enumerate(sorted_first):
+        nxt = sorted_first[i + 1][1] if i + 1 < len(sorted_first) else len(mid)
+        day_last[d] = nxt - 1
 
     logs: list[TradeLog] = []
     for fold in folds:
         tl = TradeLog(engine_id=config.engine_id, fold_id=fold.fold_id)
-        # Slice fold OOS indices.
         fold_mask = (ts_ns >= fold.oos_start) & (ts_ns < fold.oos_end)
         if not fold_mask.any():
             logs.append(tl)
             continue
         fold_idx = np.where(fold_mask)[0]
-        fold_day_keys = day_keys[fold_idx]
-        for d in np.unique(fold_day_keys):
-            info = next((x for x in day_info if x["date"] == d), None)
-            if info is None:
-                continue
-            day_mask = day_keys == d
-            day_idx = np.where(day_mask)[0]
-            if day_idx.size == 0:
-                continue
+        fold_day_keys_arr = day_keys[fold_idx]
+        for d in np.unique(fold_day_keys_arr):
+            info = day_info[day_to_idx[d]]
+            d_first = day_first[d]
+            d_last = day_last[d]
+            day_idx = np.arange(d_first, d_last + 1)
             day_slice = mid.iloc[day_idx[0]: day_idx[-1] + 1].reset_index(drop=True)
             day_slice_atr = atr[day_idx[0]: day_idx[-1] + 1]
             day_slice_vwap = vwap.iloc[day_idx[0]: day_idx[-1] + 1].to_numpy()
@@ -202,8 +238,7 @@ def run_engine_oos_batch(
                 trade["fold_id"] = fold.fold_id
                 trade["symbol"] = config.symbol
                 tl.trades.append(trade)
-                if len(tl.trades) >= MAX_TRADES_PER_DAY_PER_INSTRUMENT * len(np.unique(fold_day_keys)):
-                    pass  # natural cap; FSM also enforces 1/day
+                # FSM enforces 1 signal/day; no extra cap needed.
         logs.append(tl)
     return logs
 
