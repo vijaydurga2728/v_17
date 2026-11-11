@@ -1,0 +1,29 @@
+{
+  "n_permutations": 500,
+  "alpha": 0.05,
+  "dev": {
+    "alpha_cum": 0.5800386500210722,
+    "alpha_mean": 0.00026582889551836494,
+    "alpha_pf": 1.1995133487192065,
+    "n_trades": 106,
+    "avg_holding": 3.5,
+    "exposure": 0.1700274977085243,
+    "p_cum": 0.006,
+    "p_mean": 0.006,
+    "p_pf": 0.01,
+    "pass": true
+  },
+  "holdout": {
+    "alpha_cum": 0.34195808672758427,
+    "alpha_mean": 0.0006139283424193613,
+    "alpha_pf": 1.4803646730509077,
+    "n_trades": 29,
+    "avg_holding": 3.5172413793103448,
+    "exposure": 0.18312387791741472,
+    "p_cum": 0.0,
+    "p_mean": 0.0,
+    "p_pf": 0.004,
+    "pass": true
+  },
+  "combined_pass": true
+}
