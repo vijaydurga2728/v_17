@@ -33,7 +33,8 @@ from v17.data.parquet_store import read_bars
 from v17.data.resample import resample_paired
 
 
-SYMBOLS = ("EURUSD", "GBPUSD", "USATECHIDXUSD")
+SYMBOLS = ("EURUSD", "GBPUSD", "USATECHIDXUSD",
+           "AUDUSD", "NZDUSD", "USDCAD", "USDCHF", "USDJPY", "EURGBP")
 PARTITIONS = ("dev", "holdout")
 
 

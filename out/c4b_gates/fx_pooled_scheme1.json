@@ -1,0 +1,128 @@
+{
+  "n_permutations": 500,
+  "alpha": 0.05,
+  "dev": {
+    "per_pair": [
+      {
+        "symbol": "EURUSD",
+        "n_trades": 242,
+        "obs_mean_r": 0.027100001421070125,
+        "null_mean_median": -0.003293713808809117,
+        "p_mean_r": 0.228
+      },
+      {
+        "symbol": "GBPUSD",
+        "n_trades": 253,
+        "obs_mean_r": 0.04980535078611733,
+        "null_mean_median": -0.018625178736576976,
+        "p_mean_r": 0.144
+      },
+      {
+        "symbol": "AUDUSD",
+        "n_trades": 228,
+        "obs_mean_r": 0.050127456420413045,
+        "null_mean_median": 0.016699167783567097,
+        "p_mean_r": 0.278
+      },
+      {
+        "symbol": "NZDUSD",
+        "n_trades": 231,
+        "obs_mean_r": 0.03921232213061714,
+        "null_mean_median": 0.035997427839587745,
+        "p_mean_r": 0.472
+      },
+      {
+        "symbol": "USDCAD",
+        "n_trades": 226,
+        "obs_mean_r": 0.10623468811499026,
+        "null_mean_median": 0.04181806799703241,
+        "p_mean_r": 0.026
+      },
+      {
+        "symbol": "USDCHF",
+        "n_trades": 237,
+        "obs_mean_r": 0.023487687021858737,
+        "null_mean_median": -0.002538377168186193,
+        "p_mean_r": 0.302
+      },
+      {
+        "symbol": "USDJPY",
+        "n_trades": 232,
+        "obs_mean_r": -0.04765938848073992,
+        "null_mean_median": -0.009201594822937649,
+        "p_mean_r": 0.766
+      },
+      {
+        "symbol": "EURGBP",
+        "n_trades": 246,
+        "obs_mean_r": 0.09208106400681502,
+        "null_mean_median": 0.03715391217932817,
+        "p_mean_r": 0.058
+      }
+    ],
+    "fisher_combined_p": 0.04357100296433003,
+    "k": 8
+  },
+  "holdout": {
+    "per_pair": [
+      {
+        "symbol": "EURUSD",
+        "n_trades": 57,
+        "obs_mean_r": -0.017255827973445288,
+        "null_mean_median": 0.014095227266921188,
+        "p_mean_r": 0.666
+      },
+      {
+        "symbol": "GBPUSD",
+        "n_trades": 52,
+        "obs_mean_r": 0.07758500213656837,
+        "null_mean_median": 0.04587291988856723,
+        "p_mean_r": 0.35
+      },
+      {
+        "symbol": "AUDUSD",
+        "n_trades": 52,
+        "obs_mean_r": 0.1246884008636256,
+        "null_mean_median": 0.06556621326415524,
+        "p_mean_r": 0.302
+      },
+      {
+        "symbol": "NZDUSD",
+        "n_trades": 59,
+        "obs_mean_r": 0.06974046589302177,
+        "null_mean_median": 0.01912018266462591,
+        "p_mean_r": 0.312
+      },
+      {
+        "symbol": "USDCAD",
+        "n_trades": 62,
+        "obs_mean_r": -0.07769878715634523,
+        "null_mean_median": -0.007683093311940423,
+        "p_mean_r": 0.87
+      },
+      {
+        "symbol": "USDCHF",
+        "n_trades": 61,
+        "obs_mean_r": 0.2430122116540963,
+        "null_mean_median": 0.08478983358088577,
+        "p_mean_r": 0.014
+      },
+      {
+        "symbol": "USDJPY",
+        "n_trades": 58,
+        "obs_mean_r": 0.2239342385094267,
+        "null_mean_median": 0.07383715064028436,
+        "p_mean_r": 0.034
+      },
+      {
+        "symbol": "EURGBP",
+        "n_trades": 61,
+        "obs_mean_r": 0.06571039636414767,
+        "null_mean_median": 0.02034229828591702,
+        "p_mean_r": 0.144
+      }
+    ],
+    "fisher_combined_p": 0.04047913645016843,
+    "k": 8
+  }
+}
