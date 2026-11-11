@@ -34,9 +34,9 @@ def _resolve_bars_root() -> Path:
     return default
 
 
-def main() -> dict:
+def main(trend_filter: bool = False) -> dict:
     bars_root = _resolve_bars_root()
-    out_root = Path("out/orb/dev")
+    out_root = Path("out/orb/dev_filtered" if trend_filter else "out/orb/dev")
     out_root.mkdir(parents=True, exist_ok=True)
 
     folds = generate_folds()
@@ -50,7 +50,8 @@ def main() -> dict:
 
     calendar = pd.DataFrame(columns=["timestamp_utc", "currency", "impact"])  # news policy D deferred
 
-    logs = run_engine_oos_batch(engine, bars, calendar, folds)
+    print(f"[orb-dev-wf] trend_filter={trend_filter}", flush=True)
+    logs = run_engine_oos_batch(engine, bars, calendar, folds, trend_filter=trend_filter)
 
     all_trades: list[dict] = []
     for log in logs:
@@ -92,4 +93,9 @@ def main() -> dict:
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--trend-filter", action="store_true",
+                    help="Apply pre-registered D1 EMA_20 ±3%% regime filter")
+    args = ap.parse_args()
+    main(trend_filter=args.trend_filter)

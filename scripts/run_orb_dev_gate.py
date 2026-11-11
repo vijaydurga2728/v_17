@@ -32,13 +32,13 @@ def _resolve_bars_root() -> Path:
     return Path(__file__).resolve().parents[1] / ".worktrees" / "sb-6-engine-gate" / "data"
 
 
-def _cost_stress_pf(engine, folds, bars, calendar) -> float:
+def _cost_stress_pf(engine, folds, bars, calendar, trend_filter: bool = False) -> float:
     """Re-run with doubled slippage; return resulting PF."""
     original = dict(COST_SLIPPAGE_PTS)
     try:
         for k, v in list(COST_SLIPPAGE_PTS.items()):
             COST_SLIPPAGE_PTS[k] = v * 2.0
-        logs = run_engine_oos_batch(engine, bars, calendar, folds)
+        logs = run_engine_oos_batch(engine, bars, calendar, folds, trend_filter=trend_filter)
         all_pnl = []
         all_ts = []
         for log in logs:
@@ -55,12 +55,13 @@ def _cost_stress_pf(engine, folds, bars, calendar) -> float:
         COST_SLIPPAGE_PTS.update(original)
 
 
-def main() -> None:
+def main(trend_filter: bool = False) -> None:
     bars_root = _resolve_bars_root()
     engine = ORB_CATALOG[0]
     folds = generate_folds()
 
-    trades_path = Path("out/orb/dev") / engine.engine_id / "trades.parquet"
+    dev_dir = Path("out/orb/dev_filtered" if trend_filter else "out/orb/dev")
+    trades_path = dev_dir / engine.engine_id / "trades.parquet"
     if not trades_path.exists():
         raise SystemExit(f"[orb-dev-gate] missing {trades_path}; run scripts/run_orb_dev_wf.py first")
     trades = pd.read_parquet(trades_path)
@@ -70,12 +71,13 @@ def main() -> None:
     print(f"[orb-dev-gate] running 2x-slippage cost stress...", flush=True)
     bars = read_bars(root=bars_root, symbol=engine.symbol, partition="dev", dev_only=True)
     calendar = pd.DataFrame(columns=["timestamp_utc", "currency", "impact"])
-    stress_pf = _cost_stress_pf(engine, folds, bars, calendar)
+    stress_pf = _cost_stress_pf(engine, folds, bars, calendar, trend_filter=trend_filter)
     print(f"[orb-dev-gate] cost-stress PF = {stress_pf:.3f}", flush=True)
 
     report = evaluate_secondary(trades, cost_stress_pf=stress_pf, min_trade_count=25)
 
-    out = Path("docs/superpowers/plans/orb_dev_gate_report_2026-11-11.md")
+    suffix = "_filtered" if trend_filter else ""
+    out = Path(f"docs/superpowers/plans/orb_dev_gate_report{suffix}_2026-11-11.md")
     lines = [
         "# ORB-NAS100 Dev Gate Report — 2026-11-11",
         "",
@@ -104,4 +106,8 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--trend-filter", action="store_true")
+    args = ap.parse_args()
+    main(trend_filter=args.trend_filter)

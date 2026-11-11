@@ -109,15 +109,59 @@ def _ny_date_from_ns(ns: int):
 
 # ---------------------------------------------------------------- public API
 
+def _compute_daily_regime(
+    mid: pd.DataFrame,
+    day_keys: np.ndarray,
+    unique_days: np.ndarray,
+    ema_period: int = 20,
+    bull_pct: float = 0.03,
+    bear_pct: float = 0.03,
+) -> dict:
+    """Return {date: "bull" | "bear" | "neutral"} based on prior-day close vs EMA_20.
+
+    Uses prior-day close only — no same-day lookahead.
+    Pre-registered thresholds (orb_trend_filter_prereg_2026-11-11.md).
+    """
+    # Build daily close series from last mid-close of each NY date.
+    df = pd.DataFrame({"g": day_keys, "close": mid["close"].to_numpy()})
+    daily_close = df.groupby("g")["close"].last()
+    # Chronological order required for EMA.
+    daily_close = daily_close.reindex(unique_days)
+    ema = daily_close.ewm(span=ema_period, adjust=False).mean()
+    # Shift by 1 so date D uses close/ema from the prior trading day.
+    close_prev = daily_close.shift(1)
+    ema_prev = ema.shift(1)
+
+    regime: dict = {}
+    for d in unique_days:
+        c = close_prev.get(d)
+        e = ema_prev.get(d)
+        if c is None or e is None or pd.isna(c) or pd.isna(e) or e == 0:
+            regime[d] = "neutral"
+            continue
+        if c > e * (1.0 + bull_pct):
+            regime[d] = "bull"
+        elif c < e * (1.0 - bear_pct):
+            regime[d] = "bear"
+        else:
+            regime[d] = "neutral"
+    return regime
+
+
 def run_engine_oos_batch(
     config: ORBEngineConfig,
     bars: pd.DataFrame,
     calendar: pd.DataFrame,  # unused this cycle (news policy D deferred)
     folds: list[Fold],
+    trend_filter: bool = False,
 ) -> list[TradeLog]:
     """Run the ORB engine over N folds.
 
     Per-symbol preprocessing runs ONCE here; each fold slices by index.
+
+    trend_filter: if True, apply pre-registered D1 EMA_20 ±3% regime filter
+                  (orb_trend_filter_prereg_2026-11-11.md). Bull regime drops
+                  short-fade signals; bear regime drops long-fade signals.
     """
     if bars.empty:
         return [TradeLog(engine_id=config.engine_id, fold_id=f.fold_id) for f in folds]
@@ -196,6 +240,12 @@ def run_engine_oos_batch(
 
     slippage = COST_SLIPPAGE_PTS[config.symbol]
 
+    # Pre-registered trend-filter regime (if enabled).
+    regime_by_day = (
+        _compute_daily_regime(mid, day_keys, unique_days)
+        if trend_filter else {}
+    )
+
     # Precompute per-day index ranges so fold loop is O(days_in_fold), not O(days^2).
     day_first = {d: int(first_idx[i]) for i, d in enumerate(unique_days)}
     # Last index per day = first index of the NEXT day - 1 (or len-1 for the last day).
@@ -232,6 +282,8 @@ def run_engine_oos_batch(
                 or_end=info["or_end"],
                 sess_end=info["sess_end"],
                 slippage_pts=slippage,
+                regime=regime_by_day.get(d, "neutral") if trend_filter else "neutral",
+                trend_filter=trend_filter,
             )
             if trade is not None:
                 trade["engine_id"] = config.engine_id
@@ -263,6 +315,8 @@ def _run_one_day(
     or_end: int,
     sess_end: int,
     slippage_pts: float,
+    regime: str = "neutral",
+    trend_filter: bool = False,
 ) -> dict | None:
     fsm = ORBFSM(or_start, or_end, sess_end)
     signal = None
@@ -273,6 +327,13 @@ def _run_one_day(
             break
     if signal is None:
         return None
+
+    # Pre-registered trend filter: drop counter-trend fades.
+    if trend_filter:
+        if regime == "bull" and signal.side == "short":
+            return None
+        if regime == "bear" and signal.side == "long":
+            return None
 
     atr14 = float(atr_day[signal.armed_bar_idx])
     if not np.isfinite(atr14) or atr14 <= 0:
