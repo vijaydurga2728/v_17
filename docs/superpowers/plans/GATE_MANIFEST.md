@@ -82,3 +82,59 @@ only.
 **Next cycle candidates** (from handoff line 104): VWAP mean reversion
 (archetype 2), session liquidity scalping (archetype 3), DXY-FX
 intermarket (archetype 4), overnight gap fade (archetype 5).
+
+---
+
+## Overnight Gap Fade (2026-11-11, cycle 3)
+
+- Status: **SHELVED 2026-11-11** at dev secondary gates.
+- Spec: `docs/superpowers/specs/2026-11-11-overnight-gap-fade-design.md`
+- Gate report: `docs/superpowers/plans/gap_dev_gate_report_2026-11-11.md`
+- Engine: GAP-NAS100 (`USATECHIDXUSD`)
+- Branch: `orb-reversal-indices` (same branch; gap-fade work stacked)
+
+### Dev gate summary (GAP-NAS100, 2018-2024 OOS, 7 folds)
+
+| Gate | Metric | Threshold | Value | Verdict |
+|---|---|---|---|---|
+| G1 | PF | >= 1.3 | **0.936** | FAIL |
+| G2 | trades | >= 25 | 849 | PASS |
+| G3 | all folds net-positive | all > 0 | 5 of 7 negative | FAIL |
+| G4 | R^2 | >= 0.80 | 0.194 | FAIL |
+| G5 | cost-stress PF (2x slippage) | >= 1.1 | 0.913 | FAIL |
+
+Additional: win_rate 62.9% (matches published base rate ~70%), avg_r -0.021,
+max_dd 22.9R, Sharpe -0.49.
+
+**Verdict: SHELVE.** Four of five gates fail. Not borderline.
+
+Reason: The gap-close signal is real (62.9% WR is close to published
+70-75% base rate) but the asymmetric R/R of 1R-stop / 0.5R-target
+requires >=66.7% WR to break even; we are 4 pp short. The two negative
+expectancy fold-years (2018, 2019, 2020, 2022, 2024 all negative; 2021,
+2023 positive) suggest the NAS100 overnight bias has strengthened
+post-2020 — gap-ups continuing more often than closing. PF 0.94 is a
+losing system.
+
+Pre-reg explicitly forbids TP/SL ratio re-tune or filter stacking.
+Honoring the pre-reg: SHELVE.
+
+### Three-cycle session verdict (2026-11-11)
+
+- SB 6-engine: SHELVED (one engine sampled, PF 0.67, 32% WR).
+- ORB Reversal NAS100: SHELVED after naked and after trend-filter rescue
+  (PF 1.14 -> 1.20 with filter, G1/G3 still fail).
+- Overnight Gap Fade NAS100: SHELVED (PF 0.94, G1/G3/G4/G5 fail).
+
+Three strategy archetypes evaluated against the same infra in one session:
+mechanical fade (ORB), mean-reversion fade (Gap), structural doctrine (SB).
+All fail on NAS100 M1 dev data with the user's risk discipline (0.5% /
+trade, 1 trade/day, no overrides).
+
+**Honest read:** NAS100 M1 may not be the right instrument for fade
+systems in the 2018-2024 regime. Momentum-following archetypes or
+multi-instrument diversification (FX, commodities, crypto) are
+untested. User's "last try" fatigue signal is active.
+
+**Strong recommendation:** stop coding. Take a 2-week break before
+opening cycle 4. Infra is reusable for any next attempt.
