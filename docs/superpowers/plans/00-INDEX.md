@@ -25,3 +25,5 @@ Build order (one plan per module, each independently testable):
 | 11 | M11 Setup Firing Fix | `2026-10-29-m11-setup-firing-fix.md` | **partial** (code shipped; trades=0 still) |
 
 Rule: next plan is written only after prior module is implemented, tested, and reviewed. No batch-planning the whole system — plans drift from reality fast.
+
+- 2026-11-11 ORB Reversal Indices — see `2026-11-11-orb-reversal-indices.md` + `docs/superpowers/specs/2026-11-11-orb-reversal-indices-design.md`. 1-engine NAS100-only after SP500 data downgrade.
