@@ -1,0 +1,37 @@
+{
+  "engine": "RSI2-GBPUSD-EXPLORATION",
+  "n_permutations": 500,
+  "alpha": 0.05,
+  "scheme1_mean_r": {
+    "dev": {
+      "observed": 0.04416234581942252,
+      "p_mean_r": 0.21,
+      "p_pf": 0.262,
+      "null_median": -0.021976743760532224
+    },
+    "holdout": {
+      "observed": 0.20359993954590064,
+      "p_mean_r": 0.144,
+      "p_pf": 0.424,
+      "null_median": 0.10370662686849505
+    }
+  },
+  "paired_alpha": {
+    "dev": {
+      "alpha_cum": 0.07110614251130562,
+      "p_cum": 0.22,
+      "p_mean": 0.22,
+      "null_cum_median": -0.003901408352129961
+    },
+    "holdout": {
+      "alpha_cum": 0.042507849453061616,
+      "p_cum": 0.106,
+      "p_mean": 0.106,
+      "null_cum_median": 0.00217471252519181
+    }
+  },
+  "verdict": {
+    "mean_r_both_pass": false,
+    "paired_both_pass": false
+  }
+}
