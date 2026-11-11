@@ -45,4 +45,7 @@ packages = ["src/v17"]
 testpaths = ["tests"]
 pythonpath = ["src"]
 addopts = "-ra --strict-markers --strict-config --import-mode=importlib"
-markers = ["integration: hits real data on disk"]
+markers = [
+    "integration: hits real data on disk",
+    "perf: wall-clock performance guards (opt-in via -m perf)",
+]
