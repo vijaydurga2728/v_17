@@ -1,0 +1,31 @@
+{
+  "n_permutations": 500,
+  "alpha_single": 0.05,
+  "dev": {
+    "engine_id": "RSI2-USATECHIDXUSD",
+    "window_label": "dev",
+    "observed_pf": 2.506913834373399,
+    "n_permutations": 500,
+    "n_obs_trades": 106,
+    "null_pf_mean": 1.735650162613118,
+    "null_pf_median": 1.6072331762584775,
+    "null_pf_p95": 2.9857976180692636,
+    "p_pf": 0.114,
+    "p_sharpe": 0.05,
+    "pass": false
+  },
+  "holdout": {
+    "engine_id": "RSI2-USATECHIDXUSD",
+    "window_label": "holdout",
+    "observed_pf": 4.895017833939872,
+    "n_permutations": 500,
+    "n_obs_trades": 29,
+    "null_pf_mean": 2.9455527358152156,
+    "null_pf_median": 2.0128997216342555,
+    "null_pf_p95": 8.46288532215415,
+    "p_pf": 0.148,
+    "p_sharpe": 0.118,
+    "pass": false
+  },
+  "combined_live_cleared": false
+}
