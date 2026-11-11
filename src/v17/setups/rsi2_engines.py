@@ -1,4 +1,8 @@
-"""Connors RSI(2) engine catalog (cycle 4, S3). FX-only."""
+"""Connors RSI(2) engine catalog.
+
+Cycle 4B (2026-11-11, [P-HACK-ACKNOWLEDGED]): narrowed to NAS100 only
+(QQQ proxy per Connors). FX dropped — no equity-drift bias.
+"""
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -13,6 +17,5 @@ class RSI2EngineConfig:
 
 
 RSI2_CATALOG: Final[list[RSI2EngineConfig]] = [
-    RSI2EngineConfig("RSI2-EURUSD", "EURUSD", 1),
-    RSI2EngineConfig("RSI2-GBPUSD", "GBPUSD", 2),
+    RSI2EngineConfig("RSI2-USATECHIDXUSD", "USATECHIDXUSD", 1),
 ]
