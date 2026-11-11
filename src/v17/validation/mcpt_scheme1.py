@@ -39,12 +39,17 @@ class Scheme1Result:
     engine_id: str
     window_label: str
     observed_pf: float
+    observed_mean_r: float
     n_permutations: int
     n_obs_trades: int
     null_pf_mean: float
     null_pf_median: float
     null_pf_p95: float
+    null_mean_r_mean: float
+    null_mean_r_median: float
+    null_mean_r_p95: float
     p_pf: float
+    p_mean_r: float
     p_sharpe: float
 
 
@@ -147,11 +152,13 @@ def run_scheme1_mcpt_rsi2(
 
     observed_pnl_r = observed_trades["pnl_r"].to_numpy()
     observed_pf = _pf(observed_pnl_r)
+    observed_mean_r = float(observed_pnl_r.mean())
     observed_sharpe = _sharpe(observed_pnl_r)
 
     slippage = COST_SLIPPAGE_PTS_USATECH
 
     null_pf = np.full(n_permutations, np.nan)
+    null_mean_r = np.full(n_permutations, np.nan)
     null_sharpe = np.full(n_permutations, np.nan)
     for p in range(n_permutations):
         seed = permutation_seed(engine_id, f"scheme1_{window_label}", p)
@@ -166,23 +173,31 @@ def run_scheme1_mcpt_rsi2(
             continue
         arr = np.array(pnls)
         null_pf[p] = _pf(arr)
+        null_mean_r[p] = float(arr.mean())
         null_sharpe[p] = _sharpe(arr)
 
     finite_pf = null_pf[np.isfinite(null_pf)]
+    finite_mean = null_mean_r[np.isfinite(null_mean_r)]
     finite_sh = null_sharpe[np.isfinite(null_sharpe)]
     p_pf = float((finite_pf >= observed_pf).mean()) if len(finite_pf) else float("nan")
+    p_mean = float((finite_mean >= observed_mean_r).mean()) if len(finite_mean) else float("nan")
     p_sh = float((finite_sh >= observed_sharpe).mean()) if len(finite_sh) else float("nan")
 
     result = Scheme1Result(
         engine_id=engine_id,
         window_label=window_label,
         observed_pf=observed_pf,
+        observed_mean_r=observed_mean_r,
         n_permutations=n_permutations,
         n_obs_trades=n_obs,
         null_pf_mean=float(np.nanmean(null_pf)),
         null_pf_median=float(np.nanmedian(null_pf)),
         null_pf_p95=float(np.nanpercentile(finite_pf, 95)) if len(finite_pf) else float("nan"),
+        null_mean_r_mean=float(np.nanmean(null_mean_r)),
+        null_mean_r_median=float(np.nanmedian(null_mean_r)),
+        null_mean_r_p95=float(np.nanpercentile(finite_mean, 95)) if len(finite_mean) else float("nan"),
         p_pf=p_pf,
+        p_mean_r=p_mean,
         p_sharpe=p_sh,
     )
 
@@ -192,6 +207,7 @@ def run_scheme1_mcpt_rsi2(
         pd.DataFrame({
             "perm_idx": np.arange(n_permutations),
             "null_pf": null_pf,
+            "null_mean_r": null_mean_r,
             "null_sharpe": null_sharpe,
         }).to_parquet(out, index=False)
 

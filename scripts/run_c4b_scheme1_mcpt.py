@@ -55,6 +55,8 @@ def main() -> None:
     )
     print(f"[c4b-s1] DEV: observed_pf={res_dev.observed_pf:.3f} p_pf={res_dev.p_pf:.4f}", flush=True)
     print(f"[c4b-s1]       null median={res_dev.null_pf_median:.3f} mean={res_dev.null_pf_mean:.3f} p95={res_dev.null_pf_p95:.3f}", flush=True)
+    print(f"[c4b-s1] DEV: observed_mean_r={res_dev.observed_mean_r:.4f} p_mean_r={res_dev.p_mean_r:.4f}", flush=True)
+    print(f"[c4b-s1]       null_mean_r median={res_dev.null_mean_r_median:.4f} mean={res_dev.null_mean_r_mean:.4f} p95={res_dev.null_mean_r_p95:.4f}", flush=True)
 
     # --- HOLDOUT window ---
     print(f"[c4b-s1] loading holdout bars", flush=True)
@@ -73,6 +75,8 @@ def main() -> None:
     )
     print(f"[c4b-s1] HOLDOUT: observed_pf={res_ho.observed_pf:.3f} p_pf={res_ho.p_pf:.4f}", flush=True)
     print(f"[c4b-s1]            null median={res_ho.null_pf_median:.3f} mean={res_ho.null_pf_mean:.3f} p95={res_ho.null_pf_p95:.3f}", flush=True)
+    print(f"[c4b-s1] HOLDOUT: observed_mean_r={res_ho.observed_mean_r:.4f} p_mean_r={res_ho.p_mean_r:.4f}", flush=True)
+    print(f"[c4b-s1]            null_mean_r median={res_ho.null_mean_r_median:.4f} mean={res_ho.null_mean_r_mean:.4f} p95={res_ho.null_mean_r_p95:.4f}", flush=True)
 
     # Report.
     pass_dev = res_dev.p_pf < ALPHA_SINGLE
