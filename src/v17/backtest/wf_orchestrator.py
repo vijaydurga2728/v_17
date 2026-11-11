@@ -9,13 +9,25 @@ Task 8.0b (Phase B): parallel engines via ProcessPoolExecutor.
 from __future__ import annotations
 
 import os
+import sys
 from pathlib import Path
 
 import pandas as pd
 
-from v17.backtest.engine_runner import run_engine_oos_batch
+# Windows ProcessPoolExecutor hang mitigation (handoff line 69):
+# Spawn-mode on Windows can deadlock silently when workers fail to import.
+# Default to sequential on Windows; parallel only when explicitly opted in
+# via V17_ORCH_PARALLEL=1 env var.
+_FORCE_SEQUENTIAL_ON_WINDOWS = sys.platform == "win32" and os.environ.get("V17_ORCH_PARALLEL", "0") != "1"
+
+# Per-worker timeout to prevent indefinite hangs (default 20 min).
+_WORKER_TIMEOUT_S = float(os.environ.get("V17_ORCH_WORKER_TIMEOUT_S", "1200"))
+
 from v17.backtest.walkforward import generate_folds
 from v17.setups.sb_engines import ENGINE_CATALOG, SBEngineConfig
+
+# engine_runner is imported lazily inside _run_one_engine so that importing
+# this module stays cheap and does not require the ORB engine_runner (Task 12).
 
 
 def _empty_bars() -> pd.DataFrame:
@@ -68,6 +80,7 @@ def _run_one_engine(
     dry_run: bool,
 ) -> None:
     """Worker: load bars, run batch engine, write per-engine trades.parquet."""
+    from v17.backtest.engine_runner import run_engine_oos_batch
     bars = _load_bars_for_engine(engine, data_root, dry_run)
     fold_logs = run_engine_oos_batch(
         config=engine, bars=bars, calendar=calendar, folds=folds
@@ -156,9 +169,18 @@ def run_all_engines_all_folds(
             pd.read_parquet(cal_path) if cal_path.exists() else _empty_calendar()
         )
 
-    # Try parallel first; fall back to sequential if spawn fails.
+    # Windows default: sequential (hang mitigation per handoff line 69).
+    # Opt in to parallel via env V17_ORCH_PARALLEL=1.
+    if _FORCE_SEQUENTIAL_ON_WINDOWS:
+        for engine in ENGINE_CATALOG:
+            _run_one_engine(
+                engine, Path(data_root), Path(out_root), calendar, folds, dry_run
+            )
+            print(f"[orchestrator] DONE {engine.engine_id} (sequential)", flush=True)
+        return
+
     try:
-        from concurrent.futures import ProcessPoolExecutor, as_completed
+        from concurrent.futures import ProcessPoolExecutor, as_completed, TimeoutError as FutTimeout
         n_workers = max_workers or min(len(ENGINE_CATALOG), os.cpu_count() or 1)
         futures: dict = {}
         with ProcessPoolExecutor(max_workers=n_workers) as ex:
@@ -169,11 +191,14 @@ def run_all_engines_all_folds(
                 )
                 futures[fut] = engine.engine_id
             failures: list[tuple[str, Exception]] = []
-            for fut in as_completed(futures):
+            for fut in as_completed(futures, timeout=_WORKER_TIMEOUT_S * len(futures)):
                 eid = futures[fut]
                 try:
-                    fut.result()
+                    fut.result(timeout=_WORKER_TIMEOUT_S)
                     print(f"[orchestrator] DONE {eid}", flush=True)
+                except FutTimeout as exc:
+                    print(f"[orchestrator] TIMEOUT {eid} after {_WORKER_TIMEOUT_S}s", flush=True)
+                    failures.append((eid, exc))
                 except Exception as exc:
                     print(f"[orchestrator] FAIL {eid}: {exc}", flush=True)
                     failures.append((eid, exc))
