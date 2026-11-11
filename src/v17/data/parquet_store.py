@@ -99,3 +99,20 @@ def read_bars_h1(symbol: str, partition: str = "dev", root: Path | None = None) 
     tables = [pq.read_table(f) for f in files]
     df = pa.concat_tables(tables).to_pandas()
     return df.sort_values("ts_utc").reset_index(drop=True)
+
+
+def read_bars_d1(symbol: str, partition: str = "dev", root: Path | None = None) -> pd.DataFrame:
+    """Read D1 cache bars from `data/bars_d1/<symbol>/<partition>/year=YYYY/`.
+
+    UTC-day boundaries. See scripts/build_d1_cache.py for the session-alignment caveat.
+    """
+    base_root = root if root is not None else Path("data")
+    base = Path(base_root) / "bars_d1" / symbol / partition
+    if not base.exists():
+        return pd.DataFrame()
+    files = list(base.rglob("data.parquet"))
+    if not files:
+        return pd.DataFrame()
+    tables = [pq.read_table(f) for f in files]
+    df = pa.concat_tables(tables).to_pandas()
+    return df.sort_values("ts_utc").reset_index(drop=True)
