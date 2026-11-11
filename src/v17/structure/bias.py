@@ -99,3 +99,67 @@ def compute_bias(
     if (not daily_bull) and (not four_h_bull):
         return Bias.BEAR
     return Bias.NONE
+
+
+# =============================================================================
+# SB-A1 D1 bias (Audit 1 reclassified SOURCE_INTERPRETATION / RESEARCH_HYPOTHESIS)
+# Added per plan Task 3.3. Mirrors JS-02 structure + EMA20.
+# =============================================================================
+from typing import Literal
+import numpy as np
+D1_EMA_PERIOD = 20
+D1_STRUCTURE_SWING_LOOKBACK_DAYS = 20
+
+SBBias = Literal["BULLISH", "BEARISH", "NONE"]
+
+
+def _classify_structure_sb_a1(prices: np.ndarray) -> SBBias:
+    if len(prices) < 5:
+        return "NONE"
+    highs: list[tuple[int, float]] = []
+    lows: list[tuple[int, float]] = []
+    for i in range(1, len(prices) - 1):
+        if prices[i] > prices[i - 1] and prices[i] > prices[i + 1]:
+            highs.append((i, float(prices[i])))
+        if prices[i] < prices[i - 1] and prices[i] < prices[i + 1]:
+            lows.append((i, float(prices[i])))
+    if len(highs) < 2 or len(lows) < 2:
+        return "NONE"
+    bull = highs[-1][1] > highs[-2][1] and lows[-1][1] > lows[-2][1]
+    bear = highs[-1][1] < highs[-2][1] and lows[-1][1] < lows[-2][1]
+    if bull and not bear:
+        return "BULLISH"
+    if bear and not bull:
+        return "BEARISH"
+    return "NONE"
+
+
+def compute_d1_bias(d1_bars: pd.DataFrame, as_of_utc_ns: int) -> SBBias:
+    """SB-A1 D1 bias (Audit 1 classification: SOURCE_INTERPRETATION; EMA subrule RESEARCH_HYPOTHESIS).
+
+    - Causal: uses only bars with ts_utc < as_of_utc_ns.
+    - Requires >= max(EMA period, swing lookback) + 1 bars else NONE.
+    - BULLISH iff 3-bar pivot structure HH+HL AND close > EMA20.
+    - BEARISH iff LH+LL AND close < EMA20.
+    - Mismatch or chop → NONE.
+    """
+    df = d1_bars[d1_bars["ts_utc"] < as_of_utc_ns].copy()
+    min_bars = max(D1_EMA_PERIOD, D1_STRUCTURE_SWING_LOOKBACK_DAYS) + 1
+    if len(df) < min_bars:
+        return "NONE"
+    close = df["bid_c"].to_numpy()
+    ema = pd.Series(close).ewm(span=D1_EMA_PERIOD, adjust=False).mean().iloc[-1]
+    last_close = float(close[-1])
+    if last_close > ema:
+        ema_align: SBBias = "BULLISH"
+    elif last_close < ema:
+        ema_align = "BEARISH"
+    else:
+        ema_align = "NONE"
+    window = close[-D1_STRUCTURE_SWING_LOOKBACK_DAYS:]
+    structure = _classify_structure_sb_a1(window)
+    if structure == "NONE" or ema_align == "NONE":
+        return "NONE"
+    if structure != ema_align:
+        return "NONE"
+    return structure

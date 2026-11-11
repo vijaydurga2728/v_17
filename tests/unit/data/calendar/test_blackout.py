@@ -2,8 +2,11 @@ import json
 from datetime import UTC, datetime
 from pathlib import Path
 
+import pandas as pd
+
 from v17.common.types import Symbol
 from v17.data.calendar.providers import FFCalendarProvider
+from v17.data.calendar.blackout import is_in_blackout, SYMBOL_CURRENCY_MAP
 
 
 def _seed(tmp_path: Path) -> None:
@@ -48,3 +51,37 @@ def test_events_range(tmp_path: Path) -> None:
         datetime(2026, 10, 30, tzinfo=UTC), datetime(2026, 10, 31, tzinfo=UTC)
     )
     assert len(events) == 2
+
+
+def test_blackout_window_minus10_plus20():
+    event_ts = pd.Timestamp("2024-01-30 13:30:00", tz="UTC").value
+    cal = pd.DataFrame({"timestamp_utc": [event_ts], "currency": ["USD"], "impact": ["High"]})
+    # 15 min before — outside
+    assert not is_in_blackout(event_ts - 15 * 60_000_000_000, cal, currencies=["USD"])
+    # 5 min before — inside
+    assert is_in_blackout(event_ts - 5 * 60_000_000_000, cal, currencies=["USD"])
+    # at event — inside
+    assert is_in_blackout(event_ts, cal, currencies=["USD"])
+    # 15 min after — inside
+    assert is_in_blackout(event_ts + 15 * 60_000_000_000, cal, currencies=["USD"])
+    # 25 min after — outside
+    assert not is_in_blackout(event_ts + 25 * 60_000_000_000, cal, currencies=["USD"])
+
+
+def test_blackout_ignores_wrong_currency():
+    event_ts = pd.Timestamp("2024-01-30 13:30:00", tz="UTC").value
+    cal = pd.DataFrame({"timestamp_utc": [event_ts], "currency": ["EUR"], "impact": ["High"]})
+    assert not is_in_blackout(event_ts, cal, currencies=["USD", "GBP"])
+
+
+def test_empty_calendar_returns_false():
+    cal = pd.DataFrame({"timestamp_utc": pd.Series([], dtype="int64"),
+                        "currency": pd.Series([], dtype=object),
+                        "impact": pd.Series([], dtype=object)})
+    assert not is_in_blackout(1_700_000_000_000_000_000, cal, currencies=["USD", "EUR", "GBP"])
+
+
+def test_symbol_map_includes_sb_symbols():
+    assert set(SYMBOL_CURRENCY_MAP["EURUSD"]) == {"USD", "EUR"}
+    assert set(SYMBOL_CURRENCY_MAP["GBPUSD"]) == {"USD", "GBP"}
+    assert set(SYMBOL_CURRENCY_MAP["USATECHIDXUSD"]) == {"USD"}
