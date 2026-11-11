@@ -1,0 +1,103 @@
+"""Time-Series Momentum runner tests."""
+from __future__ import annotations
+
+import numpy as np
+import pandas as pd
+import pytz
+
+from v17.backtest.tsm_runner import run_tsm_oos_batch
+from v17.backtest.walkforward import Fold
+from v17.setups.tsm_constants import HOLD_H1, LOOKBACK_H1
+from v17.setups.tsm_engines import TSM_CATALOG
+
+
+_H1_NS = 3_600_000_000_000
+
+
+def _synthetic_h1(n: int, drift: float, symbol: str, start_price: float = 100.0) -> pd.DataFrame:
+    """Build n H1 bid/ask bars with a linear drift in mid price."""
+    base = pd.Timestamp("2020-01-01", tz="UTC").value
+    ts = base + np.arange(n, dtype=np.int64) * _H1_NS
+    mid = start_price + np.arange(n) * drift
+    half_spread = 0.0005 * start_price
+    return pd.DataFrame({
+        "ts_utc": ts,
+        "symbol": [symbol] * n,
+        "bid_o": mid - half_spread,
+        "bid_h": mid - half_spread + 0.01,
+        "bid_l": mid - half_spread - 0.01,
+        "bid_c": mid - half_spread,
+        "ask_o": mid + half_spread,
+        "ask_h": mid + half_spread + 0.01,
+        "ask_l": mid + half_spread - 0.01,
+        "ask_c": mid + half_spread,
+        "bid_volume": np.full(n, 10.0),
+        "ask_volume": np.full(n, 10.0),
+        "spread_mid": np.full(n, 2 * half_spread),
+    })
+
+
+def _one_fold_spanning_all(ts_ns: np.ndarray) -> Fold:
+    return Fold(
+        fold_id=1,
+        train_start=0,
+        train_end=int(ts_ns[0] - 1),
+        oos_start=int(ts_ns[0]),
+        oos_end=int(ts_ns[-1] + _H1_NS),
+    )
+
+
+def test_tsm_skips_before_first_rebalance() -> None:
+    engine = TSM_CATALOG[0]  # EURUSD
+    bars = _synthetic_h1(100, drift=0.0, symbol=engine.symbol)
+    ts = bars["ts_utc"].to_numpy()
+    fold = _one_fold_spanning_all(ts)
+    logs = run_tsm_oos_batch(engine, bars, [fold])
+    # LOOKBACK_H1 = 480 > 100 bars; cannot rebalance yet.
+    assert logs[0].trades == []
+
+
+def test_tsm_emits_long_on_positive_drift() -> None:
+    engine = TSM_CATALOG[2]  # NAS100 - uses absolute price slippage
+    n = LOOKBACK_H1 + HOLD_H1 * 2 + 10
+    bars = _synthetic_h1(n, drift=0.1, symbol=engine.symbol, start_price=15000.0)
+    ts = bars["ts_utc"].to_numpy()
+    fold = _one_fold_spanning_all(ts)
+    logs = run_tsm_oos_batch(engine, bars, [fold])
+    trades = logs[0].trades
+    assert len(trades) >= 1
+    assert all(t["side"] == "long" for t in trades)
+
+
+def test_tsm_emits_short_on_negative_drift() -> None:
+    engine = TSM_CATALOG[2]
+    n = LOOKBACK_H1 + HOLD_H1 * 2 + 10
+    bars = _synthetic_h1(n, drift=-0.1, symbol=engine.symbol, start_price=15000.0)
+    ts = bars["ts_utc"].to_numpy()
+    fold = _one_fold_spanning_all(ts)
+    logs = run_tsm_oos_batch(engine, bars, [fold])
+    trades = logs[0].trades
+    assert len(trades) >= 1
+    assert all(t["side"] == "short" for t in trades)
+
+
+def test_tsm_empty_bars_returns_empty_log() -> None:
+    engine = TSM_CATALOG[0]
+    fold = Fold(fold_id=1, train_start=0, train_end=0, oos_start=0, oos_end=1)
+    logs = run_tsm_oos_batch(engine, pd.DataFrame(), [fold])
+    assert logs[0].trades == []
+
+
+def test_tsm_fold_window_filters_trades() -> None:
+    engine = TSM_CATALOG[2]
+    n = LOOKBACK_H1 + HOLD_H1 * 4 + 10
+    bars = _synthetic_h1(n, drift=0.1, symbol=engine.symbol, start_price=15000.0)
+    ts = bars["ts_utc"].to_numpy()
+    # OOS covers only the second half; first rebalance should still be excluded.
+    half_ts = int(ts[len(ts) // 2])
+    fold = Fold(fold_id=1, train_start=0, train_end=half_ts - 1,
+                oos_start=half_ts, oos_end=int(ts[-1] + _H1_NS))
+    logs = run_tsm_oos_batch(engine, bars, [fold])
+    trades = logs[0].trades
+    for t in trades:
+        assert t["ts_entry_ns"] >= half_ts
