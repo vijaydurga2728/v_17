@@ -1,0 +1,5 @@
+[
+  {"date": "2020-03-06T13:30:00+00:00", "country": "USD", "impact": "High", "title": "NFP"},
+  {"date": "2020-03-06T10:00:00+00:00", "country": "USD", "impact": "Medium", "title": "Factory Orders"},
+  {"date": "2020-03-04T00:30:00+00:00", "country": "AUD", "impact": "High", "title": "GDP"}
+]
