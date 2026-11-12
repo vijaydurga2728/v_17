@@ -5,12 +5,19 @@ import json
 from pathlib import Path
 
 import pandas as pd
+import pyarrow.parquet as pq
 import typer
 
-from v17.data.c6_calendar import build_calendar_index
+from v17.backtest.c6_grid import run_grid
+from v17.backtest.c6_runner import run_backtest
+from v17.data.c6_calendar import build_calendar_index, load_calendar_index
 from v17.data.c6_pipeline import build_m5_paired, ingest_m1_paired
 from v17.validation.c6_gates import (
     compute_metrics, evaluate_dev_gates, evaluate_holdout_gates,
+)
+from v17.validation.c6_mcpt import scheme1_mcpt
+from v17.validation.c6_paired_alpha import (
+    null_micro_only, null_random_entries, null_regime_only, paired_alpha,
 )
 
 app = typer.Typer(name="c6", help="Cycle 6 SPX-led intraday FX")
@@ -47,13 +54,102 @@ def build_calendar_cmd(
     typer.echo(f"indexed {n} events")
 
 
+def _load_m5(root: Path, symbol: str, start_iso: str, end_iso: str) -> pd.DataFrame:
+    start_ts = pd.Timestamp(start_iso, tz="UTC").value
+    end_ts = pd.Timestamp(end_iso, tz="UTC").value
+    frames = []
+    for y_dir in sorted((root / symbol).glob("year=*")):
+        frames.append(pq.read_table(y_dir / "part-00.parquet").to_pandas())
+    df = pd.concat(frames, ignore_index=True)
+    return df[(df["ts_utc"] >= start_ts) & (df["ts_utc"] <= end_ts)].reset_index(drop=True)
+
+
 @app.command("grid")
 def grid_cmd(
+    spx_root: Path = typer.Option(...),
+    fx_root: Path = typer.Option(...),
+    calendar: Path = typer.Option(...),
     dev_start: str = typer.Option(...),
     dev_end: str = typer.Option(...),
     out_csv: Path = typer.Option(...),
 ):
-    typer.echo(f"grid run for {dev_start}..{dev_end} -> {out_csv}")  # full wiring in Task 17
+    spx = _load_m5(spx_root, "USA500IDXUSD", dev_start, dev_end)
+    aud = _load_m5(fx_root, "AUDUSD", dev_start, dev_end)
+    jpy = _load_m5(fx_root, "USDJPY", dev_start, dev_end)
+    cal = (
+        load_calendar_index(calendar)
+        if calendar.exists() and calendar.stat().st_size > 0
+        else pd.DataFrame(columns=["ts_utc", "currency", "impact", "title"])
+    )
+    g = run_grid(spx, {"AUDUSD": aud, "USDJPY": jpy}, cal,
+                 spx["ts_utc"].min(), spx["ts_utc"].max(), 10_000.0)
+    g.to_csv(out_csv, index=False)
+    typer.echo(str(out_csv))
+
+
+@app.command("mcpt-dev")
+def mcpt_dev_cmd(
+    spx_root: Path = typer.Option(...),
+    fx_root: Path = typer.Option(...),
+    calendar: Path = typer.Option(...),
+    params_json: Path = typer.Option(...),
+    dev_start: str = typer.Option(...),
+    dev_end: str = typer.Option(...),
+    n_permutations: int = typer.Option(...),
+    out_json: Path = typer.Option(...),
+):
+    params = json.loads(params_json.read_text())
+    spx = _load_m5(spx_root, "USA500IDXUSD", dev_start, dev_end)
+    aud = _load_m5(fx_root, "AUDUSD", dev_start, dev_end)
+    jpy = _load_m5(fx_root, "USDJPY", dev_start, dev_end)
+    cal = (
+        load_calendar_index(calendar)
+        if calendar.exists()
+        else pd.DataFrame(columns=["ts_utc", "currency", "impact", "title"])
+    )
+    tl, _ = run_backtest(spx, {"AUDUSD": aud, "USDJPY": jpy}, cal, params, 10_000.0,
+                         spx["ts_utc"].min(), spx["ts_utc"].max())
+    counts = tl.groupby(["symbol", "side"]).size().to_dict()
+
+    def run_null(i):
+        return null_random_entries(spx, {"AUDUSD": aud, "USDJPY": jpy}, cal, params,
+                                   10_000.0, counts, seed=42 + i)
+
+    r = scheme1_mcpt(tl, run_null, n_permutations=n_permutations, seed=42)
+    out_json.write_text(json.dumps(r), encoding="utf-8")
+    typer.echo(str(out_json))
+
+
+@app.command("paired-alpha-dev")
+def paired_alpha_dev_cmd(
+    spx_root: Path = typer.Option(...),
+    fx_root: Path = typer.Option(...),
+    calendar: Path = typer.Option(...),
+    params_json: Path = typer.Option(...),
+    dev_start: str = typer.Option(...),
+    dev_end: str = typer.Option(...),
+    out_json: Path = typer.Option(...),
+):
+    params = json.loads(params_json.read_text())
+    spx = _load_m5(spx_root, "USA500IDXUSD", dev_start, dev_end)
+    aud = _load_m5(fx_root, "AUDUSD", dev_start, dev_end)
+    jpy = _load_m5(fx_root, "USDJPY", dev_start, dev_end)
+    cal = (
+        load_calendar_index(calendar)
+        if calendar.exists()
+        else pd.DataFrame(columns=["ts_utc", "currency", "impact", "title"])
+    )
+    tl_obs, _ = run_backtest(spx, {"AUDUSD": aud, "USDJPY": jpy}, cal, params, 10_000.0,
+                              spx["ts_utc"].min(), spx["ts_utc"].max())
+    counts = tl_obs.groupby(["symbol", "side"]).size().to_dict()
+    tl_a = null_random_entries(spx, {"AUDUSD": aud, "USDJPY": jpy}, cal, params, 10_000.0, counts, seed=42)
+    tl_b = null_regime_only(spx, {"AUDUSD": aud, "USDJPY": jpy}, cal, params, 10_000.0, seed=43)
+    tl_c = null_micro_only(spx, {"AUDUSD": aud, "USDJPY": jpy}, cal, params, 10_000.0, seed=44)
+    p_a = paired_alpha(tl_obs, tl_a, seed=100)
+    p_b = paired_alpha(tl_obs, tl_b, seed=101)
+    p_c = paired_alpha(tl_obs, tl_c, seed=102)
+    out_json.write_text(json.dumps({"A1": p_a, "A2": p_b, "A3": p_c}), encoding="utf-8")
+    typer.echo(str(out_json))
 
 
 @app.command("dev-report")
