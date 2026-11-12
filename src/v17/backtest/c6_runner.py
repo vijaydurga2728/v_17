@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 import uuid
-from typing import Mapping
+from typing import Callable, Mapping
 
 import numpy as np
 import pandas as pd
@@ -109,6 +109,7 @@ def run_backtest(
     initial_equity: float,
     start_ts_ns: int,
     end_ts_ns: int,
+    signal_override: Callable[[str, pd.DataFrame], pd.DataFrame] | None = None,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     """
     Run the Cycle 6 backtest over a shared M5 grid.
@@ -148,13 +149,15 @@ def run_backtest(
     for cfg in C6_CATALOG:
         s = fx_m5_by_sym[cfg.symbol].copy().set_index("ts_utc")
         sym_df[cfg.symbol] = s
-        sig = compute_micro_signals(
+        raw_signals = compute_micro_signals(
             s.reset_index(),
             confirm_body_mult=C,
             atr_period=ATR_PERIOD,
             session_anchor_hour=SESSION_ANCHOR_HOUR_UTC,
-        ).set_index("ts_utc")
-        sym_signals[cfg.symbol] = sig
+        )
+        if signal_override is not None:
+            raw_signals = signal_override(cfg.symbol, raw_signals)
+        sym_signals[cfg.symbol] = raw_signals.set_index("ts_utc")
         mid_c = ((s["bid_c"] + s["ask_c"]) * 0.5).to_numpy()
         sym_ema[cfg.symbol] = pd.Series(_ema(mid_c, TRAIL_EMA_PERIOD), index=s.index)
 
