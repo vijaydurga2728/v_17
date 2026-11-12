@@ -280,6 +280,7 @@ def run_backtest(
                     "equity_sod": daily.equity_sod,
                 })
             open_positions = remaining  # empty
+            daily = evaluate(daily)  # lock day: flatten_now→locked, invariant made local
 
         # --- Entry logic ---
         if not allow_entry(daily) or hard_flat or not _in_entry_window(ts):
