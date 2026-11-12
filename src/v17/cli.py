@@ -3,12 +3,14 @@ from __future__ import annotations
 import typer
 
 from v17.backtest.cli import backtest, montecarlo_cmd, walkforward_cmd
+from v17.cli_c6 import app as c6_app
 from v17.data.cli import ingest, ingest_calendar
 from v17.live.cli import live, paper
 from v17.obs.cli import report
 from v17.validation.cli import mcpt_cmd, validate
 
 app = typer.Typer(no_args_is_help=True)
+app.add_typer(c6_app, name="c6")
 app.command("ingest")(ingest)
 app.command("ingest-calendar")(ingest_calendar)
 app.command("backtest")(backtest)
