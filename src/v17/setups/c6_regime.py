@@ -4,6 +4,8 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
+from v17.setups.c6_constants import WARMUP_SPX_BARS
+
 
 def _session_vwap(mid: np.ndarray, vol: np.ndarray, session_id: np.ndarray) -> np.ndarray:
     n = len(mid)
@@ -78,7 +80,9 @@ def compute_regime(
     atr = _atr_wilder(mid_h, mid_l, mid_c, atr_period)
     slope = _rolling_slope(vwap, slope_window)
 
-    # Warmup gate: require both slope and ATR present AND session has >=slope_window bars.
+    # Warmup gate: require both slope and ATR present AND session has
+    # >= max(slope_window, WARMUP_SPX_BARS) bars (spec §7.1).
+    effective_warmup = max(slope_window, WARMUP_SPX_BARS)
     bars_in_session = np.zeros(len(df), dtype=int)
     cur = -1
     count = 0
@@ -90,7 +94,7 @@ def compute_regime(
         bars_in_session[i] = count
 
     regime = np.full(len(df), "FLAT", dtype=object)
-    have = (~np.isnan(atr)) & (~np.isnan(slope)) & (bars_in_session >= slope_window)
+    have = (~np.isnan(atr)) & (~np.isnan(slope)) & (bars_in_session >= effective_warmup)
     long_mask = have & (mid_c > vwap + k_atr * atr) & (slope > 0)
     short_mask = have & (mid_c < vwap - k_atr * atr) & (slope < 0)
     regime[long_mask] = "LONG_BIAS"

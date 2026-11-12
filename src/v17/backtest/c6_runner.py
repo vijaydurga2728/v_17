@@ -177,6 +177,10 @@ def run_backtest(
     equity_points: list[dict] = []
     equity = float(initial_equity)
     last_date: str = ""
+    # No-pyramiding accumulator: set of (symbol, side) pairs closed this UTC day.
+    # Any closed position locks out that (symbol, side) for the remainder of the day
+    # (spec §6.6: "If stopped out, no re-entry same direction same session same pair").
+    stopped_this_session: set[tuple[str, str]] = set()
     daily = DailyState(
         utc_date="",
         equity_sod=equity,
@@ -191,10 +195,11 @@ def run_backtest(
         ts = pd.Timestamp(ts_ns, tz="UTC")
         utc_date = ts.strftime("%Y-%m-%d")
 
-        # Day roll-over: reset daily state.
+        # Day roll-over: reset daily state and no-pyramiding accumulator.
         if utc_date != last_date:
             last_date = utc_date
             daily = DailyState(utc_date, equity, 0.0, 0, 0, False, False)
+            stopped_this_session = set()
 
         # Calendar staleness guard (fail-closed: skip bar).
         if len(calendar_idx) > 0 and is_calendar_stale(ts_ns, calendar_idx, max_age_hours=48):
@@ -216,6 +221,8 @@ def run_backtest(
                 equity += pnl
                 daily = update_after_trade(daily, pnl)
                 daily = evaluate(daily)
+                # Lock out (symbol, side) for the rest of this UTC day (spec §6.6).
+                stopped_this_session.add((pos.symbol, pos.side))
                 exits_a = [e for e in pos.exit_log if e["leg"] == "A"]
                 exits_b = [e for e in pos.exit_log if e["leg"] == "B"]
                 regime_at_entry = getattr(pos, "regime_at_entry", "?")
@@ -258,6 +265,8 @@ def run_backtest(
                 pnl = _trade_pnl_usd(pos, cfg.pip_size, cfg.pip_value_per_lot)
                 equity += pnl
                 daily = update_after_trade(daily, pnl)
+                # Lock out (symbol, side) for the rest of this UTC day (spec §6.6).
+                stopped_this_session.add((pos.symbol, pos.side))
                 exits_a = [e for e in pos.exit_log if e["leg"] == "A"]
                 exits_b = [e for e in pos.exit_log if e["leg"] == "B"]
                 regime_at_entry = getattr(pos, "regime_at_entry", "?")
@@ -309,7 +318,13 @@ def run_backtest(
             trigger_short = reg_state == "SHORT_BIAS" and bool(sig_row["confirm_short"])
             if not (trigger_long or trigger_short):
                 continue
+
+
             side = "long" if trigger_long else "short"
+
+            # No-pyramiding: skip if this (symbol, side) already traded this session (spec §6.6).
+            if (cfg.symbol, side) in stopped_this_session:
+                continue
 
             # Entry fills at bar t+1 open — no look-ahead beyond one bar.
             idx_arr = sym_df[cfg.symbol].index
