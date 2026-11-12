@@ -197,3 +197,77 @@ def dev_report_cmd(
     ]
     out_md.write_text("\n".join(lines), encoding="utf-8")
     typer.echo(str(out_md))
+
+
+@app.command("backtest")
+def backtest_cmd(
+    spx_root: Path = typer.Option(...),
+    fx_root: Path = typer.Option(...),
+    calendar: Path = typer.Option(...),
+    params_json: Path = typer.Option(...),
+    start: str = typer.Option(...),
+    end: str = typer.Option(...),
+    out_trades: Path = typer.Option(...),
+    out_equity: Path = typer.Option(...),
+):
+    params = json.loads(params_json.read_text())
+    spx = _load_m5(spx_root, "USA500IDXUSD", start, end)
+    aud = _load_m5(fx_root, "AUDUSD", start, end)
+    jpy = _load_m5(fx_root, "USDJPY", start, end)
+    cal = (
+        load_calendar_index(calendar)
+        if calendar.exists() and calendar.stat().st_size > 0
+        else pd.DataFrame(columns=["ts_utc", "currency", "impact", "title"])
+    )
+    tl, ec = run_backtest(spx, {"AUDUSD": aud, "USDJPY": jpy}, cal, params, 10_000.0,
+                          spx["ts_utc"].min(), spx["ts_utc"].max())
+    tl.to_csv(out_trades, index=False)
+    ec.to_csv(out_equity, index=False)
+    typer.echo(f"{out_trades} {out_equity}")
+
+
+@app.command("mcpt-holdout")
+def mcpt_holdout_cmd(
+    spx_root: Path = typer.Option(...),
+    fx_root: Path = typer.Option(...),
+    calendar: Path = typer.Option(...),
+    params_json: Path = typer.Option(...),
+    holdout_start: str = typer.Option(...),
+    holdout_end: str = typer.Option(...),
+    n_permutations: int = typer.Option(...),
+    out_json: Path = typer.Option(...),
+):
+    # Same logic as mcpt-dev with different window.
+    mcpt_dev_cmd(spx_root, fx_root, calendar, params_json,
+                 holdout_start, holdout_end, n_permutations, out_json)
+
+
+@app.command("holdout-report")
+def holdout_report_cmd(
+    dev_sharpe: float = typer.Option(...),
+    trade_log: Path = typer.Option(...),
+    mcpt_json: Path = typer.Option(...),
+    out_md: Path = typer.Option(...),
+):
+    tl = pd.read_csv(trade_log)
+    ec = pd.DataFrame({"ts_utc": tl["entry_ts_ns"], "equity": 10_000})
+    m = compute_metrics(tl, ec)
+    mcpt = json.loads(mcpt_json.read_text())
+    g = evaluate_holdout_gates(m, dev_sharpe=dev_sharpe, mcpt_p=mcpt["p_sharpe"])
+    lines = [
+        "# Cycle 6 — Holdout Gate Report",
+        "",
+        f"dev_sharpe={dev_sharpe:.3f}",
+        "",
+        "| Gate | Observed | Required | Pass |",
+        "|------|----------|----------|------|",
+        f"| H1 Sharpe | {m['sharpe']:.3f} | >= {0.7 * dev_sharpe:.3f} | {g['H1']} |",
+        f"| H2 MCPT p | {mcpt['p_sharpe']:.4f} | <= 0.10 | {g['H2']} |",
+        f"| H3 PF | {m['pf']:.3f} | >= 1.15 | {g['H3']} |",
+        f"| H4 max daily loss | {m['max_daily_loss_pct']:.3%} | >= -3.0% | {g['H4']} |",
+        f"| H5 worst month | {m['worst_month_return']:.3%} | >= -5.0% | {g['H5']} |",
+        "",
+        f"**ALL HOLDOUT GATES PASS: {g['all_pass']}**",
+    ]
+    out_md.write_text("\n".join(lines), encoding="utf-8")
+    typer.echo(str(out_md))
