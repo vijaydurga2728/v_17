@@ -7,7 +7,9 @@ import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
 
+from v17.common.types import TF
 from v17.data.dukascopy_csv import read_file
+from v17.data.resample import resample_paired
 
 
 _PAIRED_SCHEMA = pa.schema([
@@ -86,3 +88,29 @@ def ingest_m1_paired(
         pq.write_table(table, out, compression="zstd")
         total += len(chunk)
     return total
+
+
+_M5_SCHEMA = pa.schema(list(_PAIRED_SCHEMA) + [("n_m1_ticks", pa.int64())])
+
+
+def build_m5_paired(m1_root: Path, m5_root: Path, symbol: str, year: int) -> int:
+    src = m1_root / symbol / f"year={year}" / "part-00.parquet"
+    if not src.exists():
+        return 0
+    df = pq.read_table(src).to_pandas()
+    # Count M1 ticks per 5-min bucket before resample.
+    df["_ts"] = pd.to_datetime(df["ts_utc"], unit="ns", utc=True)
+    df["_bucket"] = df["_ts"].dt.floor("5min")
+    tick_counts = df.groupby("_bucket").size().rename("n_m1_ticks").reset_index()
+
+    m5 = resample_paired(df.drop(columns=["_ts", "_bucket"]), TF.M5)
+    m5["_bucket"] = pd.to_datetime(m5["ts_utc"], unit="ns", utc=True).dt.floor("5min")
+    m5 = m5.merge(tick_counts, on="_bucket", how="left").drop(columns=["_bucket"])
+    m5["n_m1_ticks"] = m5["n_m1_ticks"].fillna(0).astype("int64")
+    m5 = m5[m5["n_m1_ticks"] >= 5].reset_index(drop=True)
+
+    out = m5_root / symbol / f"year={year}" / "part-00.parquet"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    table = pa.Table.from_pandas(m5, schema=_M5_SCHEMA, preserve_index=False)
+    pq.write_table(table, out, compression="zstd")
+    return len(m5)
