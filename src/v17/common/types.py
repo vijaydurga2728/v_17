@@ -35,4 +35,6 @@ SUPPORTED_SYMBOLS: tuple[Symbol, ...] = (
     Symbol("EURGBP"),
     Symbol("USDJPY"),
     Symbol("USATECHIDXUSD"),
+    Symbol("AUDUSD"),
+    Symbol("USA500IDXUSD"),
 )
