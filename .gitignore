@@ -19,3 +19,10 @@ runs/
 .scratch_mcpt/
 .env
 *.sqlite
+
+# Ingest-built bar caches (cycle 6+). Reproducible from Documents/ CSVs.
+data/bars_m1_paired/
+data/bars_m5/
+data/bars_d1_rth/
+data/bars_d1_ny/
+data/calendar_cache/
