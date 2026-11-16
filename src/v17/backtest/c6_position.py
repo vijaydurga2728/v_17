@@ -5,6 +5,10 @@ from dataclasses import dataclass, field
 
 from v17.setups.c6_constants import TRAIL_BUFFER_ATR_MULT
 
+# Exit-variant hooks (defaults = spec baseline).
+LEG_A_TARGET_R_MULT: float = 1.0
+TRAIL_FROM_ENTRY: bool = False
+
 
 @dataclass
 class C6Position:
@@ -25,23 +29,36 @@ class C6Position:
 
 
 def _target_price(pos: C6Position) -> float:
-    return pos.entry_price + pos.r_price if pos.side == "long" else pos.entry_price - pos.r_price
+    r = pos.r_price * LEG_A_TARGET_R_MULT
+    return pos.entry_price + r if pos.side == "long" else pos.entry_price - r
 
 
 def _hit_target(pos: C6Position, bar: dict) -> bool:
     tgt = _target_price(pos)
     if pos.side == "long":
         return bar["bid_h"] >= tgt
-    return bar["bid_l"] <= tgt
+    return bar["ask_l"] <= tgt
 
 
 def _hit_stop(pos: C6Position, bar: dict, stop: float) -> bool:
     if pos.side == "long":
         return bar["bid_l"] <= stop
-    return bar["bid_h"] >= stop
+    return bar["ask_h"] >= stop
 
 
 def step(pos: C6Position, bar: dict, ema20: float, atr: float, is_hard_flat: bool) -> C6Position:
+    # V3 variant: merge leg A into leg B at first step, trail full position from entry.
+    if TRAIL_FROM_ENTRY and pos.leg_a_open and not pos.breakeven_hit:
+        pos.exit_log.append({
+            "ts_ns": bar["ts_utc"], "leg": "A", "reason": "merged_into_B",
+            "price": pos.entry_price, "lots": pos.lots_a,
+        })
+        pos.leg_a_open = False
+        pos.lots_b = pos.lots_a + pos.lots_b
+        pos.lots_a = 0.0
+        pos.breakeven_hit = True  # activate trail path
+        # leg_b_stop stays at initial_stop; trail ratchets up from there.
+
     if is_hard_flat:
         price = bar["bid_c"] if pos.side == "long" else bar["ask_c"]
         if pos.leg_a_open:
