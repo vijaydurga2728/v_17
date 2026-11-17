@@ -6,6 +6,7 @@ import subprocess
 import sys
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
 REPO = Path(__file__).resolve().parents[1]
@@ -30,7 +31,7 @@ def main() -> int:
             days = sb.day_table(b, w, a, z)
             t = sb.run_slot_v4(b, days, sp, s)
             t.to_csv(OUT / f"trades_{w}_{s}_{pname}.csv", index=False)
-            st = stats(t["r"].to_numpy())
+            st = stats(t["r"].to_numpy() if len(t) else np.array([]))
             lk = (sb.luck_test(b, days, t, sp, 20261117 * 1000 + 1300 + k) if pname.startswith("exam") and len(t) >= 2
                   else {"p_mean_r": float("nan"), "null_mean_r_median": float("nan")})
             row = {"window": w, "symbol": s, "period": pname, **st, "p_mean_r": lk["p_mean_r"],
@@ -44,7 +45,7 @@ def main() -> int:
     eu = bars["EURUSD"]
     for w in sb.WINDOWS:
         t = sb.run_slot_v4(eu, sb.day_table(eu, w, "2010-01-01", "2014-12-31"), sb.SPECS["EURUSD"], "EURUSD")
-        st = stats(t["r"].to_numpy())
+        st = stats(t["r"].to_numpy() if len(t) else np.array([]))
         rows.append({"window": w, "symbol": "EURUSD", "period": "extra_2010_2014", **st})
         print(f"[c19] extra_2010_2014 {w:3s} EURUSD        n={st['trades']:4d} PF={st['pf']:.2f} "
               f"meanR={st['mean_r']:+.3f}", flush=True)
