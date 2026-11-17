@@ -254,3 +254,82 @@ def luck_test(b: Bars, days: pd.DataFrame, trades: pd.DataFrame, sp: Spec, seed:
     e = int((null >= obs).sum())
     return {"observed_mean_r": obs, "null_mean_r_median": float(np.median(null)),
             "p_mean_r": (e + 1) / (n_perms + 1), "n_perms": n_perms}
+
+
+# ---------------------------------------------------------------------------
+# Cycle 18 — v3 "ICT's own rules" (pre-reg eb5e2e2)
+# ---------------------------------------------------------------------------
+MIN_FRAME = {"USATECHIDXUSD": 10.0, "USA500IDXUSD": 10.0, "EURUSD": 0.0015, "GBPUSD": 0.0015}
+
+
+def daily_levels(b: Bars) -> pd.DataFrame:
+    """Per NY date: previous weekday high/low (PDH/PDL) and previous Mon-Fri week high/low (PWH/PWL), mid prices."""
+    day = (pd.to_datetime(b.ts, unit="ns", utc=True).tz_convert(NY).tz_localize(None).normalize())
+    d = pd.DataFrame({"day": day, "h": b.mid_h, "l": b.mid_l})
+    d = d[d["day"].dt.dayofweek < 5]
+    g = d.groupby("day").agg(h=("h", "max"), l=("l", "min"))
+    g["pdh"], g["pdl"] = g["h"].shift(1), g["l"].shift(1)
+    wk = g.index.to_period("W-SUN")
+    w = g.groupby(wk).agg(wh=("h", "max"), wl=("l", "min"))
+    w["pwh"], w["pwl"] = w["wh"].shift(1), w["wl"].shift(1)
+    g["pwh"] = w["pwh"].reindex(wk).to_numpy()
+    g["pwl"] = w["pwl"].reindex(wk).to_numpy()
+    return g[["pdh", "pdl", "pwh", "pwl"]]
+
+
+def find_setup_v3(b: Bars, d: pd.Series, lv: pd.Series, sp: Spec, min_frame: float) -> Setup | None:
+    i_day, ws, we = int(d.i_day), int(d.i_ws), int(d.i_we)
+    hi_before, lo_before = b.mid_h[i_day:ws].max(), b.mid_l[i_day:ws].min()
+    px = b.mid_o[ws]
+    cands = []
+    for lvl, is_high in ((lv.pdh, True), (lv.pwh, True), (lv.pdl, False), (lv.pwl, False)):
+        if not np.isfinite(lvl):
+            continue
+        if (is_high and hi_before > lvl) or ((not is_high) and lo_before < lvl):
+            continue  # already traded through before the window
+        if (is_high and lvl > px) or ((not is_high) and lvl < px):
+            cands.append((abs(lvl - px), lvl))
+    if not cands:
+        return None
+    draw = min(cands)[1]
+    side = 1 if draw > px else -1
+    for c3 in range(ws + 2, we):
+        c1 = c3 - 2
+        if side == 1:
+            top, bot = b.mid_l[c3], b.mid_h[c1]
+        else:
+            top, bot = b.mid_l[c1], b.mid_h[c3]
+        if not top > bot:
+            continue
+        ce = (top + bot) / 2
+        if (draw - ce) * side < min_frame:
+            continue
+        stop = b.mid_l[c1] - sp.buf_min if side == 1 else b.mid_h[c1] + sp.buf_min
+        dist = max((ce - stop) * side, sp.buf_min)
+        return Setup(side, ws, c3, ce, ce - side * dist, draw, dist, abs(draw - ce) / dist)
+    return None
+
+
+def run_slot_v3(b: Bars, days: pd.DataFrame, sp: Spec, symbol: str) -> pd.DataFrame:
+    lv_all = daily_levels(b)
+    rows = []
+    for _, d in days.iterrows():
+        if d.day not in lv_all.index:
+            continue
+        s = find_setup_v3(b, d, lv_all.loc[d.day], sp, MIN_FRAME[symbol])
+        if s is None:
+            continue
+        fill = -1
+        for k in range(s.c3 + 1, int(d.i_exp)):
+            if (s.side == 1 and b.ask_l[k] <= s.ce) or (s.side == -1 and b.bid_h[k] >= s.ce):
+                fill = k
+                break
+        if fill < 0:
+            continue
+        x, reason, px = exit_loop(fill, int(d.i_hard), s.side, s.sl, s.tp, b.bid_l, b.bid_h, b.bid_c,
+                                  b.ask_l, b.ask_h, b.ask_c)
+        rows.append({"day": d.day, "side": s.side, "c3": s.c3, "fill_i": fill, "exit_i": x,
+                     "reason": int(reason), "entry": s.ce, "sl": s.sl, "tp": s.tp, "dist": s.dist,
+                     "tp_dist": abs(s.tp - s.ce), "rr": s.rr,
+                     "r": net_r(s.side, s.ce, px, reason, s.dist, sp)})
+    return pd.DataFrame(rows)
