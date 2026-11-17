@@ -24,6 +24,7 @@ PAIRS: Final[tuple[str, ...]] = ("EURUSD", "GBPUSD", "USDJPY", "USDCHF", "AUDUSD
 VARIANTS: Final[tuple[str, ...]] = ("L", "S")
 SHORT_THRESHOLD: Final[float] = 100.0 - LONG_THRESHOLD  # RSI(2) > 90
 R_UNIT_FRAC: Final[float] = 0.01
+TREND_SMA_PERIOD: Final[int] = 200  # cycle 13: Connors published trend filter (close > SMA200)
 RUNNER_SLIPPAGE: Final[float] = 0.5  # parity mode only (cycle 4B NAS100 points)
 PX: Final[tuple[str, ...]] = ("bid_o", "bid_h", "bid_l", "bid_c", "ask_o", "ask_h", "ask_l", "ask_c")
 
@@ -60,13 +61,15 @@ class Prepared:
     mid_c: np.ndarray
     rsi: np.ndarray
     sma: np.ndarray
+    sma200: np.ndarray
 
 
 def prepare(d1: pd.DataFrame) -> Prepared:
     mid_c = ((d1["bid_c"] + d1["ask_c"]) / 2).to_numpy(dtype=np.float64)
     return Prepared(d1.reset_index(drop=True),
                     pd.to_datetime(d1["day"]).to_numpy(dtype="datetime64[ns]").astype(np.int64),
-                    mid_c, _rsi_wilder(mid_c, RSI_PERIOD_D1), _sma(mid_c, SMA_EXIT_PERIOD_D1))
+                    mid_c, _rsi_wilder(mid_c, RSI_PERIOD_D1), _sma(mid_c, SMA_EXIT_PERIOD_D1),
+                    _sma(mid_c, TREND_SMA_PERIOD))
 
 
 def _outcome(p: Prepared, i: int, side: int, win_end_ns: int, fill: str) -> tuple[int, float, float]:
@@ -94,11 +97,17 @@ def _outcome(p: Prepared, i: int, side: int, win_end_ns: int, fill: str) -> tupl
     return x, (d.at[e, "bid_o"] - d.at[x, "ask_c"]) / r_unit, spread_r
 
 
-def signal_side(p: Prepared, i: int, variant: str) -> int:
+def trend_ok(p: Prepared, i: int) -> bool:
+    return bool(np.isfinite(p.sma200[i]) and p.mid_c[i] > p.sma200[i])
+
+
+def signal_side(p: Prepared, i: int, variant: str, trend_filter: bool = False) -> int:
     r = p.rsi[i]
     if not np.isfinite(r):
         return 0
     if r < LONG_THRESHOLD:
+        if trend_filter and not trend_ok(p, i):
+            return 0
         return 1
     if variant == "S" and r > SHORT_THRESHOLD:
         return -1
@@ -106,7 +115,7 @@ def signal_side(p: Prepared, i: int, variant: str) -> int:
 
 
 def run(p: Prepared, variant: str, win_start_ns: int, win_end_ns: int,
-        fill: str = "bidask") -> pd.DataFrame:
+        fill: str = "bidask", trend_filter: bool = False) -> pd.DataFrame:
     """Sequential engine (one position at a time), cycle 4B loop semantics."""
     n = len(p.mid_c)
     rows = []
@@ -117,7 +126,7 @@ def run(p: Prepared, variant: str, win_start_ns: int, win_end_ns: int,
             continue
         if p.day_ns[i] >= win_end_ns:
             break
-        side = signal_side(p, i, variant)
+        side = signal_side(p, i, variant, trend_filter)
         if side == 0:
             i += 1
             continue
@@ -130,11 +139,14 @@ def run(p: Prepared, variant: str, win_start_ns: int, win_end_ns: int,
                                        "pnl_r", "spread_r", "fold_id"])
 
 
-def outcome_table(p: Prepared, win_start_ns: int, win_end_ns: int) -> pd.DataFrame:
-    """R of a long and a short trade from every eligible signal bar in the window (luck-test pool)."""
+def outcome_table(p: Prepared, win_start_ns: int, win_end_ns: int,
+                  trend_only: bool = False) -> pd.DataFrame:
+    """R of a long and a short trade from every eligible signal bar in the window (luck-test pool).
+    ``trend_only`` restricts the pool to bars with close > SMA200 (cycle 13 stricter null, report only)."""
     n = len(p.mid_c)
     lo = max(RSI_PERIOD_D1 + 1, SMA_EXIT_PERIOD_D1)
-    idx = [i for i in range(lo, n - 1) if win_start_ns <= p.day_ns[i] < win_end_ns]
+    idx = [i for i in range(lo, n - 1) if win_start_ns <= p.day_ns[i] < win_end_ns
+           and (not trend_only or trend_ok(p, i))]
     rl = [_outcome(p, i, 1, win_end_ns, "bidask")[1] for i in idx]
     rs = [_outcome(p, i, -1, win_end_ns, "bidask")[1] for i in idx]
     return pd.DataFrame({"signal_i": idx, "r_long": rl, "r_short": rs})

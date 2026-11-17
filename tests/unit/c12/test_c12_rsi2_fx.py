@@ -104,3 +104,16 @@ def test_luck_test_counts_and_determinism() -> None:
 def test_slot_order() -> None:
     s = c12.slots()
     assert len(s) == 14 and s[0] == ("EURUSD", "L") and s[1] == ("EURUSD", "S") and s[13] == ("NZDUSD", "S")
+
+
+def test_trend_filter_off_by_default_and_blocks_below_sma200() -> None:
+    d1 = _d1(900, 21, px=15000.0, vol=0.012)
+    p = c12.prepare(d1)
+    ws, we = int(d1["ts_utc"].iloc[250]), int(d1["ts_utc"].iloc[890])
+    plain = c12.run(p, "L", ws, we)
+    filt = c12.run(p, "L", ws, we, trend_filter=True)
+    assert len(filt) < len(plain)
+    assert all(p.mid_c[i] > p.sma200[i] for i in filt["signal_i"])
+    assert any(p.mid_c[i] <= p.sma200[i] for i in plain["signal_i"])
+    pool = c12.outcome_table(p, ws, we, trend_only=True)
+    assert all(p.mid_c[i] > p.sma200[i] for i in pool["signal_i"])
