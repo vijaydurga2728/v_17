@@ -117,3 +117,20 @@ def test_trend_filter_off_by_default_and_blocks_below_sma200() -> None:
     assert any(p.mid_c[i] <= p.sma200[i] for i in plain["signal_i"])
     pool = c12.outcome_table(p, ws, we, trend_only=True)
     assert all(p.mid_c[i] > p.sma200[i] for i in pool["signal_i"])
+
+
+def test_rsi_buy_and_exit_sma_options() -> None:
+    d1 = _d1(900, 31, px=15000.0, vol=0.012)
+    p = c12.prepare(d1)
+    ws, we = int(d1["ts_utc"].iloc[250]), int(d1["ts_utc"].iloc[890])
+    base = c12.run(p, "L", ws, we)
+    pd.testing.assert_frame_equal(base, c12.run(p, "L", ws, we, rsi_buy=10.0, exit_sma=5))
+    strict = c12.run(p, "L", ws, we, rsi_buy=5.0)
+    assert all(p.rsi[i] < 5 for i in strict["signal_i"]) and len(strict) <= len(base)
+    slow = c12.run(p, "L", ws, we, exit_sma=10)
+    for _, t in slow.iterrows():
+        x = int(t.exit_i)
+        assert p.mid_c[x] > p.sma10[x] or x == int(t.entry_i) + 10 or p.day_ns[x] >= we
+    pool = c12.outcome_table(p, ws, we, exit_sma=10).set_index("signal_i")
+    for _, t in slow.iterrows():
+        assert pool.at[int(t.signal_i), "r_long"] == pytest.approx(t.pnl_r)

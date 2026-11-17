@@ -62,6 +62,7 @@ class Prepared:
     rsi: np.ndarray
     sma: np.ndarray
     sma200: np.ndarray
+    sma10: np.ndarray  # cycle 14 exit option
 
 
 def prepare(d1: pd.DataFrame) -> Prepared:
@@ -69,11 +70,15 @@ def prepare(d1: pd.DataFrame) -> Prepared:
     return Prepared(d1.reset_index(drop=True),
                     pd.to_datetime(d1["day"]).to_numpy(dtype="datetime64[ns]").astype(np.int64),
                     mid_c, _rsi_wilder(mid_c, RSI_PERIOD_D1), _sma(mid_c, SMA_EXIT_PERIOD_D1),
-                    _sma(mid_c, TREND_SMA_PERIOD))
+                    _sma(mid_c, TREND_SMA_PERIOD), _sma(mid_c, 10))
 
 
-def _outcome(p: Prepared, i: int, side: int, win_end_ns: int, fill: str) -> tuple[int, float, float]:
+def _outcome(p: Prepared, i: int, side: int, win_end_ns: int, fill: str,
+             exit_sma: int = 5) -> tuple[int, float, float]:
     """Trade from signal bar i. Returns (exit_bar, R, entry-bar spread in R)."""
+    if exit_sma not in (5, 10):
+        raise ValueError(exit_sma)
+    sma = p.sma if exit_sma == 5 else p.sma10
     d = p.d1
     n = len(p.mid_c)
     e = i + 1
@@ -83,7 +88,7 @@ def _outcome(p: Prepared, i: int, side: int, win_end_ns: int, fill: str) -> tupl
         if p.day_ns[j] >= win_end_ns:
             x = j
             break
-        if np.isfinite(p.sma[j]) and (p.mid_c[j] > p.sma[j] if side == 1 else p.mid_c[j] < p.sma[j]):
+        if np.isfinite(sma[j]) and (p.mid_c[j] > sma[j] if side == 1 else p.mid_c[j] < sma[j]):
             x = j
             break
     if x is None:
@@ -101,11 +106,12 @@ def trend_ok(p: Prepared, i: int) -> bool:
     return bool(np.isfinite(p.sma200[i]) and p.mid_c[i] > p.sma200[i])
 
 
-def signal_side(p: Prepared, i: int, variant: str, trend_filter: bool = False) -> int:
+def signal_side(p: Prepared, i: int, variant: str, trend_filter: bool = False,
+                rsi_buy: float = LONG_THRESHOLD) -> int:
     r = p.rsi[i]
     if not np.isfinite(r):
         return 0
-    if r < LONG_THRESHOLD:
+    if r < rsi_buy:
         if trend_filter and not trend_ok(p, i):
             return 0
         return 1
@@ -115,7 +121,8 @@ def signal_side(p: Prepared, i: int, variant: str, trend_filter: bool = False) -
 
 
 def run(p: Prepared, variant: str, win_start_ns: int, win_end_ns: int,
-        fill: str = "bidask", trend_filter: bool = False) -> pd.DataFrame:
+        fill: str = "bidask", trend_filter: bool = False, rsi_buy: float = LONG_THRESHOLD,
+        exit_sma: int = 5) -> pd.DataFrame:
     """Sequential engine (one position at a time), cycle 4B loop semantics."""
     n = len(p.mid_c)
     rows = []
@@ -126,11 +133,11 @@ def run(p: Prepared, variant: str, win_start_ns: int, win_end_ns: int,
             continue
         if p.day_ns[i] >= win_end_ns:
             break
-        side = signal_side(p, i, variant, trend_filter)
+        side = signal_side(p, i, variant, trend_filter, rsi_buy)
         if side == 0:
             i += 1
             continue
-        x, r, spread_r = _outcome(p, i, side, win_end_ns, fill)
+        x, r, spread_r = _outcome(p, i, side, win_end_ns, fill, exit_sma)
         rows.append({"signal_i": i, "entry_i": i + 1, "exit_i": x, "side": side,
                      "ts_entry_ns": int(p.day_ns[i + 1]), "pnl_r": r, "spread_r": spread_r,
                      "fold_id": int(pd.Timestamp(int(p.day_ns[i + 1])).year)})
@@ -140,15 +147,15 @@ def run(p: Prepared, variant: str, win_start_ns: int, win_end_ns: int,
 
 
 def outcome_table(p: Prepared, win_start_ns: int, win_end_ns: int,
-                  trend_only: bool = False) -> pd.DataFrame:
+                  trend_only: bool = False, exit_sma: int = 5) -> pd.DataFrame:
     """R of a long and a short trade from every eligible signal bar in the window (luck-test pool).
     ``trend_only`` restricts the pool to bars with close > SMA200 (cycle 13 stricter null, report only)."""
     n = len(p.mid_c)
     lo = max(RSI_PERIOD_D1 + 1, SMA_EXIT_PERIOD_D1)
     idx = [i for i in range(lo, n - 1) if win_start_ns <= p.day_ns[i] < win_end_ns
            and (not trend_only or trend_ok(p, i))]
-    rl = [_outcome(p, i, 1, win_end_ns, "bidask")[1] for i in idx]
-    rs = [_outcome(p, i, -1, win_end_ns, "bidask")[1] for i in idx]
+    rl = [_outcome(p, i, 1, win_end_ns, "bidask", exit_sma)[1] for i in idx]
+    rs = [_outcome(p, i, -1, win_end_ns, "bidask", exit_sma)[1] for i in idx]
     return pd.DataFrame({"signal_i": idx, "r_long": rl, "r_short": rs})
 
 
