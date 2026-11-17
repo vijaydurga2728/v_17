@@ -62,6 +62,7 @@ def load_m1(window: Window, *, allow_holdout: bool = False, root: Path | None = 
     y0, y1 = int(start[:4]), int(end[:4])
     base = (root or bars_root()) / SYMBOL
     frames = []
+    files_read: list[str] = []
     for year in range(y0, y1 + 1):
         for part in ("dev", "holdout"):  # cycle 4B partition names; cycle 9 splits by date
             ydir = base / part / f"year={year}"
@@ -74,6 +75,7 @@ def load_m1(window: Window, *, allow_holdout: bool = False, root: Path | None = 
                 f = mdir / "data.parquet"
                 if f.exists():
                     frames.append(pq.read_table(f).to_pandas())
+                    files_read.append(f"{part}/year={year}/{mdir.name}")
     if not frames:
         return pd.DataFrame()
     df = pd.concat(frames, ignore_index=True).sort_values("ts_utc", kind="mergesort")
@@ -81,7 +83,7 @@ def load_m1(window: Window, *, allow_holdout: bool = False, root: Path | None = 
     hi = (pd.Timestamp(end, tz="UTC") + pd.Timedelta(days=1)).value
     df = df[(df["ts_utc"] >= lo) & (df["ts_utc"] < hi)]
     out, audit = dedupe_m1(df)
-    out.attrs["c9_load_audit"] = audit
+    out.attrs["c9_load_audit"] = {**audit, "files_read": files_read}
     return out
 
 
