@@ -287,6 +287,7 @@ Code paths (all new; no modification of existing strategies/validators):
 ## 16. ADR log (append-only)
 
 - **2026-11-16 — ADR 001 — Phase 2 corrections** → `2026-11-16-cycle9-adr-001-phase2-corrections.md`. Supersedes §6 bin count (25 not 26), §8 rows 3-4 (ATR init explicit) + row 14 (opening-gap priority), §10.2 (removes extension invalidation), §10.6 (ordered gap-check, stop, target, EOD), §11 (explicit chronological scan rule), §12 Tier 2 (100,000 perms with full-null spec, not 500), §12 "Session restrictions" phrasing, §15 items 2 and 5. Original §1-15 kept unchanged on git record.
+- **2026-11-17 — ADR 002 (rev 2, ACCEPTED) — MCPT null and p-value** → `2026-11-17-cycle9-adr-002-mcpt-null-and-stopping.md`. Session-aligned block bootstrap (replaces ADR 001 A.4 block construction; resolves block size 25 vs 26), fixed 100,000 permutations with plus-one p retained from ADR 001 A.1-A.2, holdout MCPT method and seed, RSI2 overlap report (reporting only). Phase 3 interpretations IMPL-1..11 recorded in `docs/superpowers/plans/c9_phase3_implementation_notes.md` (IMPL-3, 4, 6, 8, 10, 11 user-approved 2026-11-17).
 
 ---
 
