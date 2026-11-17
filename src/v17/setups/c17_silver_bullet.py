@@ -277,7 +277,9 @@ def daily_levels(b: Bars) -> pd.DataFrame:
     return g[["pdh", "pdl", "pwh", "pwl"]]
 
 
-def find_setup_v3(b: Bars, d: pd.Series, lv: pd.Series, sp: Spec, min_frame: float) -> Setup | None:
+def find_setup_v3(b: Bars, d: pd.Series, lv: pd.Series, sp: Spec, min_frame: float,
+                  stop_mode: str = "c1") -> Setup | None:
+    """stop_mode 'c1' = cycle 18 (beyond FVG candle 1); 'swing' = cycle 18b stop A (window swing)."""
     i_day, ws, we = int(d.i_day), int(d.i_ws), int(d.i_we)
     hi_before, lo_before = b.mid_h[i_day:ws].max(), b.mid_l[i_day:ws].min()
     px = b.mid_o[ws]
@@ -304,19 +306,23 @@ def find_setup_v3(b: Bars, d: pd.Series, lv: pd.Series, sp: Spec, min_frame: flo
         ce = (top + bot) / 2
         if (draw - ce) * side < min_frame:
             continue
-        stop = b.mid_l[c1] - sp.buf_min if side == 1 else b.mid_h[c1] + sp.buf_min
+        if stop_mode == "swing":
+            stop = (b.mid_l[ws:c1 + 1].min() - sp.buf_min if side == 1
+                    else b.mid_h[ws:c1 + 1].max() + sp.buf_min)
+        else:
+            stop = b.mid_l[c1] - sp.buf_min if side == 1 else b.mid_h[c1] + sp.buf_min
         dist = max((ce - stop) * side, sp.buf_min)
         return Setup(side, ws, c3, ce, ce - side * dist, draw, dist, abs(draw - ce) / dist)
     return None
 
 
-def run_slot_v3(b: Bars, days: pd.DataFrame, sp: Spec, symbol: str) -> pd.DataFrame:
+def run_slot_v3(b: Bars, days: pd.DataFrame, sp: Spec, symbol: str, stop_mode: str = "c1") -> pd.DataFrame:
     lv_all = daily_levels(b)
     rows = []
     for _, d in days.iterrows():
         if d.day not in lv_all.index:
             continue
-        s = find_setup_v3(b, d, lv_all.loc[d.day], sp, MIN_FRAME[symbol])
+        s = find_setup_v3(b, d, lv_all.loc[d.day], sp, MIN_FRAME[symbol], stop_mode)
         if s is None:
             continue
         fill = -1

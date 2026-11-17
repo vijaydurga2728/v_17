@@ -68,3 +68,18 @@ def test_short_when_pdl_is_nearer() -> None:
     days = sb.day_table(b, "AM", "2020-01-06", "2020-01-06")
     r = sb.run_slot_v3(b, days, SP, "EURUSD").iloc[0]
     assert r.side == -1 and r.tp == pytest.approx(1.0900) and r.reason == 2
+
+
+def test_swing_stop_uses_window_low_before_fvg() -> None:
+    w = [(1.1030, 1.1032, 1.1015, 1.1029),       # window low 1.1015 (manipulation)
+         (1.1029, 1.1031, 1.1027, 1.1030),       # c1 high 1.1031, low 1.1027
+         (1.1030, 1.1045, 1.1029, 1.1044),
+         (1.1044, 1.1046, 1.1040, 1.1045),       # c3 low 1.1040 > 1.1031 -> FVG, CE 1.10355
+         (1.1045, 1.1046, 1.1035, 1.1038),
+         (1.1038, 1.1105, 1.1037, 1.1102)]
+    b = sb.prepare(_two_days(w))
+    days = sb.day_table(b, "AM", "2020-01-06", "2020-01-06")
+    c1 = sb.run_slot_v3(b, days, SP, "EURUSD").iloc[0]
+    sw = sb.run_slot_v3(b, days, SP, "EURUSD", stop_mode="swing").iloc[0]
+    assert c1.sl == pytest.approx(1.1027 - SP.buf_min)
+    assert sw.sl == pytest.approx(1.1015 - SP.buf_min) and sw.entry == c1.entry
