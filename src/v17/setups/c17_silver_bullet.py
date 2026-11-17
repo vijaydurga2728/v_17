@@ -339,3 +339,108 @@ def run_slot_v3(b: Bars, days: pd.DataFrame, sp: Spec, symbol: str, stop_mode: s
                      "tp_dist": abs(s.tp - s.ce), "rr": s.rr,
                      "r": net_r(s.side, s.ce, px, reason, s.dist, sp)})
     return pd.DataFrame(rows)
+
+
+# ---------------------------------------------------------------------------
+# Cycle 19 — v4 full ICT sequence (pre-reg c4461e8)
+# ---------------------------------------------------------------------------
+V4_MIN_RR = 2.0
+
+
+def _draw(b: Bars, i_day: int, ws: int, lv: pd.Series) -> tuple[int, float] | None:
+    hi_before, lo_before = b.mid_h[i_day:ws].max(), b.mid_l[i_day:ws].min()
+    px = b.mid_o[ws]
+    cands = []
+    for lvl, is_high in ((lv.pdh, True), (lv.pwh, True), (lv.pdl, False), (lv.pwl, False)):
+        if not np.isfinite(lvl):
+            continue
+        if (is_high and hi_before > lvl) or ((not is_high) and lo_before < lvl):
+            continue
+        if (is_high and lvl > px) or ((not is_high) and lvl < px):
+            cands.append((abs(lvl - px), lvl))
+    if not cands:
+        return None
+    draw = min(cands)[1]
+    return (1 if draw > px else -1), draw
+
+
+def find_setup_v4(b: Bars, d: pd.Series, lv: pd.Series, sp: Spec, min_frame: float) -> Setup | None:
+    i_day, i_ph, ws, we = int(d.i_day), int(d.i_ph), int(d.i_ws), int(d.i_we)
+    dr = _draw(b, i_day, ws, lv)
+    if dr is None or not (np.isfinite(lv.pdh) and np.isfinite(lv.pdl)):
+        return None
+    side, draw = dr
+    # 2. sweep of the nearer session / previous-hour pool on the draw's opposite side
+    if side == 1:
+        lvl = max(b.mid_l[i_day:ws].min(), b.mid_l[i_ph:ws].min())
+        hits = np.flatnonzero(b.mid_l[ws:we] < lvl)
+    else:
+        lvl = min(b.mid_h[i_day:ws].max(), b.mid_h[i_ph:ws].max())
+        hits = np.flatnonzero(b.mid_h[ws:we] > lvl)
+    if len(hits) == 0:
+        return None
+    sw = ws + int(hits[0])
+    # 3. most recent ICT short-term high/low fully formed before the sweep, then close-confirmed MSS
+    ref = None
+    for j in range(sw - 2, i_day, -1):
+        if side == 1 and b.mid_h[j] > b.mid_h[j - 1] and b.mid_h[j] > b.mid_h[j + 1]:
+            ref = b.mid_h[j]
+            break
+        if side == -1 and b.mid_l[j] < b.mid_l[j - 1] and b.mid_l[j] < b.mid_l[j + 1]:
+            ref = b.mid_l[j]
+            break
+    if ref is None:
+        return None
+    mss = next((m for m in range(sw + 1, we) if (b.mid_c[m] > ref if side == 1 else b.mid_c[m] < ref)), None)
+    if mss is None:
+        return None
+    # 4. first displacement FVG with candle 2 in [sweep, MSS]
+    mid_pd = (lv.pdh + lv.pdl) / 2
+    for c3 in range(sw + 1, min(mss + 1, we - 1) + 1):
+        c2, c1 = c3 - 1, c3 - 2
+        if c2 < sw or c2 > mss or c3 >= we or not np.isfinite(b.atr[c1]):
+            continue
+        top, bot = (b.mid_l[c3], b.mid_h[c1]) if side == 1 else (b.mid_l[c1], b.mid_h[c3])
+        if not top > bot:
+            continue
+        rng = b.mid_h[c2] - b.mid_l[c2]
+        if rng <= 0 or abs(b.mid_c[c2] - b.mid_o[c2]) / rng < BODY_RATIO_MIN or rng < RANGE_ATR_MULT * b.atr[c1]:
+            continue
+        if top - bot < FVG_COST_MULT * (b.ask_c[c3] - b.bid_c[c3]):
+            continue
+        ce = (top + bot) / 2
+        # 5. premium / discount
+        if (side == 1 and not ce < mid_pd) or (side == -1 and not ce > mid_pd):
+            return None
+        # 6. order placed after max(c3, MSS); stop beyond sweep extreme extended to placement
+        last = max(c3, mss)
+        ext = b.mid_l[sw:last + 1].min() if side == 1 else b.mid_h[sw:last + 1].max()
+        stop = ext - sp.buf_min if side == 1 else ext + sp.buf_min
+        dist = max((ce - stop) * side, sp.buf_min)
+        tp_dist = (draw - ce) * side
+        if tp_dist < min_frame or tp_dist / dist < V4_MIN_RR:
+            return None
+        return Setup(side, sw, last, ce, ce - side * dist, draw, dist, tp_dist / dist)
+    return None
+
+
+def run_slot_v4(b: Bars, days: pd.DataFrame, sp: Spec, symbol: str) -> pd.DataFrame:
+    lv_all = daily_levels(b)
+    rows = []
+    for _, d in days.iterrows():
+        if d.day not in lv_all.index:
+            continue
+        s = find_setup_v4(b, d, lv_all.loc[d.day], sp, MIN_FRAME[symbol])
+        if s is None:
+            continue
+        fill = next((k for k in range(s.c3 + 1, int(d.i_exp))
+                     if (s.side == 1 and b.ask_l[k] <= s.ce) or (s.side == -1 and b.bid_h[k] >= s.ce)), -1)
+        if fill < 0:
+            continue
+        x, reason, px = exit_loop(fill, int(d.i_hard), s.side, s.sl, s.tp, b.bid_l, b.bid_h, b.bid_c,
+                                  b.ask_l, b.ask_h, b.ask_c)
+        rows.append({"day": d.day, "side": s.side, "sweep_i": s.sweep_i, "placed_after": s.c3, "fill_i": fill,
+                     "exit_i": x, "reason": int(reason), "entry": s.ce, "sl": s.sl, "tp": s.tp, "dist": s.dist,
+                     "tp_dist": abs(s.tp - s.ce), "rr": s.rr,
+                     "r": net_r(s.side, s.ce, px, reason, s.dist, sp)})
+    return pd.DataFrame(rows)
