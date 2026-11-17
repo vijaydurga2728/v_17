@@ -284,9 +284,9 @@ Code paths (all new; no modification of existing strategies/validators):
 
 5. **Flat-EOD at 15:45 M15 bar** means the official close is one bin before the 16:00 ET session end. Trades held past 15:45 are closed at the 15:45 bar's close. The `[15:45, 16:00)` interval of M1 bars is **not** traded — not entry-eligible, not exit-eligible. This is a deliberate conservative choice: protects against liquidity/wide-spread at the cash close.
 
-## 16. ADR log (append-only; empty at freeze)
+## 16. ADR log (append-only)
 
-(No deviations recorded since freeze.)
+- **2026-11-16 — ADR 001 — Phase 2 corrections** → `2026-11-16-cycle9-adr-001-phase2-corrections.md`. Supersedes §6 bin count (25 not 26), §8 rows 3-4 (ATR init explicit) + row 14 (opening-gap priority), §10.2 (removes extension invalidation), §10.6 (ordered gap-check, stop, target, EOD), §11 (explicit chronological scan rule), §12 Tier 2 (100,000 perms with full-null spec, not 500), §12 "Session restrictions" phrasing, §15 items 2 and 5. Original §1-15 kept unchanged on git record.
 
 ---
 
