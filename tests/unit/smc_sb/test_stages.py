@@ -26,7 +26,7 @@ from v17.smc_sb.market_bias import DailyStructure
 from v17.smc_sb.premium_discount import eligible
 from v17.smc_sb.session import ny_ns, trading_date_of
 from v17.smc_sb.structure import find_mss, latest_confirmed, pivot_flags
-from v17.smc_sb.sweep import find_sweep
+from v17.smc_sb.sweep import Ref, find_sweep
 
 NY = "America/New_York"
 MIN = 60_000_000_000
@@ -132,24 +132,57 @@ def test_bias_ignores_pivot_not_yet_confirmed():
 W0, W1 = ns("2024-03-18 10:00"), ns("2024-03-18 11:00")
 
 
-def test_sweep_requires_strict_beyond_and_close_back_inside():
-    c5 = candles(
+def _sweep_mk(synth, bars):
+    """bars: (NY time, mid o, h, l, c) on 2024-03-18; PDL 99 created 2024-03-15 17:00."""
+    return synth.build(synth.m1_frame([(f"2024-03-18 {t}", *px) for t, *px in bars]))
+
+
+PDL = Ref("PDL", 99.0, ns("2024-03-15 17:00"))
+
+
+def test_sweep_requires_strict_beyond_and_close_back_inside(synth):
+    # low == ref is not a breach; the first breach (10:12) closes back above -> sweep
+    mk = _sweep_mk(
+        synth,
         [
-            ("2024-03-18 09:55", 100, 100, 98, 99.5),  # outside window
-            ("2024-03-18 10:00", 100, 100, 99, 99.5),  # low == ref: not beyond
-            ("2024-03-18 10:05", 100, 100, 98.9, 99.0),  # close == ref: not back inside
-            ("2024-03-18 10:10", 100, 100, 98.8, 99.1),
+            ("09:55", 100, 100, 99.0, 99.5),
+            ("10:00", 100, 100, 99.0, 99.5),
+            ("10:12", 99.5, 99.5, 98.8, 99.1),
+            ("10:14", 99.1, 99.3, 99.1, 99.2),
         ],
-        5,
     )
-    s = find_sweep(c5, 1, {"PDL": 99.0}, W0, W1)
-    assert s is not None and s.idx == 3 and s.extreme == 98.8 and s.ref_name == "PDL"
+    s, _ = find_sweep(mk, 1, [PDL], W0, W1, W0)
+    assert s is not None and s.start_ns == ns("2024-03-18 10:10") and s.extreme == 98.8
 
 
-def test_sweep_short_mirror_and_ref_order():
-    c5 = candles([("2024-03-18 10:00", 100, 102, 99, 100.5)], 5)
-    s = find_sweep(c5, -1, {"PDH": 101.0, "ASIA_HIGH": 100.8}, W0, W1)
-    assert s is not None and s.ref_name == "PDH" and s.extreme == 102
+def test_sweep_first_breach_closing_on_ref_consumes_level(synth):
+    # R5: first breach at 10:05 closes exactly on the ref (not back inside) -> consumed; 10:10 cannot qualify
+    mk = _sweep_mk(synth, [("10:05", 99.5, 99.5, 98.9, 99.0), ("10:10", 99.0, 99.6, 98.8, 99.5)])
+    s, st = find_sweep(mk, 1, [PDL], W0, W1, W0)
+    assert s is None and st[0]["status"] == "breached_no_close_back"
+
+
+def test_sweep_ref_consumed_before_window_is_ineligible(synth):
+    mk = _sweep_mk(synth, [("09:20", 99.5, 99.5, 98.9, 99.2), ("10:05", 99.5, 99.5, 98.5, 99.4)])
+    s, st = find_sweep(mk, 1, [PDL], W0, W1, W0)
+    assert s is None and st[0]["status"] == "consumed_before_window"
+
+
+def test_sweep_consumed_by_earlier_setup_after_rescan(synth):
+    mk = _sweep_mk(synth, [("10:05", 99.5, 99.5, 98.5, 99.4)])
+    s, st = find_sweep(mk, 1, [PDL], W0, W1, ns("2024-03-18 10:31"))
+    assert s is None and st[0]["status"] == "consumed_by_earlier_setup"
+
+
+def test_sweep_short_mirror_and_earliest_ref_wins(synth):
+    mk = _sweep_mk(synth, [("10:00", 100, 100.9, 100, 100.5), ("10:07", 100.5, 102, 100.4, 100.6)])
+    refs = [
+        Ref("PDH", 101.0, ns("2024-03-15 17:00")),
+        Ref("ASIA_HIGH", 100.8, ns("2024-03-18 00:00")),
+    ]
+    s, _ = find_sweep(mk, -1, refs, W0, W1, W0)
+    # ASIA_HIGH breached first (10:00 candle high 100.9, close 100.5 < 100.8) -> earliest wins over PD
+    assert s is not None and s.ref_name == "ASIA_HIGH" and s.extreme == 100.9
 
 
 # ---------------- MSS (D3) ----------------
@@ -162,17 +195,23 @@ def _c15(highs, lows, closes, start="2024-03-18 08:30"):
     return candles(rows, 15)
 
 
-def test_mss_requires_close_strictly_beyond_confirmed_swing():
-    # 08:30..10:45 : swing high 102 at 09:30 (pos 4), confirmed after pos 6 (10:00) completes
+def test_mss_skips_candles_without_confirmed_swing_and_continues():
+    # swing high 102 at pos 4 (09:30) usable from pos 7; pos 6 (10:00) has no confirmed swing -> skipped (R9)
     hi = [101, 101.2, 101.3, 101.4, 102.0, 101.0, 100.8, 102.0, 102.4, 103]
     lo = [100] * 10
     cl = [100.5, 100.5, 100.5, 100.5, 101, 100.5, 100.5, 102.0, 102.1, 102.5]
     c15 = _c15(hi, lo, cl)
     ph, pl = pivot_flags(c15.h.to_numpy(), c15.l.to_numpy(), 2, 2)
     m, why = find_mss(c15, ph, pl, 1, ns("2024-03-18 10:05"), W0, W1, 2)
-    # 10:00 (pos 6) has no swing usable yet? swing pos 4 needs pos 5,6 complete before candle starts -> not for pos 6
-    # pos 6 has no confirmed swing at all -> rejection per R9
-    assert m is None and why == "no_confirmed_swing"
+    # pos 7 close 102.0 == 102 (no break); pos 8 close 102.1 > 102 -> MSS
+    assert why == "ok" and m is not None and m.idx == 8 and m.swing_price == 102.0
+
+
+def test_mss_rejected_only_when_none_by_window_end():
+    c15 = _c15([101] * 10, [100] * 10, [100.5] * 10)  # flat: no pivots anywhere
+    ph, pl = pivot_flags(c15.h.to_numpy(), c15.l.to_numpy(), 2, 2)
+    m, why = find_mss(c15, ph, pl, 1, ns("2024-03-18 10:05"), W0, W1, 2)
+    assert m is None and why == "no_mss"
 
 
 def test_mss_first_break_only():
@@ -272,13 +311,12 @@ def test_target_skips_nearer_level_below_2r_and_touched_levels(synth):
     mk = _mk(synth, rows)
     start = ns("2024-03-17 17:00")
     # entry 100, stop 99.5 -> 1R = 0.5 + 0.5 = 1.0; NWOG_LO 101 (1.0 < 2R), PDH 103 (3.0 >= 2R)
-    lv = DayLevels(103.0, 90.0, float("nan"), float("nan"), 101.0, 101.5, start, start)
+    nan = float("nan")
+    lv = DayLevels(103.0, 90.0, start, nan, nan, start, 101.0, 101.5, start)
     t = select_target(mk, lv, 1, 100.0, 99.5, ns("2024-03-18 10:00"), 2.0, 0.5, 0.0)
     assert t.target is not None and t.target.name == "PDH" and t.target.rr == pytest.approx(3.0)
     # PDH already touched (100.5 high reaches a PDH of 100.4 placed above entry 100.2) -> ineligible -> none
-    lv2 = DayLevels(
-        100.4, 90.0, float("nan"), float("nan"), float("nan"), float("nan"), start, start
-    )
+    lv2 = DayLevels(100.4, 90.0, start, nan, nan, start, nan, nan, start)
     t2 = select_target(mk, lv2, 1, 100.2, 100.0, ns("2024-03-18 10:00"), 2.0, 0.0, 0.0)
     assert t2.target is None and t2.candidates[0]["touched"] is True
 
@@ -336,14 +374,10 @@ def test_final_exam_locked():
         load_m1("NAS100", final_exam=True)
 
 
-def test_validate_rejects_duplicates_and_crossed_quotes(synth):
+def test_validate_rejects_duplicates(synth):
     df = synth.m1_frame([("2024-03-18 10:00", 1, 1, 1, 1), ("2024-03-18 10:01", 1, 1, 1, 1)])
     with pytest.raises(DataIntegrityError, match="duplicate"):
         validate_m1(pd.concat([df, df.iloc[[0]]]))
-    bad = df.copy()
-    bad.loc[0, "ask_c"] = bad.loc[0, "bid_c"] - 0.01
-    with pytest.raises(DataIntegrityError, match="crossed"):
-        validate_m1(bad)
 
 
 def test_widen_costs_keeps_mid(synth):

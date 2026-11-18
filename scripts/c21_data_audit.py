@@ -3,6 +3,7 @@
 Writes out/c21/data_audit.json and out/c21/data_audit.md.
 """
 
+# ruff: noqa: E402, PLR0915
 from __future__ import annotations
 
 import datetime as dt
@@ -16,17 +17,19 @@ import pandas as pd
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "src"))
 
-from v17.smc_sb.config import INSTRUMENTS  # noqa: E402
-from v17.smc_sb.data import (  # noqa: E402
+from v17.smc_sb.config import INSTRUMENTS
+from v17.smc_sb.data import (
     FIELDS,
     DataIntegrityError,
     Market,
     build_market,
+    crossed_mask,
+    frozen_side_mask,
     load_m1,
     source_files,
     validate_m1,
 )
-from v17.smc_sb.session import NS_PER_MIN, ny_ns, xnys_dates  # noqa: E402
+from v17.smc_sb.session import NS_PER_MIN, ny_ns, trading_date_of, xnys_dates
 
 OUT = REPO / "out" / "c21"
 DEV_FIRST, DEV_LAST = "2018-01-01", "2024-12-31"
@@ -77,6 +80,26 @@ def audit(name: str, dates: list[dt.date]) -> tuple[dict[str, object], Market | 
         rep["validate_m1"] = f"FAIL: {e}"
         return rep, None
     mk = build_market(name, df)
+    # R27: map every crossed bar to its 17:00-17:00 trading date (computed, not hardcoded)
+    cm = crossed_mask(df.sort_values("ts_utc").reset_index(drop=True))
+    td = trading_date_of(df.sort_values("ts_utc").ts_utc.to_numpy(np.int64)[cm])
+    rep["r27_crossed_bars_by_session"] = {
+        str(k): int(v) for k, v in pd.Series(td.astype(str)).value_counts().sort_index().items()
+    }
+    rep["r27_excluded_sessions"] = [
+        f"{d.isoformat()} ({mk.exclusion_reason.get(d, '')})" for d in mk.excluded_sessions
+    ]
+    rep["r31_frozen_side_bars"] = int(
+        frozen_side_mask(df.sort_values("ts_utc").reset_index(drop=True), 30).sum()
+    )
+    lo_d, hi_d = dt.date.fromisoformat(DEV_FIRST), dt.date.fromisoformat(DEV_LAST)
+    rep["r28_early_close_dates"] = sorted(
+        d.isoformat() for d in mk.early_close if lo_d <= d <= hi_d
+    )
+    rep["r29_non_xnys_sessions"] = [
+        d.isoformat() for d in mk.non_xnys_sessions if lo_d <= d <= hi_d
+    ]
+    rep["r30_repeated_bars_total"] = int(mk.repeat.sum())
     t = pd.to_datetime(mk.ts, unit="ns", utc=True).tz_convert("America/New_York")
     rep["first_bar_ny"], rep["last_bar_ny"] = str(t[0]), str(t[-1])
     rep["rows_per_year"] = {
@@ -119,7 +142,10 @@ def audit(name: str, dates: list[dt.date]) -> tuple[dict[str, object], Market | 
     dset = {pd.Timestamp(d) for d in dates}
     di = set(mk.daily.index[(mk.daily.index >= DEV_FIRST) & (mk.daily.index <= DEV_LAST)])
     rep["xnys_dates_without_daily_session"] = sorted(str(x.date()) for x in dset - di)
-    rep["daily_sessions_not_xnys"] = len(di - dset)
+    rep["daily_sessions_not_xnys"] = len(rep["r29_non_xnys_sessions"])
+    rep["dates_missing_1559_not_early_close"] = sorted(
+        set(miss_1559) - set(rep["r28_early_close_dates"])
+    )
     asia = set(mk.asia.index)
     rep["asia_range_available_share"] = float(np.mean([pd.Timestamp(d) in asia for d in dates]))
     # weekly reopen bar present (Sunday 17:00-19:00 NY) for NWOG
@@ -199,6 +225,10 @@ def to_md(reps: dict[str, dict], syn: dict, fx: dict) -> str:
         "xnys_dates",
         "dates_missing_m1_0930_1105",
         "dates_missing_1559_bar",
+        "dates_missing_1559_not_early_close",
+        "r27_excluded_sessions",
+        "r31_frozen_side_bars",
+        "r30_repeated_bars_total",
         "daily_sessions_not_xnys",
         "asia_range_available_share",
         "weeks_with_sunday_reopen_bar_share",
@@ -214,6 +244,9 @@ def to_md(reps: dict[str, dict], syn: dict, fx: dict) -> str:
             "dates_missing_m1_examples",
             "dates_no_data_at_all",
             "dates_missing_1559_examples",
+            "r27_crossed_bars_by_session",
+            "r28_early_close_dates",
+            "r29_non_xnys_sessions",
             "xnys_dates_without_daily_session",
             "largest_minute_jumps_0930_1105",
             "rows_per_year",

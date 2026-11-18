@@ -3,6 +3,7 @@
 Runs NO strategy logic. Writes out/c21/repro_report.md.
 """
 
+# ruff: noqa: E402
 from __future__ import annotations
 
 import dataclasses
@@ -16,7 +17,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "src"))
 
-from v17.smc_sb.config import (  # noqa: E402
+from v17.smc_sb.config import (
     BASELINE,
     CONFIG_VERSION,
     EXPERIMENT_OTE,
@@ -24,7 +25,7 @@ from v17.smc_sb.config import (  # noqa: E402
     INSTRUMENTS,
     SMT_PARTNER,
 )
-from v17.smc_sb.data import source_files  # noqa: E402
+from v17.smc_sb.data import source_files
 
 OUT = REPO / "out" / "c21"
 
@@ -57,7 +58,7 @@ def main() -> int:
         "# Cycle 21 reproducibility report",
         "",
         f"- Git HEAD: `{git('rev-parse', 'HEAD')}` on branch `{git('branch', '--show-current')}`",
-        f"- Uncommitted changes in cycle 21 paths: `{git('status', '--short', 'src/v17/smc_sb', 'tests/unit/smc_sb', 'scripts/c21_data_audit.py', 'scripts/c21_repro_report.py') or 'none'}`",
+        f"- Uncommitted changes in cycle 21 paths: `{git('status', '--short', 'src/v17/smc_sb', 'tests/unit/smc_sb', 'scripts/c21_data_audit.py', 'scripts/c21_repro_report.py', 'scripts/c21_reference_impl.py', 'scripts/c21_reference_check.py', 'scripts/c21_synthetic.py') or 'none'}`",
         f"- Spec: `docs/superpowers/specs/2026-11-18-cycle21-sb-smc-spec-v1.md` (frozen in commit `{git('log', '--format=%h', '-1', '--', 'docs/superpowers/specs/2026-11-18-cycle21-sb-smc-spec-v1.md')}`)",
         f"- Python {platform.python_version()} ({platform.system()} {platform.release()})",
         "- Packages: "
@@ -105,6 +106,7 @@ def main() -> int:
         "```",
         "python -m pytest tests/unit/smc_sb -q",
         "python scripts/c21_data_audit.py      # writes out/c21/data_audit.{md,json}",
+        "python scripts/c21_reference_check.py  # synthetic differential check + hand-check",
         "python scripts/c21_repro_report.py    # writes this file",
         "```",
         "",

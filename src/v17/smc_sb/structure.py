@@ -60,14 +60,12 @@ def find_mss(
     start, end, close = c15.start.to_numpy(), c15.end.to_numpy(), c15.c.to_numpy()
     cand = np.flatnonzero((start >= win_start_ns) & (end <= win_end_ns) & (end > after_ns))
     if len(cand) == 0:
-        return None, "no_15m_candle_after_sweep"
+        return None, "no_mss"
     flags, price = (ph, c15.h.to_numpy()) if side == 1 else (pl, c15.l.to_numpy())
-    for pos, m in enumerate(cand):
+    for m in cand:
         k = latest_confirmed(flags, int(m), right)
         if k < 0:
-            if pos == 0:
-                return None, "no_confirmed_swing"
-            continue
+            continue  # R9 (corrected): no confirmed swing yet -> keep scanning
         if (side == 1 and close[m] > price[k]) or (side == -1 and close[m] < price[k]):
             return MSS(
                 int(m), int(start[m]), int(end[m]), float(close[m]), k, float(price[k])

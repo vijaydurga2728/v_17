@@ -31,12 +31,14 @@ class Exit:
     reason: str
     price: float
     data_gap: bool
+    gap_through: bool = False
 
 
 def run_exit(
     mk: Market, side: int, fill_i: int, stop: float, target: float, close_ns: int, slippage: float
 ) -> Exit:
-    """R15/R16: stop first on every bar from the fill bar; target from the bar after the fill bar;
+    """R15/R16: stop first on every bar from the fill bar (gap-through: exit at that bar's open);
+    target from the bar after the fill bar;
     otherwise force close on the M1 bar ending at `close_ns` (bid close long / ask close short) with slippage."""
     jc = mk.idx(close_ns) - 1
     gap = jc < 0 or int(mk.ts[jc]) != close_ns - NS_PER_MIN
@@ -51,7 +53,10 @@ def run_exit(
     s = np.flatnonzero(s_hit)
     t = np.flatnonzero(t_hit)
     if len(s) and (not len(t) or s[0] <= t[0]):
-        return Exit(fill_i + int(s[0]), STOP, stop - side * slippage, False)
+        b = fill_i + int(s[0])
+        # R15 (corrected): a bar that opens beyond the stop exits at that open, not at the stop price.
+        base = min(stop, float(mk.bid["o"][b])) if side == 1 else max(stop, float(mk.ask["o"][b]))
+        return Exit(b, STOP, base - side * slippage, False, base != stop)
     if len(t):
         return Exit(fill_i + int(t[0]), TARGET, target, False)
     px = mk.bid["c"][jc] if side == 1 else mk.ask["c"][jc]

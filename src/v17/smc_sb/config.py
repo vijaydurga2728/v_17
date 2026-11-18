@@ -1,7 +1,7 @@
 """Cycle 21 Silver Bullet SMC — versioned configuration.
 
 Every value here maps to the frozen spec `docs/superpowers/specs/2026-11-18-cycle21-sb-smc-spec-v1.md`
-(user decisions D1-D16, interpretations R1-R26). Changing any value requires a new CONFIG_VERSION and
+(user decisions D1-D16, interpretations R1-R30, review 1 applied). Changing any value requires a new CONFIG_VERSION and
 must happen before strategy execution, never after inspecting results.
 """
 
@@ -11,7 +11,7 @@ import hashlib
 import json
 from dataclasses import asdict, dataclass, replace
 
-CONFIG_VERSION = "21.1.0"
+CONFIG_VERSION = "21.2.0"
 
 # Spec name -> Dukascopy M1 bid/ask symbol (spec §2).
 INSTRUMENTS: dict[str, str] = {
@@ -47,7 +47,9 @@ class StrategyConfig:
     commission_pts: float = 0.0  # D16 / R22 (pending MT5 spec verification)
     cost_multiplier: float = 1.0  # R23: 2.0 = doubled spread + slippage sensitivity
     data_check_start: str = "09:30"  # R20
-    null_perms: int = 5000  # R24
+    null_perms: int = 5000  # R24 / 3a
+    null_max_attempts: int = 100  # 3a: redraws per unfilled control trade
+    null_seed_base: int = 2026112100  # 3a: + 10 * instrument_index + variant_index
 
     def __post_init__(self) -> None:
         if self.entry_model not in ("A", "B"):
@@ -76,3 +78,10 @@ class StrategyConfig:
 BASELINE = StrategyConfig()
 EXPERIMENT_OTE = replace(BASELINE, entry_model="B")
 EXPERIMENT_SMT = replace(BASELINE, smt_enabled=True)
+INSTRUMENT_INDEX: dict[str, int] = {"NAS100": 0, "SPX": 1, "US30": 2}
+ALPHA_PER_INSTRUMENT = 0.05 / 3  # R26 / 3a Bonferroni over 3 instruments
+
+
+def variant_index(cfg: StrategyConfig) -> int:
+    """3a seed component: A 0, B 1, SMT 2."""
+    return 2 if cfg.smt_enabled else (1 if cfg.entry_model == "B" else 0)

@@ -42,6 +42,7 @@ def test_scenario_trade_matches_hand_calculation(synth):
         "bias",
         "levels",
         "asia_missing",
+        "sweep_scan",
         "sweep",
         "mss",
         "fvg",
@@ -74,8 +75,9 @@ def test_missing_m1_bar_rejects_day_without_substitution(synth):
 
 
 def test_doubled_costs_change_execution_not_signals(synth):
-    """Spread 0.4 + slippage 1.0: fill bar ask 101.55 <= 101.6 fills, but bid low 101.15 <= stop 101.2 on the fill
-    bar => stop first. 1R = 0.4 + 1.0 = 1.4; exit 101.2 - 1.0 = 100.2 => R = -1.0. Signals are unchanged."""
+    """Spread 0.4 + slippage 1.0: the 10:32 fill bar is flat at mid 101.35 -> ask 101.55 <= 101.6 fills, and its
+    bid open 101.15 is already below the stop 101.2 -> R15 gap-through: exit 101.15 - 1.0 = 100.15.
+    1R = 0.4 + 1.0 = 1.4 => R = (100.15 - 101.6) / 1.4 = -1.0357. Signals are unchanged."""
     from v17.smc_sb.data import widen_costs
 
     mk = synth.build(widen_costs(synth.scenario_m1(), 2.0))
@@ -84,11 +86,8 @@ def test_doubled_costs_change_execution_not_signals(synth):
     assert res.reason == "trade"
     t = res.trade
     assert (t["limit"], t["stop"], t["target"]) == (101.6, 101.2, 109.0)
-    assert (
-        t["r_unit"] == pytest.approx(1.4)
-        and t["exit_reason"] == "stop"
-        and t["r"] == pytest.approx(-1.0)
-    )
+    assert t["r_unit"] == pytest.approx(1.4) and t["exit_reason"] == "stop" and t["gap_through"]
+    assert t["exit_price"] == pytest.approx(100.15) and t["r"] == pytest.approx(-1.45 / 1.4)
     assert t["fill_ts"] == t["exit_ts"]
 
 

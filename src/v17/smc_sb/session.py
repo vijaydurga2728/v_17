@@ -43,3 +43,17 @@ def xnys_dates(start: str, end: str) -> list[dt.date]:
 
     sched = pmc.get_calendar("XNYS").schedule(start_date=start, end_date=end)
     return [d.date() for d in sched.index]
+
+
+def xnys_schedule(start: str, end: str) -> tuple[list[dt.date], set[dt.date]]:
+    """R21/R28: (XNYS sessions, early-close sessions whose market close is before 16:00 NY)."""
+    import pandas_market_calendars as pmc
+
+    sched = pmc.get_calendar("XNYS").schedule(start_date=start, end_date=end)
+    if sched.empty:
+        return [], set()
+    close_ny = pd.DatetimeIndex(sched["market_close"]).tz_convert(NY)
+    early = {
+        d.date() for d, c in zip(sched.index, close_ny, strict=True) if (c.hour, c.minute) < (16, 0)
+    }
+    return [d.date() for d in sched.index], early
