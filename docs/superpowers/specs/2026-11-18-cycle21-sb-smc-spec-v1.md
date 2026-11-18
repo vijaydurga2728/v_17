@@ -1,4 +1,4 @@
-# Cycle 21 — Silver Bullet SMC Strategy — Technical Specification v1.2 (FROZEN, review 1 applied; pending re-review)
+# Cycle 21 — Silver Bullet SMC Strategy — Technical Specification v1.3 (FROZEN, review 1 + decision round 2 applied)
 
 **Status:** FROZEN 2026-11-18, committed before any cycle 21 code.
 **Origin:** user-supplied spec v0.1 (Appendix A, verbatim) + user decisions D1–D16 with binding definitions (Section 1,
@@ -118,6 +118,14 @@ final holdout (2012–2014) must not be accessed until that review.
 > complete the independent second implementation and hand-check. Only after those steps will the development baseline
 > run be considered for authorization.
 
+## 2b. Decision round 2 (user, 2026-11-18, verbatim: "yes to all")
+
+Questions answered "yes": (1) R31 frozen-quote-side exclusion with a 30-bar run; (2) R5a contamination rejection;
+(3) R19 NWOG absent when the Friday or Sunday bar is missing; (4) 0.05/3 per instrument is enough (no family-wise
+correction across variants); (5) the user will verify index commission in the FTMO MT5 platform; R17/R22 stay
+CONDITIONAL until the value is reported. This answer does not by itself authorize a real-data run (review 1: the
+development baseline run is "considered for authorization" only after the review package).
+
 ## 3. Implementation rules (status after review 1)
 
 Status: **APPROVED** (review 1), **CORRECTED** (rewritten per review 1; needs re-review), **CONDITIONAL**, or
@@ -130,7 +138,7 @@ Status: **APPROVED** (review 1), **CORRECTED** (rewritten per review 1; needs re
 | R3 | APPROVED | 5 m / 15 m candles aligned to the NY wall clock, built from M1; complete only after their end time. |
 | R4 | APPROVED | Sweep candle, MSS candle and FVG candle 3 all inside 10:00–11:00 NY. |
 | R5 | CORRECTED | Long refs PDL, Asian low; short refs PDH, Asian high. Creation: PDH/PDL at 17:00 NY on the date of the session they come from (R18); Asian high/low at 00:00 NY of the trading date (range complete). A ref is **consumed** at its first M1 mid price strictly beyond it after creation. The qualifying sweep is the 5 m candle containing that first breach, only if that candle lies inside the window and closes strictly back inside; otherwise the ref is consumed and cannot qualify that day. Earliest qualifying candle across refs wins (tie: PD before ASIA). |
-| R5a | NEW | If any part of a ref's [creation, sweep candle start) window, or a target's touch window, lies in an excluded session (R27), the day is rejected (`reference_window_contaminated`): consumption/touch cannot be verified without those bars. |
+| R5a | APPROVED (round 2) | If any part of a ref's [creation, sweep candle start) window, or a target's touch window, lies in an excluded session (R27), the day is rejected (`reference_window_contaminated`): consumption/touch cannot be verified without those bars. |
 | R6 | APPROVED | No Asian bars → Asian ref absent (logged). |
 | R7 | APPROVED | Strict 2/2 daily pivots on completed sessions before the trading date (daily table per R29/R27); HH+HL bullish, LH+LL bearish, else neutral. |
 | R8 | APPROVED | Equilibrium of latest confirmed daily pivot high and low; entry limit price strictly below (long) / above (short). |
@@ -144,7 +152,7 @@ Status: **APPROVED** (review 1), **CORRECTED** (rewritten per review 1; needs re
 | R16 | APPROVED | Force close on the M1 bar ending 16:00: bid close − 0.5 (long) / ask close + 0.5 (short). |
 | R17 | CONDITIONAL | 1R = \|entry − stop\| + 0.5 + commission; estimated reward = \|target − entry\| − commission ≥ 2R. Commission to be verified (R22). |
 | R18 | CORRECTED | Candidates PDH, PDL, NWOG boundary nearest in the trade direction, strictly beyond entry. PDH/PDL created 17:00 NY on the date of the previous XNYS session (R29). Touched = any mid low ≤ level ≤ any mid high in [creation, placement). NWOG touched = mid trades strictly inside the open gap in [Sunday 18:00, placement). Nearest first; first with ≥ 2R. |
-| R19 | CORRECTED | NWOG = last mid close of a bar starting in [Thursday 17:00, Friday 17:00) and first mid open of a bar starting in [Sunday 18:00, Monday 17:00) NY. **NEW:** if either bar does not exist (e.g. no Friday session), the NWOG is absent (no substitution). Zero width → absent. |
+| R19 | APPROVED (round 2) | NWOG = last mid close of a bar starting in [Thursday 17:00, Friday 17:00) and first mid open of a bar starting in [Sunday 18:00, Monday 17:00) NY. **NEW:** if either bar does not exist (e.g. no Friday session), the NWOG is absent (no substitution). Zero width → absent. |
 | R20 | APPROVED | Any missing M1 in 09:30–11:05 → day rejected; missing 15:59 bar with an open position → `data_gap` flag. |
 | R21 | APPROVED | XNYS calendar, pandas_market_calendars 5.6.1. |
 | R22 | CONDITIONAL | Zero commission pending broker symbol-specification verification. Not verifiable from the price data or the MT5 Python symbol API (commission is set per account group); requires the user to read it in the FTMO platform or from a test deal. |
@@ -155,7 +163,7 @@ Status: **APPROVED** (review 1), **CORRECTED** (rewritten per review 1; needs re
 | R27 | CORRECTED | Every M1 bar with ask < bid on any of o/h/l/c is mapped by code to its 17:00–17:00 trading date; all bars of those sessions are removed; those sessions are excluded from trades, PDH/PDL and daily pivots (the next day uses the previous valid XNYS session). No hardcoded dates. |
 | R28 | CORRECTED | No entries on XNYS early-close days (calendar market_close earlier than 16:00 NY). Their daily candles stay in the daily table. |
 | R29 | CORRECTED | Daily table = XNYS sessions only (minus R27 exclusions). Non-XNYS CFD sessions are excluded from daily candles, pivots, PDH/PDL and trading. Their M1 bars remain for intraday candles, 15 m pivots (R10) and touch/consumption checks (price did trade then). |
-| R31 | NEW (proposed) | Audit after review 1: the US30 **ask is frozen at 24567.25 from 2020-03-10 20:00 to 2020-03-31 19:59 NY** (20,025 bars, 15 full sessions, spreads up to ~6,400 pts); these bars are not crossed, so R27 misses them and every mid price there is wrong. Proposal: a session is excluded exactly like R27 if it contains a run of ≥ 30 consecutive M1 bars in which one quote side is flat (o=h=l=c) and unchanged from the previous bar while the other side moves. Evidence for 30: the longest such run on 2017-11 → 2024 data is 23 bars (NAS100), 11 (SPX), 9 on US30's bid side; US30's frozen ask runs reach 7,200 bars. Config `stale_min_run=30` (build_market). |
+| R31 | APPROVED (round 2) | Audit after review 1: the US30 **ask is frozen at 24567.25 from 2020-03-10 20:00 to 2020-03-31 19:59 NY** (20,025 bars, 15 full sessions, spreads up to ~6,400 pts); these bars are not crossed, so R27 misses them and every mid price there is wrong. Proposal: a session is excluded exactly like R27 if it contains a run of ≥ 30 consecutive M1 bars in which one quote side is flat (o=h=l=c) and unchanged from the previous bar while the other side moves. Evidence for 30: the longest such run on 2017-11 → 2024 data is 23 bars (NAS100), 11 (SPX), 9 on US30's bid side; US30's frozen ask runs reach 7,200 bars. Config `stale_min_run=30` (build_market). |
 | R30 | APPROVED | M1 bars identical (all 8 bid/ask OHLC) to the previous bar are retained and flagged; each trade records the flagged-bar count between sweep start and fill; the audit reports totals. Regression tests confirm repeated bars cannot create sweeps, pivots or FVGs. |
 
 ### 3a. R24 matched control (revised; not "fully matched")
@@ -176,7 +184,8 @@ Status: **APPROVED** (review 1), **CORRECTED** (rewritten per review 1; needs re
   SPX 1, US30 2; variant A 0, B 1, SMT 2. Draw order fixed (permutation → trade → attempt; day index then nothing else).
 - **Multiple testing:** Bonferroni over the 3 instruments within each variant, α = 0.05 / 3 = 0.0166667 (R26). OTE and
   SMT experiments are extra families; their p-values are also reported against 0.05 / 9. Whether a family-wise
-  correction across variants is required: **needs review**.
+  correction across variants is required: **decided in round 2 — no; Bonferroni 0.05 / 3 within each
+  variant is sufficient; 0.05 / 9 reported for reference only.**
 - **Remaining differences (why it is not called fully matched):** the control does not condition on the bias / sweep /
   MSS / FVG context (that context is what is tested); distances are in points, not volatility-normalized; the control
   day's directional drift is not matched.
@@ -186,6 +195,8 @@ Status: **APPROVED** (review 1), **CORRECTED** (rewritten per review 1; needs re
 - v1.0 → v1.1: R19 zero-width NWOG absent, strict-inside touch; R24 bid/ask open; R27–R30 added from the audit.
 - v1.1 → v1.2 (review 1): approvals recorded; R5, R9, R12, R15, R18, R19, R24, R27, R28, R29 corrected; R26 adopted;
   R5a and the R19 missing-bar rule are new and need review. Config 21.2.0.
+- v1.2 → v1.3 (decision round 2): R5a, R19, R31 approved; Bonferroni 0.05/3 per variant confirmed. No code or
+  parameter change (config stays 21.2.0). R22 commission still pending user verification.
 
 ## 4. Module layout (Python)
 
