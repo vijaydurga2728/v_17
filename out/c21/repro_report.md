@@ -1,20 +1,20 @@
 # Cycle 21 reproducibility report
 
-- Git HEAD: `ab6a1ce651ef8b844264c0eae28bf19f6f8f26e7` on branch `cycle21-sb-smc-spec`
+- Git HEAD: `0a1f55a681e00f13f5d2883013dd57b45db5f389` on branch `cycle21-sb-smc-spec`
 - Uncommitted changes in cycle 21 paths: `none`
-- Spec: `docs/superpowers/specs/2026-11-18-cycle21-sb-smc-spec-v1.md` (frozen in commit `ab6a1ce`)
+- Spec: `docs/superpowers/specs/2026-11-18-cycle21-sb-smc-spec-v1.md` (frozen in commit `0a1f55a`)
 - Python 3.14.3 (Windows 11)
 - Packages: numpy 2.3.4, pandas 2.3.3, pyarrow 25.0.1, pandas_market_calendars 5.6.1
-- Tests: `python -m pytest tests/unit/smc_sb -q` -> **39 passed in 5.04s** (exit 0)
+- Tests: `python -m pytest tests/unit/smc_sb -q` -> **58 passed in 10.08s** (exit 0)
 - Determinism: no randomness in signal/execution code; the luck test uses `numpy.random.default_rng(seed)` with a fixed per-instrument seed (to be set in the execution pre-registration).
 
-## Configuration (CONFIG_VERSION 21.1.0)
+## Configuration (CONFIG_VERSION 21.2.0)
 
 | variant | fingerprint | entry_model | smt_enabled |
 |---|---|---|---|
-| BASELINE | `92fc41cf3ff3f461` | A | False |
-| EXPERIMENT_OTE | `7c64be2196c5a2c7` | B | False |
-| EXPERIMENT_SMT | `7c7059f1788054a2` | A | True |
+| BASELINE | `a25af5711afb32d4` | A | False |
+| EXPERIMENT_OTE | `efc6075552507bf8` | B | False |
+| EXPERIMENT_SMT | `12ec6b2f054c516e` | A | True |
 
 All parameters (baseline):
 
@@ -42,6 +42,8 @@ commission_pts = 0.0
 cost_multiplier = 1.0
 data_check_start = '09:30'
 null_perms = 5000
+null_max_attempts = 100
+null_seed_base = 2026112100
 ```
 
 Instruments: `{'NAS100': 'USATECHIDXUSD', 'SPX': 'USA500IDXUSD', 'US30': 'USA30IDXUSD'}`  SMT partners (experiment only): `{'NAS100': 'SPX', 'SPX': 'NAS100', 'US30': 'SPX'}`
@@ -201,6 +203,7 @@ Instruments: `{'NAS100': 'USATECHIDXUSD', 'SPX': 'USA500IDXUSD', 'US30': 'USA30I
 ```
 python -m pytest tests/unit/smc_sb -q
 python scripts/c21_data_audit.py      # writes out/c21/data_audit.{md,json}
+python scripts/c21_reference_check.py  # synthetic differential check + hand-check
 python scripts/c21_repro_report.py    # writes this file
 ```
 
