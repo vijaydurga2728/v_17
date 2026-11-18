@@ -1,4 +1,4 @@
-# Cycle 21 — Silver Bullet SMC Strategy — Technical Specification v1.0 (FROZEN)
+# Cycle 21 — Silver Bullet SMC Strategy — Technical Specification v1.1 (FROZEN, pending review)
 
 **Status:** FROZEN 2026-11-18, committed before any cycle 21 code.
 **Origin:** user-supplied spec v0.1 (Appendix A, verbatim) + user decisions D1–D16 with binding definitions (Section 1,
@@ -93,14 +93,25 @@ strategy execution.
 | R16 | Force close | If still open, exit at the M1 bar ending 16:00 NY: bid close (long) / ask close (short) ∓ 0.5 pt slippage. | `force_close="16:00"` |
 | R17 | R unit and "2R after costs" | 1R = |entry − stop| + slippage + round-trip commission (per unit). Estimated reward = |target − entry| − commission. Target qualifies if estimated reward ≥ 2 × 1R. Realized R = net P&L per unit / 1R. | `min_rr=2.0`, `commission_pts=0.0` |
 | R18 | Target eligibility | Candidates: PDH, PDL, NWOG upper and lower boundary, strictly beyond the entry in the trade direction. "Traded through or into" = any mid price touch of the level from its creation (PDH/PDL: session start 18:00; NWOG: Sunday 18:00) up to the order placement time. Ordered nearest-first; first candidate with ≥ 2R (R17) is the target. | — |
-| R19 | NWOG | Lower/upper = min/max of (last mid close at or before Friday 17:00, first mid open at or after Sunday 18:00). Valid from Sunday 18:00 until touched. Zero-width gap → single level. Only the current week's NWOG. | — |
+| R19 | NWOG | Lower/upper = min/max of (last mid close before Friday 17:00, first mid open at or after Sunday 17:00). Valid from the reopen until price trades strictly inside the gap. Zero-width gap → no NWOG. Only the current week's NWOG. | — |
 | R20 | Missing data | A trading date is rejected (logged, no substitution) if any M1 bar is missing between 09:30 and 11:05 NY, or if the force-close bar at 16:00 is missing while a position is open (trade flagged `data_gap`). Non-XNYS dates are skipped. | — |
 | R21 | Trading calendar | XNYS sessions (pandas_market_calendars 5.6.1), including early-close days. | — |
 | R22 | Commission | 0 on indices: FTMO states index CFDs are commission-free (ftmo.com/en/zero-commissions-on-indices). **Still to verify** against the MT5 symbol specification (US100.cash / US500.cash / US30.cash) before execution. | `commission_pts=0.0` |
 | R23 | Doubled-cost sensitivity | Spread doubled by widening each M1 bar symmetrically around mid (bid − s/2, ask + s/2, where s = ask − bid), plus slippage doubled to 1.0 pt. | — |
-| R24 | Matched random-entry null | For each real trade: random XNYS dev date (same instrument), same direction, entry at the mid open of a random M1 bar in 10:00–11:05, the same stop and target distances (in points) as the real trade, same exits (R15, R16). 5,000 permutations, plus-one p-value on mean R. Seed fixed per instrument. | `null_perms=5000` |
+| R24 | Matched random-entry null | For each real trade: random XNYS dev date (same instrument), same direction, entry at the ask open (long) / bid open (short) of a random M1 bar in 10:00–11:05, the same stop and target distances (in points) as the real trade, same exits (R15, R16). 5,000 permutations, plus-one p-value on mean R. Seed fixed per instrument. | `null_perms=5000` |
 | R25 | SMT (experiment only, disabled) | Partner pairs NAS100→SPX, SPX→NAS100, US30→SPX. Same 5 m timestamps (max difference 0). Long: primary's sweep candle makes a new low below its reference while the partner's low from 10:00 up to that candle stays above the partner's same-named reference. Mirror for short. | `smt_enabled=False` |
 | R26 | Pass criteria | **Not defined by the spec.** Must be decided by the user before any development run (proposal to follow in the review). | — |
+| R27 | US30 crossed quotes | Audit: 58 M1 bars with ask < bid on NY dates 2020-03-10/11 (all outside 09:30–16:00; frozen ask feed). The loader refuses US30 until a rule is approved. Proposal: exclude trading dates 2020-03-11 and 2020-03-12 (their sessions/levels contain the bad bars) for US30 only. | — |
+| R28 | Early-close days | Audit: 9 XNYS early-close dates have no 15:59 bar (CFD closes ~13:15). Proposal: force close at the last M1 bar of the session on those dates (flagged `data_gap`), or exclude those dates. | — |
+| R29 | Non-XNYS CFD sessions | Audit: 54 daily sessions exist on XNYS holidays (CFD trades shortened hours). Proposal (as coded): they count as the "previous day" for PDH/PDL and as daily candles for D1 pivots. Alternative: skip them. | — |
+| R30 | Provider-filled minutes | Audit: Dukascopy emits a bar for every minute (identical timestamp grid across all 3 instruments); ~0.55% of 09:30–11:05 bars are identical to the previous bar (likely no-tick minutes). They cannot be distinguished from real bars (SPX/US30 volume is empty). Proposal: accept as provider data, disclose. | — |
+
+### Changelog (pre-execution; no results exist)
+
+- v1.0 → v1.1 (2026-11-18, during implementation, before any run): R19 — a zero-width NWOG is treated as absent, and
+  "traded into" a NWOG means trading strictly inside the open gap (the opening print sits on the boundary). R24 — the
+  random entry fills at the bar's ask open (long) / bid open (short) instead of mid open, so the null is bid/ask-aware
+  like the strategy. R27–R30 added from the data audit. Config version 21.1.0.
 
 ## 4. Module layout (Python)
 
