@@ -13,17 +13,17 @@ import pytest
 SCRIPTS = Path(__file__).resolve().parents[3] / "scripts"
 sys.path.insert(0, str(SCRIPTS))
 
-import c21_fixtures as F  # noqa: E402, N812
-from c21_fixture_parity import XNYS  # noqa: E402
+import c21_fixtures as F
+from c21_fixture_parity import XNYS
 
-from v17.c23_visual.annotations import build, decision_view, fingerprint  # noqa: E402
-from v17.c23_visual.chart_manifest import chart_id, generate, manifest_violations  # noqa: E402
-from v17.c23_visual.event_export import data_fingerprint, export  # noqa: E402
-from v17.c23_visual.validation import decision_violations, ledger_violations  # noqa: E402
-from v17.smc_sb.config import BASELINE, CONFIG_VERSION  # noqa: E402
-from v17.smc_sb.data import build_market  # noqa: E402
-from v17.smc_sb.engine import Engine  # noqa: E402
-from v17.smc_sb.session import ny_ns  # noqa: E402
+from v17.c23_visual.annotations import build, decision_view, fingerprint
+from v17.c23_visual.chart_manifest import chart_id, generate, manifest_violations
+from v17.c23_visual.event_export import data_fingerprint, export
+from v17.c23_visual.validation import decision_violations, ledger_violations
+from v17.smc_sb.config import BASELINE, CONFIG_VERSION
+from v17.smc_sb.data import build_market
+from v17.smc_sb.engine import Engine
+from v17.smc_sb.session import ny_ns
 
 FROZEN_FINGERPRINT = "a25af5711afb32d4"  # c21 baseline at commit 0f7054c
 FIXTURES = [F.Fixture("base", "base day", F.m1_frame(F.day_rows(F.BASE))), *F.fixtures()]

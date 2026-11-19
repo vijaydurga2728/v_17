@@ -146,7 +146,11 @@ def run_day(
     expiry: str = "11:05",
     slip: float = 0.5,
     comm: float = 0.0,
+    trace: list[tuple] | None = None,
 ) -> tuple[str, dict | None]:
+    """`trace` (cycle 23, optional): append-only record of (stage, time_ns, *values) at each stage; never read here,
+    so it cannot change any decision."""
+    tr = trace.append if trace is not None else (lambda _x: None)
     if d not in m.xnys:
         return "not_xnys_session", None
     if d in m.excluded:
@@ -219,6 +223,7 @@ def run_day(
             return ("unfilled_expired" if had_order else "no_sweep"), None
         sw_s, sw_name, sw_lvl, sw_ext = best
         sw_e = sw_s + 5 * MIN
+        tr(("sweep", sw_s, sw_name, sw_lvl, sw_ext))
         smt_status = "disabled"
         if smt is not None:
             if d not in smt.daily_dates or smt.daily_dates.index(d) == 0:
@@ -255,6 +260,7 @@ def run_day(
                 break
         if mss is None:
             return ("unfilled_expired" if had_order else "no_mss"), None
+        tr(("mss", mss[0], mss[1]))
         # ---- FVG on 5 m ----
         fvg = None
         for k3 in range(max(2, bisect_left(c5s, w0)), bisect_left(c5s, w1)):
@@ -273,6 +279,7 @@ def run_day(
         bottom, top, placed = fvg
         if placed >= exp:
             return ("unfilled_expired" if had_order else "setup_after_expiry"), None
+        tr(("fvg", placed, bottom, top))
         limit, stop = (top, bottom) if side == 1 else (bottom, top)
         if model == "B":
             ia, ib = m.i(sw_s), m.i(mss[0])
@@ -311,6 +318,7 @@ def run_day(
                 break
         if tgt is None:
             return ("unfilled_expired" if had_order else "no_target_min_rr"), None
+        tr(("order_created", placed, limit, stop, tgt[0], tgt[1]))
         # ---- fill ----
         fill = None
         for x in range(m.i(placed), m.i(exp)):
@@ -318,6 +326,7 @@ def run_day(
                 fill = x
                 break
         if fill is None:
+            tr(("order_expired_cancelled", exp))
             had_order, not_before = True, max(exp, placed)
             continue
         break
@@ -344,6 +353,8 @@ def run_day(
         px = (m.B["c"][last] - slip) if side == 1 else (m.A["c"][last] + slip)
         reason, ex_i, gap, data_gap = "force_close_16", last, False, bool(gap16)
     r = ((px - limit) * side - comm) / unit
+    tr(("order_filled", int(m.ts[fill]), limit))
+    tr(("exit", int(m.ts[ex_i]), reason, px))
     return "trade", {
         "side": side,
         "ref": sw_name,
