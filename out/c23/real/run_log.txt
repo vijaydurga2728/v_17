@@ -1,0 +1,18 @@
+[20:52:02] NAS100: loading dev M1
+[20:53:32] NAS100: 1761 dates, 0 trades, event mismatches 0
+[20:53:32] SPX: loading dev M1
+[20:55:03] SPX: 1761 dates, 0 trades, event mismatches 0
+[20:55:03] US30: loading dev M1
+[21:00:11] US30: 1761 dates, 0 trades, event mismatches 0
+[21:00:11] | NAS100 | 0 | nan | +nan | nan | not run | nan | nan | failed: PF>=1.30, trades>=100, meanR>0, 2xcostPF>=1.10, luck p<=0.0167 | **FAIL** |
+[21:00:11] | SPX | 0 | nan | +nan | nan | not run | nan | nan | failed: PF>=1.30, trades>=100, meanR>0, 2xcostPF>=1.10, luck p<=0.0167 | **FAIL** |
+[21:00:11] | US30 | 0 | nan | +nan | nan | not run | nan | nan | failed: PF>=1.30, trades>=100, meanR>0, 2xcostPF>=1.10, luck p<=0.0167 | **FAIL** |
+[21:00:11] done
+EXIT main=0
+[21:00:19] NAS100: charts
+[21:02:59] NAS100: charts 84 failures 0
+[21:02:59] SPX: charts
+[21:05:47] SPX: charts 78 failures 0
+[21:05:47] US30: charts
+[21:07:11] US30: charts 50 failures 0
+EXIT charts=0
