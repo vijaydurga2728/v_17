@@ -67,7 +67,7 @@ class Engine:
         )
 
     # ------------------------------------------------------------------ one setup chain
-    def _setup(
+    def _setup(  # noqa: PLR0912
         self,
         day: dt.date,
         side: int,
@@ -121,6 +121,8 @@ class Engine:
         fvg = find_fvg(mk.c5, side, mss.end_ns, w1, cfg.fvg_tf_min)
         if fvg is None:
             return None, "no_fvg_after_mss"
+        if fvg.formed_ns >= ny_ns(day, cfg.order_expiry):
+            return None, "setup_after_expiry"  # an order could never be live before the 11:05 expiry
         log(
             "fvg",
             fvg.formed_ns,
@@ -264,7 +266,8 @@ class Engine:
             if fi >= 0:
                 break
             ev("order_expired_cancelled", t_exp)
-            expired, not_before = True, t_exp  # R12: one pending order; re-scan after cancellation
+            # R12: one pending order; re-scan after cancellation for a distinct later setup
+            expired, not_before = True, max(t_exp, st.fvg.formed_ns)
 
         ev("order_filled", int(mk.ts[fi]), price=o.limit)
         ex = run_exit(mk, side, fi, o.stop, st.target.price, t_close, cfg.slippage)

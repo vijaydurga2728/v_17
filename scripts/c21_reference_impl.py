@@ -271,6 +271,8 @@ def run_day(
         if fvg is None:
             return ("unfilled_expired" if had_order else "no_fvg_after_mss"), None
         bottom, top, placed = fvg
+        if placed >= exp:
+            return ("unfilled_expired" if had_order else "setup_after_expiry"), None
         limit, stop = (top, bottom) if side == 1 else (bottom, top)
         if model == "B":
             ia, ib = m.i(sw_s), m.i(mss[0])
@@ -316,7 +318,7 @@ def run_day(
                 fill = x
                 break
         if fill is None:
-            had_order, not_before = True, exp
+            had_order, not_before = True, max(exp, placed)
             continue
         break
     # ---- exit ----

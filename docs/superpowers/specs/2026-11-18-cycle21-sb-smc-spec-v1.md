@@ -1,4 +1,4 @@
-# Cycle 21 — Silver Bullet SMC Strategy — Technical Specification v1.3 (FROZEN, review 1 + decision round 2 applied)
+# Cycle 21 — Silver Bullet SMC Strategy — Technical Specification v1.4 (FROZEN, reviews 1-3 applied)
 
 **Status:** FROZEN 2026-11-18, committed before any cycle 21 code.
 **Origin:** user-supplied spec v0.1 (Appendix A, verbatim) + user decisions D1–D16 with binding definitions (Section 1,
@@ -126,6 +126,44 @@ correction across variants); (5) the user will verify index commission in the FT
 CONDITIONAL until the value is reported. This answer does not by itself authorize a real-data run (review 1: the
 development baseline run is "considered for authorization" only after the review package).
 
+## 2c. Review round 3 (user/reviewer, 2026-11-18; key decisions verbatim)
+
+> **Decision:** Accept zero commission as the documented FTMO index-CFD assumption, but retain the MT5 symbol
+> specification as the final account-level verification. Also, zero commission does not mean zero trading costs: the
+> Dukascopy bid/ask spread and your slippage assumptions still apply. Do not describe Dukascopy execution costs as an
+> exact reproduction of FTMO spreads.
+>
+> I authorize the two proposed stages, in this order, **after the additional synthetic coverage in section 3
+> passes**: 1. Real-data implementation parity — 2018–2024 [...] Require exact trade-by-trade agreement. Any mismatch
+> stops the process. [...] 2. Baseline performance run — 2018–2024: Model A only; SMT disabled. Run NAS100, SPX and
+> US30 independently. Apply the agreed pass criteria separately to each instrument. Report failures honestly. Do not
+> tune parameters or modify rules after seeing results. Preserve the 2012–2014 holdout untouched. This authorizes
+> those research runs only. It does **not** authorize optimization, holdout access, parameter changes, or live/demo
+> deployment.
+>
+> Required synthetic cases: gap-through long stop; gap-through short stop; missing 15:59 bar (no invented exit
+> price; early-close dates cannot create new entries); OTE Model B valid and invalid with exact entry-zone
+> boundaries; OTE + FVG interaction; multiple pending setups (one pending order at a time; cancellation permits a
+> later distinct valid setup); fill-bar ambiguity (stop on fill bar; target from the following bar).
+>
+> Execution sequence: 1. synthetic fixtures, both engines; 2. freeze code, tests, data manifest and configuration
+> fingerprint; 3. real-data parity 2018–2024; 4. only after exact parity, the three independent baseline runs;
+> 5. keep the 2012–2014 holdout sealed.
+
+Status of R17/R22 after round 3: zero commission **accepted as the documented FTMO assumption**; the MT5 symbol
+specification remains the final account-level verification (not yet performed). Costs modelled = Dukascopy bid/ask
+spread + 0.5-point stop/forced-exit slippage; these are not FTMO's exact spreads.
+
+**R12a (new, found while building the round-3 fixtures):** with the fixed 11:05 expiry (D8) and no invalidation rule
+(R14), an order can only be cancelled by expiry, so a later distinct setup can never become a live order. A setup
+whose FVG forms at or after the order expiry is rejected (`setup_after_expiry`), and the re-scan starts at
+max(cancellation time, previous order's placement time). Unreachable with the approved 11:05 expiry (FVGs complete by
+11:00); it removes a latent infinite loop and is covered by the `one_pending_then_rescan` fixture.
+
+Missing 15:59 bar (R20/R28 as implemented): a position still open exits on the last **real** M1 bar before 16:00
+(bid/ask close ∓ 0.5) and is flagged `data_gap`; no 16:00 price is created. On XNYS early-close dates no entry is
+allowed at all.
+
 ## 3. Implementation rules (status after review 1)
 
 Status: **APPROVED** (review 1), **CORRECTED** (rewritten per review 1; needs re-review), **CONDITIONAL**, or
@@ -195,6 +233,9 @@ Status: **APPROVED** (review 1), **CORRECTED** (rewritten per review 1; needs re
 - v1.0 → v1.1: R19 zero-width NWOG absent, strict-inside touch; R24 bid/ask open; R27–R30 added from the audit.
 - v1.1 → v1.2 (review 1): approvals recorded; R5, R9, R12, R15, R18, R19, R24, R27, R28, R29 corrected; R26 adopted;
   R5a and the R19 missing-bar rule are new and need review. Config 21.2.0.
+- v1.3 → v1.4 (review round 3): commission decision recorded; R12a `setup_after_expiry` guard + re-scan start
+  (both engines); targeted synthetic fixtures `scripts/c21_fixtures.py` (13 cases) must pass with exact parity
+  before real data. Config unchanged (21.2.0).
 - v1.2 → v1.3 (decision round 2): R5a, R19, R31 approved; Bonferroni 0.05/3 per variant confirmed. No code or
   parameter change (config stays 21.2.0). R22 commission still pending user verification.
 
