@@ -11,7 +11,7 @@ User Operating Window:
 
 FTMO Rules & Safety Enforced:
 1. Dynamic Risk Sizing: 0.50% ($50) risk per trade on $10,000 equity.
-2. Hard Daily Circuit Breaker: Max 2 trades/day, halt if daily loss >= -$100 (1.0%).
+2. Hard Daily Circuit Breaker: Max 4 trades/day, halt if daily loss >= -$100 (1.0%).
 3. Static Max DD Floor: $9,000 (never allows account to breach 10.0% max loss).
 4. Auto-Flatten: Auto-cancels pending orders and closes positions by 16:30 NY.
 5. Weekend Blackout: Auto-flattens by Friday 16:00 NY.

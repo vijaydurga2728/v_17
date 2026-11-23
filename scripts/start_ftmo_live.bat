@@ -11,7 +11,7 @@ echo  Cash Open Drive:  8:00 PM - 9:00 PM IST (09:30 - 10:30 NY) :: US30, USTEC,
 echo  NY AM Session:    8:30 PM - 9:30 PM IST (10:00 - 11:00 NY) :: XAUUSD (Gold), EURUSD
 echo  NY PM Session:   12:30 AM - 1:30 AM IST (14:00 - 15:00 NY) :: US30, USTEC, US500, EURUSD
 echo  Target:          FTMO $10,000 Step 1 (+10%% / +$1,000)
-echo  Risk Model:      0.50%% ($50) Fixed Risk per Trade -- Max 2 Trades/Day
+echo  Risk Model:      0.50%% ($50) Fixed Risk per Trade -- Max 4 Trades/Day (Max 2 Concurrent)
 echo ===============================================================================
 echo.
 
