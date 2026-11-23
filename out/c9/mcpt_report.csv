@@ -1,0 +1,13 @@
+slot_id,tier1_pass,seed,status,tier2_pass,tier3_pass
+buf0.00_long_only_n1,False,20261116000,not_run: tier1_fail,False,False
+buf0.00_long_only_n2,False,20261116001,not_run: tier1_fail,False,False
+buf0.00_short_only_n1,False,20261116002,not_run: tier1_fail,False,False
+buf0.00_short_only_n2,False,20261116003,not_run: tier1_fail,False,False
+buf0.05_long_only_n1,False,20261116004,not_run: tier1_fail,False,False
+buf0.05_long_only_n2,False,20261116005,not_run: tier1_fail,False,False
+buf0.05_short_only_n1,False,20261116006,not_run: tier1_fail,False,False
+buf0.05_short_only_n2,False,20261116007,not_run: tier1_fail,False,False
+buf0.10_long_only_n1,False,20261116008,not_run: tier1_fail,False,False
+buf0.10_long_only_n2,False,20261116009,not_run: tier1_fail,False,False
+buf0.10_short_only_n1,False,20261116010,not_run: tier1_fail,False,False
+buf0.10_short_only_n2,False,20261116011,not_run: tier1_fail,False,False

@@ -1,0 +1,27 @@
+[c19] exam_2015_2017 LDN USATECHIDXUSD n=   2 PF=0.97 meanR=-0.015 win=0.50 p=0.2002 PASS=False
+[c19] info_2018_now  LDN USATECHIDXUSD n=  16 PF=0.21 meanR=-0.640 win=0.19 p=nan PASS=False
+[c19] exam_2015_2017 LDN USA500IDXUSD  n=   0 PF=nan meanR=+nan win=nan p=nan PASS=False
+[c19] info_2018_now  LDN USA500IDXUSD  n=  13 PF=0.43 meanR=-0.367 win=0.23 p=nan PASS=False
+[c19] exam_2015_2017 LDN EURUSD        n=  12 PF=0.97 meanR=-0.024 win=0.25 p=0.3031 PASS=False
+[c19] info_2018_now  LDN EURUSD        n=  53 PF=1.03 meanR=+0.023 win=0.36 p=nan PASS=False
+[c19] exam_2015_2017 LDN GBPUSD        n=   8 PF=1.19 meanR=+0.142 win=0.25 p=0.2104 PASS=False
+[c19] info_2018_now  LDN GBPUSD        n=  55 PF=0.64 meanR=-0.283 win=0.27 p=nan PASS=False
+[c19] exam_2015_2017 AM  USATECHIDXUSD n=  12 PF=0.13 meanR=-0.667 win=0.17 p=0.8984 PASS=False
+[c19] info_2018_now  AM  USATECHIDXUSD n=  74 PF=0.42 meanR=-0.349 win=0.32 p=nan PASS=False
+[c19] exam_2015_2017 AM  USA500IDXUSD  n=   8 PF=1.68 meanR=+0.396 win=0.50 p=0.0280 PASS=False
+[c19] info_2018_now  AM  USA500IDXUSD  n=  45 PF=0.72 meanR=-0.212 win=0.24 p=nan PASS=False
+[c19] exam_2015_2017 AM  EURUSD        n=  31 PF=0.66 meanR=-0.219 win=0.32 p=0.4757 PASS=False
+[c19] info_2018_now  AM  EURUSD        n=  98 PF=0.67 meanR=-0.237 win=0.31 p=nan PASS=False
+[c19] exam_2015_2017 AM  GBPUSD        n=  34 PF=0.61 meanR=-0.302 win=0.24 p=0.5797 PASS=False
+[c19] info_2018_now  AM  GBPUSD        n=  87 PF=0.88 meanR=-0.091 win=0.31 p=nan PASS=False
+[c19] exam_2015_2017 PM  USATECHIDXUSD n=  11 PF=1.36 meanR=+0.152 win=0.55 p=0.1206 PASS=False
+[c19] info_2018_now  PM  USATECHIDXUSD n=  81 PF=0.59 meanR=-0.325 win=0.17 p=nan PASS=False
+[c19] exam_2015_2017 PM  USA500IDXUSD  n=  10 PF=0.34 meanR=-0.501 win=0.30 p=0.4775 PASS=False
+[c19] info_2018_now  PM  USA500IDXUSD  n=  67 PF=0.58 meanR=-0.339 win=0.24 p=nan PASS=False
+[c19] exam_2015_2017 PM  EURUSD        n=  16 PF=0.15 meanR=-0.646 win=0.19 p=0.9030 PASS=False
+[c19] info_2018_now  PM  EURUSD        n=  66 PF=0.62 meanR=-0.253 win=0.32 p=nan PASS=False
+[c19] exam_2015_2017 PM  GBPUSD        n=  20 PF=0.96 meanR=-0.028 win=0.40 p=0.1190 PASS=False
+[c19] info_2018_now  PM  GBPUSD        n=  53 PF=0.90 meanR=-0.060 win=0.32 p=nan PASS=False
+[c19] extra_2010_2014 LDN EURUSD        n=  13 PF=0.59 meanR=-0.256
+[c19] extra_2010_2014 AM  EURUSD        n=  41 PF=0.50 meanR=-0.320
+[c19] extra_2010_2014 PM  EURUSD        n=  29 PF=1.18 meanR=+0.100

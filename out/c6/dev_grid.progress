@@ -1,0 +1,1843 @@
+2026-11-16T11:54:09 START grid total=48
+2026-11-16T11:54:09 [grid 1/48] START K=0.2 sw=8 C=0.3 elapsed=0.0s
+2026-11-16T11:58:15 [grid 1/48] END K=0.2 sw=8 C=0.3 trades=5163 sharpe=-1.803 took=246.6s
+2026-11-16T11:58:15 [grid 2/48] START K=0.2 sw=8 C=0.4 elapsed=246.6s
+2026-11-16T12:00:59 [grid 2/48] END K=0.2 sw=8 C=0.4 trades=5625 sharpe=-1.534 took=163.9s
+2026-11-16T12:00:59 [grid 3/48] START K=0.2 sw=8 C=0.5 elapsed=410.5s
+2026-11-16T12:04:59 [grid 3/48] END K=0.2 sw=8 C=0.5 trades=5885 sharpe=-1.436 took=239.7s
+2026-11-16T12:04:59 [grid 4/48] START K=0.2 sw=12 C=0.3 elapsed=650.2s
+2026-11-16T12:10:54 [grid 4/48] END K=0.2 sw=12 C=0.3 trades=5225 sharpe=-1.744 took=355.1s
+2026-11-16T12:10:54 [grid 5/48] START K=0.2 sw=12 C=0.4 elapsed=1005.4s
+2026-11-16T12:14:20 [grid 5/48] END K=0.2 sw=12 C=0.4 trades=5360 sharpe=-1.650 took=206.0s
+2026-11-16T12:14:20 [grid 6/48] START K=0.2 sw=12 C=0.5 elapsed=1211.4s
+2026-11-16T12:17:59 [grid 6/48] END K=0.2 sw=12 C=0.5 trades=5672 sharpe=-1.457 took=219.2s
+2026-11-16T12:17:59 [grid 7/48] START K=0.2 sw=16 C=0.3 elapsed=1430.6s
+2026-11-16T12:20:48 [grid 7/48] END K=0.2 sw=16 C=0.3 trades=5312 sharpe=-1.774 took=168.9s
+2026-11-16T12:20:48 [grid 8/48] START K=0.2 sw=16 C=0.4 elapsed=1599.4s
+2026-11-16T12:22:16 [grid 8/48] END K=0.2 sw=16 C=0.4 trades=5429 sharpe=-1.636 took=87.6s
+2026-11-16T12:22:16 [grid 9/48] START K=0.2 sw=16 C=0.5 elapsed=1687.0s
+2026-11-16T12:23:46 [grid 9/48] END K=0.2 sw=16 C=0.5 trades=5365 sharpe=-1.463 took=90.3s
+2026-11-16T12:23:46 [grid 10/48] START K=0.2 sw=20 C=0.3 elapsed=1777.4s
+2026-11-16T12:25:15 [grid 10/48] END K=0.2 sw=20 C=0.3 trades=5227 sharpe=-1.606 took=89.2s
+2026-11-16T12:25:15 [grid 11/48] START K=0.2 sw=20 C=0.4 elapsed=1866.6s
+2026-11-16T12:27:02 [grid 11/48] END K=0.2 sw=20 C=0.4 trades=5216 sharpe=-1.467 took=107.3s
+2026-11-16T12:27:02 [grid 12/48] START K=0.2 sw=20 C=0.5 elapsed=1973.9s
+2026-11-16T12:29:01 [grid 12/48] END K=0.2 sw=20 C=0.5 trades=5061 sharpe=-1.442 took=118.7s
+2026-11-16T12:29:01 [grid 13/48] START K=0.3 sw=8 C=0.3 elapsed=2092.6s
+2026-11-16T12:31:22 [grid 13/48] END K=0.3 sw=8 C=0.3 trades=5088 sharpe=-1.960 took=140.5s
+2026-11-16T12:31:22 [grid 14/48] START K=0.3 sw=8 C=0.4 elapsed=2233.1s
+2026-11-16T12:34:10 [grid 14/48] END K=0.3 sw=8 C=0.4 trades=5561 sharpe=-1.693 took=168.8s
+2026-11-16T12:34:10 [grid 15/48] START K=0.3 sw=8 C=0.5 elapsed=2401.8s
+2026-11-16T12:40:07 [grid 15/48] END K=0.3 sw=8 C=0.5 trades=5828 sharpe=-1.488 took=357.0s
+2026-11-16T12:40:07 [grid 16/48] START K=0.3 sw=12 C=0.3 elapsed=2758.8s
+2026-11-16T12:44:08 [grid 16/48] END K=0.3 sw=12 C=0.3 trades=5114 sharpe=-1.901 took=240.6s
+2026-11-16T12:44:08 [grid 17/48] START K=0.3 sw=12 C=0.4 elapsed=2999.4s
+2026-11-16T12:46:56 [grid 17/48] END K=0.3 sw=12 C=0.4 trades=5297 sharpe=-1.715 took=167.6s
+2026-11-16T12:46:56 [grid 18/48] START K=0.3 sw=12 C=0.5 elapsed=3167.0s
+2026-11-16T12:52:20 [grid 18/48] END K=0.3 sw=12 C=0.5 trades=5634 sharpe=-1.503 took=324.4s
+2026-11-16T12:52:20 [grid 19/48] START K=0.3 sw=16 C=0.3 elapsed=3491.4s
+2026-11-16T12:55:11 [grid 19/48] END K=0.3 sw=16 C=0.3 trades=5244 sharpe=-1.830 took=171.5s
+2026-11-16T12:55:11 [grid 20/48] START K=0.3 sw=16 C=0.4 elapsed=3662.9s
+2026-11-16T12:56:18 [grid 20/48] END K=0.3 sw=16 C=0.4 trades=5372 sharpe=-1.599 took=66.9s
+2026-11-16T12:56:18 [grid 21/48] START K=0.3 sw=16 C=0.5 elapsed=3729.8s
+2026-11-16T12:57:21 [grid 21/48] END K=0.3 sw=16 C=0.5 trades=5280 sharpe=-1.501 took=63.1s
+2026-11-16T12:57:21 [grid 22/48] START K=0.3 sw=20 C=0.3 elapsed=3792.9s
+2026-11-16T12:58:22 [grid 22/48] END K=0.3 sw=20 C=0.3 trades=5090 sharpe=-1.724 took=60.2s
+2026-11-16T12:58:22 [grid 23/48] START K=0.3 sw=20 C=0.4 elapsed=3853.0s
+2026-11-16T12:59:24 [grid 23/48] END K=0.3 sw=20 C=0.4 trades=5141 sharpe=-1.518 took=62.4s
+2026-11-16T12:59:24 [grid 24/48] START K=0.3 sw=20 C=0.5 elapsed=3915.4s
+2026-11-16T13:02:00 [grid 24/48] END K=0.3 sw=20 C=0.5 trades=5001 sharpe=-1.480 took=156.4s
+2026-11-16T13:02:00 [grid 25/48] START K=0.4 sw=8 C=0.3 elapsed=4071.8s
+2026-11-16T13:05:19 [grid 25/48] END K=0.4 sw=8 C=0.3 trades=5317 sharpe=-1.881 took=198.6s
+2026-11-16T13:05:19 [grid 26/48] START K=0.4 sw=8 C=0.4 elapsed=4270.4s
+2026-11-16T13:08:30 [grid 26/48] END K=0.4 sw=8 C=0.4 trades=5737 sharpe=-1.618 took=191.1s
+2026-11-16T13:08:30 [grid 27/48] START K=0.4 sw=8 C=0.5 elapsed=4461.4s
+2026-11-16T13:11:51 [grid 27/48] END K=0.4 sw=8 C=0.5 trades=5784 sharpe=-1.488 took=201.2s
+2026-11-16T13:11:51 [grid 28/48] START K=0.4 sw=12 C=0.3 elapsed=4662.7s
+2026-11-16T13:16:52 [grid 28/48] END K=0.4 sw=12 C=0.3 trades=5297 sharpe=-1.781 took=300.4s
+2026-11-16T13:16:52 [grid 29/48] START K=0.4 sw=12 C=0.4 elapsed=4963.0s
+2026-11-16T13:20:17 [grid 29/48] END K=0.4 sw=12 C=0.4 trades=5340 sharpe=-1.664 took=205.0s
+2026-11-16T13:20:17 [grid 30/48] START K=0.4 sw=12 C=0.5 elapsed=5168.0s
+2026-11-16T13:23:32 [grid 30/48] END K=0.4 sw=12 C=0.5 trades=5558 sharpe=-1.419 took=195.8s
+2026-11-16T13:23:32 [grid 31/48] START K=0.4 sw=16 C=0.3 elapsed=5363.8s
+2026-11-16T13:26:25 [grid 31/48] END K=0.4 sw=16 C=0.3 trades=5210 sharpe=-1.733 took=172.6s
+2026-11-16T13:26:25 [grid 32/48] START K=0.4 sw=16 C=0.4 elapsed=5536.4s
+2026-11-16T13:29:48 [grid 32/48] END K=0.4 sw=16 C=0.4 trades=5324 sharpe=-1.590 took=203.0s
+2026-11-16T13:29:48 [grid 33/48] START K=0.4 sw=16 C=0.5 elapsed=5739.4s
+2026-11-16T13:33:18 [grid 33/48] END K=0.4 sw=16 C=0.5 trades=5227 sharpe=-1.512 took=209.6s
+2026-11-16T13:33:18 [grid 34/48] START K=0.4 sw=20 C=0.3 elapsed=5948.9s
+2026-11-16T13:36:07 [grid 34/48] END K=0.4 sw=20 C=0.3 trades=5100 sharpe=-1.705 took=169.4s
+2026-11-16T13:36:07 [grid 35/48] START K=0.4 sw=20 C=0.4 elapsed=6118.3s
+2026-11-16T13:38:48 [grid 35/48] END K=0.4 sw=20 C=0.4 trades=5081 sharpe=-1.542 took=161.1s
+2026-11-16T13:38:48 [grid 36/48] START K=0.4 sw=20 C=0.5 elapsed=6279.4s
+2026-11-16T13:41:32 [grid 36/48] END K=0.4 sw=20 C=0.5 trades=4923 sharpe=-1.466 took=163.5s
+2026-11-16T13:41:32 [grid 37/48] START K=0.5 sw=8 C=0.3 elapsed=6443.0s
+2026-11-16T13:44:54 [grid 37/48] END K=0.5 sw=8 C=0.3 trades=5215 sharpe=-1.839 took=202.3s
+2026-11-16T13:44:54 [grid 38/48] START K=0.5 sw=8 C=0.4 elapsed=6645.2s
+2026-11-16T13:48:35 [grid 38/48] END K=0.5 sw=8 C=0.4 trades=5676 sharpe=-1.564 took=221.3s
+2026-11-16T13:48:35 [grid 39/48] START K=0.5 sw=8 C=0.5 elapsed=6866.5s
+2026-11-16T13:50:30 [grid 39/48] END K=0.5 sw=8 C=0.5 trades=5720 sharpe=-1.417 took=115.3s
+2026-11-16T13:50:30 [grid 40/48] START K=0.5 sw=12 C=0.3 elapsed=6981.8s
+2026-11-16T13:55:32 [grid 40/48] END K=0.5 sw=12 C=0.3 trades=5243 sharpe=-1.687 took=301.5s
+2026-11-16T13:55:32 [grid 41/48] START K=0.5 sw=12 C=0.4 elapsed=7283.3s
+2026-11-16T14:02:52 [grid 41/48] END K=0.5 sw=12 C=0.4 trades=5422 sharpe=-1.507 took=439.9s
+2026-11-16T14:02:52 [grid 42/48] START K=0.5 sw=12 C=0.5 elapsed=7723.2s
+2026-11-16T14:09:54 [grid 42/48] END K=0.5 sw=12 C=0.5 trades=5480 sharpe=-1.368 took=422.1s
+2026-11-16T14:09:54 [grid 43/48] START K=0.5 sw=16 C=0.3 elapsed=8145.3s
+2026-11-16T14:17:20 [grid 43/48] END K=0.5 sw=16 C=0.3 trades=5285 sharpe=-1.766 took=446.3s
+2026-11-16T14:17:20 [grid 44/48] START K=0.5 sw=16 C=0.4 elapsed=8591.6s
+2026-11-16T14:24:09 [grid 44/48] END K=0.5 sw=16 C=0.4 trades=5307 sharpe=-1.557 took=408.9s
+2026-11-16T14:24:09 [grid 45/48] START K=0.5 sw=16 C=0.5 elapsed=9000.5s
+2026-11-16T14:31:28 [grid 45/48] END K=0.5 sw=16 C=0.5 trades=5156 sharpe=-1.418 took=439.1s
+2026-11-16T14:31:28 [grid 46/48] START K=0.5 sw=20 C=0.3 elapsed=9439.6s
+2026-11-16T14:38:25 [grid 46/48] END K=0.5 sw=20 C=0.3 trades=5026 sharpe=-1.743 took=417.2s
+2026-11-16T14:38:25 [grid 47/48] START K=0.5 sw=20 C=0.4 elapsed=9856.8s
+2026-11-16T14:45:29 [grid 47/48] END K=0.5 sw=20 C=0.4 trades=4988 sharpe=-1.570 took=423.9s
+2026-11-16T14:45:29 [grid 48/48] START K=0.5 sw=20 C=0.5 elapsed=10280.7s
+2026-11-16T14:50:37 [grid 48/48] END K=0.5 sw=20 C=0.5 trades=4834 sharpe=-1.493 took=307.3s
+2026-11-17T19:55:48 START grid total=48
+2026-11-17T19:55:48 [grid 1/48] START K=0.2 sw=8 C=0.3 elapsed=0.0s
+2026-11-17T19:55:48 [grid 1/48] END K=0.2 sw=8 C=0.3 trades=22 sharpe=4.771 took=0.1s
+2026-11-17T19:55:48 [grid 2/48] START K=0.2 sw=8 C=0.4 elapsed=0.1s
+2026-11-17T19:55:48 [grid 2/48] END K=0.2 sw=8 C=0.4 trades=21 sharpe=6.033 took=0.1s
+2026-11-17T19:55:48 [grid 3/48] START K=0.2 sw=8 C=0.5 elapsed=0.2s
+2026-11-17T19:55:48 [grid 3/48] END K=0.2 sw=8 C=0.5 trades=20 sharpe=7.237 took=0.1s
+2026-11-17T19:55:48 [grid 4/48] START K=0.2 sw=12 C=0.3 elapsed=0.4s
+2026-11-17T19:55:48 [grid 4/48] END K=0.2 sw=12 C=0.3 trades=22 sharpe=5.451 took=0.1s
+2026-11-17T19:55:48 [grid 5/48] START K=0.2 sw=12 C=0.4 elapsed=0.5s
+2026-11-17T19:55:48 [grid 5/48] END K=0.2 sw=12 C=0.4 trades=21 sharpe=6.587 took=0.1s
+2026-11-17T19:55:48 [grid 6/48] START K=0.2 sw=12 C=0.5 elapsed=0.6s
+2026-11-17T19:55:48 [grid 6/48] END K=0.2 sw=12 C=0.5 trades=21 sharpe=6.664 took=0.1s
+2026-11-17T19:55:48 [grid 7/48] START K=0.2 sw=16 C=0.3 elapsed=0.7s
+2026-11-17T19:55:49 [grid 7/48] END K=0.2 sw=16 C=0.3 trades=19 sharpe=12.442 took=0.1s
+2026-11-17T19:55:49 [grid 8/48] START K=0.2 sw=16 C=0.4 elapsed=0.8s
+2026-11-17T19:55:49 [grid 8/48] END K=0.2 sw=16 C=0.4 trades=19 sharpe=12.442 took=0.1s
+2026-11-17T19:55:49 [grid 9/48] START K=0.2 sw=16 C=0.5 elapsed=1.0s
+2026-11-17T19:55:49 [grid 9/48] END K=0.2 sw=16 C=0.5 trades=19 sharpe=12.180 took=0.1s
+2026-11-17T19:55:49 [grid 10/48] START K=0.2 sw=20 C=0.3 elapsed=1.1s
+2026-11-17T19:55:49 [grid 10/48] END K=0.2 sw=20 C=0.3 trades=19 sharpe=6.541 took=0.1s
+2026-11-17T19:55:49 [grid 11/48] START K=0.2 sw=20 C=0.4 elapsed=1.2s
+2026-11-17T19:55:49 [grid 11/48] END K=0.2 sw=20 C=0.4 trades=19 sharpe=6.541 took=0.1s
+2026-11-17T19:55:49 [grid 12/48] START K=0.2 sw=20 C=0.5 elapsed=1.3s
+2026-11-17T19:55:49 [grid 12/48] END K=0.2 sw=20 C=0.5 trades=19 sharpe=6.559 took=0.1s
+2026-11-17T19:55:49 [grid 13/48] START K=0.3 sw=8 C=0.3 elapsed=1.4s
+2026-11-17T19:55:49 [grid 13/48] END K=0.3 sw=8 C=0.3 trades=24 sharpe=3.798 took=0.1s
+2026-11-17T19:55:49 [grid 14/48] START K=0.3 sw=8 C=0.4 elapsed=1.5s
+2026-11-17T19:55:49 [grid 14/48] END K=0.3 sw=8 C=0.4 trades=22 sharpe=5.446 took=0.1s
+2026-11-17T19:55:49 [grid 15/48] START K=0.3 sw=8 C=0.5 elapsed=1.6s
+2026-11-17T19:55:49 [grid 15/48] END K=0.3 sw=8 C=0.5 trades=21 sharpe=6.510 took=0.1s
+2026-11-17T19:55:49 [grid 16/48] START K=0.3 sw=12 C=0.3 elapsed=1.8s
+2026-11-17T19:55:50 [grid 16/48] END K=0.3 sw=12 C=0.3 trades=22 sharpe=5.009 took=0.1s
+2026-11-17T19:55:50 [grid 17/48] START K=0.3 sw=12 C=0.4 elapsed=1.9s
+2026-11-17T19:55:50 [grid 17/48] END K=0.3 sw=12 C=0.4 trades=21 sharpe=6.037 took=0.1s
+2026-11-17T19:55:50 [grid 18/48] START K=0.3 sw=12 C=0.5 elapsed=2.0s
+2026-11-17T19:55:50 [grid 18/48] END K=0.3 sw=12 C=0.5 trades=21 sharpe=6.135 took=0.1s
+2026-11-17T19:55:50 [grid 19/48] START K=0.3 sw=16 C=0.3 elapsed=2.1s
+2026-11-17T19:55:50 [grid 19/48] END K=0.3 sw=16 C=0.3 trades=18 sharpe=12.403 took=0.1s
+2026-11-17T19:55:50 [grid 20/48] START K=0.3 sw=16 C=0.4 elapsed=2.2s
+2026-11-17T19:55:50 [grid 20/48] END K=0.3 sw=16 C=0.4 trades=18 sharpe=12.403 took=0.1s
+2026-11-17T19:55:50 [grid 21/48] START K=0.3 sw=16 C=0.5 elapsed=2.3s
+2026-11-17T19:55:50 [grid 21/48] END K=0.3 sw=16 C=0.5 trades=18 sharpe=12.121 took=0.2s
+2026-11-17T19:55:50 [grid 22/48] START K=0.3 sw=20 C=0.3 elapsed=2.5s
+2026-11-17T19:55:50 [grid 22/48] END K=0.3 sw=20 C=0.3 trades=19 sharpe=4.731 took=0.1s
+2026-11-17T19:55:50 [grid 23/48] START K=0.3 sw=20 C=0.4 elapsed=2.6s
+2026-11-17T19:55:50 [grid 23/48] END K=0.3 sw=20 C=0.4 trades=19 sharpe=4.731 took=0.1s
+2026-11-17T19:55:50 [grid 24/48] START K=0.3 sw=20 C=0.5 elapsed=2.7s
+2026-11-17T19:55:51 [grid 24/48] END K=0.3 sw=20 C=0.5 trades=19 sharpe=4.853 took=0.1s
+2026-11-17T19:55:51 [grid 25/48] START K=0.4 sw=8 C=0.3 elapsed=2.8s
+2026-11-17T19:55:51 [grid 25/48] END K=0.4 sw=8 C=0.3 trades=23 sharpe=2.519 took=0.1s
+2026-11-17T19:55:51 [grid 26/48] START K=0.4 sw=8 C=0.4 elapsed=2.9s
+2026-11-17T19:55:51 [grid 26/48] END K=0.4 sw=8 C=0.4 trades=21 sharpe=4.367 took=0.1s
+2026-11-17T19:55:51 [grid 27/48] START K=0.4 sw=8 C=0.5 elapsed=3.0s
+2026-11-17T19:55:51 [grid 27/48] END K=0.4 sw=8 C=0.5 trades=20 sharpe=5.572 took=0.1s
+2026-11-17T19:55:51 [grid 28/48] START K=0.4 sw=12 C=0.3 elapsed=3.1s
+2026-11-17T19:55:51 [grid 28/48] END K=0.4 sw=12 C=0.3 trades=22 sharpe=3.636 took=0.1s
+2026-11-17T19:55:51 [grid 29/48] START K=0.4 sw=12 C=0.4 elapsed=3.2s
+2026-11-17T19:55:51 [grid 29/48] END K=0.4 sw=12 C=0.4 trades=21 sharpe=4.488 took=0.1s
+2026-11-17T19:55:51 [grid 30/48] START K=0.4 sw=12 C=0.5 elapsed=3.3s
+2026-11-17T19:55:51 [grid 30/48] END K=0.4 sw=12 C=0.5 trades=21 sharpe=4.620 took=0.1s
+2026-11-17T19:55:51 [grid 31/48] START K=0.4 sw=16 C=0.3 elapsed=3.5s
+2026-11-17T19:55:51 [grid 31/48] END K=0.4 sw=16 C=0.3 trades=18 sharpe=12.403 took=0.1s
+2026-11-17T19:55:51 [grid 32/48] START K=0.4 sw=16 C=0.4 elapsed=3.6s
+2026-11-17T19:55:51 [grid 32/48] END K=0.4 sw=16 C=0.4 trades=18 sharpe=12.403 took=0.1s
+2026-11-17T19:55:51 [grid 33/48] START K=0.4 sw=16 C=0.5 elapsed=3.7s
+2026-11-17T19:55:52 [grid 33/48] END K=0.4 sw=16 C=0.5 trades=18 sharpe=12.121 took=0.1s
+2026-11-17T19:55:52 [grid 34/48] START K=0.4 sw=20 C=0.3 elapsed=3.8s
+2026-11-17T19:55:52 [grid 34/48] END K=0.4 sw=20 C=0.3 trades=19 sharpe=4.731 took=0.1s
+2026-11-17T19:55:52 [grid 35/48] START K=0.4 sw=20 C=0.4 elapsed=3.9s
+2026-11-17T19:55:52 [grid 35/48] END K=0.4 sw=20 C=0.4 trades=19 sharpe=4.731 took=0.1s
+2026-11-17T19:55:52 [grid 36/48] START K=0.4 sw=20 C=0.5 elapsed=4.0s
+2026-11-17T19:55:52 [grid 36/48] END K=0.4 sw=20 C=0.5 trades=19 sharpe=4.853 took=0.1s
+2026-11-17T19:55:52 [grid 37/48] START K=0.5 sw=8 C=0.3 elapsed=4.1s
+2026-11-17T19:55:52 [grid 37/48] END K=0.5 sw=8 C=0.3 trades=23 sharpe=2.519 took=0.1s
+2026-11-17T19:55:52 [grid 38/48] START K=0.5 sw=8 C=0.4 elapsed=4.2s
+2026-11-17T19:55:52 [grid 38/48] END K=0.5 sw=8 C=0.4 trades=21 sharpe=4.367 took=0.1s
+2026-11-17T19:55:52 [grid 39/48] START K=0.5 sw=8 C=0.5 elapsed=4.3s
+2026-11-17T19:55:52 [grid 39/48] END K=0.5 sw=8 C=0.5 trades=20 sharpe=5.572 took=0.1s
+2026-11-17T19:55:52 [grid 40/48] START K=0.5 sw=12 C=0.3 elapsed=4.5s
+2026-11-17T19:55:52 [grid 40/48] END K=0.5 sw=12 C=0.3 trades=22 sharpe=2.159 took=0.1s
+2026-11-17T19:55:52 [grid 41/48] START K=0.5 sw=12 C=0.4 elapsed=4.6s
+2026-11-17T19:55:52 [grid 41/48] END K=0.5 sw=12 C=0.4 trades=21 sharpe=3.139 took=0.1s
+2026-11-17T19:55:52 [grid 42/48] START K=0.5 sw=12 C=0.5 elapsed=4.7s
+2026-11-17T19:55:53 [grid 42/48] END K=0.5 sw=12 C=0.5 trades=21 sharpe=3.310 took=0.1s
+2026-11-17T19:55:53 [grid 43/48] START K=0.5 sw=16 C=0.3 elapsed=4.8s
+2026-11-17T19:55:53 [grid 43/48] END K=0.5 sw=16 C=0.3 trades=18 sharpe=12.403 took=0.1s
+2026-11-17T19:55:53 [grid 44/48] START K=0.5 sw=16 C=0.4 elapsed=4.9s
+2026-11-17T19:55:53 [grid 44/48] END K=0.5 sw=16 C=0.4 trades=18 sharpe=12.403 took=0.1s
+2026-11-17T19:55:53 [grid 45/48] START K=0.5 sw=16 C=0.5 elapsed=5.0s
+2026-11-17T19:55:53 [grid 45/48] END K=0.5 sw=16 C=0.5 trades=18 sharpe=12.121 took=0.1s
+2026-11-17T19:55:53 [grid 46/48] START K=0.5 sw=20 C=0.3 elapsed=5.1s
+2026-11-17T19:55:53 [grid 46/48] END K=0.5 sw=20 C=0.3 trades=19 sharpe=4.946 took=0.1s
+2026-11-17T19:55:53 [grid 47/48] START K=0.5 sw=20 C=0.4 elapsed=5.3s
+2026-11-17T19:55:53 [grid 47/48] END K=0.5 sw=20 C=0.4 trades=19 sharpe=4.946 took=0.1s
+2026-11-17T19:55:53 [grid 48/48] START K=0.5 sw=20 C=0.5 elapsed=5.4s
+2026-11-17T19:55:53 [grid 48/48] END K=0.5 sw=20 C=0.5 trades=19 sharpe=5.069 took=0.1s
+2026-11-17T19:55:53 START grid total=48
+2026-11-17T19:55:53 [grid 1/48] START K=0.2 sw=8 C=0.3 elapsed=0.0s
+2026-11-17T19:55:53 [grid 1/48] END K=0.2 sw=8 C=0.3 trades=22 sharpe=4.771 took=0.1s
+2026-11-17T19:55:53 [grid 2/48] START K=0.2 sw=8 C=0.4 elapsed=0.1s
+2026-11-17T19:55:54 [grid 2/48] END K=0.2 sw=8 C=0.4 trades=21 sharpe=6.033 took=0.1s
+2026-11-17T19:55:54 [grid 3/48] START K=0.2 sw=8 C=0.5 elapsed=0.2s
+2026-11-17T19:55:54 [grid 3/48] END K=0.2 sw=8 C=0.5 trades=20 sharpe=7.237 took=0.1s
+2026-11-17T19:55:54 [grid 4/48] START K=0.2 sw=12 C=0.3 elapsed=0.4s
+2026-11-17T19:55:54 [grid 4/48] END K=0.2 sw=12 C=0.3 trades=22 sharpe=5.451 took=0.1s
+2026-11-17T19:55:54 [grid 5/48] START K=0.2 sw=12 C=0.4 elapsed=0.5s
+2026-11-17T19:55:54 [grid 5/48] END K=0.2 sw=12 C=0.4 trades=21 sharpe=6.587 took=0.1s
+2026-11-17T19:55:54 [grid 6/48] START K=0.2 sw=12 C=0.5 elapsed=0.6s
+2026-11-17T19:55:54 [grid 6/48] END K=0.2 sw=12 C=0.5 trades=21 sharpe=6.664 took=0.1s
+2026-11-17T19:55:54 [grid 7/48] START K=0.2 sw=16 C=0.3 elapsed=0.7s
+2026-11-17T19:55:54 [grid 7/48] END K=0.2 sw=16 C=0.3 trades=19 sharpe=12.442 took=0.1s
+2026-11-17T19:55:54 [grid 8/48] START K=0.2 sw=16 C=0.4 elapsed=0.8s
+2026-11-17T19:55:54 [grid 8/48] END K=0.2 sw=16 C=0.4 trades=19 sharpe=12.442 took=0.1s
+2026-11-17T19:55:54 [grid 9/48] START K=0.2 sw=16 C=0.5 elapsed=0.9s
+2026-11-17T19:55:54 [grid 9/48] END K=0.2 sw=16 C=0.5 trades=19 sharpe=12.180 took=0.1s
+2026-11-17T19:55:54 [grid 10/48] START K=0.2 sw=20 C=0.3 elapsed=1.1s
+2026-11-17T19:55:54 [grid 10/48] END K=0.2 sw=20 C=0.3 trades=19 sharpe=6.541 took=0.1s
+2026-11-17T19:55:54 [grid 11/48] START K=0.2 sw=20 C=0.4 elapsed=1.2s
+2026-11-17T19:55:55 [grid 11/48] END K=0.2 sw=20 C=0.4 trades=19 sharpe=6.541 took=0.1s
+2026-11-17T19:55:55 [grid 12/48] START K=0.2 sw=20 C=0.5 elapsed=1.3s
+2026-11-17T19:55:55 [grid 12/48] END K=0.2 sw=20 C=0.5 trades=19 sharpe=6.559 took=0.1s
+2026-11-17T19:55:55 [grid 13/48] START K=0.3 sw=8 C=0.3 elapsed=1.4s
+2026-11-17T19:55:55 [grid 13/48] END K=0.3 sw=8 C=0.3 trades=24 sharpe=3.798 took=0.1s
+2026-11-17T19:55:55 [grid 14/48] START K=0.3 sw=8 C=0.4 elapsed=1.5s
+2026-11-17T19:55:55 [grid 14/48] END K=0.3 sw=8 C=0.4 trades=22 sharpe=5.446 took=0.1s
+2026-11-17T19:55:55 [grid 15/48] START K=0.3 sw=8 C=0.5 elapsed=1.6s
+2026-11-17T19:55:55 [grid 15/48] END K=0.3 sw=8 C=0.5 trades=21 sharpe=6.510 took=0.1s
+2026-11-17T19:55:55 [grid 16/48] START K=0.3 sw=12 C=0.3 elapsed=1.7s
+2026-11-17T19:55:55 [grid 16/48] END K=0.3 sw=12 C=0.3 trades=22 sharpe=5.009 took=0.1s
+2026-11-17T19:55:55 [grid 17/48] START K=0.3 sw=12 C=0.4 elapsed=1.9s
+2026-11-17T19:55:55 [grid 17/48] END K=0.3 sw=12 C=0.4 trades=21 sharpe=6.037 took=0.1s
+2026-11-17T19:55:55 [grid 18/48] START K=0.3 sw=12 C=0.5 elapsed=2.0s
+2026-11-17T19:55:55 [grid 18/48] END K=0.3 sw=12 C=0.5 trades=21 sharpe=6.135 took=0.1s
+2026-11-17T19:55:55 [grid 19/48] START K=0.3 sw=16 C=0.3 elapsed=2.1s
+2026-11-17T19:55:55 [grid 19/48] END K=0.3 sw=16 C=0.3 trades=18 sharpe=12.403 took=0.1s
+2026-11-17T19:55:55 [grid 20/48] START K=0.3 sw=16 C=0.4 elapsed=2.2s
+2026-11-17T19:55:56 [grid 20/48] END K=0.3 sw=16 C=0.4 trades=18 sharpe=12.403 took=0.1s
+2026-11-17T19:55:56 [grid 21/48] START K=0.3 sw=16 C=0.5 elapsed=2.3s
+2026-11-17T19:55:56 [grid 21/48] END K=0.3 sw=16 C=0.5 trades=18 sharpe=12.121 took=0.1s
+2026-11-17T19:55:56 [grid 22/48] START K=0.3 sw=20 C=0.3 elapsed=2.4s
+2026-11-17T19:55:56 [grid 22/48] END K=0.3 sw=20 C=0.3 trades=19 sharpe=4.731 took=0.1s
+2026-11-17T19:55:56 [grid 23/48] START K=0.3 sw=20 C=0.4 elapsed=2.5s
+2026-11-17T19:55:56 [grid 23/48] END K=0.3 sw=20 C=0.4 trades=19 sharpe=4.731 took=0.1s
+2026-11-17T19:55:56 [grid 24/48] START K=0.3 sw=20 C=0.5 elapsed=2.6s
+2026-11-17T19:55:56 [grid 24/48] END K=0.3 sw=20 C=0.5 trades=19 sharpe=4.853 took=0.1s
+2026-11-17T19:55:56 [grid 25/48] START K=0.4 sw=8 C=0.3 elapsed=2.7s
+2026-11-17T19:55:56 [grid 25/48] END K=0.4 sw=8 C=0.3 trades=23 sharpe=2.519 took=0.1s
+2026-11-17T19:55:56 [grid 26/48] START K=0.4 sw=8 C=0.4 elapsed=2.8s
+2026-11-17T19:55:56 [grid 26/48] END K=0.4 sw=8 C=0.4 trades=21 sharpe=4.367 took=0.1s
+2026-11-17T19:55:56 [grid 27/48] START K=0.4 sw=8 C=0.5 elapsed=3.0s
+2026-11-17T19:55:56 [grid 27/48] END K=0.4 sw=8 C=0.5 trades=20 sharpe=5.572 took=0.1s
+2026-11-17T19:55:56 [grid 28/48] START K=0.4 sw=12 C=0.3 elapsed=3.1s
+2026-11-17T19:55:56 [grid 28/48] END K=0.4 sw=12 C=0.3 trades=22 sharpe=3.636 took=0.1s
+2026-11-17T19:55:56 [grid 29/48] START K=0.4 sw=12 C=0.4 elapsed=3.2s
+2026-11-17T19:55:57 [grid 29/48] END K=0.4 sw=12 C=0.4 trades=21 sharpe=4.488 took=0.1s
+2026-11-17T19:55:57 [grid 30/48] START K=0.4 sw=12 C=0.5 elapsed=3.3s
+2026-11-17T19:55:57 [grid 30/48] END K=0.4 sw=12 C=0.5 trades=21 sharpe=4.620 took=0.1s
+2026-11-17T19:55:57 [grid 31/48] START K=0.4 sw=16 C=0.3 elapsed=3.4s
+2026-11-17T19:55:57 [grid 31/48] END K=0.4 sw=16 C=0.3 trades=18 sharpe=12.403 took=0.1s
+2026-11-17T19:55:57 [grid 32/48] START K=0.4 sw=16 C=0.4 elapsed=3.5s
+2026-11-17T19:55:57 [grid 32/48] END K=0.4 sw=16 C=0.4 trades=18 sharpe=12.403 took=0.1s
+2026-11-17T19:55:57 [grid 33/48] START K=0.4 sw=16 C=0.5 elapsed=3.6s
+2026-11-17T19:55:57 [grid 33/48] END K=0.4 sw=16 C=0.5 trades=18 sharpe=12.121 took=0.1s
+2026-11-17T19:55:57 [grid 34/48] START K=0.4 sw=20 C=0.3 elapsed=3.8s
+2026-11-17T19:55:57 [grid 34/48] END K=0.4 sw=20 C=0.3 trades=19 sharpe=4.731 took=0.1s
+2026-11-17T19:55:57 [grid 35/48] START K=0.4 sw=20 C=0.4 elapsed=3.9s
+2026-11-17T19:55:57 [grid 35/48] END K=0.4 sw=20 C=0.4 trades=19 sharpe=4.731 took=0.1s
+2026-11-17T19:55:57 [grid 36/48] START K=0.4 sw=20 C=0.5 elapsed=4.0s
+2026-11-17T19:55:57 [grid 36/48] END K=0.4 sw=20 C=0.5 trades=19 sharpe=4.853 took=0.1s
+2026-11-17T19:55:57 [grid 37/48] START K=0.5 sw=8 C=0.3 elapsed=4.1s
+2026-11-17T19:55:57 [grid 37/48] END K=0.5 sw=8 C=0.3 trades=23 sharpe=2.519 took=0.1s
+2026-11-17T19:55:57 [grid 38/48] START K=0.5 sw=8 C=0.4 elapsed=4.2s
+2026-11-17T19:55:58 [grid 38/48] END K=0.5 sw=8 C=0.4 trades=21 sharpe=4.367 took=0.1s
+2026-11-17T19:55:58 [grid 39/48] START K=0.5 sw=8 C=0.5 elapsed=4.3s
+2026-11-17T19:55:58 [grid 39/48] END K=0.5 sw=8 C=0.5 trades=20 sharpe=5.572 took=0.1s
+2026-11-17T19:55:58 [grid 40/48] START K=0.5 sw=12 C=0.3 elapsed=4.4s
+2026-11-17T19:55:58 [grid 40/48] END K=0.5 sw=12 C=0.3 trades=22 sharpe=2.159 took=0.1s
+2026-11-17T19:55:58 [grid 41/48] START K=0.5 sw=12 C=0.4 elapsed=4.6s
+2026-11-17T19:55:58 [grid 41/48] END K=0.5 sw=12 C=0.4 trades=21 sharpe=3.139 took=0.1s
+2026-11-17T19:55:58 [grid 42/48] START K=0.5 sw=12 C=0.5 elapsed=4.7s
+2026-11-17T19:55:58 [grid 42/48] END K=0.5 sw=12 C=0.5 trades=21 sharpe=3.310 took=0.1s
+2026-11-17T19:55:58 [grid 43/48] START K=0.5 sw=16 C=0.3 elapsed=4.8s
+2026-11-17T19:55:58 [grid 43/48] END K=0.5 sw=16 C=0.3 trades=18 sharpe=12.403 took=0.1s
+2026-11-17T19:55:58 [grid 44/48] START K=0.5 sw=16 C=0.4 elapsed=4.9s
+2026-11-17T19:55:58 [grid 44/48] END K=0.5 sw=16 C=0.4 trades=18 sharpe=12.403 took=0.1s
+2026-11-17T19:55:58 [grid 45/48] START K=0.5 sw=16 C=0.5 elapsed=5.0s
+2026-11-17T19:55:58 [grid 45/48] END K=0.5 sw=16 C=0.5 trades=18 sharpe=12.121 took=0.1s
+2026-11-17T19:55:58 [grid 46/48] START K=0.5 sw=20 C=0.3 elapsed=5.1s
+2026-11-17T19:55:59 [grid 46/48] END K=0.5 sw=20 C=0.3 trades=19 sharpe=4.946 took=0.1s
+2026-11-17T19:55:59 [grid 47/48] START K=0.5 sw=20 C=0.4 elapsed=5.2s
+2026-11-17T19:55:59 [grid 47/48] END K=0.5 sw=20 C=0.4 trades=19 sharpe=4.946 took=0.1s
+2026-11-17T19:55:59 [grid 48/48] START K=0.5 sw=20 C=0.5 elapsed=5.3s
+2026-11-17T19:55:59 [grid 48/48] END K=0.5 sw=20 C=0.5 trades=19 sharpe=5.069 took=0.1s
+2026-11-17T20:08:12 START grid total=48
+2026-11-17T20:08:12 [grid 1/48] START K=0.2 sw=8 C=0.3 elapsed=0.0s
+2026-11-17T20:08:13 [grid 1/48] END K=0.2 sw=8 C=0.3 trades=21 sharpe=0.887 took=0.1s
+2026-11-17T20:08:13 [grid 2/48] START K=0.2 sw=8 C=0.4 elapsed=0.1s
+2026-11-17T20:08:13 [grid 2/48] END K=0.2 sw=8 C=0.4 trades=21 sharpe=0.887 took=0.1s
+2026-11-17T20:08:13 [grid 3/48] START K=0.2 sw=8 C=0.5 elapsed=0.2s
+2026-11-17T20:08:13 [grid 3/48] END K=0.2 sw=8 C=0.5 trades=21 sharpe=1.199 took=0.1s
+2026-11-17T20:08:13 [grid 4/48] START K=0.2 sw=12 C=0.3 elapsed=0.4s
+2026-11-17T20:08:13 [grid 4/48] END K=0.2 sw=12 C=0.3 trades=19 sharpe=-0.211 took=0.1s
+2026-11-17T20:08:13 [grid 5/48] START K=0.2 sw=12 C=0.4 elapsed=0.5s
+2026-11-17T20:08:13 [grid 5/48] END K=0.2 sw=12 C=0.4 trades=19 sharpe=-0.211 took=0.1s
+2026-11-17T20:08:13 [grid 6/48] START K=0.2 sw=12 C=0.5 elapsed=0.6s
+2026-11-17T20:08:13 [grid 6/48] END K=0.2 sw=12 C=0.5 trades=19 sharpe=0.096 took=0.1s
+2026-11-17T20:08:13 [grid 7/48] START K=0.2 sw=16 C=0.3 elapsed=0.8s
+2026-11-17T20:08:13 [grid 7/48] END K=0.2 sw=16 C=0.3 trades=17 sharpe=-0.078 took=0.1s
+2026-11-17T20:08:13 [grid 8/48] START K=0.2 sw=16 C=0.4 elapsed=0.9s
+2026-11-17T20:08:13 [grid 8/48] END K=0.2 sw=16 C=0.4 trades=17 sharpe=-0.078 took=0.1s
+2026-11-17T20:08:13 [grid 9/48] START K=0.2 sw=16 C=0.5 elapsed=1.0s
+2026-11-17T20:08:14 [grid 9/48] END K=0.2 sw=16 C=0.5 trades=17 sharpe=0.307 took=0.1s
+2026-11-17T20:08:14 [grid 10/48] START K=0.2 sw=20 C=0.3 elapsed=1.1s
+2026-11-17T20:08:14 [grid 10/48] END K=0.2 sw=20 C=0.3 trades=17 sharpe=-1.522 took=0.1s
+2026-11-17T20:08:14 [grid 11/48] START K=0.2 sw=20 C=0.4 elapsed=1.2s
+2026-11-17T20:08:14 [grid 11/48] END K=0.2 sw=20 C=0.4 trades=16 sharpe=-0.779 took=0.1s
+2026-11-17T20:08:14 [grid 12/48] START K=0.2 sw=20 C=0.5 elapsed=1.3s
+2026-11-17T20:08:14 [grid 12/48] END K=0.2 sw=20 C=0.5 trades=16 sharpe=-0.387 took=0.1s
+2026-11-17T20:08:14 [grid 13/48] START K=0.3 sw=8 C=0.3 elapsed=1.5s
+2026-11-17T20:08:14 [grid 13/48] END K=0.3 sw=8 C=0.3 trades=21 sharpe=1.039 took=0.1s
+2026-11-17T20:08:14 [grid 14/48] START K=0.3 sw=8 C=0.4 elapsed=1.6s
+2026-11-17T20:08:14 [grid 14/48] END K=0.3 sw=8 C=0.4 trades=21 sharpe=1.039 took=0.1s
+2026-11-17T20:08:14 [grid 15/48] START K=0.3 sw=8 C=0.5 elapsed=1.7s
+2026-11-17T20:08:14 [grid 15/48] END K=0.3 sw=8 C=0.5 trades=21 sharpe=1.358 took=0.1s
+2026-11-17T20:08:14 [grid 16/48] START K=0.3 sw=12 C=0.3 elapsed=1.9s
+2026-11-17T20:08:14 [grid 16/48] END K=0.3 sw=12 C=0.3 trades=19 sharpe=0.074 took=0.1s
+2026-11-17T20:08:14 [grid 17/48] START K=0.3 sw=12 C=0.4 elapsed=2.0s
+2026-11-17T20:08:15 [grid 17/48] END K=0.3 sw=12 C=0.4 trades=19 sharpe=0.074 took=0.1s
+2026-11-17T20:08:15 [grid 18/48] START K=0.3 sw=12 C=0.5 elapsed=2.1s
+2026-11-17T20:08:15 [grid 18/48] END K=0.3 sw=12 C=0.5 trades=19 sharpe=0.397 took=0.1s
+2026-11-17T20:08:15 [grid 19/48] START K=0.3 sw=16 C=0.3 elapsed=2.2s
+2026-11-17T20:08:15 [grid 19/48] END K=0.3 sw=16 C=0.3 trades=17 sharpe=-0.078 took=0.1s
+2026-11-17T20:08:15 [grid 20/48] START K=0.3 sw=16 C=0.4 elapsed=2.4s
+2026-11-17T20:08:15 [grid 20/48] END K=0.3 sw=16 C=0.4 trades=17 sharpe=-0.078 took=0.1s
+2026-11-17T20:08:15 [grid 21/48] START K=0.3 sw=16 C=0.5 elapsed=2.5s
+2026-11-17T20:08:15 [grid 21/48] END K=0.3 sw=16 C=0.5 trades=17 sharpe=0.307 took=0.1s
+2026-11-17T20:08:15 [grid 22/48] START K=0.3 sw=20 C=0.3 elapsed=2.6s
+2026-11-17T20:08:15 [grid 22/48] END K=0.3 sw=20 C=0.3 trades=17 sharpe=-1.522 took=0.1s
+2026-11-17T20:08:15 [grid 23/48] START K=0.3 sw=20 C=0.4 elapsed=2.7s
+2026-11-17T20:08:15 [grid 23/48] END K=0.3 sw=20 C=0.4 trades=16 sharpe=-0.779 took=0.1s
+2026-11-17T20:08:15 [grid 24/48] START K=0.3 sw=20 C=0.5 elapsed=2.9s
+2026-11-17T20:08:15 [grid 24/48] END K=0.3 sw=20 C=0.5 trades=16 sharpe=-0.387 took=0.1s
+2026-11-17T20:08:15 [grid 25/48] START K=0.4 sw=8 C=0.3 elapsed=3.0s
+2026-11-17T20:08:16 [grid 25/48] END K=0.4 sw=8 C=0.3 trades=21 sharpe=1.039 took=0.1s
+2026-11-17T20:08:16 [grid 26/48] START K=0.4 sw=8 C=0.4 elapsed=3.1s
+2026-11-17T20:08:16 [grid 26/48] END K=0.4 sw=8 C=0.4 trades=21 sharpe=1.039 took=0.1s
+2026-11-17T20:08:16 [grid 27/48] START K=0.4 sw=8 C=0.5 elapsed=3.2s
+2026-11-17T20:08:16 [grid 27/48] END K=0.4 sw=8 C=0.5 trades=21 sharpe=1.358 took=0.1s
+2026-11-17T20:08:16 [grid 28/48] START K=0.4 sw=12 C=0.3 elapsed=3.4s
+2026-11-17T20:08:16 [grid 28/48] END K=0.4 sw=12 C=0.3 trades=19 sharpe=0.074 took=0.1s
+2026-11-17T20:08:16 [grid 29/48] START K=0.4 sw=12 C=0.4 elapsed=3.5s
+2026-11-17T20:08:16 [grid 29/48] END K=0.4 sw=12 C=0.4 trades=19 sharpe=0.074 took=0.1s
+2026-11-17T20:08:16 [grid 30/48] START K=0.4 sw=12 C=0.5 elapsed=3.6s
+2026-11-17T20:08:16 [grid 30/48] END K=0.4 sw=12 C=0.5 trades=19 sharpe=0.397 took=0.1s
+2026-11-17T20:08:16 [grid 31/48] START K=0.4 sw=16 C=0.3 elapsed=3.7s
+2026-11-17T20:08:16 [grid 31/48] END K=0.4 sw=16 C=0.3 trades=17 sharpe=-0.078 took=0.1s
+2026-11-17T20:08:16 [grid 32/48] START K=0.4 sw=16 C=0.4 elapsed=3.9s
+2026-11-17T20:08:16 [grid 32/48] END K=0.4 sw=16 C=0.4 trades=17 sharpe=-0.078 took=0.1s
+2026-11-17T20:08:16 [grid 33/48] START K=0.4 sw=16 C=0.5 elapsed=4.0s
+2026-11-17T20:08:17 [grid 33/48] END K=0.4 sw=16 C=0.5 trades=17 sharpe=0.307 took=0.1s
+2026-11-17T20:08:17 [grid 34/48] START K=0.4 sw=20 C=0.3 elapsed=4.1s
+2026-11-17T20:08:17 [grid 34/48] END K=0.4 sw=20 C=0.3 trades=17 sharpe=-1.522 took=0.1s
+2026-11-17T20:08:17 [grid 35/48] START K=0.4 sw=20 C=0.4 elapsed=4.2s
+2026-11-17T20:08:17 [grid 35/48] END K=0.4 sw=20 C=0.4 trades=16 sharpe=-0.779 took=0.1s
+2026-11-17T20:08:17 [grid 36/48] START K=0.4 sw=20 C=0.5 elapsed=4.3s
+2026-11-17T20:08:17 [grid 36/48] END K=0.4 sw=20 C=0.5 trades=16 sharpe=-0.387 took=0.1s
+2026-11-17T20:08:17 [grid 37/48] START K=0.5 sw=8 C=0.3 elapsed=4.5s
+2026-11-17T20:08:17 [grid 37/48] END K=0.5 sw=8 C=0.3 trades=21 sharpe=1.039 took=0.1s
+2026-11-17T20:08:17 [grid 38/48] START K=0.5 sw=8 C=0.4 elapsed=4.6s
+2026-11-17T20:08:17 [grid 38/48] END K=0.5 sw=8 C=0.4 trades=21 sharpe=1.039 took=0.1s
+2026-11-17T20:08:17 [grid 39/48] START K=0.5 sw=8 C=0.5 elapsed=4.7s
+2026-11-17T20:08:17 [grid 39/48] END K=0.5 sw=8 C=0.5 trades=21 sharpe=1.358 took=0.1s
+2026-11-17T20:08:17 [grid 40/48] START K=0.5 sw=12 C=0.3 elapsed=4.8s
+2026-11-17T20:08:17 [grid 40/48] END K=0.5 sw=12 C=0.3 trades=20 sharpe=0.803 took=0.1s
+2026-11-17T20:08:17 [grid 41/48] START K=0.5 sw=12 C=0.4 elapsed=5.0s
+2026-11-17T20:08:18 [grid 41/48] END K=0.5 sw=12 C=0.4 trades=20 sharpe=0.803 took=0.1s
+2026-11-17T20:08:18 [grid 42/48] START K=0.5 sw=12 C=0.5 elapsed=5.1s
+2026-11-17T20:08:18 [grid 42/48] END K=0.5 sw=12 C=0.5 trades=20 sharpe=1.131 took=0.1s
+2026-11-17T20:08:18 [grid 43/48] START K=0.5 sw=16 C=0.3 elapsed=5.2s
+2026-11-17T20:08:18 [grid 43/48] END K=0.5 sw=16 C=0.3 trades=17 sharpe=-0.078 took=0.1s
+2026-11-17T20:08:18 [grid 44/48] START K=0.5 sw=16 C=0.4 elapsed=5.3s
+2026-11-17T20:08:18 [grid 44/48] END K=0.5 sw=16 C=0.4 trades=17 sharpe=-0.078 took=0.1s
+2026-11-17T20:08:18 [grid 45/48] START K=0.5 sw=16 C=0.5 elapsed=5.5s
+2026-11-17T20:08:18 [grid 45/48] END K=0.5 sw=16 C=0.5 trades=17 sharpe=0.307 took=0.1s
+2026-11-17T20:08:18 [grid 46/48] START K=0.5 sw=20 C=0.3 elapsed=5.6s
+2026-11-17T20:08:18 [grid 46/48] END K=0.5 sw=20 C=0.3 trades=17 sharpe=-1.522 took=0.1s
+2026-11-17T20:08:18 [grid 47/48] START K=0.5 sw=20 C=0.4 elapsed=5.7s
+2026-11-17T20:08:18 [grid 47/48] END K=0.5 sw=20 C=0.4 trades=16 sharpe=-0.779 took=0.1s
+2026-11-17T20:08:18 [grid 48/48] START K=0.5 sw=20 C=0.5 elapsed=5.8s
+2026-11-17T20:08:18 [grid 48/48] END K=0.5 sw=20 C=0.5 trades=16 sharpe=-0.387 took=0.1s
+2026-11-17T20:08:18 START grid total=48
+2026-11-17T20:08:18 [grid 1/48] START K=0.2 sw=8 C=0.3 elapsed=0.0s
+2026-11-17T20:08:19 [grid 1/48] END K=0.2 sw=8 C=0.3 trades=21 sharpe=0.887 took=0.1s
+2026-11-17T20:08:19 [grid 2/48] START K=0.2 sw=8 C=0.4 elapsed=0.1s
+2026-11-17T20:08:19 [grid 2/48] END K=0.2 sw=8 C=0.4 trades=21 sharpe=0.887 took=0.1s
+2026-11-17T20:08:19 [grid 3/48] START K=0.2 sw=8 C=0.5 elapsed=0.2s
+2026-11-17T20:08:19 [grid 3/48] END K=0.2 sw=8 C=0.5 trades=21 sharpe=1.199 took=0.1s
+2026-11-17T20:08:19 [grid 4/48] START K=0.2 sw=12 C=0.3 elapsed=0.4s
+2026-11-17T20:08:19 [grid 4/48] END K=0.2 sw=12 C=0.3 trades=19 sharpe=-0.211 took=0.1s
+2026-11-17T20:08:19 [grid 5/48] START K=0.2 sw=12 C=0.4 elapsed=0.5s
+2026-11-17T20:08:19 [grid 5/48] END K=0.2 sw=12 C=0.4 trades=19 sharpe=-0.211 took=0.1s
+2026-11-17T20:08:19 [grid 6/48] START K=0.2 sw=12 C=0.5 elapsed=0.6s
+2026-11-17T20:08:19 [grid 6/48] END K=0.2 sw=12 C=0.5 trades=19 sharpe=0.096 took=0.1s
+2026-11-17T20:08:19 [grid 7/48] START K=0.2 sw=16 C=0.3 elapsed=0.8s
+2026-11-17T20:08:19 [grid 7/48] END K=0.2 sw=16 C=0.3 trades=17 sharpe=-0.078 took=0.1s
+2026-11-17T20:08:19 [grid 8/48] START K=0.2 sw=16 C=0.4 elapsed=0.9s
+2026-11-17T20:08:19 [grid 8/48] END K=0.2 sw=16 C=0.4 trades=17 sharpe=-0.078 took=0.1s
+2026-11-17T20:08:19 [grid 9/48] START K=0.2 sw=16 C=0.5 elapsed=1.0s
+2026-11-17T20:08:20 [grid 9/48] END K=0.2 sw=16 C=0.5 trades=17 sharpe=0.307 took=0.1s
+2026-11-17T20:08:20 [grid 10/48] START K=0.2 sw=20 C=0.3 elapsed=1.1s
+2026-11-17T20:08:20 [grid 10/48] END K=0.2 sw=20 C=0.3 trades=17 sharpe=-1.522 took=0.1s
+2026-11-17T20:08:20 [grid 11/48] START K=0.2 sw=20 C=0.4 elapsed=1.2s
+2026-11-17T20:08:20 [grid 11/48] END K=0.2 sw=20 C=0.4 trades=16 sharpe=-0.779 took=0.1s
+2026-11-17T20:08:20 [grid 12/48] START K=0.2 sw=20 C=0.5 elapsed=1.3s
+2026-11-17T20:08:20 [grid 12/48] END K=0.2 sw=20 C=0.5 trades=16 sharpe=-0.387 took=0.1s
+2026-11-17T20:08:20 [grid 13/48] START K=0.3 sw=8 C=0.3 elapsed=1.4s
+2026-11-17T20:08:20 [grid 13/48] END K=0.3 sw=8 C=0.3 trades=21 sharpe=1.039 took=0.1s
+2026-11-17T20:08:20 [grid 14/48] START K=0.3 sw=8 C=0.4 elapsed=1.6s
+2026-11-17T20:08:20 [grid 14/48] END K=0.3 sw=8 C=0.4 trades=21 sharpe=1.039 took=0.1s
+2026-11-17T20:08:20 [grid 15/48] START K=0.3 sw=8 C=0.5 elapsed=1.7s
+2026-11-17T20:08:20 [grid 15/48] END K=0.3 sw=8 C=0.5 trades=21 sharpe=1.358 took=0.1s
+2026-11-17T20:08:20 [grid 16/48] START K=0.3 sw=12 C=0.3 elapsed=1.8s
+2026-11-17T20:08:20 [grid 16/48] END K=0.3 sw=12 C=0.3 trades=19 sharpe=0.074 took=0.1s
+2026-11-17T20:08:20 [grid 17/48] START K=0.3 sw=12 C=0.4 elapsed=1.9s
+2026-11-17T20:08:20 [grid 17/48] END K=0.3 sw=12 C=0.4 trades=19 sharpe=0.074 took=0.1s
+2026-11-17T20:08:20 [grid 18/48] START K=0.3 sw=12 C=0.5 elapsed=2.0s
+2026-11-17T20:08:21 [grid 18/48] END K=0.3 sw=12 C=0.5 trades=19 sharpe=0.397 took=0.1s
+2026-11-17T20:08:21 [grid 19/48] START K=0.3 sw=16 C=0.3 elapsed=2.2s
+2026-11-17T20:08:21 [grid 19/48] END K=0.3 sw=16 C=0.3 trades=17 sharpe=-0.078 took=0.1s
+2026-11-17T20:08:21 [grid 20/48] START K=0.3 sw=16 C=0.4 elapsed=2.3s
+2026-11-17T20:08:21 [grid 20/48] END K=0.3 sw=16 C=0.4 trades=17 sharpe=-0.078 took=0.1s
+2026-11-17T20:08:21 [grid 21/48] START K=0.3 sw=16 C=0.5 elapsed=2.4s
+2026-11-17T20:08:21 [grid 21/48] END K=0.3 sw=16 C=0.5 trades=17 sharpe=0.307 took=0.1s
+2026-11-17T20:08:21 [grid 22/48] START K=0.3 sw=20 C=0.3 elapsed=2.5s
+2026-11-17T20:08:21 [grid 22/48] END K=0.3 sw=20 C=0.3 trades=17 sharpe=-1.522 took=0.1s
+2026-11-17T20:08:21 [grid 23/48] START K=0.3 sw=20 C=0.4 elapsed=2.6s
+2026-11-17T20:08:21 [grid 23/48] END K=0.3 sw=20 C=0.4 trades=16 sharpe=-0.779 took=0.1s
+2026-11-17T20:08:21 [grid 24/48] START K=0.3 sw=20 C=0.5 elapsed=2.7s
+2026-11-17T20:08:21 [grid 24/48] END K=0.3 sw=20 C=0.5 trades=16 sharpe=-0.387 took=0.1s
+2026-11-17T20:08:21 [grid 25/48] START K=0.4 sw=8 C=0.3 elapsed=2.9s
+2026-11-17T20:08:21 [grid 25/48] END K=0.4 sw=8 C=0.3 trades=21 sharpe=1.039 took=0.1s
+2026-11-17T20:08:21 [grid 26/48] START K=0.4 sw=8 C=0.4 elapsed=3.0s
+2026-11-17T20:08:22 [grid 26/48] END K=0.4 sw=8 C=0.4 trades=21 sharpe=1.039 took=0.1s
+2026-11-17T20:08:22 [grid 27/48] START K=0.4 sw=8 C=0.5 elapsed=3.1s
+2026-11-17T20:08:22 [grid 27/48] END K=0.4 sw=8 C=0.5 trades=21 sharpe=1.358 took=0.1s
+2026-11-17T20:08:22 [grid 28/48] START K=0.4 sw=12 C=0.3 elapsed=3.2s
+2026-11-17T20:08:22 [grid 28/48] END K=0.4 sw=12 C=0.3 trades=19 sharpe=0.074 took=0.1s
+2026-11-17T20:08:22 [grid 29/48] START K=0.4 sw=12 C=0.4 elapsed=3.3s
+2026-11-17T20:08:22 [grid 29/48] END K=0.4 sw=12 C=0.4 trades=19 sharpe=0.074 took=0.1s
+2026-11-17T20:08:22 [grid 30/48] START K=0.4 sw=12 C=0.5 elapsed=3.5s
+2026-11-17T20:08:22 [grid 30/48] END K=0.4 sw=12 C=0.5 trades=19 sharpe=0.397 took=0.1s
+2026-11-17T20:08:22 [grid 31/48] START K=0.4 sw=16 C=0.3 elapsed=3.6s
+2026-11-17T20:08:22 [grid 31/48] END K=0.4 sw=16 C=0.3 trades=17 sharpe=-0.078 took=0.1s
+2026-11-17T20:08:22 [grid 32/48] START K=0.4 sw=16 C=0.4 elapsed=3.7s
+2026-11-17T20:08:22 [grid 32/48] END K=0.4 sw=16 C=0.4 trades=17 sharpe=-0.078 took=0.1s
+2026-11-17T20:08:22 [grid 33/48] START K=0.4 sw=16 C=0.5 elapsed=3.8s
+2026-11-17T20:08:22 [grid 33/48] END K=0.4 sw=16 C=0.5 trades=17 sharpe=0.307 took=0.1s
+2026-11-17T20:08:22 [grid 34/48] START K=0.4 sw=20 C=0.3 elapsed=3.9s
+2026-11-17T20:08:22 [grid 34/48] END K=0.4 sw=20 C=0.3 trades=17 sharpe=-1.522 took=0.1s
+2026-11-17T20:08:22 [grid 35/48] START K=0.4 sw=20 C=0.4 elapsed=4.0s
+2026-11-17T20:08:23 [grid 35/48] END K=0.4 sw=20 C=0.4 trades=16 sharpe=-0.779 took=0.1s
+2026-11-17T20:08:23 [grid 36/48] START K=0.4 sw=20 C=0.5 elapsed=4.1s
+2026-11-17T20:08:23 [grid 36/48] END K=0.4 sw=20 C=0.5 trades=16 sharpe=-0.387 took=0.4s
+2026-11-17T20:08:23 [grid 37/48] START K=0.5 sw=8 C=0.3 elapsed=4.5s
+2026-11-17T20:08:24 [grid 37/48] END K=0.5 sw=8 C=0.3 trades=21 sharpe=1.039 took=0.7s
+2026-11-17T20:08:24 [grid 38/48] START K=0.5 sw=8 C=0.4 elapsed=5.3s
+2026-11-17T20:08:24 [grid 38/48] END K=0.5 sw=8 C=0.4 trades=21 sharpe=1.039 took=0.6s
+2026-11-17T20:08:24 [grid 39/48] START K=0.5 sw=8 C=0.5 elapsed=5.9s
+2026-11-17T20:08:24 [grid 39/48] END K=0.5 sw=8 C=0.5 trades=21 sharpe=1.358 took=0.1s
+2026-11-17T20:08:24 [grid 40/48] START K=0.5 sw=12 C=0.3 elapsed=6.0s
+2026-11-17T20:08:25 [grid 40/48] END K=0.5 sw=12 C=0.3 trades=20 sharpe=0.803 took=0.1s
+2026-11-17T20:08:25 [grid 41/48] START K=0.5 sw=12 C=0.4 elapsed=6.1s
+2026-11-17T20:08:25 [grid 41/48] END K=0.5 sw=12 C=0.4 trades=20 sharpe=0.803 took=0.1s
+2026-11-17T20:08:25 [grid 42/48] START K=0.5 sw=12 C=0.5 elapsed=6.2s
+2026-11-17T20:08:25 [grid 42/48] END K=0.5 sw=12 C=0.5 trades=20 sharpe=1.131 took=0.1s
+2026-11-17T20:08:25 [grid 43/48] START K=0.5 sw=16 C=0.3 elapsed=6.3s
+2026-11-17T20:08:25 [grid 43/48] END K=0.5 sw=16 C=0.3 trades=17 sharpe=-0.078 took=0.1s
+2026-11-17T20:08:25 [grid 44/48] START K=0.5 sw=16 C=0.4 elapsed=6.5s
+2026-11-17T20:08:25 [grid 44/48] END K=0.5 sw=16 C=0.4 trades=17 sharpe=-0.078 took=0.1s
+2026-11-17T20:08:25 [grid 45/48] START K=0.5 sw=16 C=0.5 elapsed=6.6s
+2026-11-17T20:08:25 [grid 45/48] END K=0.5 sw=16 C=0.5 trades=17 sharpe=0.307 took=0.1s
+2026-11-17T20:08:25 [grid 46/48] START K=0.5 sw=20 C=0.3 elapsed=6.7s
+2026-11-17T20:08:25 [grid 46/48] END K=0.5 sw=20 C=0.3 trades=17 sharpe=-1.522 took=0.1s
+2026-11-17T20:08:25 [grid 47/48] START K=0.5 sw=20 C=0.4 elapsed=6.8s
+2026-11-17T20:08:25 [grid 47/48] END K=0.5 sw=20 C=0.4 trades=16 sharpe=-0.779 took=0.1s
+2026-11-17T20:08:25 [grid 48/48] START K=0.5 sw=20 C=0.5 elapsed=6.9s
+2026-11-17T20:08:25 [grid 48/48] END K=0.5 sw=20 C=0.5 trades=16 sharpe=-0.387 took=0.1s
+2026-11-17T20:11:08 START grid total=48
+2026-11-17T20:11:08 [grid 1/48] START K=0.2 sw=8 C=0.3 elapsed=0.0s
+2026-11-17T20:11:08 [grid 1/48] END K=0.2 sw=8 C=0.3 trades=20 sharpe=1.721 took=0.1s
+2026-11-17T20:11:08 [grid 2/48] START K=0.2 sw=8 C=0.4 elapsed=0.1s
+2026-11-17T20:11:08 [grid 2/48] END K=0.2 sw=8 C=0.4 trades=20 sharpe=2.068 took=0.1s
+2026-11-17T20:11:08 [grid 3/48] START K=0.2 sw=8 C=0.5 elapsed=0.2s
+2026-11-17T20:11:08 [grid 3/48] END K=0.2 sw=8 C=0.5 trades=20 sharpe=2.068 took=0.1s
+2026-11-17T20:11:08 [grid 4/48] START K=0.2 sw=12 C=0.3 elapsed=0.4s
+2026-11-17T20:11:08 [grid 4/48] END K=0.2 sw=12 C=0.3 trades=19 sharpe=2.591 took=0.1s
+2026-11-17T20:11:08 [grid 5/48] START K=0.2 sw=12 C=0.4 elapsed=0.5s
+2026-11-17T20:11:08 [grid 5/48] END K=0.2 sw=12 C=0.4 trades=19 sharpe=2.926 took=0.1s
+2026-11-17T20:11:08 [grid 6/48] START K=0.2 sw=12 C=0.5 elapsed=0.6s
+2026-11-17T20:11:09 [grid 6/48] END K=0.2 sw=12 C=0.5 trades=19 sharpe=2.926 took=0.1s
+2026-11-17T20:11:09 [grid 7/48] START K=0.2 sw=16 C=0.3 elapsed=0.7s
+2026-11-17T20:11:09 [grid 7/48] END K=0.2 sw=16 C=0.3 trades=20 sharpe=0.911 took=0.1s
+2026-11-17T20:11:09 [grid 8/48] START K=0.2 sw=16 C=0.4 elapsed=0.8s
+2026-11-17T20:11:09 [grid 8/48] END K=0.2 sw=16 C=0.4 trades=20 sharpe=0.347 took=0.1s
+2026-11-17T20:11:09 [grid 9/48] START K=0.2 sw=16 C=0.5 elapsed=0.9s
+2026-11-17T20:11:09 [grid 9/48] END K=0.2 sw=16 C=0.5 trades=20 sharpe=0.347 took=0.1s
+2026-11-17T20:11:09 [grid 10/48] START K=0.2 sw=20 C=0.3 elapsed=1.0s
+2026-11-17T20:11:09 [grid 10/48] END K=0.2 sw=20 C=0.3 trades=17 sharpe=0.058 took=0.1s
+2026-11-17T20:11:09 [grid 11/48] START K=0.2 sw=20 C=0.4 elapsed=1.2s
+2026-11-17T20:11:09 [grid 11/48] END K=0.2 sw=20 C=0.4 trades=17 sharpe=0.058 took=0.1s
+2026-11-17T20:11:09 [grid 12/48] START K=0.2 sw=20 C=0.5 elapsed=1.3s
+2026-11-17T20:11:09 [grid 12/48] END K=0.2 sw=20 C=0.5 trades=17 sharpe=0.058 took=0.1s
+2026-11-17T20:11:09 [grid 13/48] START K=0.3 sw=8 C=0.3 elapsed=1.4s
+2026-11-17T20:11:09 [grid 13/48] END K=0.3 sw=8 C=0.3 trades=20 sharpe=1.721 took=0.1s
+2026-11-17T20:11:09 [grid 14/48] START K=0.3 sw=8 C=0.4 elapsed=1.5s
+2026-11-17T20:11:10 [grid 14/48] END K=0.3 sw=8 C=0.4 trades=20 sharpe=2.068 took=0.1s
+2026-11-17T20:11:10 [grid 15/48] START K=0.3 sw=8 C=0.5 elapsed=1.6s
+2026-11-17T20:11:10 [grid 15/48] END K=0.3 sw=8 C=0.5 trades=20 sharpe=2.068 took=0.1s
+2026-11-17T20:11:10 [grid 16/48] START K=0.3 sw=12 C=0.3 elapsed=1.7s
+2026-11-17T20:11:10 [grid 16/48] END K=0.3 sw=12 C=0.3 trades=19 sharpe=2.591 took=0.1s
+2026-11-17T20:11:10 [grid 17/48] START K=0.3 sw=12 C=0.4 elapsed=1.8s
+2026-11-17T20:11:10 [grid 17/48] END K=0.3 sw=12 C=0.4 trades=19 sharpe=2.926 took=0.1s
+2026-11-17T20:11:10 [grid 18/48] START K=0.3 sw=12 C=0.5 elapsed=2.0s
+2026-11-17T20:11:10 [grid 18/48] END K=0.3 sw=12 C=0.5 trades=19 sharpe=2.926 took=0.1s
+2026-11-17T20:11:10 [grid 19/48] START K=0.3 sw=16 C=0.3 elapsed=2.1s
+2026-11-17T20:11:10 [grid 19/48] END K=0.3 sw=16 C=0.3 trades=20 sharpe=0.911 took=0.1s
+2026-11-17T20:11:10 [grid 20/48] START K=0.3 sw=16 C=0.4 elapsed=2.2s
+2026-11-17T20:11:10 [grid 20/48] END K=0.3 sw=16 C=0.4 trades=20 sharpe=0.347 took=0.1s
+2026-11-17T20:11:10 [grid 21/48] START K=0.3 sw=16 C=0.5 elapsed=2.3s
+2026-11-17T20:11:10 [grid 21/48] END K=0.3 sw=16 C=0.5 trades=20 sharpe=0.347 took=0.1s
+2026-11-17T20:11:10 [grid 22/48] START K=0.3 sw=20 C=0.3 elapsed=2.4s
+2026-11-17T20:11:10 [grid 22/48] END K=0.3 sw=20 C=0.3 trades=17 sharpe=0.058 took=0.1s
+2026-11-17T20:11:10 [grid 23/48] START K=0.3 sw=20 C=0.4 elapsed=2.5s
+2026-11-17T20:11:11 [grid 23/48] END K=0.3 sw=20 C=0.4 trades=17 sharpe=0.058 took=0.1s
+2026-11-17T20:11:11 [grid 24/48] START K=0.3 sw=20 C=0.5 elapsed=2.6s
+2026-11-17T20:11:11 [grid 24/48] END K=0.3 sw=20 C=0.5 trades=17 sharpe=0.058 took=0.1s
+2026-11-17T20:11:11 [grid 25/48] START K=0.4 sw=8 C=0.3 elapsed=2.7s
+2026-11-17T20:11:11 [grid 25/48] END K=0.4 sw=8 C=0.3 trades=20 sharpe=1.721 took=0.1s
+2026-11-17T20:11:11 [grid 26/48] START K=0.4 sw=8 C=0.4 elapsed=2.8s
+2026-11-17T20:11:11 [grid 26/48] END K=0.4 sw=8 C=0.4 trades=20 sharpe=2.068 took=0.1s
+2026-11-17T20:11:11 [grid 27/48] START K=0.4 sw=8 C=0.5 elapsed=3.0s
+2026-11-17T20:11:11 [grid 27/48] END K=0.4 sw=8 C=0.5 trades=20 sharpe=2.068 took=0.1s
+2026-11-17T20:11:11 [grid 28/48] START K=0.4 sw=12 C=0.3 elapsed=3.1s
+2026-11-17T20:11:11 [grid 28/48] END K=0.4 sw=12 C=0.3 trades=19 sharpe=2.591 took=0.1s
+2026-11-17T20:11:11 [grid 29/48] START K=0.4 sw=12 C=0.4 elapsed=3.2s
+2026-11-17T20:11:11 [grid 29/48] END K=0.4 sw=12 C=0.4 trades=19 sharpe=2.926 took=0.1s
+2026-11-17T20:11:11 [grid 30/48] START K=0.4 sw=12 C=0.5 elapsed=3.3s
+2026-11-17T20:11:11 [grid 30/48] END K=0.4 sw=12 C=0.5 trades=19 sharpe=2.926 took=0.1s
+2026-11-17T20:11:11 [grid 31/48] START K=0.4 sw=16 C=0.3 elapsed=3.4s
+2026-11-17T20:11:11 [grid 31/48] END K=0.4 sw=16 C=0.3 trades=20 sharpe=0.911 took=0.1s
+2026-11-17T20:11:11 [grid 32/48] START K=0.4 sw=16 C=0.4 elapsed=3.5s
+2026-11-17T20:11:12 [grid 32/48] END K=0.4 sw=16 C=0.4 trades=20 sharpe=0.347 took=0.1s
+2026-11-17T20:11:12 [grid 33/48] START K=0.4 sw=16 C=0.5 elapsed=3.6s
+2026-11-17T20:11:12 [grid 33/48] END K=0.4 sw=16 C=0.5 trades=20 sharpe=0.347 took=0.1s
+2026-11-17T20:11:12 [grid 34/48] START K=0.4 sw=20 C=0.3 elapsed=3.7s
+2026-11-17T20:11:12 [grid 34/48] END K=0.4 sw=20 C=0.3 trades=17 sharpe=0.058 took=0.1s
+2026-11-17T20:11:12 [grid 35/48] START K=0.4 sw=20 C=0.4 elapsed=3.9s
+2026-11-17T20:11:12 [grid 35/48] END K=0.4 sw=20 C=0.4 trades=17 sharpe=0.058 took=0.1s
+2026-11-17T20:11:12 [grid 36/48] START K=0.4 sw=20 C=0.5 elapsed=4.0s
+2026-11-17T20:11:12 [grid 36/48] END K=0.4 sw=20 C=0.5 trades=17 sharpe=0.058 took=0.1s
+2026-11-17T20:11:12 [grid 37/48] START K=0.5 sw=8 C=0.3 elapsed=4.1s
+2026-11-17T20:11:12 [grid 37/48] END K=0.5 sw=8 C=0.3 trades=20 sharpe=2.264 took=0.1s
+2026-11-17T20:11:12 [grid 38/48] START K=0.5 sw=8 C=0.4 elapsed=4.2s
+2026-11-17T20:11:12 [grid 38/48] END K=0.5 sw=8 C=0.4 trades=20 sharpe=2.584 took=0.1s
+2026-11-17T20:11:12 [grid 39/48] START K=0.5 sw=8 C=0.5 elapsed=4.3s
+2026-11-17T20:11:12 [grid 39/48] END K=0.5 sw=8 C=0.5 trades=20 sharpe=2.584 took=0.1s
+2026-11-17T20:11:12 [grid 40/48] START K=0.5 sw=12 C=0.3 elapsed=4.4s
+2026-11-17T20:11:12 [grid 40/48] END K=0.5 sw=12 C=0.3 trades=19 sharpe=2.604 took=0.1s
+2026-11-17T20:11:12 [grid 41/48] START K=0.5 sw=12 C=0.4 elapsed=4.5s
+2026-11-17T20:11:13 [grid 41/48] END K=0.5 sw=12 C=0.4 trades=19 sharpe=2.939 took=0.1s
+2026-11-17T20:11:13 [grid 42/48] START K=0.5 sw=12 C=0.5 elapsed=4.6s
+2026-11-17T20:11:13 [grid 42/48] END K=0.5 sw=12 C=0.5 trades=19 sharpe=2.939 took=0.1s
+2026-11-17T20:11:13 [grid 43/48] START K=0.5 sw=16 C=0.3 elapsed=4.7s
+2026-11-17T20:11:13 [grid 43/48] END K=0.5 sw=16 C=0.3 trades=20 sharpe=0.911 took=0.1s
+2026-11-17T20:11:13 [grid 44/48] START K=0.5 sw=16 C=0.4 elapsed=4.9s
+2026-11-17T20:11:13 [grid 44/48] END K=0.5 sw=16 C=0.4 trades=20 sharpe=0.347 took=0.1s
+2026-11-17T20:11:13 [grid 45/48] START K=0.5 sw=16 C=0.5 elapsed=5.0s
+2026-11-17T20:11:13 [grid 45/48] END K=0.5 sw=16 C=0.5 trades=20 sharpe=0.347 took=0.1s
+2026-11-17T20:11:13 [grid 46/48] START K=0.5 sw=20 C=0.3 elapsed=5.1s
+2026-11-17T20:11:13 [grid 46/48] END K=0.5 sw=20 C=0.3 trades=17 sharpe=0.058 took=0.1s
+2026-11-17T20:11:13 [grid 47/48] START K=0.5 sw=20 C=0.4 elapsed=5.2s
+2026-11-17T20:11:13 [grid 47/48] END K=0.5 sw=20 C=0.4 trades=17 sharpe=0.058 took=0.1s
+2026-11-17T20:11:13 [grid 48/48] START K=0.5 sw=20 C=0.5 elapsed=5.3s
+2026-11-17T20:11:13 [grid 48/48] END K=0.5 sw=20 C=0.5 trades=17 sharpe=0.058 took=0.1s
+2026-11-17T20:11:13 START grid total=48
+2026-11-17T20:11:13 [grid 1/48] START K=0.2 sw=8 C=0.3 elapsed=0.0s
+2026-11-17T20:11:14 [grid 1/48] END K=0.2 sw=8 C=0.3 trades=20 sharpe=1.721 took=0.1s
+2026-11-17T20:11:14 [grid 2/48] START K=0.2 sw=8 C=0.4 elapsed=0.1s
+2026-11-17T20:11:14 [grid 2/48] END K=0.2 sw=8 C=0.4 trades=20 sharpe=2.068 took=0.1s
+2026-11-17T20:11:14 [grid 3/48] START K=0.2 sw=8 C=0.5 elapsed=0.2s
+2026-11-17T20:11:14 [grid 3/48] END K=0.2 sw=8 C=0.5 trades=20 sharpe=2.068 took=0.1s
+2026-11-17T20:11:14 [grid 4/48] START K=0.2 sw=12 C=0.3 elapsed=0.3s
+2026-11-17T20:11:14 [grid 4/48] END K=0.2 sw=12 C=0.3 trades=19 sharpe=2.591 took=0.1s
+2026-11-17T20:11:14 [grid 5/48] START K=0.2 sw=12 C=0.4 elapsed=0.5s
+2026-11-17T20:11:14 [grid 5/48] END K=0.2 sw=12 C=0.4 trades=19 sharpe=2.926 took=0.1s
+2026-11-17T20:11:14 [grid 6/48] START K=0.2 sw=12 C=0.5 elapsed=0.6s
+2026-11-17T20:11:14 [grid 6/48] END K=0.2 sw=12 C=0.5 trades=19 sharpe=2.926 took=0.1s
+2026-11-17T20:11:14 [grid 7/48] START K=0.2 sw=16 C=0.3 elapsed=0.7s
+2026-11-17T20:11:14 [grid 7/48] END K=0.2 sw=16 C=0.3 trades=20 sharpe=0.911 took=0.1s
+2026-11-17T20:11:14 [grid 8/48] START K=0.2 sw=16 C=0.4 elapsed=0.8s
+2026-11-17T20:11:14 [grid 8/48] END K=0.2 sw=16 C=0.4 trades=20 sharpe=0.347 took=0.1s
+2026-11-17T20:11:14 [grid 9/48] START K=0.2 sw=16 C=0.5 elapsed=0.9s
+2026-11-17T20:11:14 [grid 9/48] END K=0.2 sw=16 C=0.5 trades=20 sharpe=0.347 took=0.1s
+2026-11-17T20:11:14 [grid 10/48] START K=0.2 sw=20 C=0.3 elapsed=1.0s
+2026-11-17T20:11:15 [grid 10/48] END K=0.2 sw=20 C=0.3 trades=17 sharpe=0.058 took=0.1s
+2026-11-17T20:11:15 [grid 11/48] START K=0.2 sw=20 C=0.4 elapsed=1.1s
+2026-11-17T20:11:15 [grid 11/48] END K=0.2 sw=20 C=0.4 trades=17 sharpe=0.058 took=0.1s
+2026-11-17T20:11:15 [grid 12/48] START K=0.2 sw=20 C=0.5 elapsed=1.3s
+2026-11-17T20:11:15 [grid 12/48] END K=0.2 sw=20 C=0.5 trades=17 sharpe=0.058 took=0.1s
+2026-11-17T20:11:15 [grid 13/48] START K=0.3 sw=8 C=0.3 elapsed=1.4s
+2026-11-17T20:11:15 [grid 13/48] END K=0.3 sw=8 C=0.3 trades=20 sharpe=1.721 took=0.1s
+2026-11-17T20:11:15 [grid 14/48] START K=0.3 sw=8 C=0.4 elapsed=1.5s
+2026-11-17T20:11:15 [grid 14/48] END K=0.3 sw=8 C=0.4 trades=20 sharpe=2.068 took=0.1s
+2026-11-17T20:11:15 [grid 15/48] START K=0.3 sw=8 C=0.5 elapsed=1.6s
+2026-11-17T20:11:15 [grid 15/48] END K=0.3 sw=8 C=0.5 trades=20 sharpe=2.068 took=0.1s
+2026-11-17T20:11:15 [grid 16/48] START K=0.3 sw=12 C=0.3 elapsed=1.7s
+2026-11-17T20:11:15 [grid 16/48] END K=0.3 sw=12 C=0.3 trades=19 sharpe=2.591 took=0.1s
+2026-11-17T20:11:15 [grid 17/48] START K=0.3 sw=12 C=0.4 elapsed=1.8s
+2026-11-17T20:11:15 [grid 17/48] END K=0.3 sw=12 C=0.4 trades=19 sharpe=2.926 took=0.1s
+2026-11-17T20:11:15 [grid 18/48] START K=0.3 sw=12 C=0.5 elapsed=2.0s
+2026-11-17T20:11:15 [grid 18/48] END K=0.3 sw=12 C=0.5 trades=19 sharpe=2.926 took=0.1s
+2026-11-17T20:11:15 [grid 19/48] START K=0.3 sw=16 C=0.3 elapsed=2.1s
+2026-11-17T20:11:16 [grid 19/48] END K=0.3 sw=16 C=0.3 trades=20 sharpe=0.911 took=0.1s
+2026-11-17T20:11:16 [grid 20/48] START K=0.3 sw=16 C=0.4 elapsed=2.2s
+2026-11-17T20:11:16 [grid 20/48] END K=0.3 sw=16 C=0.4 trades=20 sharpe=0.347 took=0.1s
+2026-11-17T20:11:16 [grid 21/48] START K=0.3 sw=16 C=0.5 elapsed=2.3s
+2026-11-17T20:11:16 [grid 21/48] END K=0.3 sw=16 C=0.5 trades=20 sharpe=0.347 took=0.1s
+2026-11-17T20:11:16 [grid 22/48] START K=0.3 sw=20 C=0.3 elapsed=2.4s
+2026-11-17T20:11:16 [grid 22/48] END K=0.3 sw=20 C=0.3 trades=17 sharpe=0.058 took=0.1s
+2026-11-17T20:11:16 [grid 23/48] START K=0.3 sw=20 C=0.4 elapsed=2.5s
+2026-11-17T20:11:16 [grid 23/48] END K=0.3 sw=20 C=0.4 trades=17 sharpe=0.058 took=0.1s
+2026-11-17T20:11:16 [grid 24/48] START K=0.3 sw=20 C=0.5 elapsed=2.6s
+2026-11-17T20:11:16 [grid 24/48] END K=0.3 sw=20 C=0.5 trades=17 sharpe=0.058 took=0.1s
+2026-11-17T20:11:16 [grid 25/48] START K=0.4 sw=8 C=0.3 elapsed=2.7s
+2026-11-17T20:11:16 [grid 25/48] END K=0.4 sw=8 C=0.3 trades=20 sharpe=1.721 took=0.1s
+2026-11-17T20:11:16 [grid 26/48] START K=0.4 sw=8 C=0.4 elapsed=2.9s
+2026-11-17T20:11:16 [grid 26/48] END K=0.4 sw=8 C=0.4 trades=20 sharpe=2.068 took=0.1s
+2026-11-17T20:11:16 [grid 27/48] START K=0.4 sw=8 C=0.5 elapsed=3.0s
+2026-11-17T20:11:16 [grid 27/48] END K=0.4 sw=8 C=0.5 trades=20 sharpe=2.068 took=0.1s
+2026-11-17T20:11:16 [grid 28/48] START K=0.4 sw=12 C=0.3 elapsed=3.1s
+2026-11-17T20:11:17 [grid 28/48] END K=0.4 sw=12 C=0.3 trades=19 sharpe=2.591 took=0.1s
+2026-11-17T20:11:17 [grid 29/48] START K=0.4 sw=12 C=0.4 elapsed=3.2s
+2026-11-17T20:11:17 [grid 29/48] END K=0.4 sw=12 C=0.4 trades=19 sharpe=2.926 took=0.1s
+2026-11-17T20:11:17 [grid 30/48] START K=0.4 sw=12 C=0.5 elapsed=3.3s
+2026-11-17T20:11:17 [grid 30/48] END K=0.4 sw=12 C=0.5 trades=19 sharpe=2.926 took=0.1s
+2026-11-17T20:11:17 [grid 31/48] START K=0.4 sw=16 C=0.3 elapsed=3.4s
+2026-11-17T20:11:17 [grid 31/48] END K=0.4 sw=16 C=0.3 trades=20 sharpe=0.911 took=0.1s
+2026-11-17T20:11:17 [grid 32/48] START K=0.4 sw=16 C=0.4 elapsed=3.5s
+2026-11-17T20:11:17 [grid 32/48] END K=0.4 sw=16 C=0.4 trades=20 sharpe=0.347 took=0.1s
+2026-11-17T20:11:17 [grid 33/48] START K=0.4 sw=16 C=0.5 elapsed=3.6s
+2026-11-17T20:11:17 [grid 33/48] END K=0.4 sw=16 C=0.5 trades=20 sharpe=0.347 took=0.1s
+2026-11-17T20:11:17 [grid 34/48] START K=0.4 sw=20 C=0.3 elapsed=3.7s
+2026-11-17T20:11:17 [grid 34/48] END K=0.4 sw=20 C=0.3 trades=17 sharpe=0.058 took=0.1s
+2026-11-17T20:11:17 [grid 35/48] START K=0.4 sw=20 C=0.4 elapsed=3.9s
+2026-11-17T20:11:17 [grid 35/48] END K=0.4 sw=20 C=0.4 trades=17 sharpe=0.058 took=0.1s
+2026-11-17T20:11:17 [grid 36/48] START K=0.4 sw=20 C=0.5 elapsed=4.0s
+2026-11-17T20:11:17 [grid 36/48] END K=0.4 sw=20 C=0.5 trades=17 sharpe=0.058 took=0.1s
+2026-11-17T20:11:17 [grid 37/48] START K=0.5 sw=8 C=0.3 elapsed=4.1s
+2026-11-17T20:11:18 [grid 37/48] END K=0.5 sw=8 C=0.3 trades=20 sharpe=2.264 took=0.1s
+2026-11-17T20:11:18 [grid 38/48] START K=0.5 sw=8 C=0.4 elapsed=4.2s
+2026-11-17T20:11:18 [grid 38/48] END K=0.5 sw=8 C=0.4 trades=20 sharpe=2.584 took=0.1s
+2026-11-17T20:11:18 [grid 39/48] START K=0.5 sw=8 C=0.5 elapsed=4.3s
+2026-11-17T20:11:18 [grid 39/48] END K=0.5 sw=8 C=0.5 trades=20 sharpe=2.584 took=0.1s
+2026-11-17T20:11:18 [grid 40/48] START K=0.5 sw=12 C=0.3 elapsed=4.4s
+2026-11-17T20:11:18 [grid 40/48] END K=0.5 sw=12 C=0.3 trades=19 sharpe=2.604 took=0.1s
+2026-11-17T20:11:18 [grid 41/48] START K=0.5 sw=12 C=0.4 elapsed=4.5s
+2026-11-17T20:11:18 [grid 41/48] END K=0.5 sw=12 C=0.4 trades=19 sharpe=2.939 took=0.1s
+2026-11-17T20:11:18 [grid 42/48] START K=0.5 sw=12 C=0.5 elapsed=4.7s
+2026-11-17T20:11:18 [grid 42/48] END K=0.5 sw=12 C=0.5 trades=19 sharpe=2.939 took=0.1s
+2026-11-17T20:11:18 [grid 43/48] START K=0.5 sw=16 C=0.3 elapsed=4.8s
+2026-11-17T20:11:18 [grid 43/48] END K=0.5 sw=16 C=0.3 trades=20 sharpe=0.911 took=0.1s
+2026-11-17T20:11:18 [grid 44/48] START K=0.5 sw=16 C=0.4 elapsed=4.9s
+2026-11-17T20:11:18 [grid 44/48] END K=0.5 sw=16 C=0.4 trades=20 sharpe=0.347 took=0.1s
+2026-11-17T20:11:18 [grid 45/48] START K=0.5 sw=16 C=0.5 elapsed=5.0s
+2026-11-17T20:11:19 [grid 45/48] END K=0.5 sw=16 C=0.5 trades=20 sharpe=0.347 took=0.1s
+2026-11-17T20:11:19 [grid 46/48] START K=0.5 sw=20 C=0.3 elapsed=5.1s
+2026-11-17T20:11:19 [grid 46/48] END K=0.5 sw=20 C=0.3 trades=17 sharpe=0.058 took=0.1s
+2026-11-17T20:11:19 [grid 47/48] START K=0.5 sw=20 C=0.4 elapsed=5.2s
+2026-11-17T20:11:19 [grid 47/48] END K=0.5 sw=20 C=0.4 trades=17 sharpe=0.058 took=0.1s
+2026-11-17T20:11:19 [grid 48/48] START K=0.5 sw=20 C=0.5 elapsed=5.3s
+2026-11-17T20:11:19 [grid 48/48] END K=0.5 sw=20 C=0.5 trades=17 sharpe=0.058 took=0.1s
+2026-11-17T20:26:51 START grid total=48
+2026-11-17T20:26:51 [grid 1/48] START K=0.2 sw=8 C=0.3 elapsed=0.0s
+2026-11-17T20:26:51 [grid 1/48] END K=0.2 sw=8 C=0.3 trades=25 sharpe=-5.621 took=0.1s
+2026-11-17T20:26:51 [grid 2/48] START K=0.2 sw=8 C=0.4 elapsed=0.1s
+2026-11-17T20:26:51 [grid 2/48] END K=0.2 sw=8 C=0.4 trades=25 sharpe=-5.494 took=0.1s
+2026-11-17T20:26:51 [grid 3/48] START K=0.2 sw=8 C=0.5 elapsed=0.2s
+2026-11-17T20:26:51 [grid 3/48] END K=0.2 sw=8 C=0.5 trades=25 sharpe=-4.509 took=0.1s
+2026-11-17T20:26:51 [grid 4/48] START K=0.2 sw=12 C=0.3 elapsed=0.4s
+2026-11-17T20:26:51 [grid 4/48] END K=0.2 sw=12 C=0.3 trades=23 sharpe=-0.819 took=0.1s
+2026-11-17T20:26:51 [grid 5/48] START K=0.2 sw=12 C=0.4 elapsed=0.5s
+2026-11-17T20:26:51 [grid 5/48] END K=0.2 sw=12 C=0.4 trades=23 sharpe=-0.664 took=0.1s
+2026-11-17T20:26:51 [grid 6/48] START K=0.2 sw=12 C=0.5 elapsed=0.6s
+2026-11-17T20:26:52 [grid 6/48] END K=0.2 sw=12 C=0.5 trades=23 sharpe=-0.915 took=0.1s
+2026-11-17T20:26:52 [grid 7/48] START K=0.2 sw=16 C=0.3 elapsed=0.7s
+2026-11-17T20:26:52 [grid 7/48] END K=0.2 sw=16 C=0.3 trades=21 sharpe=1.647 took=0.1s
+2026-11-17T20:26:52 [grid 8/48] START K=0.2 sw=16 C=0.4 elapsed=0.8s
+2026-11-17T20:26:52 [grid 8/48] END K=0.2 sw=16 C=0.4 trades=21 sharpe=1.831 took=0.1s
+2026-11-17T20:26:52 [grid 9/48] START K=0.2 sw=16 C=0.5 elapsed=1.0s
+2026-11-17T20:26:52 [grid 9/48] END K=0.2 sw=16 C=0.5 trades=21 sharpe=1.822 took=0.1s
+2026-11-17T20:26:52 [grid 10/48] START K=0.2 sw=20 C=0.3 elapsed=1.1s
+2026-11-17T20:26:52 [grid 10/48] END K=0.2 sw=20 C=0.3 trades=21 sharpe=-0.750 took=0.1s
+2026-11-17T20:26:52 [grid 11/48] START K=0.2 sw=20 C=0.4 elapsed=1.2s
+2026-11-17T20:26:52 [grid 11/48] END K=0.2 sw=20 C=0.4 trades=20 sharpe=0.041 took=0.1s
+2026-11-17T20:26:52 [grid 12/48] START K=0.2 sw=20 C=0.5 elapsed=1.3s
+2026-11-17T20:26:52 [grid 12/48] END K=0.2 sw=20 C=0.5 trades=20 sharpe=0.317 took=0.1s
+2026-11-17T20:26:52 [grid 13/48] START K=0.3 sw=8 C=0.3 elapsed=1.5s
+2026-11-17T20:26:52 [grid 13/48] END K=0.3 sw=8 C=0.3 trades=25 sharpe=-5.621 took=0.1s
+2026-11-17T20:26:52 [grid 14/48] START K=0.3 sw=8 C=0.4 elapsed=1.6s
+2026-11-17T20:26:53 [grid 14/48] END K=0.3 sw=8 C=0.4 trades=25 sharpe=-5.494 took=0.1s
+2026-11-17T20:26:53 [grid 15/48] START K=0.3 sw=8 C=0.5 elapsed=1.7s
+2026-11-17T20:26:53 [grid 15/48] END K=0.3 sw=8 C=0.5 trades=25 sharpe=-4.509 took=0.1s
+2026-11-17T20:26:53 [grid 16/48] START K=0.3 sw=12 C=0.3 elapsed=1.8s
+2026-11-17T20:26:53 [grid 16/48] END K=0.3 sw=12 C=0.3 trades=23 sharpe=-0.819 took=0.1s
+2026-11-17T20:26:53 [grid 17/48] START K=0.3 sw=12 C=0.4 elapsed=2.0s
+2026-11-17T20:26:53 [grid 17/48] END K=0.3 sw=12 C=0.4 trades=23 sharpe=-0.664 took=0.1s
+2026-11-17T20:26:53 [grid 18/48] START K=0.3 sw=12 C=0.5 elapsed=2.1s
+2026-11-17T20:26:53 [grid 18/48] END K=0.3 sw=12 C=0.5 trades=23 sharpe=-0.915 took=0.1s
+2026-11-17T20:26:53 [grid 19/48] START K=0.3 sw=16 C=0.3 elapsed=2.2s
+2026-11-17T20:26:53 [grid 19/48] END K=0.3 sw=16 C=0.3 trades=21 sharpe=1.647 took=0.1s
+2026-11-17T20:26:53 [grid 20/48] START K=0.3 sw=16 C=0.4 elapsed=2.3s
+2026-11-17T20:26:53 [grid 20/48] END K=0.3 sw=16 C=0.4 trades=21 sharpe=1.831 took=0.1s
+2026-11-17T20:26:53 [grid 21/48] START K=0.3 sw=16 C=0.5 elapsed=2.4s
+2026-11-17T20:26:53 [grid 21/48] END K=0.3 sw=16 C=0.5 trades=21 sharpe=1.822 took=0.1s
+2026-11-17T20:26:53 [grid 22/48] START K=0.3 sw=20 C=0.3 elapsed=2.5s
+2026-11-17T20:26:54 [grid 22/48] END K=0.3 sw=20 C=0.3 trades=21 sharpe=-0.750 took=0.1s
+2026-11-17T20:26:54 [grid 23/48] START K=0.3 sw=20 C=0.4 elapsed=2.7s
+2026-11-17T20:26:54 [grid 23/48] END K=0.3 sw=20 C=0.4 trades=20 sharpe=0.041 took=0.1s
+2026-11-17T20:26:54 [grid 24/48] START K=0.3 sw=20 C=0.5 elapsed=2.8s
+2026-11-17T20:26:54 [grid 24/48] END K=0.3 sw=20 C=0.5 trades=20 sharpe=0.317 took=0.1s
+2026-11-17T20:26:54 [grid 25/48] START K=0.4 sw=8 C=0.3 elapsed=2.9s
+2026-11-17T20:26:54 [grid 25/48] END K=0.4 sw=8 C=0.3 trades=25 sharpe=-5.628 took=0.1s
+2026-11-17T20:26:54 [grid 26/48] START K=0.4 sw=8 C=0.4 elapsed=3.0s
+2026-11-17T20:26:54 [grid 26/48] END K=0.4 sw=8 C=0.4 trades=25 sharpe=-5.500 took=0.1s
+2026-11-17T20:26:54 [grid 27/48] START K=0.4 sw=8 C=0.5 elapsed=3.1s
+2026-11-17T20:26:54 [grid 27/48] END K=0.4 sw=8 C=0.5 trades=25 sharpe=-4.543 took=0.1s
+2026-11-17T20:26:54 [grid 28/48] START K=0.4 sw=12 C=0.3 elapsed=3.3s
+2026-11-17T20:26:54 [grid 28/48] END K=0.4 sw=12 C=0.3 trades=23 sharpe=-0.822 took=0.1s
+2026-11-17T20:26:54 [grid 29/48] START K=0.4 sw=12 C=0.4 elapsed=3.4s
+2026-11-17T20:26:54 [grid 29/48] END K=0.4 sw=12 C=0.4 trades=23 sharpe=-0.666 took=0.1s
+2026-11-17T20:26:54 [grid 30/48] START K=0.4 sw=12 C=0.5 elapsed=3.5s
+2026-11-17T20:26:54 [grid 30/48] END K=0.4 sw=12 C=0.5 trades=23 sharpe=-0.945 took=0.1s
+2026-11-17T20:26:54 [grid 31/48] START K=0.4 sw=16 C=0.3 elapsed=3.6s
+2026-11-17T20:26:55 [grid 31/48] END K=0.4 sw=16 C=0.3 trades=21 sharpe=1.644 took=0.1s
+2026-11-17T20:26:55 [grid 32/48] START K=0.4 sw=16 C=0.4 elapsed=3.7s
+2026-11-17T20:26:55 [grid 32/48] END K=0.4 sw=16 C=0.4 trades=21 sharpe=1.828 took=0.1s
+2026-11-17T20:26:55 [grid 33/48] START K=0.4 sw=16 C=0.5 elapsed=3.8s
+2026-11-17T20:26:55 [grid 33/48] END K=0.4 sw=16 C=0.5 trades=21 sharpe=1.796 took=0.1s
+2026-11-17T20:26:55 [grid 34/48] START K=0.4 sw=20 C=0.3 elapsed=4.0s
+2026-11-17T20:26:55 [grid 34/48] END K=0.4 sw=20 C=0.3 trades=21 sharpe=-0.781 took=0.1s
+2026-11-17T20:26:55 [grid 35/48] START K=0.4 sw=20 C=0.4 elapsed=4.1s
+2026-11-17T20:26:55 [grid 35/48] END K=0.4 sw=20 C=0.4 trades=20 sharpe=0.007 took=0.1s
+2026-11-17T20:26:55 [grid 36/48] START K=0.4 sw=20 C=0.5 elapsed=4.2s
+2026-11-17T20:26:55 [grid 36/48] END K=0.4 sw=20 C=0.5 trades=20 sharpe=0.282 took=0.1s
+2026-11-17T20:26:55 [grid 37/48] START K=0.5 sw=8 C=0.3 elapsed=4.3s
+2026-11-17T20:26:55 [grid 37/48] END K=0.5 sw=8 C=0.3 trades=24 sharpe=-5.142 took=0.1s
+2026-11-17T20:26:55 [grid 38/48] START K=0.5 sw=8 C=0.4 elapsed=4.4s
+2026-11-17T20:26:55 [grid 38/48] END K=0.5 sw=8 C=0.4 trades=24 sharpe=-5.007 took=0.1s
+2026-11-17T20:26:55 [grid 39/48] START K=0.5 sw=8 C=0.5 elapsed=4.5s
+2026-11-17T20:26:56 [grid 39/48] END K=0.5 sw=8 C=0.5 trades=24 sharpe=-4.012 took=0.1s
+2026-11-17T20:26:56 [grid 40/48] START K=0.5 sw=12 C=0.3 elapsed=4.7s
+2026-11-17T20:26:56 [grid 40/48] END K=0.5 sw=12 C=0.3 trades=23 sharpe=-0.822 took=0.1s
+2026-11-17T20:26:56 [grid 41/48] START K=0.5 sw=12 C=0.4 elapsed=4.8s
+2026-11-17T20:26:56 [grid 41/48] END K=0.5 sw=12 C=0.4 trades=23 sharpe=-0.666 took=0.1s
+2026-11-17T20:26:56 [grid 42/48] START K=0.5 sw=12 C=0.5 elapsed=4.9s
+2026-11-17T20:26:56 [grid 42/48] END K=0.5 sw=12 C=0.5 trades=23 sharpe=-0.945 took=0.1s
+2026-11-17T20:26:56 [grid 43/48] START K=0.5 sw=16 C=0.3 elapsed=5.0s
+2026-11-17T20:26:56 [grid 43/48] END K=0.5 sw=16 C=0.3 trades=21 sharpe=1.644 took=0.1s
+2026-11-17T20:26:56 [grid 44/48] START K=0.5 sw=16 C=0.4 elapsed=5.1s
+2026-11-17T20:26:56 [grid 44/48] END K=0.5 sw=16 C=0.4 trades=21 sharpe=1.828 took=0.1s
+2026-11-17T20:26:56 [grid 45/48] START K=0.5 sw=16 C=0.5 elapsed=5.3s
+2026-11-17T20:26:56 [grid 45/48] END K=0.5 sw=16 C=0.5 trades=21 sharpe=1.796 took=0.1s
+2026-11-17T20:26:56 [grid 46/48] START K=0.5 sw=20 C=0.3 elapsed=5.4s
+2026-11-17T20:26:56 [grid 46/48] END K=0.5 sw=20 C=0.3 trades=21 sharpe=-0.781 took=0.1s
+2026-11-17T20:26:56 [grid 47/48] START K=0.5 sw=20 C=0.4 elapsed=5.5s
+2026-11-17T20:26:57 [grid 47/48] END K=0.5 sw=20 C=0.4 trades=20 sharpe=0.007 took=0.2s
+2026-11-17T20:26:57 [grid 48/48] START K=0.5 sw=20 C=0.5 elapsed=5.7s
+2026-11-17T20:26:57 [grid 48/48] END K=0.5 sw=20 C=0.5 trades=20 sharpe=0.282 took=0.1s
+2026-11-17T20:26:57 START grid total=48
+2026-11-17T20:26:57 [grid 1/48] START K=0.2 sw=8 C=0.3 elapsed=0.0s
+2026-11-17T20:26:57 [grid 1/48] END K=0.2 sw=8 C=0.3 trades=25 sharpe=-5.621 took=0.1s
+2026-11-17T20:26:57 [grid 2/48] START K=0.2 sw=8 C=0.4 elapsed=0.1s
+2026-11-17T20:26:57 [grid 2/48] END K=0.2 sw=8 C=0.4 trades=25 sharpe=-5.494 took=0.1s
+2026-11-17T20:26:57 [grid 3/48] START K=0.2 sw=8 C=0.5 elapsed=0.2s
+2026-11-17T20:26:57 [grid 3/48] END K=0.2 sw=8 C=0.5 trades=25 sharpe=-4.509 took=0.1s
+2026-11-17T20:26:57 [grid 4/48] START K=0.2 sw=12 C=0.3 elapsed=0.3s
+2026-11-17T20:26:57 [grid 4/48] END K=0.2 sw=12 C=0.3 trades=23 sharpe=-0.819 took=0.1s
+2026-11-17T20:26:57 [grid 5/48] START K=0.2 sw=12 C=0.4 elapsed=0.5s
+2026-11-17T20:26:57 [grid 5/48] END K=0.2 sw=12 C=0.4 trades=23 sharpe=-0.664 took=0.1s
+2026-11-17T20:26:57 [grid 6/48] START K=0.2 sw=12 C=0.5 elapsed=0.6s
+2026-11-17T20:26:57 [grid 6/48] END K=0.2 sw=12 C=0.5 trades=23 sharpe=-0.915 took=0.1s
+2026-11-17T20:26:57 [grid 7/48] START K=0.2 sw=16 C=0.3 elapsed=0.7s
+2026-11-17T20:26:58 [grid 7/48] END K=0.2 sw=16 C=0.3 trades=21 sharpe=1.647 took=0.1s
+2026-11-17T20:26:58 [grid 8/48] START K=0.2 sw=16 C=0.4 elapsed=0.8s
+2026-11-17T20:26:58 [grid 8/48] END K=0.2 sw=16 C=0.4 trades=21 sharpe=1.831 took=0.1s
+2026-11-17T20:26:58 [grid 9/48] START K=0.2 sw=16 C=0.5 elapsed=0.9s
+2026-11-17T20:26:58 [grid 9/48] END K=0.2 sw=16 C=0.5 trades=21 sharpe=1.822 took=0.1s
+2026-11-17T20:26:58 [grid 10/48] START K=0.2 sw=20 C=0.3 elapsed=1.0s
+2026-11-17T20:26:58 [grid 10/48] END K=0.2 sw=20 C=0.3 trades=21 sharpe=-0.750 took=0.1s
+2026-11-17T20:26:58 [grid 11/48] START K=0.2 sw=20 C=0.4 elapsed=1.1s
+2026-11-17T20:26:58 [grid 11/48] END K=0.2 sw=20 C=0.4 trades=20 sharpe=0.041 took=0.1s
+2026-11-17T20:26:58 [grid 12/48] START K=0.2 sw=20 C=0.5 elapsed=1.2s
+2026-11-17T20:26:58 [grid 12/48] END K=0.2 sw=20 C=0.5 trades=20 sharpe=0.317 took=0.1s
+2026-11-17T20:26:58 [grid 13/48] START K=0.3 sw=8 C=0.3 elapsed=1.4s
+2026-11-17T20:26:58 [grid 13/48] END K=0.3 sw=8 C=0.3 trades=25 sharpe=-5.621 took=0.1s
+2026-11-17T20:26:58 [grid 14/48] START K=0.3 sw=8 C=0.4 elapsed=1.5s
+2026-11-17T20:26:58 [grid 14/48] END K=0.3 sw=8 C=0.4 trades=25 sharpe=-5.494 took=0.1s
+2026-11-17T20:26:58 [grid 15/48] START K=0.3 sw=8 C=0.5 elapsed=1.6s
+2026-11-17T20:26:58 [grid 15/48] END K=0.3 sw=8 C=0.5 trades=25 sharpe=-4.509 took=0.1s
+2026-11-17T20:26:58 [grid 16/48] START K=0.3 sw=12 C=0.3 elapsed=1.7s
+2026-11-17T20:26:59 [grid 16/48] END K=0.3 sw=12 C=0.3 trades=23 sharpe=-0.819 took=0.1s
+2026-11-17T20:26:59 [grid 17/48] START K=0.3 sw=12 C=0.4 elapsed=1.8s
+2026-11-17T20:26:59 [grid 17/48] END K=0.3 sw=12 C=0.4 trades=23 sharpe=-0.664 took=0.1s
+2026-11-17T20:26:59 [grid 18/48] START K=0.3 sw=12 C=0.5 elapsed=2.0s
+2026-11-17T20:26:59 [grid 18/48] END K=0.3 sw=12 C=0.5 trades=23 sharpe=-0.915 took=0.1s
+2026-11-17T20:26:59 [grid 19/48] START K=0.3 sw=16 C=0.3 elapsed=2.1s
+2026-11-17T20:26:59 [grid 19/48] END K=0.3 sw=16 C=0.3 trades=21 sharpe=1.647 took=0.1s
+2026-11-17T20:26:59 [grid 20/48] START K=0.3 sw=16 C=0.4 elapsed=2.2s
+2026-11-17T20:26:59 [grid 20/48] END K=0.3 sw=16 C=0.4 trades=21 sharpe=1.831 took=0.1s
+2026-11-17T20:26:59 [grid 21/48] START K=0.3 sw=16 C=0.5 elapsed=2.3s
+2026-11-17T20:26:59 [grid 21/48] END K=0.3 sw=16 C=0.5 trades=21 sharpe=1.822 took=0.1s
+2026-11-17T20:26:59 [grid 22/48] START K=0.3 sw=20 C=0.3 elapsed=2.4s
+2026-11-17T20:26:59 [grid 22/48] END K=0.3 sw=20 C=0.3 trades=21 sharpe=-0.750 took=0.1s
+2026-11-17T20:26:59 [grid 23/48] START K=0.3 sw=20 C=0.4 elapsed=2.5s
+2026-11-17T20:26:59 [grid 23/48] END K=0.3 sw=20 C=0.4 trades=20 sharpe=0.041 took=0.1s
+2026-11-17T20:26:59 [grid 24/48] START K=0.3 sw=20 C=0.5 elapsed=2.6s
+2026-11-17T20:27:00 [grid 24/48] END K=0.3 sw=20 C=0.5 trades=20 sharpe=0.317 took=0.1s
+2026-11-17T20:27:00 [grid 25/48] START K=0.4 sw=8 C=0.3 elapsed=2.7s
+2026-11-17T20:27:00 [grid 25/48] END K=0.4 sw=8 C=0.3 trades=25 sharpe=-5.628 took=0.1s
+2026-11-17T20:27:00 [grid 26/48] START K=0.4 sw=8 C=0.4 elapsed=2.9s
+2026-11-17T20:27:00 [grid 26/48] END K=0.4 sw=8 C=0.4 trades=25 sharpe=-5.500 took=0.1s
+2026-11-17T20:27:00 [grid 27/48] START K=0.4 sw=8 C=0.5 elapsed=3.0s
+2026-11-17T20:27:00 [grid 27/48] END K=0.4 sw=8 C=0.5 trades=25 sharpe=-4.543 took=0.1s
+2026-11-17T20:27:00 [grid 28/48] START K=0.4 sw=12 C=0.3 elapsed=3.1s
+2026-11-17T20:27:00 [grid 28/48] END K=0.4 sw=12 C=0.3 trades=23 sharpe=-0.822 took=0.1s
+2026-11-17T20:27:00 [grid 29/48] START K=0.4 sw=12 C=0.4 elapsed=3.2s
+2026-11-17T20:27:00 [grid 29/48] END K=0.4 sw=12 C=0.4 trades=23 sharpe=-0.666 took=0.1s
+2026-11-17T20:27:00 [grid 30/48] START K=0.4 sw=12 C=0.5 elapsed=3.3s
+2026-11-17T20:27:00 [grid 30/48] END K=0.4 sw=12 C=0.5 trades=23 sharpe=-0.945 took=0.1s
+2026-11-17T20:27:00 [grid 31/48] START K=0.4 sw=16 C=0.3 elapsed=3.5s
+2026-11-17T20:27:00 [grid 31/48] END K=0.4 sw=16 C=0.3 trades=21 sharpe=1.644 took=0.1s
+2026-11-17T20:27:00 [grid 32/48] START K=0.4 sw=16 C=0.4 elapsed=3.6s
+2026-11-17T20:27:00 [grid 32/48] END K=0.4 sw=16 C=0.4 trades=21 sharpe=1.828 took=0.1s
+2026-11-17T20:27:00 [grid 33/48] START K=0.4 sw=16 C=0.5 elapsed=3.7s
+2026-11-17T20:27:01 [grid 33/48] END K=0.4 sw=16 C=0.5 trades=21 sharpe=1.796 took=0.1s
+2026-11-17T20:27:01 [grid 34/48] START K=0.4 sw=20 C=0.3 elapsed=3.8s
+2026-11-17T20:27:01 [grid 34/48] END K=0.4 sw=20 C=0.3 trades=21 sharpe=-0.781 took=0.1s
+2026-11-17T20:27:01 [grid 35/48] START K=0.4 sw=20 C=0.4 elapsed=3.9s
+2026-11-17T20:27:01 [grid 35/48] END K=0.4 sw=20 C=0.4 trades=20 sharpe=0.007 took=0.1s
+2026-11-17T20:27:01 [grid 36/48] START K=0.4 sw=20 C=0.5 elapsed=4.0s
+2026-11-17T20:27:01 [grid 36/48] END K=0.4 sw=20 C=0.5 trades=20 sharpe=0.282 took=0.1s
+2026-11-17T20:27:01 [grid 37/48] START K=0.5 sw=8 C=0.3 elapsed=4.1s
+2026-11-17T20:27:01 [grid 37/48] END K=0.5 sw=8 C=0.3 trades=24 sharpe=-5.142 took=0.1s
+2026-11-17T20:27:01 [grid 38/48] START K=0.5 sw=8 C=0.4 elapsed=4.2s
+2026-11-17T20:27:01 [grid 38/48] END K=0.5 sw=8 C=0.4 trades=24 sharpe=-5.007 took=0.1s
+2026-11-17T20:27:01 [grid 39/48] START K=0.5 sw=8 C=0.5 elapsed=4.3s
+2026-11-17T20:27:01 [grid 39/48] END K=0.5 sw=8 C=0.5 trades=24 sharpe=-4.012 took=0.1s
+2026-11-17T20:27:01 [grid 40/48] START K=0.5 sw=12 C=0.3 elapsed=4.5s
+2026-11-17T20:27:01 [grid 40/48] END K=0.5 sw=12 C=0.3 trades=23 sharpe=-0.822 took=0.1s
+2026-11-17T20:27:01 [grid 41/48] START K=0.5 sw=12 C=0.4 elapsed=4.6s
+2026-11-17T20:27:01 [grid 41/48] END K=0.5 sw=12 C=0.4 trades=23 sharpe=-0.666 took=0.1s
+2026-11-17T20:27:01 [grid 42/48] START K=0.5 sw=12 C=0.5 elapsed=4.7s
+2026-11-17T20:27:02 [grid 42/48] END K=0.5 sw=12 C=0.5 trades=23 sharpe=-0.945 took=0.1s
+2026-11-17T20:27:02 [grid 43/48] START K=0.5 sw=16 C=0.3 elapsed=4.8s
+2026-11-17T20:27:02 [grid 43/48] END K=0.5 sw=16 C=0.3 trades=21 sharpe=1.644 took=0.1s
+2026-11-17T20:27:02 [grid 44/48] START K=0.5 sw=16 C=0.4 elapsed=4.9s
+2026-11-17T20:27:02 [grid 44/48] END K=0.5 sw=16 C=0.4 trades=21 sharpe=1.828 took=0.1s
+2026-11-17T20:27:02 [grid 45/48] START K=0.5 sw=16 C=0.5 elapsed=5.0s
+2026-11-17T20:27:02 [grid 45/48] END K=0.5 sw=16 C=0.5 trades=21 sharpe=1.796 took=0.1s
+2026-11-17T20:27:02 [grid 46/48] START K=0.5 sw=20 C=0.3 elapsed=5.2s
+2026-11-17T20:27:02 [grid 46/48] END K=0.5 sw=20 C=0.3 trades=21 sharpe=-0.781 took=0.1s
+2026-11-17T20:27:02 [grid 47/48] START K=0.5 sw=20 C=0.4 elapsed=5.3s
+2026-11-17T20:27:02 [grid 47/48] END K=0.5 sw=20 C=0.4 trades=20 sharpe=0.007 took=0.1s
+2026-11-17T20:27:02 [grid 48/48] START K=0.5 sw=20 C=0.5 elapsed=5.4s
+2026-11-17T20:27:02 [grid 48/48] END K=0.5 sw=20 C=0.5 trades=20 sharpe=0.282 took=0.1s
+2026-11-17T20:47:57 START grid total=48
+2026-11-17T20:47:57 [grid 1/48] START K=0.2 sw=8 C=0.3 elapsed=0.0s
+2026-11-17T20:47:57 [grid 1/48] END K=0.2 sw=8 C=0.3 trades=21 sharpe=-1.678 took=0.2s
+2026-11-17T20:47:57 [grid 2/48] START K=0.2 sw=8 C=0.4 elapsed=0.2s
+2026-11-17T20:47:58 [grid 2/48] END K=0.2 sw=8 C=0.4 trades=21 sharpe=-1.678 took=0.3s
+2026-11-17T20:47:58 [grid 3/48] START K=0.2 sw=8 C=0.5 elapsed=0.6s
+2026-11-17T20:47:58 [grid 3/48] END K=0.2 sw=8 C=0.5 trades=21 sharpe=-1.228 took=0.3s
+2026-11-17T20:47:58 [grid 4/48] START K=0.2 sw=12 C=0.3 elapsed=0.9s
+2026-11-17T20:47:58 [grid 4/48] END K=0.2 sw=12 C=0.3 trades=20 sharpe=-1.311 took=0.3s
+2026-11-17T20:47:58 [grid 5/48] START K=0.2 sw=12 C=0.4 elapsed=1.2s
+2026-11-17T20:47:59 [grid 5/48] END K=0.2 sw=12 C=0.4 trades=20 sharpe=-1.965 took=0.2s
+2026-11-17T20:47:59 [grid 6/48] START K=0.2 sw=12 C=0.5 elapsed=1.4s
+2026-11-17T20:47:59 [grid 6/48] END K=0.2 sw=12 C=0.5 trades=20 sharpe=-1.502 took=0.4s
+2026-11-17T20:47:59 [grid 7/48] START K=0.2 sw=16 C=0.3 elapsed=1.8s
+2026-11-17T20:47:59 [grid 7/48] END K=0.2 sw=16 C=0.3 trades=18 sharpe=0.508 took=0.4s
+2026-11-17T20:47:59 [grid 8/48] START K=0.2 sw=16 C=0.4 elapsed=2.2s
+2026-11-17T20:48:00 [grid 8/48] END K=0.2 sw=16 C=0.4 trades=18 sharpe=0.508 took=0.6s
+2026-11-17T20:48:00 [grid 9/48] START K=0.2 sw=16 C=0.5 elapsed=2.8s
+2026-11-17T20:48:00 [grid 9/48] END K=0.2 sw=16 C=0.5 trades=18 sharpe=0.508 took=0.6s
+2026-11-17T20:48:00 [grid 10/48] START K=0.2 sw=20 C=0.3 elapsed=3.3s
+2026-11-17T20:48:01 [grid 10/48] END K=0.2 sw=20 C=0.3 trades=17 sharpe=-3.215 took=0.6s
+2026-11-17T20:48:01 [grid 11/48] START K=0.2 sw=20 C=0.4 elapsed=3.9s
+2026-11-17T20:48:02 [grid 11/48] END K=0.2 sw=20 C=0.4 trades=17 sharpe=-6.432 took=0.5s
+2026-11-17T20:48:02 [grid 12/48] START K=0.2 sw=20 C=0.5 elapsed=4.4s
+2026-11-17T20:48:02 [grid 12/48] END K=0.2 sw=20 C=0.5 trades=17 sharpe=-6.432 took=0.5s
+2026-11-17T20:48:02 [grid 13/48] START K=0.3 sw=8 C=0.3 elapsed=4.9s
+2026-11-17T20:48:03 [grid 13/48] END K=0.3 sw=8 C=0.3 trades=21 sharpe=-1.678 took=0.5s
+2026-11-17T20:48:03 [grid 14/48] START K=0.3 sw=8 C=0.4 elapsed=5.4s
+2026-11-17T20:48:03 [grid 14/48] END K=0.3 sw=8 C=0.4 trades=21 sharpe=-1.678 took=0.6s
+2026-11-17T20:48:03 [grid 15/48] START K=0.3 sw=8 C=0.5 elapsed=5.9s
+2026-11-17T20:48:04 [grid 15/48] END K=0.3 sw=8 C=0.5 trades=21 sharpe=-1.228 took=0.4s
+2026-11-17T20:48:04 [grid 16/48] START K=0.3 sw=12 C=0.3 elapsed=6.4s
+2026-11-17T20:48:04 [grid 16/48] END K=0.3 sw=12 C=0.3 trades=20 sharpe=-1.311 took=0.4s
+2026-11-17T20:48:04 [grid 17/48] START K=0.3 sw=12 C=0.4 elapsed=6.8s
+2026-11-17T20:48:04 [grid 17/48] END K=0.3 sw=12 C=0.4 trades=20 sharpe=-1.965 took=0.5s
+2026-11-17T20:48:04 [grid 18/48] START K=0.3 sw=12 C=0.5 elapsed=7.3s
+2026-11-17T20:48:05 [grid 18/48] END K=0.3 sw=12 C=0.5 trades=20 sharpe=-1.502 took=0.4s
+2026-11-17T20:48:05 [grid 19/48] START K=0.3 sw=16 C=0.3 elapsed=7.7s
+2026-11-17T20:48:05 [grid 19/48] END K=0.3 sw=16 C=0.3 trades=18 sharpe=0.508 took=0.5s
+2026-11-17T20:48:05 [grid 20/48] START K=0.3 sw=16 C=0.4 elapsed=8.2s
+2026-11-17T20:48:06 [grid 20/48] END K=0.3 sw=16 C=0.4 trades=18 sharpe=0.508 took=0.4s
+2026-11-17T20:48:06 [grid 21/48] START K=0.3 sw=16 C=0.5 elapsed=8.6s
+2026-11-17T20:48:06 [grid 21/48] END K=0.3 sw=16 C=0.5 trades=18 sharpe=0.508 took=0.4s
+2026-11-17T20:48:06 [grid 22/48] START K=0.3 sw=20 C=0.3 elapsed=9.0s
+2026-11-17T20:48:07 [grid 22/48] END K=0.3 sw=20 C=0.3 trades=17 sharpe=-3.215 took=0.3s
+2026-11-17T20:48:07 [grid 23/48] START K=0.3 sw=20 C=0.4 elapsed=9.3s
+2026-11-17T20:48:07 [grid 23/48] END K=0.3 sw=20 C=0.4 trades=17 sharpe=-6.432 took=0.5s
+2026-11-17T20:48:07 [grid 24/48] START K=0.3 sw=20 C=0.5 elapsed=9.8s
+2026-11-17T20:48:07 [grid 24/48] END K=0.3 sw=20 C=0.5 trades=17 sharpe=-6.432 took=0.3s
+2026-11-17T20:48:07 [grid 25/48] START K=0.4 sw=8 C=0.3 elapsed=10.1s
+2026-11-17T20:48:08 [grid 25/48] END K=0.4 sw=8 C=0.3 trades=21 sharpe=-1.630 took=0.5s
+2026-11-17T20:48:08 [grid 26/48] START K=0.4 sw=8 C=0.4 elapsed=10.6s
+2026-11-17T20:48:08 [grid 26/48] END K=0.4 sw=8 C=0.4 trades=21 sharpe=-1.630 took=0.6s
+2026-11-17T20:48:08 [grid 27/48] START K=0.4 sw=8 C=0.5 elapsed=11.2s
+2026-11-17T20:48:09 [grid 27/48] END K=0.4 sw=8 C=0.5 trades=21 sharpe=-1.129 took=0.5s
+2026-11-17T20:48:09 [grid 28/48] START K=0.4 sw=12 C=0.3 elapsed=11.7s
+2026-11-17T20:48:09 [grid 28/48] END K=0.4 sw=12 C=0.3 trades=20 sharpe=-1.912 took=0.5s
+2026-11-17T20:48:09 [grid 29/48] START K=0.4 sw=12 C=0.4 elapsed=12.2s
+2026-11-17T20:48:10 [grid 29/48] END K=0.4 sw=12 C=0.4 trades=20 sharpe=-1.912 took=0.5s
+2026-11-17T20:48:10 [grid 30/48] START K=0.4 sw=12 C=0.5 elapsed=12.7s
+2026-11-17T20:48:10 [grid 30/48] END K=0.4 sw=12 C=0.5 trades=20 sharpe=-1.446 took=0.4s
+2026-11-17T20:48:10 [grid 31/48] START K=0.4 sw=16 C=0.3 elapsed=13.1s
+2026-11-17T20:48:11 [grid 31/48] END K=0.4 sw=16 C=0.3 trades=18 sharpe=0.571 took=0.4s
+2026-11-17T20:48:11 [grid 32/48] START K=0.4 sw=16 C=0.4 elapsed=13.5s
+2026-11-17T20:48:11 [grid 32/48] END K=0.4 sw=16 C=0.4 trades=18 sharpe=0.571 took=0.3s
+2026-11-17T20:48:11 [grid 33/48] START K=0.4 sw=16 C=0.5 elapsed=13.8s
+2026-11-17T20:48:11 [grid 33/48] END K=0.4 sw=16 C=0.5 trades=18 sharpe=0.571 took=0.5s
+2026-11-17T20:48:11 [grid 34/48] START K=0.4 sw=20 C=0.3 elapsed=14.3s
+2026-11-17T20:48:12 [grid 34/48] END K=0.4 sw=20 C=0.3 trades=17 sharpe=-3.215 took=0.4s
+2026-11-17T20:48:12 [grid 35/48] START K=0.4 sw=20 C=0.4 elapsed=14.7s
+2026-11-17T20:48:12 [grid 35/48] END K=0.4 sw=20 C=0.4 trades=17 sharpe=-6.432 took=0.3s
+2026-11-17T20:48:12 [grid 36/48] START K=0.4 sw=20 C=0.5 elapsed=15.0s
+2026-11-17T20:48:13 [grid 36/48] END K=0.4 sw=20 C=0.5 trades=17 sharpe=-6.432 took=0.5s
+2026-11-17T20:48:13 [grid 37/48] START K=0.5 sw=8 C=0.3 elapsed=15.5s
+2026-11-17T20:48:13 [grid 37/48] END K=0.5 sw=8 C=0.3 trades=21 sharpe=-1.630 took=0.5s
+2026-11-17T20:48:13 [grid 38/48] START K=0.5 sw=8 C=0.4 elapsed=15.9s
+2026-11-17T20:48:14 [grid 38/48] END K=0.5 sw=8 C=0.4 trades=21 sharpe=-1.630 took=0.5s
+2026-11-17T20:48:14 [grid 39/48] START K=0.5 sw=8 C=0.5 elapsed=16.4s
+2026-11-17T20:48:14 [grid 39/48] END K=0.5 sw=8 C=0.5 trades=21 sharpe=-1.129 took=0.4s
+2026-11-17T20:48:14 [grid 40/48] START K=0.5 sw=12 C=0.3 elapsed=16.8s
+2026-11-17T20:48:15 [grid 40/48] END K=0.5 sw=12 C=0.3 trades=20 sharpe=-1.912 took=0.5s
+2026-11-17T20:48:15 [grid 41/48] START K=0.5 sw=12 C=0.4 elapsed=17.3s
+2026-11-17T20:48:15 [grid 41/48] END K=0.5 sw=12 C=0.4 trades=20 sharpe=-1.912 took=0.4s
+2026-11-17T20:48:15 [grid 42/48] START K=0.5 sw=12 C=0.5 elapsed=17.7s
+2026-11-17T20:48:15 [grid 42/48] END K=0.5 sw=12 C=0.5 trades=20 sharpe=-1.446 took=0.6s
+2026-11-17T20:48:15 [grid 43/48] START K=0.5 sw=16 C=0.3 elapsed=18.3s
+2026-11-17T20:48:16 [grid 43/48] END K=0.5 sw=16 C=0.3 trades=18 sharpe=0.571 took=0.4s
+2026-11-17T20:48:16 [grid 44/48] START K=0.5 sw=16 C=0.4 elapsed=18.7s
+2026-11-17T20:48:16 [grid 44/48] END K=0.5 sw=16 C=0.4 trades=18 sharpe=0.571 took=0.5s
+2026-11-17T20:48:16 [grid 45/48] START K=0.5 sw=16 C=0.5 elapsed=19.1s
+2026-11-17T20:48:17 [grid 45/48] END K=0.5 sw=16 C=0.5 trades=18 sharpe=0.571 took=0.4s
+2026-11-17T20:48:17 [grid 46/48] START K=0.5 sw=20 C=0.3 elapsed=19.6s
+2026-11-17T20:48:17 [grid 46/48] END K=0.5 sw=20 C=0.3 trades=17 sharpe=-3.215 took=0.3s
+2026-11-17T20:48:17 [grid 47/48] START K=0.5 sw=20 C=0.4 elapsed=19.9s
+2026-11-17T20:48:17 [grid 47/48] END K=0.5 sw=20 C=0.4 trades=17 sharpe=-6.432 took=0.3s
+2026-11-17T20:48:17 [grid 48/48] START K=0.5 sw=20 C=0.5 elapsed=20.2s
+2026-11-17T20:48:18 [grid 48/48] END K=0.5 sw=20 C=0.5 trades=17 sharpe=-6.432 took=0.3s
+2026-11-17T20:48:18 START grid total=48
+2026-11-17T20:48:18 [grid 1/48] START K=0.2 sw=8 C=0.3 elapsed=0.0s
+2026-11-17T20:48:18 [grid 1/48] END K=0.2 sw=8 C=0.3 trades=21 sharpe=-1.678 took=0.6s
+2026-11-17T20:48:18 [grid 2/48] START K=0.2 sw=8 C=0.4 elapsed=0.6s
+2026-11-17T20:48:19 [grid 2/48] END K=0.2 sw=8 C=0.4 trades=21 sharpe=-1.678 took=0.5s
+2026-11-17T20:48:19 [grid 3/48] START K=0.2 sw=8 C=0.5 elapsed=1.1s
+2026-11-17T20:48:20 [grid 3/48] END K=0.2 sw=8 C=0.5 trades=21 sharpe=-1.228 took=0.5s
+2026-11-17T20:48:20 [grid 4/48] START K=0.2 sw=12 C=0.3 elapsed=1.7s
+2026-11-17T20:48:20 [grid 4/48] END K=0.2 sw=12 C=0.3 trades=20 sharpe=-1.311 took=0.5s
+2026-11-17T20:48:20 [grid 5/48] START K=0.2 sw=12 C=0.4 elapsed=2.1s
+2026-11-17T20:48:20 [grid 5/48] END K=0.2 sw=12 C=0.4 trades=20 sharpe=-1.965 took=0.4s
+2026-11-17T20:48:20 [grid 6/48] START K=0.2 sw=12 C=0.5 elapsed=2.5s
+2026-11-17T20:48:21 [grid 6/48] END K=0.2 sw=12 C=0.5 trades=20 sharpe=-1.502 took=0.4s
+2026-11-17T20:48:21 [grid 7/48] START K=0.2 sw=16 C=0.3 elapsed=2.9s
+2026-11-17T20:48:21 [grid 7/48] END K=0.2 sw=16 C=0.3 trades=18 sharpe=0.508 took=0.5s
+2026-11-17T20:48:21 [grid 8/48] START K=0.2 sw=16 C=0.4 elapsed=3.4s
+2026-11-17T20:48:22 [grid 8/48] END K=0.2 sw=16 C=0.4 trades=18 sharpe=0.508 took=0.5s
+2026-11-17T20:48:22 [grid 9/48] START K=0.2 sw=16 C=0.5 elapsed=3.9s
+2026-11-17T20:48:22 [grid 9/48] END K=0.2 sw=16 C=0.5 trades=18 sharpe=0.508 took=0.4s
+2026-11-17T20:48:22 [grid 10/48] START K=0.2 sw=20 C=0.3 elapsed=4.4s
+2026-11-17T20:48:23 [grid 10/48] END K=0.2 sw=20 C=0.3 trades=17 sharpe=-3.215 took=0.5s
+2026-11-17T20:48:23 [grid 11/48] START K=0.2 sw=20 C=0.4 elapsed=4.9s
+2026-11-17T20:48:23 [grid 11/48] END K=0.2 sw=20 C=0.4 trades=17 sharpe=-6.432 took=0.5s
+2026-11-17T20:48:23 [grid 12/48] START K=0.2 sw=20 C=0.5 elapsed=5.4s
+2026-11-17T20:48:24 [grid 12/48] END K=0.2 sw=20 C=0.5 trades=17 sharpe=-6.432 took=0.4s
+2026-11-17T20:48:24 [grid 13/48] START K=0.3 sw=8 C=0.3 elapsed=5.8s
+2026-11-17T20:48:24 [grid 13/48] END K=0.3 sw=8 C=0.3 trades=21 sharpe=-1.678 took=0.5s
+2026-11-17T20:48:24 [grid 14/48] START K=0.3 sw=8 C=0.4 elapsed=6.3s
+2026-11-17T20:48:25 [grid 14/48] END K=0.3 sw=8 C=0.4 trades=21 sharpe=-1.678 took=0.4s
+2026-11-17T20:48:25 [grid 15/48] START K=0.3 sw=8 C=0.5 elapsed=6.7s
+2026-11-17T20:48:25 [grid 15/48] END K=0.3 sw=8 C=0.5 trades=21 sharpe=-1.228 took=0.4s
+2026-11-17T20:48:25 [grid 16/48] START K=0.3 sw=12 C=0.3 elapsed=7.2s
+2026-11-17T20:48:26 [grid 16/48] END K=0.3 sw=12 C=0.3 trades=20 sharpe=-1.311 took=0.5s
+2026-11-17T20:48:26 [grid 17/48] START K=0.3 sw=12 C=0.4 elapsed=7.7s
+2026-11-17T20:48:26 [grid 17/48] END K=0.3 sw=12 C=0.4 trades=20 sharpe=-1.965 took=0.5s
+2026-11-17T20:48:26 [grid 18/48] START K=0.3 sw=12 C=0.5 elapsed=8.1s
+2026-11-17T20:48:26 [grid 18/48] END K=0.3 sw=12 C=0.5 trades=20 sharpe=-1.502 took=0.5s
+2026-11-17T20:48:26 [grid 19/48] START K=0.3 sw=16 C=0.3 elapsed=8.6s
+2026-11-17T20:48:27 [grid 19/48] END K=0.3 sw=16 C=0.3 trades=18 sharpe=0.508 took=0.5s
+2026-11-17T20:48:27 [grid 20/48] START K=0.3 sw=16 C=0.4 elapsed=9.1s
+2026-11-17T20:48:27 [grid 20/48] END K=0.3 sw=16 C=0.4 trades=18 sharpe=0.508 took=0.4s
+2026-11-17T20:48:27 [grid 21/48] START K=0.3 sw=16 C=0.5 elapsed=9.5s
+2026-11-17T20:48:28 [grid 21/48] END K=0.3 sw=16 C=0.5 trades=18 sharpe=0.508 took=0.4s
+2026-11-17T20:48:28 [grid 22/48] START K=0.3 sw=20 C=0.3 elapsed=9.8s
+2026-11-17T20:48:28 [grid 22/48] END K=0.3 sw=20 C=0.3 trades=17 sharpe=-3.215 took=0.4s
+2026-11-17T20:48:28 [grid 23/48] START K=0.3 sw=20 C=0.4 elapsed=10.2s
+2026-11-17T20:48:29 [grid 23/48] END K=0.3 sw=20 C=0.4 trades=17 sharpe=-6.432 took=0.5s
+2026-11-17T20:48:29 [grid 24/48] START K=0.3 sw=20 C=0.5 elapsed=10.7s
+2026-11-17T20:48:29 [grid 24/48] END K=0.3 sw=20 C=0.5 trades=17 sharpe=-6.432 took=0.4s
+2026-11-17T20:48:29 [grid 25/48] START K=0.4 sw=8 C=0.3 elapsed=11.2s
+2026-11-17T20:48:30 [grid 25/48] END K=0.4 sw=8 C=0.3 trades=21 sharpe=-1.630 took=0.5s
+2026-11-17T20:48:30 [grid 26/48] START K=0.4 sw=8 C=0.4 elapsed=11.7s
+2026-11-17T20:48:30 [grid 26/48] END K=0.4 sw=8 C=0.4 trades=21 sharpe=-1.630 took=0.4s
+2026-11-17T20:48:30 [grid 27/48] START K=0.4 sw=8 C=0.5 elapsed=12.1s
+2026-11-17T20:48:31 [grid 27/48] END K=0.4 sw=8 C=0.5 trades=21 sharpe=-1.129 took=0.6s
+2026-11-17T20:48:31 [grid 28/48] START K=0.4 sw=12 C=0.3 elapsed=12.8s
+2026-11-17T20:48:31 [grid 28/48] END K=0.4 sw=12 C=0.3 trades=20 sharpe=-1.912 took=0.6s
+2026-11-17T20:48:31 [grid 29/48] START K=0.4 sw=12 C=0.4 elapsed=13.3s
+2026-11-17T20:48:32 [grid 29/48] END K=0.4 sw=12 C=0.4 trades=20 sharpe=-1.912 took=0.6s
+2026-11-17T20:48:32 [grid 30/48] START K=0.4 sw=12 C=0.5 elapsed=13.9s
+2026-11-17T20:48:32 [grid 30/48] END K=0.4 sw=12 C=0.5 trades=20 sharpe=-1.446 took=0.6s
+2026-11-17T20:48:32 [grid 31/48] START K=0.4 sw=16 C=0.3 elapsed=14.5s
+2026-11-17T20:48:33 [grid 31/48] END K=0.4 sw=16 C=0.3 trades=18 sharpe=0.571 took=0.6s
+2026-11-17T20:48:33 [grid 32/48] START K=0.4 sw=16 C=0.4 elapsed=15.1s
+2026-11-17T20:48:34 [grid 32/48] END K=0.4 sw=16 C=0.4 trades=18 sharpe=0.571 took=0.7s
+2026-11-17T20:48:34 [grid 33/48] START K=0.4 sw=16 C=0.5 elapsed=15.7s
+2026-11-17T20:48:34 [grid 33/48] END K=0.4 sw=16 C=0.5 trades=18 sharpe=0.571 took=0.7s
+2026-11-17T20:48:34 [grid 34/48] START K=0.4 sw=20 C=0.3 elapsed=16.4s
+2026-11-17T20:48:35 [grid 34/48] END K=0.4 sw=20 C=0.3 trades=17 sharpe=-3.215 took=0.6s
+2026-11-17T20:48:35 [grid 35/48] START K=0.4 sw=20 C=0.4 elapsed=17.0s
+2026-11-17T20:48:35 [grid 35/48] END K=0.4 sw=20 C=0.4 trades=17 sharpe=-6.432 took=0.6s
+2026-11-17T20:48:35 [grid 36/48] START K=0.4 sw=20 C=0.5 elapsed=17.6s
+2026-11-17T20:48:36 [grid 36/48] END K=0.4 sw=20 C=0.5 trades=17 sharpe=-6.432 took=0.6s
+2026-11-17T20:48:36 [grid 37/48] START K=0.5 sw=8 C=0.3 elapsed=18.2s
+2026-11-17T20:48:37 [grid 37/48] END K=0.5 sw=8 C=0.3 trades=21 sharpe=-1.630 took=0.7s
+2026-11-17T20:48:37 [grid 38/48] START K=0.5 sw=8 C=0.4 elapsed=18.9s
+2026-11-17T20:48:37 [grid 38/48] END K=0.5 sw=8 C=0.4 trades=21 sharpe=-1.630 took=0.6s
+2026-11-17T20:48:37 [grid 39/48] START K=0.5 sw=8 C=0.5 elapsed=19.5s
+2026-11-17T20:48:38 [grid 39/48] END K=0.5 sw=8 C=0.5 trades=21 sharpe=-1.129 took=0.6s
+2026-11-17T20:48:38 [grid 40/48] START K=0.5 sw=12 C=0.3 elapsed=20.0s
+2026-11-17T20:48:39 [grid 40/48] END K=0.5 sw=12 C=0.3 trades=20 sharpe=-1.912 took=0.7s
+2026-11-17T20:48:39 [grid 41/48] START K=0.5 sw=12 C=0.4 elapsed=20.7s
+2026-11-17T20:48:39 [grid 41/48] END K=0.5 sw=12 C=0.4 trades=20 sharpe=-1.912 took=0.6s
+2026-11-17T20:48:39 [grid 42/48] START K=0.5 sw=12 C=0.5 elapsed=21.3s
+2026-11-17T20:48:40 [grid 42/48] END K=0.5 sw=12 C=0.5 trades=20 sharpe=-1.446 took=0.5s
+2026-11-17T20:48:40 [grid 43/48] START K=0.5 sw=16 C=0.3 elapsed=21.9s
+2026-11-17T20:48:40 [grid 43/48] END K=0.5 sw=16 C=0.3 trades=18 sharpe=0.571 took=0.6s
+2026-11-17T20:48:40 [grid 44/48] START K=0.5 sw=16 C=0.4 elapsed=22.5s
+2026-11-17T20:48:41 [grid 44/48] END K=0.5 sw=16 C=0.4 trades=18 sharpe=0.571 took=0.7s
+2026-11-17T20:48:41 [grid 45/48] START K=0.5 sw=16 C=0.5 elapsed=23.2s
+2026-11-17T20:48:42 [grid 45/48] END K=0.5 sw=16 C=0.5 trades=18 sharpe=0.571 took=0.5s
+2026-11-17T20:48:42 [grid 46/48] START K=0.5 sw=20 C=0.3 elapsed=23.7s
+2026-11-17T20:48:42 [grid 46/48] END K=0.5 sw=20 C=0.3 trades=17 sharpe=-3.215 took=0.5s
+2026-11-17T20:48:42 [grid 47/48] START K=0.5 sw=20 C=0.4 elapsed=24.1s
+2026-11-17T20:48:43 [grid 47/48] END K=0.5 sw=20 C=0.4 trades=17 sharpe=-6.432 took=0.5s
+2026-11-17T20:48:43 [grid 48/48] START K=0.5 sw=20 C=0.5 elapsed=24.7s
+2026-11-17T20:48:43 [grid 48/48] END K=0.5 sw=20 C=0.5 trades=17 sharpe=-6.432 took=0.3s
+2026-11-17T20:50:22 START grid total=48
+2026-11-17T20:50:22 [grid 1/48] START K=0.2 sw=8 C=0.3 elapsed=0.0s
+2026-11-17T20:50:23 [grid 1/48] END K=0.2 sw=8 C=0.3 trades=27 sharpe=-1.497 took=0.7s
+2026-11-17T20:50:23 [grid 2/48] START K=0.2 sw=8 C=0.4 elapsed=0.7s
+2026-11-17T20:50:23 [grid 2/48] END K=0.2 sw=8 C=0.4 trades=27 sharpe=-1.497 took=0.7s
+2026-11-17T20:50:23 [grid 3/48] START K=0.2 sw=8 C=0.5 elapsed=1.4s
+2026-11-17T20:50:24 [grid 3/48] END K=0.2 sw=8 C=0.5 trades=25 sharpe=-1.357 took=0.7s
+2026-11-17T20:50:24 [grid 4/48] START K=0.2 sw=12 C=0.3 elapsed=2.1s
+2026-11-17T20:50:25 [grid 4/48] END K=0.2 sw=12 C=0.3 trades=27 sharpe=-1.827 took=0.6s
+2026-11-17T20:50:25 [grid 5/48] START K=0.2 sw=12 C=0.4 elapsed=2.7s
+2026-11-17T20:50:25 [grid 5/48] END K=0.2 sw=12 C=0.4 trades=27 sharpe=-1.827 took=0.6s
+2026-11-17T20:50:25 [grid 6/48] START K=0.2 sw=12 C=0.5 elapsed=3.3s
+2026-11-17T20:50:26 [grid 6/48] END K=0.2 sw=12 C=0.5 trades=26 sharpe=-2.183 took=0.6s
+2026-11-17T20:50:26 [grid 7/48] START K=0.2 sw=16 C=0.3 elapsed=4.0s
+2026-11-17T20:50:26 [grid 7/48] END K=0.2 sw=16 C=0.3 trades=22 sharpe=-5.281 took=0.6s
+2026-11-17T20:50:26 [grid 8/48] START K=0.2 sw=16 C=0.4 elapsed=4.6s
+2026-11-17T20:50:27 [grid 8/48] END K=0.2 sw=16 C=0.4 trades=22 sharpe=-3.673 took=0.6s
+2026-11-17T20:50:27 [grid 9/48] START K=0.2 sw=16 C=0.5 elapsed=5.2s
+2026-11-17T20:50:28 [grid 9/48] END K=0.2 sw=16 C=0.5 trades=21 sharpe=-4.782 took=0.6s
+2026-11-17T20:50:28 [grid 10/48] START K=0.2 sw=20 C=0.3 elapsed=5.9s
+2026-11-17T20:50:28 [grid 10/48] END K=0.2 sw=20 C=0.3 trades=19 sharpe=-6.993 took=0.6s
+2026-11-17T20:50:28 [grid 11/48] START K=0.2 sw=20 C=0.4 elapsed=6.4s
+2026-11-17T20:50:29 [grid 11/48] END K=0.2 sw=20 C=0.4 trades=19 sharpe=-6.825 took=0.6s
+2026-11-17T20:50:29 [grid 12/48] START K=0.2 sw=20 C=0.5 elapsed=7.0s
+2026-11-17T20:50:29 [grid 12/48] END K=0.2 sw=20 C=0.5 trades=18 sharpe=-8.600 took=0.5s
+2026-11-17T20:50:29 [grid 13/48] START K=0.3 sw=8 C=0.3 elapsed=7.5s
+2026-11-17T20:50:30 [grid 13/48] END K=0.3 sw=8 C=0.3 trades=27 sharpe=-1.497 took=0.6s
+2026-11-17T20:50:30 [grid 14/48] START K=0.3 sw=8 C=0.4 elapsed=8.2s
+2026-11-17T20:50:31 [grid 14/48] END K=0.3 sw=8 C=0.4 trades=27 sharpe=-1.497 took=0.6s
+2026-11-17T20:50:31 [grid 15/48] START K=0.3 sw=8 C=0.5 elapsed=8.8s
+2026-11-17T20:50:31 [grid 15/48] END K=0.3 sw=8 C=0.5 trades=25 sharpe=-1.357 took=0.6s
+2026-11-17T20:50:31 [grid 16/48] START K=0.3 sw=12 C=0.3 elapsed=9.4s
+2026-11-17T20:50:32 [grid 16/48] END K=0.3 sw=12 C=0.3 trades=27 sharpe=-1.827 took=0.7s
+2026-11-17T20:50:32 [grid 17/48] START K=0.3 sw=12 C=0.4 elapsed=10.1s
+2026-11-17T20:50:33 [grid 17/48] END K=0.3 sw=12 C=0.4 trades=27 sharpe=-1.827 took=0.6s
+2026-11-17T20:50:33 [grid 18/48] START K=0.3 sw=12 C=0.5 elapsed=10.7s
+2026-11-17T20:50:33 [grid 18/48] END K=0.3 sw=12 C=0.5 trades=26 sharpe=-2.183 took=0.7s
+2026-11-17T20:50:33 [grid 19/48] START K=0.3 sw=16 C=0.3 elapsed=11.4s
+2026-11-17T20:50:34 [grid 19/48] END K=0.3 sw=16 C=0.3 trades=22 sharpe=-5.281 took=0.6s
+2026-11-17T20:50:34 [grid 20/48] START K=0.3 sw=16 C=0.4 elapsed=12.0s
+2026-11-17T20:50:34 [grid 20/48] END K=0.3 sw=16 C=0.4 trades=22 sharpe=-3.673 took=0.7s
+2026-11-17T20:50:34 [grid 21/48] START K=0.3 sw=16 C=0.5 elapsed=12.6s
+2026-11-17T20:50:35 [grid 21/48] END K=0.3 sw=16 C=0.5 trades=21 sharpe=-4.782 took=0.7s
+2026-11-17T20:50:35 [grid 22/48] START K=0.3 sw=20 C=0.3 elapsed=13.3s
+2026-11-17T20:50:36 [grid 22/48] END K=0.3 sw=20 C=0.3 trades=19 sharpe=-6.993 took=0.6s
+2026-11-17T20:50:36 [grid 23/48] START K=0.3 sw=20 C=0.4 elapsed=13.9s
+2026-11-17T20:50:36 [grid 23/48] END K=0.3 sw=20 C=0.4 trades=19 sharpe=-6.825 took=0.6s
+2026-11-17T20:50:36 [grid 24/48] START K=0.3 sw=20 C=0.5 elapsed=14.5s
+2026-11-17T20:50:37 [grid 24/48] END K=0.3 sw=20 C=0.5 trades=18 sharpe=-8.600 took=0.6s
+2026-11-17T20:50:37 [grid 25/48] START K=0.4 sw=8 C=0.3 elapsed=15.1s
+2026-11-17T20:50:38 [grid 25/48] END K=0.4 sw=8 C=0.3 trades=27 sharpe=-1.497 took=0.7s
+2026-11-17T20:50:38 [grid 26/48] START K=0.4 sw=8 C=0.4 elapsed=15.8s
+2026-11-17T20:50:38 [grid 26/48] END K=0.4 sw=8 C=0.4 trades=27 sharpe=-1.497 took=0.6s
+2026-11-17T20:50:38 [grid 27/48] START K=0.4 sw=8 C=0.5 elapsed=16.5s
+2026-11-17T20:50:39 [grid 27/48] END K=0.4 sw=8 C=0.5 trades=25 sharpe=-1.357 took=0.7s
+2026-11-17T20:50:39 [grid 28/48] START K=0.4 sw=12 C=0.3 elapsed=17.1s
+2026-11-17T20:50:40 [grid 28/48] END K=0.4 sw=12 C=0.3 trades=27 sharpe=-1.827 took=0.7s
+2026-11-17T20:50:40 [grid 29/48] START K=0.4 sw=12 C=0.4 elapsed=17.8s
+2026-11-17T20:50:40 [grid 29/48] END K=0.4 sw=12 C=0.4 trades=27 sharpe=-1.827 took=0.7s
+2026-11-17T20:50:40 [grid 30/48] START K=0.4 sw=12 C=0.5 elapsed=18.5s
+2026-11-17T20:50:41 [grid 30/48] END K=0.4 sw=12 C=0.5 trades=26 sharpe=-2.183 took=0.6s
+2026-11-17T20:50:41 [grid 31/48] START K=0.4 sw=16 C=0.3 elapsed=19.1s
+2026-11-17T20:50:42 [grid 31/48] END K=0.4 sw=16 C=0.3 trades=22 sharpe=-5.281 took=0.6s
+2026-11-17T20:50:42 [grid 32/48] START K=0.4 sw=16 C=0.4 elapsed=19.8s
+2026-11-17T20:50:42 [grid 32/48] END K=0.4 sw=16 C=0.4 trades=22 sharpe=-3.673 took=0.6s
+2026-11-17T20:50:42 [grid 33/48] START K=0.4 sw=16 C=0.5 elapsed=20.4s
+2026-11-17T20:50:43 [grid 33/48] END K=0.4 sw=16 C=0.5 trades=21 sharpe=-4.782 took=0.6s
+2026-11-17T20:50:43 [grid 34/48] START K=0.4 sw=20 C=0.3 elapsed=21.0s
+2026-11-17T20:50:43 [grid 34/48] END K=0.4 sw=20 C=0.3 trades=19 sharpe=-6.993 took=0.6s
+2026-11-17T20:50:43 [grid 35/48] START K=0.4 sw=20 C=0.4 elapsed=21.6s
+2026-11-17T20:50:44 [grid 35/48] END K=0.4 sw=20 C=0.4 trades=19 sharpe=-6.825 took=0.6s
+2026-11-17T20:50:44 [grid 36/48] START K=0.4 sw=20 C=0.5 elapsed=22.2s
+2026-11-17T20:50:45 [grid 36/48] END K=0.4 sw=20 C=0.5 trades=18 sharpe=-8.600 took=0.6s
+2026-11-17T20:50:45 [grid 37/48] START K=0.5 sw=8 C=0.3 elapsed=22.8s
+2026-11-17T20:50:45 [grid 37/48] END K=0.5 sw=8 C=0.3 trades=27 sharpe=-1.508 took=0.7s
+2026-11-17T20:50:45 [grid 38/48] START K=0.5 sw=8 C=0.4 elapsed=23.5s
+2026-11-17T20:50:46 [grid 38/48] END K=0.5 sw=8 C=0.4 trades=27 sharpe=-1.508 took=0.6s
+2026-11-17T20:50:46 [grid 39/48] START K=0.5 sw=8 C=0.5 elapsed=24.2s
+2026-11-17T20:50:47 [grid 39/48] END K=0.5 sw=8 C=0.5 trades=25 sharpe=-1.369 took=0.6s
+2026-11-17T20:50:47 [grid 40/48] START K=0.5 sw=12 C=0.3 elapsed=24.8s
+2026-11-17T20:50:47 [grid 40/48] END K=0.5 sw=12 C=0.3 trades=27 sharpe=-1.838 took=0.7s
+2026-11-17T20:50:47 [grid 41/48] START K=0.5 sw=12 C=0.4 elapsed=25.5s
+2026-11-17T20:50:48 [grid 41/48] END K=0.5 sw=12 C=0.4 trades=27 sharpe=-1.838 took=0.7s
+2026-11-17T20:50:48 [grid 42/48] START K=0.5 sw=12 C=0.5 elapsed=26.2s
+2026-11-17T20:50:49 [grid 42/48] END K=0.5 sw=12 C=0.5 trades=26 sharpe=-2.194 took=0.7s
+2026-11-17T20:50:49 [grid 43/48] START K=0.5 sw=16 C=0.3 elapsed=26.8s
+2026-11-17T20:50:49 [grid 43/48] END K=0.5 sw=16 C=0.3 trades=22 sharpe=-5.287 took=0.6s
+2026-11-17T20:50:49 [grid 44/48] START K=0.5 sw=16 C=0.4 elapsed=27.5s
+2026-11-17T20:50:50 [grid 44/48] END K=0.5 sw=16 C=0.4 trades=22 sharpe=-3.698 took=0.6s
+2026-11-17T20:50:50 [grid 45/48] START K=0.5 sw=16 C=0.5 elapsed=28.0s
+2026-11-17T20:50:51 [grid 45/48] END K=0.5 sw=16 C=0.5 trades=21 sharpe=-4.787 took=0.6s
+2026-11-17T20:50:51 [grid 46/48] START K=0.5 sw=20 C=0.3 elapsed=28.7s
+2026-11-17T20:50:51 [grid 46/48] END K=0.5 sw=20 C=0.3 trades=19 sharpe=-7.012 took=0.6s
+2026-11-17T20:50:51 [grid 47/48] START K=0.5 sw=20 C=0.4 elapsed=29.3s
+2026-11-17T20:50:52 [grid 47/48] END K=0.5 sw=20 C=0.4 trades=19 sharpe=-6.844 took=0.6s
+2026-11-17T20:50:52 [grid 48/48] START K=0.5 sw=20 C=0.5 elapsed=29.9s
+2026-11-17T20:50:52 [grid 48/48] END K=0.5 sw=20 C=0.5 trades=18 sharpe=-8.620 took=0.6s
+2026-11-17T20:50:53 START grid total=48
+2026-11-17T20:50:53 [grid 1/48] START K=0.2 sw=8 C=0.3 elapsed=0.0s
+2026-11-17T20:50:54 [grid 1/48] END K=0.2 sw=8 C=0.3 trades=27 sharpe=-1.497 took=0.7s
+2026-11-17T20:50:54 [grid 2/48] START K=0.2 sw=8 C=0.4 elapsed=0.7s
+2026-11-17T20:50:54 [grid 2/48] END K=0.2 sw=8 C=0.4 trades=27 sharpe=-1.497 took=0.7s
+2026-11-17T20:50:54 [grid 3/48] START K=0.2 sw=8 C=0.5 elapsed=1.5s
+2026-11-17T20:50:55 [grid 3/48] END K=0.2 sw=8 C=0.5 trades=25 sharpe=-1.357 took=0.8s
+2026-11-17T20:50:55 [grid 4/48] START K=0.2 sw=12 C=0.3 elapsed=2.2s
+2026-11-17T20:50:56 [grid 4/48] END K=0.2 sw=12 C=0.3 trades=27 sharpe=-1.827 took=0.7s
+2026-11-17T20:50:56 [grid 5/48] START K=0.2 sw=12 C=0.4 elapsed=3.0s
+2026-11-17T20:50:56 [grid 5/48] END K=0.2 sw=12 C=0.4 trades=27 sharpe=-1.827 took=0.7s
+2026-11-17T20:50:56 [grid 6/48] START K=0.2 sw=12 C=0.5 elapsed=3.6s
+2026-11-17T20:50:57 [grid 6/48] END K=0.2 sw=12 C=0.5 trades=26 sharpe=-2.183 took=0.7s
+2026-11-17T20:50:57 [grid 7/48] START K=0.2 sw=16 C=0.3 elapsed=4.3s
+2026-11-17T20:50:58 [grid 7/48] END K=0.2 sw=16 C=0.3 trades=22 sharpe=-5.281 took=0.7s
+2026-11-17T20:50:58 [grid 8/48] START K=0.2 sw=16 C=0.4 elapsed=5.0s
+2026-11-17T20:50:58 [grid 8/48] END K=0.2 sw=16 C=0.4 trades=22 sharpe=-3.673 took=0.6s
+2026-11-17T20:50:58 [grid 9/48] START K=0.2 sw=16 C=0.5 elapsed=5.6s
+2026-11-17T20:50:59 [grid 9/48] END K=0.2 sw=16 C=0.5 trades=21 sharpe=-4.782 took=0.6s
+2026-11-17T20:50:59 [grid 10/48] START K=0.2 sw=20 C=0.3 elapsed=6.2s
+2026-11-17T20:51:00 [grid 10/48] END K=0.2 sw=20 C=0.3 trades=19 sharpe=-6.993 took=0.6s
+2026-11-17T20:51:00 [grid 11/48] START K=0.2 sw=20 C=0.4 elapsed=6.8s
+2026-11-17T20:51:00 [grid 11/48] END K=0.2 sw=20 C=0.4 trades=19 sharpe=-6.825 took=0.6s
+2026-11-17T20:51:00 [grid 12/48] START K=0.2 sw=20 C=0.5 elapsed=7.4s
+2026-11-17T20:51:01 [grid 12/48] END K=0.2 sw=20 C=0.5 trades=18 sharpe=-8.600 took=0.6s
+2026-11-17T20:51:01 [grid 13/48] START K=0.3 sw=8 C=0.3 elapsed=8.0s
+2026-11-17T20:51:02 [grid 13/48] END K=0.3 sw=8 C=0.3 trades=27 sharpe=-1.497 took=0.7s
+2026-11-17T20:51:02 [grid 14/48] START K=0.3 sw=8 C=0.4 elapsed=8.7s
+2026-11-17T20:51:02 [grid 14/48] END K=0.3 sw=8 C=0.4 trades=27 sharpe=-1.497 took=0.7s
+2026-11-17T20:51:02 [grid 15/48] START K=0.3 sw=8 C=0.5 elapsed=9.5s
+2026-11-17T20:51:03 [grid 15/48] END K=0.3 sw=8 C=0.5 trades=25 sharpe=-1.357 took=0.7s
+2026-11-17T20:51:03 [grid 16/48] START K=0.3 sw=12 C=0.3 elapsed=10.2s
+2026-11-17T20:51:04 [grid 16/48] END K=0.3 sw=12 C=0.3 trades=27 sharpe=-1.827 took=0.7s
+2026-11-17T20:51:04 [grid 17/48] START K=0.3 sw=12 C=0.4 elapsed=10.9s
+2026-11-17T20:51:04 [grid 17/48] END K=0.3 sw=12 C=0.4 trades=27 sharpe=-1.827 took=0.7s
+2026-11-17T20:51:04 [grid 18/48] START K=0.3 sw=12 C=0.5 elapsed=11.5s
+2026-11-17T20:51:05 [grid 18/48] END K=0.3 sw=12 C=0.5 trades=26 sharpe=-2.183 took=0.6s
+2026-11-17T20:51:05 [grid 19/48] START K=0.3 sw=16 C=0.3 elapsed=12.2s
+2026-11-17T20:51:06 [grid 19/48] END K=0.3 sw=16 C=0.3 trades=22 sharpe=-5.281 took=0.6s
+2026-11-17T20:51:06 [grid 20/48] START K=0.3 sw=16 C=0.4 elapsed=12.8s
+2026-11-17T20:51:06 [grid 20/48] END K=0.3 sw=16 C=0.4 trades=22 sharpe=-3.673 took=0.7s
+2026-11-17T20:51:06 [grid 21/48] START K=0.3 sw=16 C=0.5 elapsed=13.4s
+2026-11-17T20:51:07 [grid 21/48] END K=0.3 sw=16 C=0.5 trades=21 sharpe=-4.782 took=0.6s
+2026-11-17T20:51:07 [grid 22/48] START K=0.3 sw=20 C=0.3 elapsed=14.0s
+2026-11-17T20:51:07 [grid 22/48] END K=0.3 sw=20 C=0.3 trades=19 sharpe=-6.993 took=0.6s
+2026-11-17T20:51:07 [grid 23/48] START K=0.3 sw=20 C=0.4 elapsed=14.6s
+2026-11-17T20:51:08 [grid 23/48] END K=0.3 sw=20 C=0.4 trades=19 sharpe=-6.825 took=0.5s
+2026-11-17T20:51:08 [grid 24/48] START K=0.3 sw=20 C=0.5 elapsed=15.1s
+2026-11-17T20:51:09 [grid 24/48] END K=0.3 sw=20 C=0.5 trades=18 sharpe=-8.600 took=0.5s
+2026-11-17T20:51:09 [grid 25/48] START K=0.4 sw=8 C=0.3 elapsed=15.7s
+2026-11-17T20:51:09 [grid 25/48] END K=0.4 sw=8 C=0.3 trades=27 sharpe=-1.497 took=0.7s
+2026-11-17T20:51:09 [grid 26/48] START K=0.4 sw=8 C=0.4 elapsed=16.4s
+2026-11-17T20:51:10 [grid 26/48] END K=0.4 sw=8 C=0.4 trades=27 sharpe=-1.497 took=0.6s
+2026-11-17T20:51:10 [grid 27/48] START K=0.4 sw=8 C=0.5 elapsed=17.0s
+2026-11-17T20:51:10 [grid 27/48] END K=0.4 sw=8 C=0.5 trades=25 sharpe=-1.357 took=0.6s
+2026-11-17T20:51:10 [grid 28/48] START K=0.4 sw=12 C=0.3 elapsed=17.6s
+2026-11-17T20:51:11 [grid 28/48] END K=0.4 sw=12 C=0.3 trades=27 sharpe=-1.827 took=0.7s
+2026-11-17T20:51:11 [grid 29/48] START K=0.4 sw=12 C=0.4 elapsed=18.3s
+2026-11-17T20:51:12 [grid 29/48] END K=0.4 sw=12 C=0.4 trades=27 sharpe=-1.827 took=0.6s
+2026-11-17T20:51:12 [grid 30/48] START K=0.4 sw=12 C=0.5 elapsed=18.9s
+2026-11-17T20:51:12 [grid 30/48] END K=0.4 sw=12 C=0.5 trades=26 sharpe=-2.183 took=0.7s
+2026-11-17T20:51:12 [grid 31/48] START K=0.4 sw=16 C=0.3 elapsed=19.5s
+2026-11-17T20:51:13 [grid 31/48] END K=0.4 sw=16 C=0.3 trades=22 sharpe=-5.281 took=0.6s
+2026-11-17T20:51:13 [grid 32/48] START K=0.4 sw=16 C=0.4 elapsed=20.1s
+2026-11-17T20:51:13 [grid 32/48] END K=0.4 sw=16 C=0.4 trades=22 sharpe=-3.673 took=0.6s
+2026-11-17T20:51:13 [grid 33/48] START K=0.4 sw=16 C=0.5 elapsed=20.7s
+2026-11-17T20:51:14 [grid 33/48] END K=0.4 sw=16 C=0.5 trades=21 sharpe=-4.782 took=0.5s
+2026-11-17T20:51:14 [grid 34/48] START K=0.4 sw=20 C=0.3 elapsed=21.2s
+2026-11-17T20:51:15 [grid 34/48] END K=0.4 sw=20 C=0.3 trades=19 sharpe=-6.993 took=0.6s
+2026-11-17T20:51:15 [grid 35/48] START K=0.4 sw=20 C=0.4 elapsed=21.8s
+2026-11-17T20:51:15 [grid 35/48] END K=0.4 sw=20 C=0.4 trades=19 sharpe=-6.825 took=0.6s
+2026-11-17T20:51:15 [grid 36/48] START K=0.4 sw=20 C=0.5 elapsed=22.4s
+2026-11-17T20:51:16 [grid 36/48] END K=0.4 sw=20 C=0.5 trades=18 sharpe=-8.600 took=0.6s
+2026-11-17T20:51:16 [grid 37/48] START K=0.5 sw=8 C=0.3 elapsed=22.9s
+2026-11-17T20:51:16 [grid 37/48] END K=0.5 sw=8 C=0.3 trades=27 sharpe=-1.508 took=0.7s
+2026-11-17T20:51:16 [grid 38/48] START K=0.5 sw=8 C=0.4 elapsed=23.6s
+2026-11-17T20:51:17 [grid 38/48] END K=0.5 sw=8 C=0.4 trades=27 sharpe=-1.508 took=0.6s
+2026-11-17T20:51:17 [grid 39/48] START K=0.5 sw=8 C=0.5 elapsed=24.3s
+2026-11-17T20:51:18 [grid 39/48] END K=0.5 sw=8 C=0.5 trades=25 sharpe=-1.369 took=0.7s
+2026-11-17T20:51:18 [grid 40/48] START K=0.5 sw=12 C=0.3 elapsed=24.9s
+2026-11-17T20:51:18 [grid 40/48] END K=0.5 sw=12 C=0.3 trades=27 sharpe=-1.838 took=0.6s
+2026-11-17T20:51:18 [grid 41/48] START K=0.5 sw=12 C=0.4 elapsed=25.6s
+2026-11-17T20:51:19 [grid 41/48] END K=0.5 sw=12 C=0.4 trades=27 sharpe=-1.838 took=0.6s
+2026-11-17T20:51:19 [grid 42/48] START K=0.5 sw=12 C=0.5 elapsed=26.2s
+2026-11-17T20:51:20 [grid 42/48] END K=0.5 sw=12 C=0.5 trades=26 sharpe=-2.194 took=0.6s
+2026-11-17T20:51:20 [grid 43/48] START K=0.5 sw=16 C=0.3 elapsed=26.8s
+2026-11-17T20:51:20 [grid 43/48] END K=0.5 sw=16 C=0.3 trades=22 sharpe=-5.287 took=0.6s
+2026-11-17T20:51:20 [grid 44/48] START K=0.5 sw=16 C=0.4 elapsed=27.4s
+2026-11-17T20:51:21 [grid 44/48] END K=0.5 sw=16 C=0.4 trades=22 sharpe=-3.698 took=0.6s
+2026-11-17T20:51:21 [grid 45/48] START K=0.5 sw=16 C=0.5 elapsed=28.0s
+2026-11-17T20:51:21 [grid 45/48] END K=0.5 sw=16 C=0.5 trades=21 sharpe=-4.787 took=0.6s
+2026-11-17T20:51:21 [grid 46/48] START K=0.5 sw=20 C=0.3 elapsed=28.6s
+2026-11-17T20:51:22 [grid 46/48] END K=0.5 sw=20 C=0.3 trades=19 sharpe=-7.012 took=0.5s
+2026-11-17T20:51:22 [grid 47/48] START K=0.5 sw=20 C=0.4 elapsed=29.2s
+2026-11-17T20:51:23 [grid 47/48] END K=0.5 sw=20 C=0.4 trades=19 sharpe=-6.844 took=0.6s
+2026-11-17T20:51:23 [grid 48/48] START K=0.5 sw=20 C=0.5 elapsed=29.8s
+2026-11-17T20:51:23 [grid 48/48] END K=0.5 sw=20 C=0.5 trades=18 sharpe=-8.620 took=0.6s
+2026-11-17T20:59:46 START grid total=48
+2026-11-17T20:59:46 [grid 1/48] START K=0.2 sw=8 C=0.3 elapsed=0.0s
+2026-11-17T20:59:47 [grid 1/48] END K=0.2 sw=8 C=0.3 trades=26 sharpe=-0.488 took=0.7s
+2026-11-17T20:59:47 [grid 2/48] START K=0.2 sw=8 C=0.4 elapsed=0.7s
+2026-11-17T20:59:48 [grid 2/48] END K=0.2 sw=8 C=0.4 trades=26 sharpe=-1.250 took=0.7s
+2026-11-17T20:59:48 [grid 3/48] START K=0.2 sw=8 C=0.5 elapsed=1.4s
+2026-11-17T20:59:48 [grid 3/48] END K=0.2 sw=8 C=0.5 trades=26 sharpe=-1.250 took=0.8s
+2026-11-17T20:59:48 [grid 4/48] START K=0.2 sw=12 C=0.3 elapsed=2.2s
+2026-11-17T20:59:49 [grid 4/48] END K=0.2 sw=12 C=0.3 trades=24 sharpe=1.061 took=0.8s
+2026-11-17T20:59:49 [grid 5/48] START K=0.2 sw=12 C=0.4 elapsed=3.0s
+2026-11-17T20:59:50 [grid 5/48] END K=0.2 sw=12 C=0.4 trades=24 sharpe=0.216 took=0.5s
+2026-11-17T20:59:50 [grid 6/48] START K=0.2 sw=12 C=0.5 elapsed=3.5s
+2026-11-17T20:59:50 [grid 6/48] END K=0.2 sw=12 C=0.5 trades=24 sharpe=0.216 took=0.1s
+2026-11-17T20:59:50 [grid 7/48] START K=0.2 sw=16 C=0.3 elapsed=3.6s
+2026-11-17T20:59:50 [grid 7/48] END K=0.2 sw=16 C=0.3 trades=21 sharpe=0.779 took=0.1s
+2026-11-17T20:59:50 [grid 8/48] START K=0.2 sw=16 C=0.4 elapsed=3.8s
+2026-11-17T20:59:50 [grid 8/48] END K=0.2 sw=16 C=0.4 trades=21 sharpe=-0.112 took=0.1s
+2026-11-17T20:59:50 [grid 9/48] START K=0.2 sw=16 C=0.5 elapsed=3.9s
+2026-11-17T20:59:50 [grid 9/48] END K=0.2 sw=16 C=0.5 trades=21 sharpe=0.493 took=0.1s
+2026-11-17T20:59:50 [grid 10/48] START K=0.2 sw=20 C=0.3 elapsed=4.0s
+2026-11-17T20:59:50 [grid 10/48] END K=0.2 sw=20 C=0.3 trades=19 sharpe=-0.472 took=0.1s
+2026-11-17T20:59:50 [grid 11/48] START K=0.2 sw=20 C=0.4 elapsed=4.1s
+2026-11-17T20:59:50 [grid 11/48] END K=0.2 sw=20 C=0.4 trades=19 sharpe=-1.460 took=0.1s
+2026-11-17T20:59:50 [grid 12/48] START K=0.2 sw=20 C=0.5 elapsed=4.2s
+2026-11-17T20:59:51 [grid 12/48] END K=0.2 sw=20 C=0.5 trades=19 sharpe=-0.998 took=0.1s
+2026-11-17T20:59:51 [grid 13/48] START K=0.3 sw=8 C=0.3 elapsed=4.3s
+2026-11-17T20:59:51 [grid 13/48] END K=0.3 sw=8 C=0.3 trades=25 sharpe=-1.999 took=0.1s
+2026-11-17T20:59:51 [grid 14/48] START K=0.3 sw=8 C=0.4 elapsed=4.5s
+2026-11-17T20:59:51 [grid 14/48] END K=0.3 sw=8 C=0.4 trades=25 sharpe=-2.786 took=0.1s
+2026-11-17T20:59:51 [grid 15/48] START K=0.3 sw=8 C=0.5 elapsed=4.6s
+2026-11-17T20:59:51 [grid 15/48] END K=0.3 sw=8 C=0.5 trades=25 sharpe=-2.786 took=0.1s
+2026-11-17T20:59:51 [grid 16/48] START K=0.3 sw=12 C=0.3 elapsed=4.7s
+2026-11-17T20:59:51 [grid 16/48] END K=0.3 sw=12 C=0.3 trades=24 sharpe=-0.137 took=0.1s
+2026-11-17T20:59:51 [grid 17/48] START K=0.3 sw=12 C=0.4 elapsed=4.9s
+2026-11-17T20:59:51 [grid 17/48] END K=0.3 sw=12 C=0.4 trades=24 sharpe=-0.972 took=0.2s
+2026-11-17T20:59:51 [grid 18/48] START K=0.3 sw=12 C=0.5 elapsed=5.0s
+2026-11-17T20:59:51 [grid 18/48] END K=0.3 sw=12 C=0.5 trades=24 sharpe=-0.972 took=0.1s
+2026-11-17T20:59:51 [grid 19/48] START K=0.3 sw=16 C=0.3 elapsed=5.1s
+2026-11-17T20:59:52 [grid 19/48] END K=0.3 sw=16 C=0.3 trades=22 sharpe=-0.220 took=0.2s
+2026-11-17T20:59:52 [grid 20/48] START K=0.3 sw=16 C=0.4 elapsed=5.3s
+2026-11-17T20:59:52 [grid 20/48] END K=0.3 sw=16 C=0.4 trades=22 sharpe=-1.095 took=0.7s
+2026-11-17T20:59:52 [grid 21/48] START K=0.3 sw=16 C=0.5 elapsed=6.0s
+2026-11-17T20:59:53 [grid 21/48] END K=0.3 sw=16 C=0.5 trades=22 sharpe=-0.498 took=0.7s
+2026-11-17T20:59:53 [grid 22/48] START K=0.3 sw=20 C=0.3 elapsed=6.8s
+2026-11-17T20:59:54 [grid 22/48] END K=0.3 sw=20 C=0.3 trades=20 sharpe=-1.503 took=0.7s
+2026-11-17T20:59:54 [grid 23/48] START K=0.3 sw=20 C=0.4 elapsed=7.5s
+2026-11-17T20:59:54 [grid 23/48] END K=0.3 sw=20 C=0.4 trades=20 sharpe=-2.466 took=0.7s
+2026-11-17T20:59:54 [grid 24/48] START K=0.3 sw=20 C=0.5 elapsed=8.2s
+2026-11-17T20:59:55 [grid 24/48] END K=0.3 sw=20 C=0.5 trades=20 sharpe=-2.045 took=0.7s
+2026-11-17T20:59:55 [grid 25/48] START K=0.4 sw=8 C=0.3 elapsed=8.8s
+2026-11-17T20:59:56 [grid 25/48] END K=0.4 sw=8 C=0.3 trades=25 sharpe=-1.999 took=0.7s
+2026-11-17T20:59:56 [grid 26/48] START K=0.4 sw=8 C=0.4 elapsed=9.6s
+2026-11-17T20:59:56 [grid 26/48] END K=0.4 sw=8 C=0.4 trades=25 sharpe=-2.786 took=0.7s
+2026-11-17T20:59:56 [grid 27/48] START K=0.4 sw=8 C=0.5 elapsed=10.3s
+2026-11-17T20:59:57 [grid 27/48] END K=0.4 sw=8 C=0.5 trades=25 sharpe=-2.786 took=0.6s
+2026-11-17T20:59:57 [grid 28/48] START K=0.4 sw=12 C=0.3 elapsed=10.9s
+2026-11-17T20:59:58 [grid 28/48] END K=0.4 sw=12 C=0.3 trades=24 sharpe=-0.137 took=0.7s
+2026-11-17T20:59:58 [grid 29/48] START K=0.4 sw=12 C=0.4 elapsed=11.6s
+2026-11-17T20:59:58 [grid 29/48] END K=0.4 sw=12 C=0.4 trades=24 sharpe=-0.972 took=0.7s
+2026-11-17T20:59:58 [grid 30/48] START K=0.4 sw=12 C=0.5 elapsed=12.3s
+2026-11-17T20:59:59 [grid 30/48] END K=0.4 sw=12 C=0.5 trades=24 sharpe=-0.972 took=0.7s
+2026-11-17T20:59:59 [grid 31/48] START K=0.4 sw=16 C=0.3 elapsed=13.0s
+2026-11-17T21:00:00 [grid 31/48] END K=0.4 sw=16 C=0.3 trades=22 sharpe=-1.197 took=0.8s
+2026-11-17T21:00:00 [grid 32/48] START K=0.4 sw=16 C=0.4 elapsed=13.8s
+2026-11-17T21:00:01 [grid 32/48] END K=0.4 sw=16 C=0.4 trades=22 sharpe=-2.052 took=0.7s
+2026-11-17T21:00:01 [grid 33/48] START K=0.4 sw=16 C=0.5 elapsed=14.5s
+2026-11-17T21:00:01 [grid 33/48] END K=0.4 sw=16 C=0.5 trades=22 sharpe=-1.524 took=0.7s
+2026-11-17T21:00:01 [grid 34/48] START K=0.4 sw=20 C=0.3 elapsed=15.2s
+2026-11-17T21:00:02 [grid 34/48] END K=0.4 sw=20 C=0.3 trades=20 sharpe=-2.616 took=0.7s
+2026-11-17T21:00:02 [grid 35/48] START K=0.4 sw=20 C=0.4 elapsed=15.9s
+2026-11-17T21:00:03 [grid 35/48] END K=0.4 sw=20 C=0.4 trades=20 sharpe=-3.583 took=0.7s
+2026-11-17T21:00:03 [grid 36/48] START K=0.4 sw=20 C=0.5 elapsed=16.6s
+2026-11-17T21:00:03 [grid 36/48] END K=0.4 sw=20 C=0.5 trades=20 sharpe=-3.161 took=0.7s
+2026-11-17T21:00:03 [grid 37/48] START K=0.5 sw=8 C=0.3 elapsed=17.3s
+2026-11-17T21:00:04 [grid 37/48] END K=0.5 sw=8 C=0.3 trades=25 sharpe=-1.999 took=0.8s
+2026-11-17T21:00:04 [grid 38/48] START K=0.5 sw=8 C=0.4 elapsed=18.0s
+2026-11-17T21:00:05 [grid 38/48] END K=0.5 sw=8 C=0.4 trades=25 sharpe=-2.786 took=0.7s
+2026-11-17T21:00:05 [grid 39/48] START K=0.5 sw=8 C=0.5 elapsed=18.8s
+2026-11-17T21:00:06 [grid 39/48] END K=0.5 sw=8 C=0.5 trades=25 sharpe=-2.786 took=0.7s
+2026-11-17T21:00:06 [grid 40/48] START K=0.5 sw=12 C=0.3 elapsed=19.5s
+2026-11-17T21:00:06 [grid 40/48] END K=0.5 sw=12 C=0.3 trades=24 sharpe=-0.137 took=0.7s
+2026-11-17T21:00:06 [grid 41/48] START K=0.5 sw=12 C=0.4 elapsed=20.2s
+2026-11-17T21:00:07 [grid 41/48] END K=0.5 sw=12 C=0.4 trades=24 sharpe=-0.972 took=0.6s
+2026-11-17T21:00:07 [grid 42/48] START K=0.5 sw=12 C=0.5 elapsed=20.9s
+2026-11-17T21:00:08 [grid 42/48] END K=0.5 sw=12 C=0.5 trades=24 sharpe=-0.972 took=0.6s
+2026-11-17T21:00:08 [grid 43/48] START K=0.5 sw=16 C=0.3 elapsed=21.5s
+2026-11-17T21:00:08 [grid 43/48] END K=0.5 sw=16 C=0.3 trades=22 sharpe=-1.197 took=0.7s
+2026-11-17T21:00:08 [grid 44/48] START K=0.5 sw=16 C=0.4 elapsed=22.2s
+2026-11-17T21:00:09 [grid 44/48] END K=0.5 sw=16 C=0.4 trades=22 sharpe=-2.052 took=0.7s
+2026-11-17T21:00:09 [grid 45/48] START K=0.5 sw=16 C=0.5 elapsed=22.9s
+2026-11-17T21:00:10 [grid 45/48] END K=0.5 sw=16 C=0.5 trades=22 sharpe=-1.524 took=0.7s
+2026-11-17T21:00:10 [grid 46/48] START K=0.5 sw=20 C=0.3 elapsed=23.6s
+2026-11-17T21:00:10 [grid 46/48] END K=0.5 sw=20 C=0.3 trades=20 sharpe=-6.855 took=0.6s
+2026-11-17T21:00:10 [grid 47/48] START K=0.5 sw=20 C=0.4 elapsed=24.2s
+2026-11-17T21:00:11 [grid 47/48] END K=0.5 sw=20 C=0.4 trades=20 sharpe=-8.125 took=0.7s
+2026-11-17T21:00:11 [grid 48/48] START K=0.5 sw=20 C=0.5 elapsed=24.9s
+2026-11-17T21:00:12 [grid 48/48] END K=0.5 sw=20 C=0.5 trades=20 sharpe=-7.634 took=0.7s
+2026-11-17T21:00:12 START grid total=48
+2026-11-17T21:00:12 [grid 1/48] START K=0.2 sw=8 C=0.3 elapsed=0.0s
+2026-11-17T21:00:13 [grid 1/48] END K=0.2 sw=8 C=0.3 trades=26 sharpe=-0.488 took=0.7s
+2026-11-17T21:00:13 [grid 2/48] START K=0.2 sw=8 C=0.4 elapsed=0.7s
+2026-11-17T21:00:14 [grid 2/48] END K=0.2 sw=8 C=0.4 trades=26 sharpe=-1.250 took=0.8s
+2026-11-17T21:00:14 [grid 3/48] START K=0.2 sw=8 C=0.5 elapsed=1.5s
+2026-11-17T21:00:14 [grid 3/48] END K=0.2 sw=8 C=0.5 trades=26 sharpe=-1.250 took=0.8s
+2026-11-17T21:00:14 [grid 4/48] START K=0.2 sw=12 C=0.3 elapsed=2.3s
+2026-11-17T21:00:15 [grid 4/48] END K=0.2 sw=12 C=0.3 trades=24 sharpe=1.061 took=0.7s
+2026-11-17T21:00:15 [grid 5/48] START K=0.2 sw=12 C=0.4 elapsed=3.0s
+2026-11-17T21:00:16 [grid 5/48] END K=0.2 sw=12 C=0.4 trades=24 sharpe=0.216 took=0.7s
+2026-11-17T21:00:16 [grid 6/48] START K=0.2 sw=12 C=0.5 elapsed=3.7s
+2026-11-17T21:00:17 [grid 6/48] END K=0.2 sw=12 C=0.5 trades=24 sharpe=0.216 took=0.7s
+2026-11-17T21:00:17 [grid 7/48] START K=0.2 sw=16 C=0.3 elapsed=4.4s
+2026-11-17T21:00:17 [grid 7/48] END K=0.2 sw=16 C=0.3 trades=21 sharpe=0.779 took=0.7s
+2026-11-17T21:00:17 [grid 8/48] START K=0.2 sw=16 C=0.4 elapsed=5.1s
+2026-11-17T21:00:18 [grid 8/48] END K=0.2 sw=16 C=0.4 trades=21 sharpe=-0.112 took=0.7s
+2026-11-17T21:00:18 [grid 9/48] START K=0.2 sw=16 C=0.5 elapsed=5.8s
+2026-11-17T21:00:19 [grid 9/48] END K=0.2 sw=16 C=0.5 trades=21 sharpe=0.493 took=0.7s
+2026-11-17T21:00:19 [grid 10/48] START K=0.2 sw=20 C=0.3 elapsed=6.5s
+2026-11-17T21:00:19 [grid 10/48] END K=0.2 sw=20 C=0.3 trades=19 sharpe=-0.472 took=0.4s
+2026-11-17T21:00:19 [grid 11/48] START K=0.2 sw=20 C=0.4 elapsed=6.9s
+2026-11-17T21:00:19 [grid 11/48] END K=0.2 sw=20 C=0.4 trades=19 sharpe=-1.460 took=0.1s
+2026-11-17T21:00:19 [grid 12/48] START K=0.2 sw=20 C=0.5 elapsed=7.0s
+2026-11-17T21:00:19 [grid 12/48] END K=0.2 sw=20 C=0.5 trades=19 sharpe=-0.998 took=0.1s
+2026-11-17T21:00:19 [grid 13/48] START K=0.3 sw=8 C=0.3 elapsed=7.1s
+2026-11-17T21:00:19 [grid 13/48] END K=0.3 sw=8 C=0.3 trades=25 sharpe=-1.999 took=0.1s
+2026-11-17T21:00:19 [grid 14/48] START K=0.3 sw=8 C=0.4 elapsed=7.3s
+2026-11-17T21:00:20 [grid 14/48] END K=0.3 sw=8 C=0.4 trades=25 sharpe=-2.786 took=0.1s
+2026-11-17T21:00:20 [grid 15/48] START K=0.3 sw=8 C=0.5 elapsed=7.4s
+2026-11-17T21:00:20 [grid 15/48] END K=0.3 sw=8 C=0.5 trades=25 sharpe=-2.786 took=0.1s
+2026-11-17T21:00:20 [grid 16/48] START K=0.3 sw=12 C=0.3 elapsed=7.5s
+2026-11-17T21:00:20 [grid 16/48] END K=0.3 sw=12 C=0.3 trades=24 sharpe=-0.137 took=0.1s
+2026-11-17T21:00:20 [grid 17/48] START K=0.3 sw=12 C=0.4 elapsed=7.6s
+2026-11-17T21:00:20 [grid 17/48] END K=0.3 sw=12 C=0.4 trades=24 sharpe=-0.972 took=0.1s
+2026-11-17T21:00:20 [grid 18/48] START K=0.3 sw=12 C=0.5 elapsed=7.7s
+2026-11-17T21:00:20 [grid 18/48] END K=0.3 sw=12 C=0.5 trades=24 sharpe=-0.972 took=0.1s
+2026-11-17T21:00:20 [grid 19/48] START K=0.3 sw=16 C=0.3 elapsed=7.8s
+2026-11-17T21:00:20 [grid 19/48] END K=0.3 sw=16 C=0.3 trades=22 sharpe=-0.220 took=0.1s
+2026-11-17T21:00:20 [grid 20/48] START K=0.3 sw=16 C=0.4 elapsed=7.9s
+2026-11-17T21:00:20 [grid 20/48] END K=0.3 sw=16 C=0.4 trades=22 sharpe=-1.095 took=0.1s
+2026-11-17T21:00:20 [grid 21/48] START K=0.3 sw=16 C=0.5 elapsed=8.1s
+2026-11-17T21:00:20 [grid 21/48] END K=0.3 sw=16 C=0.5 trades=22 sharpe=-0.498 took=0.1s
+2026-11-17T21:00:20 [grid 22/48] START K=0.3 sw=20 C=0.3 elapsed=8.2s
+2026-11-17T21:00:20 [grid 22/48] END K=0.3 sw=20 C=0.3 trades=20 sharpe=-1.503 took=0.1s
+2026-11-17T21:00:20 [grid 23/48] START K=0.3 sw=20 C=0.4 elapsed=8.3s
+2026-11-17T21:00:21 [grid 23/48] END K=0.3 sw=20 C=0.4 trades=20 sharpe=-2.466 took=0.1s
+2026-11-17T21:00:21 [grid 24/48] START K=0.3 sw=20 C=0.5 elapsed=8.4s
+2026-11-17T21:00:21 [grid 24/48] END K=0.3 sw=20 C=0.5 trades=20 sharpe=-2.045 took=0.1s
+2026-11-17T21:00:21 [grid 25/48] START K=0.4 sw=8 C=0.3 elapsed=8.5s
+2026-11-17T21:00:21 [grid 25/48] END K=0.4 sw=8 C=0.3 trades=25 sharpe=-1.999 took=0.1s
+2026-11-17T21:00:21 [grid 26/48] START K=0.4 sw=8 C=0.4 elapsed=8.7s
+2026-11-17T21:00:21 [grid 26/48] END K=0.4 sw=8 C=0.4 trades=25 sharpe=-2.786 took=0.1s
+2026-11-17T21:00:21 [grid 27/48] START K=0.4 sw=8 C=0.5 elapsed=8.8s
+2026-11-17T21:00:21 [grid 27/48] END K=0.4 sw=8 C=0.5 trades=25 sharpe=-2.786 took=0.1s
+2026-11-17T21:00:21 [grid 28/48] START K=0.4 sw=12 C=0.3 elapsed=8.9s
+2026-11-17T21:00:21 [grid 28/48] END K=0.4 sw=12 C=0.3 trades=24 sharpe=-0.137 took=0.1s
+2026-11-17T21:00:21 [grid 29/48] START K=0.4 sw=12 C=0.4 elapsed=9.0s
+2026-11-17T21:00:21 [grid 29/48] END K=0.4 sw=12 C=0.4 trades=24 sharpe=-0.972 took=0.1s
+2026-11-17T21:00:21 [grid 30/48] START K=0.4 sw=12 C=0.5 elapsed=9.2s
+2026-11-17T21:00:21 [grid 30/48] END K=0.4 sw=12 C=0.5 trades=24 sharpe=-0.972 took=0.1s
+2026-11-17T21:00:21 [grid 31/48] START K=0.4 sw=16 C=0.3 elapsed=9.3s
+2026-11-17T21:00:22 [grid 31/48] END K=0.4 sw=16 C=0.3 trades=22 sharpe=-1.197 took=0.1s
+2026-11-17T21:00:22 [grid 32/48] START K=0.4 sw=16 C=0.4 elapsed=9.4s
+2026-11-17T21:00:22 [grid 32/48] END K=0.4 sw=16 C=0.4 trades=22 sharpe=-2.052 took=0.1s
+2026-11-17T21:00:22 [grid 33/48] START K=0.4 sw=16 C=0.5 elapsed=9.5s
+2026-11-17T21:00:22 [grid 33/48] END K=0.4 sw=16 C=0.5 trades=22 sharpe=-1.524 took=0.1s
+2026-11-17T21:00:22 [grid 34/48] START K=0.4 sw=20 C=0.3 elapsed=9.7s
+2026-11-17T21:00:22 [grid 34/48] END K=0.4 sw=20 C=0.3 trades=20 sharpe=-2.616 took=0.1s
+2026-11-17T21:00:22 [grid 35/48] START K=0.4 sw=20 C=0.4 elapsed=9.8s
+2026-11-17T21:00:22 [grid 35/48] END K=0.4 sw=20 C=0.4 trades=20 sharpe=-3.583 took=0.1s
+2026-11-17T21:00:22 [grid 36/48] START K=0.4 sw=20 C=0.5 elapsed=9.9s
+2026-11-17T21:00:22 [grid 36/48] END K=0.4 sw=20 C=0.5 trades=20 sharpe=-3.161 took=0.1s
+2026-11-17T21:00:22 [grid 37/48] START K=0.5 sw=8 C=0.3 elapsed=10.0s
+2026-11-17T21:00:22 [grid 37/48] END K=0.5 sw=8 C=0.3 trades=25 sharpe=-1.999 took=0.1s
+2026-11-17T21:00:22 [grid 38/48] START K=0.5 sw=8 C=0.4 elapsed=10.1s
+2026-11-17T21:00:22 [grid 38/48] END K=0.5 sw=8 C=0.4 trades=25 sharpe=-2.786 took=0.1s
+2026-11-17T21:00:22 [grid 39/48] START K=0.5 sw=8 C=0.5 elapsed=10.3s
+2026-11-17T21:00:23 [grid 39/48] END K=0.5 sw=8 C=0.5 trades=25 sharpe=-2.786 took=0.1s
+2026-11-17T21:00:23 [grid 40/48] START K=0.5 sw=12 C=0.3 elapsed=10.4s
+2026-11-17T21:00:23 [grid 40/48] END K=0.5 sw=12 C=0.3 trades=24 sharpe=-0.137 took=0.1s
+2026-11-17T21:00:23 [grid 41/48] START K=0.5 sw=12 C=0.4 elapsed=10.5s
+2026-11-17T21:00:23 [grid 41/48] END K=0.5 sw=12 C=0.4 trades=24 sharpe=-0.972 took=0.1s
+2026-11-17T21:00:23 [grid 42/48] START K=0.5 sw=12 C=0.5 elapsed=10.6s
+2026-11-17T21:00:23 [grid 42/48] END K=0.5 sw=12 C=0.5 trades=24 sharpe=-0.972 took=0.1s
+2026-11-17T21:00:23 [grid 43/48] START K=0.5 sw=16 C=0.3 elapsed=10.8s
+2026-11-17T21:00:23 [grid 43/48] END K=0.5 sw=16 C=0.3 trades=22 sharpe=-1.197 took=0.1s
+2026-11-17T21:00:23 [grid 44/48] START K=0.5 sw=16 C=0.4 elapsed=10.9s
+2026-11-17T21:00:23 [grid 44/48] END K=0.5 sw=16 C=0.4 trades=22 sharpe=-2.052 took=0.1s
+2026-11-17T21:00:23 [grid 45/48] START K=0.5 sw=16 C=0.5 elapsed=11.0s
+2026-11-17T21:00:23 [grid 45/48] END K=0.5 sw=16 C=0.5 trades=22 sharpe=-1.524 took=0.1s
+2026-11-17T21:00:23 [grid 46/48] START K=0.5 sw=20 C=0.3 elapsed=11.1s
+2026-11-17T21:00:23 [grid 46/48] END K=0.5 sw=20 C=0.3 trades=20 sharpe=-6.855 took=0.1s
+2026-11-17T21:00:23 [grid 47/48] START K=0.5 sw=20 C=0.4 elapsed=11.2s
+2026-11-17T21:00:23 [grid 47/48] END K=0.5 sw=20 C=0.4 trades=20 sharpe=-8.125 took=0.1s
+2026-11-17T21:00:23 [grid 48/48] START K=0.5 sw=20 C=0.5 elapsed=11.3s
+2026-11-17T21:00:24 [grid 48/48] END K=0.5 sw=20 C=0.5 trades=20 sharpe=-7.634 took=0.1s
+2026-11-17T21:36:14 START grid total=48
+2026-11-17T21:36:14 [grid 1/48] START K=0.2 sw=8 C=0.3 elapsed=0.0s
+2026-11-17T21:36:15 [grid 1/48] END K=0.2 sw=8 C=0.3 trades=24 sharpe=1.728 took=0.8s
+2026-11-17T21:36:15 [grid 2/48] START K=0.2 sw=8 C=0.4 elapsed=0.8s
+2026-11-17T21:36:16 [grid 2/48] END K=0.2 sw=8 C=0.4 trades=24 sharpe=1.964 took=0.8s
+2026-11-17T21:36:16 [grid 3/48] START K=0.2 sw=8 C=0.5 elapsed=1.6s
+2026-11-17T21:36:16 [grid 3/48] END K=0.2 sw=8 C=0.5 trades=24 sharpe=1.964 took=0.8s
+2026-11-17T21:36:16 [grid 4/48] START K=0.2 sw=12 C=0.3 elapsed=2.4s
+2026-11-17T21:36:17 [grid 4/48] END K=0.2 sw=12 C=0.3 trades=25 sharpe=-1.052 took=0.7s
+2026-11-17T21:36:17 [grid 5/48] START K=0.2 sw=12 C=0.4 elapsed=3.1s
+2026-11-17T21:36:18 [grid 5/48] END K=0.2 sw=12 C=0.4 trades=25 sharpe=-0.759 took=0.7s
+2026-11-17T21:36:18 [grid 6/48] START K=0.2 sw=12 C=0.5 elapsed=3.8s
+2026-11-17T21:36:18 [grid 6/48] END K=0.2 sw=12 C=0.5 trades=24 sharpe=-1.115 took=0.7s
+2026-11-17T21:36:18 [grid 7/48] START K=0.2 sw=16 C=0.3 elapsed=4.5s
+2026-11-17T21:36:19 [grid 7/48] END K=0.2 sw=16 C=0.3 trades=23 sharpe=-1.263 took=0.7s
+2026-11-17T21:36:19 [grid 8/48] START K=0.2 sw=16 C=0.4 elapsed=5.2s
+2026-11-17T21:36:20 [grid 8/48] END K=0.2 sw=16 C=0.4 trades=23 sharpe=-0.515 took=0.7s
+2026-11-17T21:36:20 [grid 9/48] START K=0.2 sw=16 C=0.5 elapsed=5.9s
+2026-11-17T21:36:21 [grid 9/48] END K=0.2 sw=16 C=0.5 trades=23 sharpe=-0.515 took=0.7s
+2026-11-17T21:36:21 [grid 10/48] START K=0.2 sw=20 C=0.3 elapsed=6.6s
+2026-11-17T21:36:21 [grid 10/48] END K=0.2 sw=20 C=0.3 trades=23 sharpe=1.461 took=0.7s
+2026-11-17T21:36:21 [grid 11/48] START K=0.2 sw=20 C=0.4 elapsed=7.3s
+2026-11-17T21:36:22 [grid 11/48] END K=0.2 sw=20 C=0.4 trades=23 sharpe=2.872 took=0.7s
+2026-11-17T21:36:22 [grid 12/48] START K=0.2 sw=20 C=0.5 elapsed=8.1s
+2026-11-17T21:36:23 [grid 12/48] END K=0.2 sw=20 C=0.5 trades=23 sharpe=2.872 took=0.8s
+2026-11-17T21:36:23 [grid 13/48] START K=0.3 sw=8 C=0.3 elapsed=8.9s
+2026-11-17T21:36:24 [grid 13/48] END K=0.3 sw=8 C=0.3 trades=24 sharpe=1.728 took=0.9s
+2026-11-17T21:36:24 [grid 14/48] START K=0.3 sw=8 C=0.4 elapsed=9.8s
+2026-11-17T21:36:25 [grid 14/48] END K=0.3 sw=8 C=0.4 trades=24 sharpe=1.964 took=0.8s
+2026-11-17T21:36:25 [grid 15/48] START K=0.3 sw=8 C=0.5 elapsed=10.6s
+2026-11-17T21:36:25 [grid 15/48] END K=0.3 sw=8 C=0.5 trades=24 sharpe=1.964 took=0.8s
+2026-11-17T21:36:25 [grid 16/48] START K=0.3 sw=12 C=0.3 elapsed=11.3s
+2026-11-17T21:36:26 [grid 16/48] END K=0.3 sw=12 C=0.3 trades=25 sharpe=-1.052 took=0.7s
+2026-11-17T21:36:26 [grid 17/48] START K=0.3 sw=12 C=0.4 elapsed=12.0s
+2026-11-17T21:36:27 [grid 17/48] END K=0.3 sw=12 C=0.4 trades=25 sharpe=-0.759 took=0.8s
+2026-11-17T21:36:27 [grid 18/48] START K=0.3 sw=12 C=0.5 elapsed=12.8s
+2026-11-17T21:36:27 [grid 18/48] END K=0.3 sw=12 C=0.5 trades=24 sharpe=-1.115 took=0.7s
+2026-11-17T21:36:27 [grid 19/48] START K=0.3 sw=16 C=0.3 elapsed=13.5s
+2026-11-17T21:36:28 [grid 19/48] END K=0.3 sw=16 C=0.3 trades=23 sharpe=-1.263 took=0.6s
+2026-11-17T21:36:28 [grid 20/48] START K=0.3 sw=16 C=0.4 elapsed=14.2s
+2026-11-17T21:36:29 [grid 20/48] END K=0.3 sw=16 C=0.4 trades=23 sharpe=-0.515 took=0.7s
+2026-11-17T21:36:29 [grid 21/48] START K=0.3 sw=16 C=0.5 elapsed=14.8s
+2026-11-17T21:36:29 [grid 21/48] END K=0.3 sw=16 C=0.5 trades=23 sharpe=-0.515 took=0.7s
+2026-11-17T21:36:29 [grid 22/48] START K=0.3 sw=20 C=0.3 elapsed=15.5s
+2026-11-17T21:36:30 [grid 22/48] END K=0.3 sw=20 C=0.3 trades=23 sharpe=1.461 took=0.7s
+2026-11-17T21:36:30 [grid 23/48] START K=0.3 sw=20 C=0.4 elapsed=16.2s
+2026-11-17T21:36:31 [grid 23/48] END K=0.3 sw=20 C=0.4 trades=23 sharpe=2.872 took=0.7s
+2026-11-17T21:36:31 [grid 24/48] START K=0.3 sw=20 C=0.5 elapsed=16.9s
+2026-11-17T21:36:32 [grid 24/48] END K=0.3 sw=20 C=0.5 trades=23 sharpe=2.872 took=0.7s
+2026-11-17T21:36:32 [grid 25/48] START K=0.4 sw=8 C=0.3 elapsed=17.6s
+2026-11-17T21:36:32 [grid 25/48] END K=0.4 sw=8 C=0.3 trades=24 sharpe=1.444 took=0.8s
+2026-11-17T21:36:32 [grid 26/48] START K=0.4 sw=8 C=0.4 elapsed=18.4s
+2026-11-17T21:36:33 [grid 26/48] END K=0.4 sw=8 C=0.4 trades=24 sharpe=1.688 took=0.7s
+2026-11-17T21:36:33 [grid 27/48] START K=0.4 sw=8 C=0.5 elapsed=19.1s
+2026-11-17T21:36:34 [grid 27/48] END K=0.4 sw=8 C=0.5 trades=24 sharpe=1.688 took=0.8s
+2026-11-17T21:36:34 [grid 28/48] START K=0.4 sw=12 C=0.3 elapsed=19.9s
+2026-11-17T21:36:35 [grid 28/48] END K=0.4 sw=12 C=0.3 trades=25 sharpe=-1.633 took=0.7s
+2026-11-17T21:36:35 [grid 29/48] START K=0.4 sw=12 C=0.4 elapsed=20.7s
+2026-11-17T21:36:35 [grid 29/48] END K=0.4 sw=12 C=0.4 trades=25 sharpe=-1.272 took=0.8s
+2026-11-17T21:36:35 [grid 30/48] START K=0.4 sw=12 C=0.5 elapsed=21.4s
+2026-11-17T21:36:36 [grid 30/48] END K=0.4 sw=12 C=0.5 trades=24 sharpe=-1.665 took=0.7s
+2026-11-17T21:36:36 [grid 31/48] START K=0.4 sw=16 C=0.3 elapsed=22.1s
+2026-11-17T21:36:37 [grid 31/48] END K=0.4 sw=16 C=0.3 trades=23 sharpe=-1.917 took=0.7s
+2026-11-17T21:36:37 [grid 32/48] START K=0.4 sw=16 C=0.4 elapsed=22.8s
+2026-11-17T21:36:38 [grid 32/48] END K=0.4 sw=16 C=0.4 trades=23 sharpe=-1.102 took=0.7s
+2026-11-17T21:36:38 [grid 33/48] START K=0.4 sw=16 C=0.5 elapsed=23.6s
+2026-11-17T21:36:38 [grid 33/48] END K=0.4 sw=16 C=0.5 trades=23 sharpe=-1.102 took=0.6s
+2026-11-17T21:36:38 [grid 34/48] START K=0.4 sw=20 C=0.3 elapsed=24.2s
+2026-11-17T21:36:39 [grid 34/48] END K=0.4 sw=20 C=0.3 trades=23 sharpe=1.239 took=0.6s
+2026-11-17T21:36:39 [grid 35/48] START K=0.4 sw=20 C=0.4 elapsed=24.8s
+2026-11-17T21:36:39 [grid 35/48] END K=0.4 sw=20 C=0.4 trades=23 sharpe=2.564 took=0.7s
+2026-11-17T21:36:39 [grid 36/48] START K=0.4 sw=20 C=0.5 elapsed=25.5s
+2026-11-17T21:36:40 [grid 36/48] END K=0.4 sw=20 C=0.5 trades=23 sharpe=2.564 took=0.6s
+2026-11-17T21:36:40 [grid 37/48] START K=0.5 sw=8 C=0.3 elapsed=26.1s
+2026-11-17T21:36:41 [grid 37/48] END K=0.5 sw=8 C=0.3 trades=24 sharpe=1.444 took=0.7s
+2026-11-17T21:36:41 [grid 38/48] START K=0.5 sw=8 C=0.4 elapsed=26.8s
+2026-11-17T21:36:42 [grid 38/48] END K=0.5 sw=8 C=0.4 trades=24 sharpe=1.688 took=0.8s
+2026-11-17T21:36:42 [grid 39/48] START K=0.5 sw=8 C=0.5 elapsed=27.6s
+2026-11-17T21:36:42 [grid 39/48] END K=0.5 sw=8 C=0.5 trades=24 sharpe=1.688 took=0.8s
+2026-11-17T21:36:42 [grid 40/48] START K=0.5 sw=12 C=0.3 elapsed=28.4s
+2026-11-17T21:36:43 [grid 40/48] END K=0.5 sw=12 C=0.3 trades=25 sharpe=-1.633 took=0.7s
+2026-11-17T21:36:43 [grid 41/48] START K=0.5 sw=12 C=0.4 elapsed=29.1s
+2026-11-17T21:36:44 [grid 41/48] END K=0.5 sw=12 C=0.4 trades=25 sharpe=-1.272 took=0.7s
+2026-11-17T21:36:44 [grid 42/48] START K=0.5 sw=12 C=0.5 elapsed=29.8s
+2026-11-17T21:36:44 [grid 42/48] END K=0.5 sw=12 C=0.5 trades=24 sharpe=-1.665 took=0.7s
+2026-11-17T21:36:44 [grid 43/48] START K=0.5 sw=16 C=0.3 elapsed=30.5s
+2026-11-17T21:36:45 [grid 43/48] END K=0.5 sw=16 C=0.3 trades=23 sharpe=-1.917 took=0.7s
+2026-11-17T21:36:45 [grid 44/48] START K=0.5 sw=16 C=0.4 elapsed=31.2s
+2026-11-17T21:36:46 [grid 44/48] END K=0.5 sw=16 C=0.4 trades=23 sharpe=-1.102 took=0.7s
+2026-11-17T21:36:46 [grid 45/48] START K=0.5 sw=16 C=0.5 elapsed=31.9s
+2026-11-17T21:36:47 [grid 45/48] END K=0.5 sw=16 C=0.5 trades=23 sharpe=-1.102 took=0.7s
+2026-11-17T21:36:47 [grid 46/48] START K=0.5 sw=20 C=0.3 elapsed=32.6s
+2026-11-17T21:36:47 [grid 46/48] END K=0.5 sw=20 C=0.3 trades=23 sharpe=1.239 took=0.7s
+2026-11-17T21:36:47 [grid 47/48] START K=0.5 sw=20 C=0.4 elapsed=33.3s
+2026-11-17T21:36:48 [grid 47/48] END K=0.5 sw=20 C=0.4 trades=23 sharpe=2.564 took=0.7s
+2026-11-17T21:36:48 [grid 48/48] START K=0.5 sw=20 C=0.5 elapsed=34.0s
+2026-11-17T21:36:49 [grid 48/48] END K=0.5 sw=20 C=0.5 trades=23 sharpe=2.564 took=0.7s
+2026-11-17T21:36:49 START grid total=48
+2026-11-17T21:36:49 [grid 1/48] START K=0.2 sw=8 C=0.3 elapsed=0.0s
+2026-11-17T21:36:50 [grid 1/48] END K=0.2 sw=8 C=0.3 trades=24 sharpe=1.728 took=0.8s
+2026-11-17T21:36:50 [grid 2/48] START K=0.2 sw=8 C=0.4 elapsed=0.8s
+2026-11-17T21:36:51 [grid 2/48] END K=0.2 sw=8 C=0.4 trades=24 sharpe=1.964 took=0.8s
+2026-11-17T21:36:51 [grid 3/48] START K=0.2 sw=8 C=0.5 elapsed=1.6s
+2026-11-17T21:36:51 [grid 3/48] END K=0.2 sw=8 C=0.5 trades=24 sharpe=1.964 took=0.8s
+2026-11-17T21:36:51 [grid 4/48] START K=0.2 sw=12 C=0.3 elapsed=2.3s
+2026-11-17T21:36:52 [grid 4/48] END K=0.2 sw=12 C=0.3 trades=25 sharpe=-1.052 took=0.7s
+2026-11-17T21:36:52 [grid 5/48] START K=0.2 sw=12 C=0.4 elapsed=3.1s
+2026-11-17T21:36:53 [grid 5/48] END K=0.2 sw=12 C=0.4 trades=25 sharpe=-0.759 took=0.8s
+2026-11-17T21:36:53 [grid 6/48] START K=0.2 sw=12 C=0.5 elapsed=3.9s
+2026-11-17T21:36:54 [grid 6/48] END K=0.2 sw=12 C=0.5 trades=24 sharpe=-1.115 took=0.8s
+2026-11-17T21:36:54 [grid 7/48] START K=0.2 sw=16 C=0.3 elapsed=4.6s
+2026-11-17T21:36:54 [grid 7/48] END K=0.2 sw=16 C=0.3 trades=23 sharpe=-1.263 took=0.7s
+2026-11-17T21:36:54 [grid 8/48] START K=0.2 sw=16 C=0.4 elapsed=5.3s
+2026-11-17T21:36:55 [grid 8/48] END K=0.2 sw=16 C=0.4 trades=23 sharpe=-0.515 took=0.7s
+2026-11-17T21:36:55 [grid 9/48] START K=0.2 sw=16 C=0.5 elapsed=6.1s
+2026-11-17T21:36:56 [grid 9/48] END K=0.2 sw=16 C=0.5 trades=23 sharpe=-0.515 took=0.7s
+2026-11-17T21:36:56 [grid 10/48] START K=0.2 sw=20 C=0.3 elapsed=6.8s
+2026-11-17T21:36:56 [grid 10/48] END K=0.2 sw=20 C=0.3 trades=23 sharpe=1.461 took=0.7s
+2026-11-17T21:36:56 [grid 11/48] START K=0.2 sw=20 C=0.4 elapsed=7.5s
+2026-11-17T21:36:57 [grid 11/48] END K=0.2 sw=20 C=0.4 trades=23 sharpe=2.872 took=0.6s
+2026-11-17T21:36:57 [grid 12/48] START K=0.2 sw=20 C=0.5 elapsed=8.1s
+2026-11-17T21:36:58 [grid 12/48] END K=0.2 sw=20 C=0.5 trades=23 sharpe=2.872 took=0.7s
+2026-11-17T21:36:58 [grid 13/48] START K=0.3 sw=8 C=0.3 elapsed=8.8s
+2026-11-17T21:36:58 [grid 13/48] END K=0.3 sw=8 C=0.3 trades=24 sharpe=1.728 took=0.7s
+2026-11-17T21:36:58 [grid 14/48] START K=0.3 sw=8 C=0.4 elapsed=9.5s
+2026-11-17T21:36:59 [grid 14/48] END K=0.3 sw=8 C=0.4 trades=24 sharpe=1.964 took=0.8s
+2026-11-17T21:36:59 [grid 15/48] START K=0.3 sw=8 C=0.5 elapsed=10.3s
+2026-11-17T21:37:00 [grid 15/48] END K=0.3 sw=8 C=0.5 trades=24 sharpe=1.964 took=0.8s
+2026-11-17T21:37:00 [grid 16/48] START K=0.3 sw=12 C=0.3 elapsed=11.1s
+2026-11-17T21:37:01 [grid 16/48] END K=0.3 sw=12 C=0.3 trades=25 sharpe=-1.052 took=0.7s
+2026-11-17T21:37:01 [grid 17/48] START K=0.3 sw=12 C=0.4 elapsed=11.8s
+2026-11-17T21:37:02 [grid 17/48] END K=0.3 sw=12 C=0.4 trades=25 sharpe=-0.759 took=0.8s
+2026-11-17T21:37:02 [grid 18/48] START K=0.3 sw=12 C=0.5 elapsed=12.5s
+2026-11-17T21:37:02 [grid 18/48] END K=0.3 sw=12 C=0.5 trades=24 sharpe=-1.115 took=0.8s
+2026-11-17T21:37:02 [grid 19/48] START K=0.3 sw=16 C=0.3 elapsed=13.3s
+2026-11-17T21:37:03 [grid 19/48] END K=0.3 sw=16 C=0.3 trades=23 sharpe=-1.263 took=0.7s
+2026-11-17T21:37:03 [grid 20/48] START K=0.3 sw=16 C=0.4 elapsed=14.0s
+2026-11-17T21:37:04 [grid 20/48] END K=0.3 sw=16 C=0.4 trades=23 sharpe=-0.515 took=0.7s
+2026-11-17T21:37:04 [grid 21/48] START K=0.3 sw=16 C=0.5 elapsed=14.7s
+2026-11-17T21:37:04 [grid 21/48] END K=0.3 sw=16 C=0.5 trades=23 sharpe=-0.515 took=0.7s
+2026-11-17T21:37:04 [grid 22/48] START K=0.3 sw=20 C=0.3 elapsed=15.5s
+2026-11-17T21:37:05 [grid 22/48] END K=0.3 sw=20 C=0.3 trades=23 sharpe=1.461 took=0.7s
+2026-11-17T21:37:05 [grid 23/48] START K=0.3 sw=20 C=0.4 elapsed=16.2s
+2026-11-17T21:37:06 [grid 23/48] END K=0.3 sw=20 C=0.4 trades=23 sharpe=2.872 took=0.7s
+2026-11-17T21:37:06 [grid 24/48] START K=0.3 sw=20 C=0.5 elapsed=16.9s
+2026-11-17T21:37:07 [grid 24/48] END K=0.3 sw=20 C=0.5 trades=23 sharpe=2.872 took=0.7s
+2026-11-17T21:37:07 [grid 25/48] START K=0.4 sw=8 C=0.3 elapsed=17.6s
+2026-11-17T21:37:07 [grid 25/48] END K=0.4 sw=8 C=0.3 trades=24 sharpe=1.444 took=0.7s
+2026-11-17T21:37:07 [grid 26/48] START K=0.4 sw=8 C=0.4 elapsed=18.3s
+2026-11-17T21:37:08 [grid 26/48] END K=0.4 sw=8 C=0.4 trades=24 sharpe=1.688 took=0.7s
+2026-11-17T21:37:08 [grid 27/48] START K=0.4 sw=8 C=0.5 elapsed=19.0s
+2026-11-17T21:37:09 [grid 27/48] END K=0.4 sw=8 C=0.5 trades=24 sharpe=1.688 took=0.7s
+2026-11-17T21:37:09 [grid 28/48] START K=0.4 sw=12 C=0.3 elapsed=19.6s
+2026-11-17T21:37:09 [grid 28/48] END K=0.4 sw=12 C=0.3 trades=25 sharpe=-1.633 took=0.7s
+2026-11-17T21:37:09 [grid 29/48] START K=0.4 sw=12 C=0.4 elapsed=20.4s
+2026-11-17T21:37:10 [grid 29/48] END K=0.4 sw=12 C=0.4 trades=25 sharpe=-1.272 took=0.7s
+2026-11-17T21:37:10 [grid 30/48] START K=0.4 sw=12 C=0.5 elapsed=21.1s
+2026-11-17T21:37:11 [grid 30/48] END K=0.4 sw=12 C=0.5 trades=24 sharpe=-1.665 took=0.7s
+2026-11-17T21:37:11 [grid 31/48] START K=0.4 sw=16 C=0.3 elapsed=21.7s
+2026-11-17T21:37:11 [grid 31/48] END K=0.4 sw=16 C=0.3 trades=23 sharpe=-1.917 took=0.7s
+2026-11-17T21:37:11 [grid 32/48] START K=0.4 sw=16 C=0.4 elapsed=22.4s
+2026-11-17T21:37:12 [grid 32/48] END K=0.4 sw=16 C=0.4 trades=23 sharpe=-1.102 took=0.8s
+2026-11-17T21:37:12 [grid 33/48] START K=0.4 sw=16 C=0.5 elapsed=23.1s
+2026-11-17T21:37:13 [grid 33/48] END K=0.4 sw=16 C=0.5 trades=23 sharpe=-1.102 took=0.7s
+2026-11-17T21:37:13 [grid 34/48] START K=0.4 sw=20 C=0.3 elapsed=23.9s
+2026-11-17T21:37:13 [grid 34/48] END K=0.4 sw=20 C=0.3 trades=23 sharpe=1.239 took=0.7s
+2026-11-17T21:37:13 [grid 35/48] START K=0.4 sw=20 C=0.4 elapsed=24.5s
+2026-11-17T21:37:14 [grid 35/48] END K=0.4 sw=20 C=0.4 trades=23 sharpe=2.564 took=0.6s
+2026-11-17T21:37:14 [grid 36/48] START K=0.4 sw=20 C=0.5 elapsed=25.1s
+2026-11-17T21:37:15 [grid 36/48] END K=0.4 sw=20 C=0.5 trades=23 sharpe=2.564 took=0.6s
+2026-11-17T21:37:15 [grid 37/48] START K=0.5 sw=8 C=0.3 elapsed=25.8s
+2026-11-17T21:37:15 [grid 37/48] END K=0.5 sw=8 C=0.3 trades=24 sharpe=1.444 took=0.7s
+2026-11-17T21:37:15 [grid 38/48] START K=0.5 sw=8 C=0.4 elapsed=26.5s
+2026-11-17T21:37:16 [grid 38/48] END K=0.5 sw=8 C=0.4 trades=24 sharpe=1.688 took=0.7s
+2026-11-17T21:37:16 [grid 39/48] START K=0.5 sw=8 C=0.5 elapsed=27.2s
+2026-11-17T21:37:17 [grid 39/48] END K=0.5 sw=8 C=0.5 trades=24 sharpe=1.688 took=0.6s
+2026-11-17T21:37:17 [grid 40/48] START K=0.5 sw=12 C=0.3 elapsed=27.8s
+2026-11-17T21:37:17 [grid 40/48] END K=0.5 sw=12 C=0.3 trades=25 sharpe=-1.633 took=0.1s
+2026-11-17T21:37:17 [grid 41/48] START K=0.5 sw=12 C=0.4 elapsed=27.9s
+2026-11-17T21:37:17 [grid 41/48] END K=0.5 sw=12 C=0.4 trades=25 sharpe=-1.272 took=0.1s
+2026-11-17T21:37:17 [grid 42/48] START K=0.5 sw=12 C=0.5 elapsed=28.0s
+2026-11-17T21:37:17 [grid 42/48] END K=0.5 sw=12 C=0.5 trades=24 sharpe=-1.665 took=0.1s
+2026-11-17T21:37:17 [grid 43/48] START K=0.5 sw=16 C=0.3 elapsed=28.2s
+2026-11-17T21:37:17 [grid 43/48] END K=0.5 sw=16 C=0.3 trades=23 sharpe=-1.917 took=0.1s
+2026-11-17T21:37:17 [grid 44/48] START K=0.5 sw=16 C=0.4 elapsed=28.3s
+2026-11-17T21:37:17 [grid 44/48] END K=0.5 sw=16 C=0.4 trades=23 sharpe=-1.102 took=0.1s
+2026-11-17T21:37:17 [grid 45/48] START K=0.5 sw=16 C=0.5 elapsed=28.4s
+2026-11-17T21:37:18 [grid 45/48] END K=0.5 sw=16 C=0.5 trades=23 sharpe=-1.102 took=0.1s
+2026-11-17T21:37:18 [grid 46/48] START K=0.5 sw=20 C=0.3 elapsed=28.5s
+2026-11-17T21:37:18 [grid 46/48] END K=0.5 sw=20 C=0.3 trades=23 sharpe=1.239 took=0.1s
+2026-11-17T21:37:18 [grid 47/48] START K=0.5 sw=20 C=0.4 elapsed=28.7s
+2026-11-17T21:37:18 [grid 47/48] END K=0.5 sw=20 C=0.4 trades=23 sharpe=2.564 took=0.1s
+2026-11-17T21:37:18 [grid 48/48] START K=0.5 sw=20 C=0.5 elapsed=28.8s
+2026-11-17T21:37:18 [grid 48/48] END K=0.5 sw=20 C=0.5 trades=23 sharpe=2.564 took=0.1s
+2026-11-18T20:50:23 START grid total=48
+2026-11-18T20:50:23 [grid 1/48] START K=0.2 sw=8 C=0.3 elapsed=0.0s
+2026-11-18T20:50:24 [grid 1/48] END K=0.2 sw=8 C=0.3 trades=26 sharpe=4.032 took=0.3s
+2026-11-18T20:50:24 [grid 2/48] START K=0.2 sw=8 C=0.4 elapsed=0.3s
+2026-11-18T20:50:24 [grid 2/48] END K=0.2 sw=8 C=0.4 trades=26 sharpe=5.579 took=0.2s
+2026-11-18T20:50:24 [grid 3/48] START K=0.2 sw=8 C=0.5 elapsed=0.6s
+2026-11-18T20:50:24 [grid 3/48] END K=0.2 sw=8 C=0.5 trades=26 sharpe=5.546 took=0.2s
+2026-11-18T20:50:24 [grid 4/48] START K=0.2 sw=12 C=0.3 elapsed=0.8s
+2026-11-18T20:50:25 [grid 4/48] END K=0.2 sw=12 C=0.3 trades=25 sharpe=5.564 took=0.3s
+2026-11-18T20:50:25 [grid 5/48] START K=0.2 sw=12 C=0.4 elapsed=1.1s
+2026-11-18T20:50:25 [grid 5/48] END K=0.2 sw=12 C=0.4 trades=25 sharpe=6.762 took=0.3s
+2026-11-18T20:50:25 [grid 6/48] START K=0.2 sw=12 C=0.5 elapsed=1.4s
+2026-11-18T20:50:25 [grid 6/48] END K=0.2 sw=12 C=0.5 trades=25 sharpe=6.733 took=0.3s
+2026-11-18T20:50:25 [grid 7/48] START K=0.2 sw=16 C=0.3 elapsed=1.7s
+2026-11-18T20:50:25 [grid 7/48] END K=0.2 sw=16 C=0.3 trades=23 sharpe=5.140 took=0.3s
+2026-11-18T20:50:25 [grid 8/48] START K=0.2 sw=16 C=0.4 elapsed=1.9s
+2026-11-18T20:50:26 [grid 8/48] END K=0.2 sw=16 C=0.4 trades=23 sharpe=6.237 took=0.3s
+2026-11-18T20:50:26 [grid 9/48] START K=0.2 sw=16 C=0.5 elapsed=2.2s
+2026-11-18T20:50:26 [grid 9/48] END K=0.2 sw=16 C=0.5 trades=23 sharpe=6.212 took=0.3s
+2026-11-18T20:50:26 [grid 10/48] START K=0.2 sw=20 C=0.3 elapsed=2.5s
+2026-11-18T20:50:26 [grid 10/48] END K=0.2 sw=20 C=0.3 trades=23 sharpe=2.530 took=0.3s
+2026-11-18T20:50:26 [grid 11/48] START K=0.2 sw=20 C=0.4 elapsed=2.8s
+2026-11-18T20:50:27 [grid 11/48] END K=0.2 sw=20 C=0.4 trades=23 sharpe=3.740 took=0.3s
+2026-11-18T20:50:27 [grid 12/48] START K=0.2 sw=20 C=0.5 elapsed=3.1s
+2026-11-18T20:50:27 [grid 12/48] END K=0.2 sw=20 C=0.5 trades=23 sharpe=3.740 took=0.3s
+2026-11-18T20:50:27 [grid 13/48] START K=0.3 sw=8 C=0.3 elapsed=3.4s
+2026-11-18T20:50:27 [grid 13/48] END K=0.3 sw=8 C=0.3 trades=26 sharpe=4.018 took=0.2s
+2026-11-18T20:50:27 [grid 14/48] START K=0.3 sw=8 C=0.4 elapsed=3.7s
+2026-11-18T20:50:27 [grid 14/48] END K=0.3 sw=8 C=0.4 trades=26 sharpe=5.565 took=0.3s
+2026-11-18T20:50:27 [grid 15/48] START K=0.3 sw=8 C=0.5 elapsed=4.0s
+2026-11-18T20:50:28 [grid 15/48] END K=0.3 sw=8 C=0.5 trades=26 sharpe=5.532 took=0.3s
+2026-11-18T20:50:28 [grid 16/48] START K=0.3 sw=12 C=0.3 elapsed=4.4s
+2026-11-18T20:50:28 [grid 16/48] END K=0.3 sw=12 C=0.3 trades=25 sharpe=5.555 took=0.4s
+2026-11-18T20:50:28 [grid 17/48] START K=0.3 sw=12 C=0.4 elapsed=4.7s
+2026-11-18T20:50:29 [grid 17/48] END K=0.3 sw=12 C=0.4 trades=25 sharpe=6.753 took=0.3s
+2026-11-18T20:50:29 [grid 18/48] START K=0.3 sw=12 C=0.5 elapsed=5.1s
+2026-11-18T20:50:29 [grid 18/48] END K=0.3 sw=12 C=0.5 trades=25 sharpe=6.724 took=0.4s
+2026-11-18T20:50:29 [grid 19/48] START K=0.3 sw=16 C=0.3 elapsed=5.5s
+2026-11-18T20:50:29 [grid 19/48] END K=0.3 sw=16 C=0.3 trades=23 sharpe=5.140 took=0.5s
+2026-11-18T20:50:29 [grid 20/48] START K=0.3 sw=16 C=0.4 elapsed=6.0s
+2026-11-18T20:50:30 [grid 20/48] END K=0.3 sw=16 C=0.4 trades=23 sharpe=6.237 took=0.4s
+2026-11-18T20:50:30 [grid 21/48] START K=0.3 sw=16 C=0.5 elapsed=6.4s
+2026-11-18T20:50:30 [grid 21/48] END K=0.3 sw=16 C=0.5 trades=23 sharpe=6.212 took=0.5s
+2026-11-18T20:50:30 [grid 22/48] START K=0.3 sw=20 C=0.3 elapsed=6.9s
+2026-11-18T20:50:31 [grid 22/48] END K=0.3 sw=20 C=0.3 trades=23 sharpe=2.530 took=0.3s
+2026-11-18T20:50:31 [grid 23/48] START K=0.3 sw=20 C=0.4 elapsed=7.2s
+2026-11-18T20:50:31 [grid 23/48] END K=0.3 sw=20 C=0.4 trades=23 sharpe=3.740 took=0.4s
+2026-11-18T20:50:31 [grid 24/48] START K=0.3 sw=20 C=0.5 elapsed=7.6s
+2026-11-18T20:50:32 [grid 24/48] END K=0.3 sw=20 C=0.5 trades=23 sharpe=3.740 took=0.4s
+2026-11-18T20:50:32 [grid 25/48] START K=0.4 sw=8 C=0.3 elapsed=8.0s
+2026-11-18T20:50:32 [grid 25/48] END K=0.4 sw=8 C=0.3 trades=26 sharpe=4.018 took=0.3s
+2026-11-18T20:50:32 [grid 26/48] START K=0.4 sw=8 C=0.4 elapsed=8.4s
+2026-11-18T20:50:32 [grid 26/48] END K=0.4 sw=8 C=0.4 trades=26 sharpe=5.565 took=0.4s
+2026-11-18T20:50:32 [grid 27/48] START K=0.4 sw=8 C=0.5 elapsed=8.8s
+2026-11-18T20:50:33 [grid 27/48] END K=0.4 sw=8 C=0.5 trades=26 sharpe=5.532 took=0.3s
+2026-11-18T20:50:33 [grid 28/48] START K=0.4 sw=12 C=0.3 elapsed=9.1s
+2026-11-18T20:50:33 [grid 28/48] END K=0.4 sw=12 C=0.3 trades=25 sharpe=5.555 took=0.4s
+2026-11-18T20:50:33 [grid 29/48] START K=0.4 sw=12 C=0.4 elapsed=9.5s
+2026-11-18T20:50:33 [grid 29/48] END K=0.4 sw=12 C=0.4 trades=25 sharpe=6.753 took=0.4s
+2026-11-18T20:50:33 [grid 30/48] START K=0.4 sw=12 C=0.5 elapsed=9.9s
+2026-11-18T20:50:34 [grid 30/48] END K=0.4 sw=12 C=0.5 trades=25 sharpe=6.724 took=0.4s
+2026-11-18T20:50:34 [grid 31/48] START K=0.4 sw=16 C=0.3 elapsed=10.3s
+2026-11-18T20:50:34 [grid 31/48] END K=0.4 sw=16 C=0.3 trades=23 sharpe=5.140 took=0.4s
+2026-11-18T20:50:34 [grid 32/48] START K=0.4 sw=16 C=0.4 elapsed=10.7s
+2026-11-18T20:50:35 [grid 32/48] END K=0.4 sw=16 C=0.4 trades=23 sharpe=6.237 took=0.4s
+2026-11-18T20:50:35 [grid 33/48] START K=0.4 sw=16 C=0.5 elapsed=11.1s
+2026-11-18T20:50:35 [grid 33/48] END K=0.4 sw=16 C=0.5 trades=23 sharpe=6.212 took=0.3s
+2026-11-18T20:50:35 [grid 34/48] START K=0.4 sw=20 C=0.3 elapsed=11.4s
+2026-11-18T20:50:35 [grid 34/48] END K=0.4 sw=20 C=0.3 trades=23 sharpe=2.530 took=0.3s
+2026-11-18T20:50:35 [grid 35/48] START K=0.4 sw=20 C=0.4 elapsed=11.7s
+2026-11-18T20:50:36 [grid 35/48] END K=0.4 sw=20 C=0.4 trades=23 sharpe=3.740 took=0.4s
+2026-11-18T20:50:36 [grid 36/48] START K=0.4 sw=20 C=0.5 elapsed=12.1s
+2026-11-18T20:50:36 [grid 36/48] END K=0.4 sw=20 C=0.5 trades=23 sharpe=3.740 took=0.5s
+2026-11-18T20:50:36 [grid 37/48] START K=0.5 sw=8 C=0.3 elapsed=12.6s
+2026-11-18T20:50:37 [grid 37/48] END K=0.5 sw=8 C=0.3 trades=26 sharpe=4.018 took=0.8s
+2026-11-18T20:50:37 [grid 38/48] START K=0.5 sw=8 C=0.4 elapsed=13.4s
+2026-11-18T20:50:37 [grid 38/48] END K=0.5 sw=8 C=0.4 trades=26 sharpe=5.565 took=0.5s
+2026-11-18T20:50:37 [grid 39/48] START K=0.5 sw=8 C=0.5 elapsed=13.9s
+2026-11-18T20:50:38 [grid 39/48] END K=0.5 sw=8 C=0.5 trades=26 sharpe=5.532 took=0.3s
+2026-11-18T20:50:38 [grid 40/48] START K=0.5 sw=12 C=0.3 elapsed=14.2s
+2026-11-18T20:50:38 [grid 40/48] END K=0.5 sw=12 C=0.3 trades=25 sharpe=5.555 took=0.3s
+2026-11-18T20:50:38 [grid 41/48] START K=0.5 sw=12 C=0.4 elapsed=14.5s
+2026-11-18T20:50:38 [grid 41/48] END K=0.5 sw=12 C=0.4 trades=25 sharpe=6.753 took=0.4s
+2026-11-18T20:50:38 [grid 42/48] START K=0.5 sw=12 C=0.5 elapsed=14.9s
+2026-11-18T20:50:39 [grid 42/48] END K=0.5 sw=12 C=0.5 trades=25 sharpe=6.724 took=0.3s
+2026-11-18T20:50:39 [grid 43/48] START K=0.5 sw=16 C=0.3 elapsed=15.3s
+2026-11-18T20:50:39 [grid 43/48] END K=0.5 sw=16 C=0.3 trades=23 sharpe=5.140 took=0.5s
+2026-11-18T20:50:39 [grid 44/48] START K=0.5 sw=16 C=0.4 elapsed=15.7s
+2026-11-18T20:50:40 [grid 44/48] END K=0.5 sw=16 C=0.4 trades=23 sharpe=6.237 took=0.4s
+2026-11-18T20:50:40 [grid 45/48] START K=0.5 sw=16 C=0.5 elapsed=16.2s
+2026-11-18T20:50:40 [grid 45/48] END K=0.5 sw=16 C=0.5 trades=23 sharpe=6.212 took=0.4s
+2026-11-18T20:50:40 [grid 46/48] START K=0.5 sw=20 C=0.3 elapsed=16.6s
+2026-11-18T20:50:41 [grid 46/48] END K=0.5 sw=20 C=0.3 trades=23 sharpe=2.530 took=0.5s
+2026-11-18T20:50:41 [grid 47/48] START K=0.5 sw=20 C=0.4 elapsed=17.1s
+2026-11-18T20:50:41 [grid 47/48] END K=0.5 sw=20 C=0.4 trades=23 sharpe=3.740 took=0.3s
+2026-11-18T20:50:41 [grid 48/48] START K=0.5 sw=20 C=0.5 elapsed=17.4s
+2026-11-18T20:50:41 [grid 48/48] END K=0.5 sw=20 C=0.5 trades=23 sharpe=3.740 took=0.4s
+2026-11-18T20:50:42 START grid total=48
+2026-11-18T20:50:42 [grid 1/48] START K=0.2 sw=8 C=0.3 elapsed=0.0s
+2026-11-18T20:50:42 [grid 1/48] END K=0.2 sw=8 C=0.3 trades=26 sharpe=4.032 took=0.4s
+2026-11-18T20:50:42 [grid 2/48] START K=0.2 sw=8 C=0.4 elapsed=0.4s
+2026-11-18T20:50:42 [grid 2/48] END K=0.2 sw=8 C=0.4 trades=26 sharpe=5.579 took=0.3s
+2026-11-18T20:50:42 [grid 3/48] START K=0.2 sw=8 C=0.5 elapsed=0.7s
+2026-11-18T20:50:43 [grid 3/48] END K=0.2 sw=8 C=0.5 trades=26 sharpe=5.546 took=0.4s
+2026-11-18T20:50:43 [grid 4/48] START K=0.2 sw=12 C=0.3 elapsed=1.1s
+2026-11-18T20:50:43 [grid 4/48] END K=0.2 sw=12 C=0.3 trades=25 sharpe=5.564 took=0.3s
+2026-11-18T20:50:43 [grid 5/48] START K=0.2 sw=12 C=0.4 elapsed=1.4s
+2026-11-18T20:50:43 [grid 5/48] END K=0.2 sw=12 C=0.4 trades=25 sharpe=6.762 took=0.3s
+2026-11-18T20:50:43 [grid 6/48] START K=0.2 sw=12 C=0.5 elapsed=1.7s
+2026-11-18T20:50:44 [grid 6/48] END K=0.2 sw=12 C=0.5 trades=25 sharpe=6.733 took=0.3s
+2026-11-18T20:50:44 [grid 7/48] START K=0.2 sw=16 C=0.3 elapsed=2.0s
+2026-11-18T20:50:44 [grid 7/48] END K=0.2 sw=16 C=0.3 trades=23 sharpe=5.140 took=0.3s
+2026-11-18T20:50:44 [grid 8/48] START K=0.2 sw=16 C=0.4 elapsed=2.3s
+2026-11-18T20:50:44 [grid 8/48] END K=0.2 sw=16 C=0.4 trades=23 sharpe=6.237 took=0.3s
+2026-11-18T20:50:44 [grid 9/48] START K=0.2 sw=16 C=0.5 elapsed=2.6s
+2026-11-18T20:50:44 [grid 9/48] END K=0.2 sw=16 C=0.5 trades=23 sharpe=6.212 took=0.2s
+2026-11-18T20:50:44 [grid 10/48] START K=0.2 sw=20 C=0.3 elapsed=2.8s
+2026-11-18T20:50:45 [grid 10/48] END K=0.2 sw=20 C=0.3 trades=23 sharpe=2.530 took=0.3s
+2026-11-18T20:50:45 [grid 11/48] START K=0.2 sw=20 C=0.4 elapsed=3.1s
+2026-11-18T20:50:45 [grid 11/48] END K=0.2 sw=20 C=0.4 trades=23 sharpe=3.740 took=0.3s
+2026-11-18T20:50:45 [grid 12/48] START K=0.2 sw=20 C=0.5 elapsed=3.4s
+2026-11-18T20:50:45 [grid 12/48] END K=0.2 sw=20 C=0.5 trades=23 sharpe=3.740 took=0.3s
+2026-11-18T20:50:45 [grid 13/48] START K=0.3 sw=8 C=0.3 elapsed=3.7s
+2026-11-18T20:50:46 [grid 13/48] END K=0.3 sw=8 C=0.3 trades=26 sharpe=4.018 took=0.5s
+2026-11-18T20:50:46 [grid 14/48] START K=0.3 sw=8 C=0.4 elapsed=4.2s
+2026-11-18T20:50:47 [grid 14/48] END K=0.3 sw=8 C=0.4 trades=26 sharpe=5.565 took=0.9s
+2026-11-18T20:50:47 [grid 15/48] START K=0.3 sw=8 C=0.5 elapsed=5.1s
+2026-11-18T20:50:47 [grid 15/48] END K=0.3 sw=8 C=0.5 trades=26 sharpe=5.532 took=0.8s
+2026-11-18T20:50:47 [grid 16/48] START K=0.3 sw=12 C=0.3 elapsed=5.9s
+2026-11-18T20:50:48 [grid 16/48] END K=0.3 sw=12 C=0.3 trades=25 sharpe=5.555 took=0.8s
+2026-11-18T20:50:48 [grid 17/48] START K=0.3 sw=12 C=0.4 elapsed=6.7s
+2026-11-18T20:50:49 [grid 17/48] END K=0.3 sw=12 C=0.4 trades=25 sharpe=6.753 took=0.8s
+2026-11-18T20:50:49 [grid 18/48] START K=0.3 sw=12 C=0.5 elapsed=7.5s
+2026-11-18T20:50:50 [grid 18/48] END K=0.3 sw=12 C=0.5 trades=25 sharpe=6.724 took=1.4s
+2026-11-18T20:50:50 [grid 19/48] START K=0.3 sw=16 C=0.3 elapsed=8.9s
+2026-11-18T20:50:52 [grid 19/48] END K=0.3 sw=16 C=0.3 trades=23 sharpe=5.140 took=1.3s
+2026-11-18T20:50:52 [grid 20/48] START K=0.3 sw=16 C=0.4 elapsed=10.2s
+2026-11-18T20:50:53 [grid 20/48] END K=0.3 sw=16 C=0.4 trades=23 sharpe=6.237 took=1.2s
+2026-11-18T20:50:53 [grid 21/48] START K=0.3 sw=16 C=0.5 elapsed=11.4s
+2026-11-18T20:50:54 [grid 21/48] END K=0.3 sw=16 C=0.5 trades=23 sharpe=6.212 took=1.2s
+2026-11-18T20:50:54 [grid 22/48] START K=0.3 sw=20 C=0.3 elapsed=12.5s
+2026-11-18T20:50:55 [grid 22/48] END K=0.3 sw=20 C=0.3 trades=23 sharpe=2.530 took=1.0s
+2026-11-18T20:50:55 [grid 23/48] START K=0.3 sw=20 C=0.4 elapsed=13.6s
+2026-11-18T20:50:56 [grid 23/48] END K=0.3 sw=20 C=0.4 trades=23 sharpe=3.740 took=1.0s
+2026-11-18T20:50:56 [grid 24/48] START K=0.3 sw=20 C=0.5 elapsed=14.6s
+2026-11-18T20:50:57 [grid 24/48] END K=0.3 sw=20 C=0.5 trades=23 sharpe=3.740 took=1.0s
+2026-11-18T20:50:57 [grid 25/48] START K=0.4 sw=8 C=0.3 elapsed=15.5s
+2026-11-18T20:50:58 [grid 25/48] END K=0.4 sw=8 C=0.3 trades=26 sharpe=4.018 took=0.9s
+2026-11-18T20:50:58 [grid 26/48] START K=0.4 sw=8 C=0.4 elapsed=16.4s
+2026-11-18T20:50:59 [grid 26/48] END K=0.4 sw=8 C=0.4 trades=26 sharpe=5.565 took=1.0s
+2026-11-18T20:50:59 [grid 27/48] START K=0.4 sw=8 C=0.5 elapsed=17.4s
+2026-11-18T20:51:00 [grid 27/48] END K=0.4 sw=8 C=0.5 trades=26 sharpe=5.532 took=1.1s
+2026-11-18T20:51:00 [grid 28/48] START K=0.4 sw=12 C=0.3 elapsed=18.5s
+2026-11-18T20:51:01 [grid 28/48] END K=0.4 sw=12 C=0.3 trades=25 sharpe=5.555 took=1.0s
+2026-11-18T20:51:01 [grid 29/48] START K=0.4 sw=12 C=0.4 elapsed=19.6s
+2026-11-18T20:51:02 [grid 29/48] END K=0.4 sw=12 C=0.4 trades=25 sharpe=6.753 took=1.2s
+2026-11-18T20:51:02 [grid 30/48] START K=0.4 sw=12 C=0.5 elapsed=20.8s
+2026-11-18T20:51:04 [grid 30/48] END K=0.4 sw=12 C=0.5 trades=25 sharpe=6.724 took=1.2s
+2026-11-18T20:51:04 [grid 31/48] START K=0.4 sw=16 C=0.3 elapsed=22.0s
+2026-11-18T20:51:04 [grid 31/48] END K=0.4 sw=16 C=0.3 trades=23 sharpe=5.140 took=0.8s
+2026-11-18T20:51:04 [grid 32/48] START K=0.4 sw=16 C=0.4 elapsed=22.8s
+2026-11-18T20:51:05 [grid 32/48] END K=0.4 sw=16 C=0.4 trades=23 sharpe=6.237 took=0.9s
+2026-11-18T20:51:05 [grid 33/48] START K=0.4 sw=16 C=0.5 elapsed=23.7s
+2026-11-18T20:51:06 [grid 33/48] END K=0.4 sw=16 C=0.5 trades=23 sharpe=6.212 took=0.8s
+2026-11-18T20:51:06 [grid 34/48] START K=0.4 sw=20 C=0.3 elapsed=24.6s
+2026-11-18T20:51:07 [grid 34/48] END K=0.4 sw=20 C=0.3 trades=23 sharpe=2.530 took=1.3s
+2026-11-18T20:51:07 [grid 35/48] START K=0.4 sw=20 C=0.4 elapsed=25.9s
+2026-11-18T20:51:09 [grid 35/48] END K=0.4 sw=20 C=0.4 trades=23 sharpe=3.740 took=1.4s
+2026-11-18T20:51:09 [grid 36/48] START K=0.4 sw=20 C=0.5 elapsed=27.3s
+2026-11-18T20:51:10 [grid 36/48] END K=0.4 sw=20 C=0.5 trades=23 sharpe=3.740 took=1.4s
+2026-11-18T20:51:10 [grid 37/48] START K=0.5 sw=8 C=0.3 elapsed=28.7s
+2026-11-18T20:51:11 [grid 37/48] END K=0.5 sw=8 C=0.3 trades=26 sharpe=4.018 took=0.9s
+2026-11-18T20:51:11 [grid 38/48] START K=0.5 sw=8 C=0.4 elapsed=29.5s
+2026-11-18T20:51:12 [grid 38/48] END K=0.5 sw=8 C=0.4 trades=26 sharpe=5.565 took=0.9s
+2026-11-18T20:51:12 [grid 39/48] START K=0.5 sw=8 C=0.5 elapsed=30.4s
+2026-11-18T20:51:13 [grid 39/48] END K=0.5 sw=8 C=0.5 trades=26 sharpe=5.532 took=1.0s
+2026-11-18T20:51:13 [grid 40/48] START K=0.5 sw=12 C=0.3 elapsed=31.4s
+2026-11-18T20:51:14 [grid 40/48] END K=0.5 sw=12 C=0.3 trades=25 sharpe=5.555 took=0.9s
+2026-11-18T20:51:14 [grid 41/48] START K=0.5 sw=12 C=0.4 elapsed=32.4s
+2026-11-18T20:51:15 [grid 41/48] END K=0.5 sw=12 C=0.4 trades=25 sharpe=6.753 took=0.8s
+2026-11-18T20:51:15 [grid 42/48] START K=0.5 sw=12 C=0.5 elapsed=33.1s
+2026-11-18T20:51:16 [grid 42/48] END K=0.5 sw=12 C=0.5 trades=25 sharpe=6.724 took=1.6s
+2026-11-18T20:51:16 [grid 43/48] START K=0.5 sw=16 C=0.3 elapsed=34.7s
+2026-11-18T20:51:17 [grid 43/48] END K=0.5 sw=16 C=0.3 trades=23 sharpe=5.140 took=1.0s
+2026-11-18T20:51:17 [grid 44/48] START K=0.5 sw=16 C=0.4 elapsed=35.7s
+2026-11-18T20:51:19 [grid 44/48] END K=0.5 sw=16 C=0.4 trades=23 sharpe=6.237 took=1.6s
+2026-11-18T20:51:19 [grid 45/48] START K=0.5 sw=16 C=0.5 elapsed=37.3s
+2026-11-18T20:51:20 [grid 45/48] END K=0.5 sw=16 C=0.5 trades=23 sharpe=6.212 took=1.2s
+2026-11-18T20:51:20 [grid 46/48] START K=0.5 sw=20 C=0.3 elapsed=38.5s
+2026-11-18T20:51:21 [grid 46/48] END K=0.5 sw=20 C=0.3 trades=23 sharpe=2.530 took=0.8s
+2026-11-18T20:51:21 [grid 47/48] START K=0.5 sw=20 C=0.4 elapsed=39.3s
+2026-11-18T20:51:21 [grid 47/48] END K=0.5 sw=20 C=0.4 trades=23 sharpe=3.740 took=0.5s
+2026-11-18T20:51:21 [grid 48/48] START K=0.5 sw=20 C=0.5 elapsed=39.8s
+2026-11-18T20:51:22 [grid 48/48] END K=0.5 sw=20 C=0.5 trades=23 sharpe=3.740 took=0.4s

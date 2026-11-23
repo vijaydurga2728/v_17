@@ -1,0 +1,17 @@
+{
+  "engine_id": "RSI2-USATECHIDXUSD",
+  "trades_submitted": 25,
+  "trades_executed": 25,
+  "trades_rejected": 0,
+  "pf": 3.6825238111460985,
+  "win_rate": 0.88,
+  "max_dd_r": 10.204113116687815,
+  "hard_frozen": false,
+  "passes": {
+    "pf_ge_1_3": true,
+    "wr_ge_0_5": true,
+    "max_dd_lt_10R": false,
+    "no_hard_freeze": true
+  },
+  "verdict": "SHELVE"
+}

@@ -1,0 +1,20 @@
+[c11] DEV USA500IDXUSD: n=102 PF=1.44 meanR=0.276 p=0.1845 pass=False
+[c11] DEV USA30IDXUSD: n=104 PF=1.01 meanR=0.008 p=0.7450 pass=False
+{
+ "USA500IDXUSD": {
+  "trades": 102,
+  "share_same_day_as_nas": 0.6078431372549019
+ },
+ "USA30IDXUSD": {
+  "trades": 104,
+  "share_same_day_as_nas": 0.3557692307692308
+ },
+ "combined_3_symbols_dev": {
+  "trades": 312,
+  "trades_per_year": 44.57142857142857,
+  "pf": 1.5730154754456749,
+  "mean_r": 0.34594757893476097,
+  "max_dd_r": 51.3243670557158,
+  "nas_alone_max_dd_r": 8.731788111270212
+ }
+}

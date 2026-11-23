@@ -1,0 +1,58 @@
+{
+  "EURUSD": {
+    "d1_bars": 4371,
+    "first": "2010-01-01",
+    "last": "2026-10-16",
+    "median_m1_per_bar": 1440.0,
+    "bars_lt_600_m1": 3,
+    "parity_with_4b_runner": true
+  },
+  "GBPUSD": {
+    "d1_bars": 3328,
+    "first": "2014-01-02",
+    "last": "2026-10-16",
+    "median_m1_per_bar": 1440.0,
+    "bars_lt_600_m1": 2,
+    "parity_with_4b_runner": true
+  },
+  "USDJPY": {
+    "d1_bars": 3053,
+    "first": "2015-01-02",
+    "last": "2026-09-25",
+    "median_m1_per_bar": 1440.0,
+    "bars_lt_600_m1": 2,
+    "parity_with_4b_runner": true
+  },
+  "USDCHF": {
+    "d1_bars": 3053,
+    "first": "2015-01-02",
+    "last": "2026-09-25",
+    "median_m1_per_bar": 1440.0,
+    "bars_lt_600_m1": 2,
+    "parity_with_4b_runner": true
+  },
+  "AUDUSD": {
+    "d1_bars": 3053,
+    "first": "2015-01-02",
+    "last": "2026-09-25",
+    "median_m1_per_bar": 1440.0,
+    "bars_lt_600_m1": 2,
+    "parity_with_4b_runner": true
+  },
+  "USDCAD": {
+    "d1_bars": 4356,
+    "first": "2010-01-01",
+    "last": "2026-09-25",
+    "median_m1_per_bar": 1440.0,
+    "bars_lt_600_m1": 4,
+    "parity_with_4b_runner": true
+  },
+  "NZDUSD": {
+    "d1_bars": 3053,
+    "first": "2015-01-02",
+    "last": "2026-09-25",
+    "median_m1_per_bar": 1440.0,
+    "bars_lt_600_m1": 2,
+    "parity_with_4b_runner": true
+  }
+}

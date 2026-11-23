@@ -1,0 +1,15 @@
+{
+  "git_head": "aeca2e7a789a57fcdc0d401990c12aab36363a50",
+  "alpha": 0.008333333333333333,
+  "winner": {
+    "rsi_buy": 5.0,
+    "trend_filter": true,
+    "exit_sma": 5
+  },
+  "passes": [
+    "USATECHIDXUSD:original",
+    "USA500IDXUSD:tuned_winner",
+    "USA500IDXUSD:original",
+    "USA500IDXUSD:with_200d_filter"
+  ]
+}

@@ -1,0 +1,10 @@
+2026-11-16T18:46:42 START MCPT LIGHTCMDUSD dev 2015-01-01..2023-12-31 perms=500 block=10 seed=20261116
+2026-11-16T18:47:10 loaded 2806 D1 UTC-days
+2026-11-16T18:47:30 le=55 lx=10 dr=long_only  n= 23 obs_mean_r=+1.3035 null_mean=+0.0927 q95=+2.3823 p=0.1657 bonf_pass=False took=20.6s
+2026-11-16T18:47:41 le=40 lx=10 dr=long_only  n= 29 obs_mean_r=+1.0352 null_mean=+0.1160 q95=+2.1454 p=0.2096 bonf_pass=False took=10.2s
+2026-11-16T18:48:05 le=40 lx=20 dr=long_only  n= 22 obs_mean_r=+1.3078 null_mean=+0.4575 q95=+4.2810 p=0.2894 bonf_pass=False took=24.4s
+2026-11-16T18:48:15 le=55 lx=20 dr=long_only  n= 20 obs_mean_r=+1.1545 null_mean=+0.4194 q95=+3.9181 p=0.3034 bonf_pass=False took=9.9s
+2026-11-16T18:48:25 le=20 lx=10 dr=long_only  n= 37 obs_mean_r=+0.7777 null_mean=+0.0904 q95=+1.8001 p=0.2375 bonf_pass=False took=10.5s
+2026-11-16T18:48:36 le=55 lx=10 dr=both       n= 46 obs_mean_r=+0.8589 null_mean=-0.0615 q95=+1.5835 p=0.1537 bonf_pass=False took=10.8s
+2026-11-16T18:48:36 wrote out\c8\mcpt_wti.csv
+2026-11-16T18:48:36 END MCPT

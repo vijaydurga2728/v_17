@@ -1,0 +1,3 @@
+MCPT Scheme 1: EURUSD AM 2021-2026
+n=19 PF=4.83 win=78.9%
+Observed=+0.5759R NullMedian=-0.1711R p=0.00220 PASS=True

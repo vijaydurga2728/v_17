@@ -1,0 +1,4 @@
+Symbol,Setups,Trades,Trades/Mo,WinRate%,ProfitFactor,MaxDD%,NetPnL
+GBPUSD,judas_swing,73,1.52,31.5,0.83,6.41,-308.65
+EURUSD,judas_swing+silver_bullet,281,5.85,33.1,0.96,9.83,-231.95
+USATECHIDXUSD,silver_bullet,129,2.69,37.2,1.15,5.12,581.38

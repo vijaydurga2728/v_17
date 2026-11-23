@@ -1,0 +1,10 @@
+[c15-tune] 0: lo=0.1 hi=0.9 exit=next_close score=+0.1135
+[c15-tune] 1: lo=0.1 hi=0.9 exit=ibs_cross score=+0.3476
+[c15-tune] 2: lo=0.2 hi=0.8 exit=next_close score=+0.1401
+[c15-tune] 3: lo=0.2 hi=0.8 exit=ibs_cross score=+0.1832
+[c15-tune] WINNER 1: Setting(lo=0.1, hi=0.9, exit='ibs_cross')
+[c15] USATEC fresh_1991_2011: n=1273 PF=1.10 meanR=+0.115 vs random +0.050 p=0.2339 DD=57.7 | long 592 @ +0.340, short 681 @ -0.081 | yrs+ 15/21 PASS=False
+[c15] USATEC recent_2022_now: n=223 PF=1.19 meanR=+0.199 vs random -0.016 p=0.0956 DD=31.1 | long 85 @ +0.572, short 138 @ -0.030 | yrs+ 4/5 PASS=False
+[c15] USA500 fresh_1991_2011: n=1177 PF=1.14 meanR=+0.097 vs random +0.010 p=0.0661 DD=49.9 | long 501 @ +0.307, short 676 @ -0.059 | yrs+ 12/21 PASS=False
+[c15] USA500 recent_2022_now: n=215 PF=1.06 meanR=+0.047 vs random -0.036 p=0.2568 DD=21.8 | long 84 @ +0.210, short 131 @ -0.057 | yrs+ 2/5 PASS=False
+[c15] markets passing both exams: none | FTMO sim: {}

@@ -1,0 +1,66 @@
+##### run_c4b_gates 21:44:00
+[c4b] MCPT p_pf=0.3820 (alpha=0.00714) pass=False
+
+[c4b] === DON-GBPUSD ===
+[c4b] base trades: 86
+[c4b] stress PF (2x slip): 0.799
+[c4b] gates G1=False G2=True G3=False G4=False G5=False
+[c4b] running MCPT 500 permutations...
+[c4b] MCPT p_pf=0.4900 (alpha=0.00714) pass=False
+
+[c4b] === DON-USATECHIDXUSD ===
+[c4b] base trades: 90
+[c4b] stress PF (2x slip): 1.068
+[c4b] gates G1=False G2=True G3=False G4=False G5=False
+[c4b] running MCPT 500 permutations...
+[c4b] MCPT p_pf=0.5060 (alpha=0.00714) pass=False
+
+[c4b] === RSI2-USATECHIDXUSD ===
+[c4b] base trades: 106
+[c4b] stress PF (2x slip): 2.507
+[c4b] gates G1=True G2=True G3=False G4=True G5=True
+[c4b] running MCPT 500 permutations...
+[c4b] MCPT p_pf=0.6100 (alpha=0.00714) pass=False
+
+[c4b] wrote out\c4b_gates\c4b_gate_summary.json
+[c4b] wrote docs\superpowers\plans\c4b_gate_report_2026-11-11.md
+exit=0
+##### run_c4b_holdout 21:44:03
+[c4b-ho] holdout bars: 557
+[c4b-ho] trades: 29
+[c4b-ho] PF=4.895 WR=0.759 max_dd_R=8.66 hard_frozen=False
+[c4b-ho] verdict: HOLDOUT-PASS PRE-LIVE
+[c4b-ho] wrote docs\superpowers\plans\c4b_holdout_report_2026-11-11.md
+exit=0
+##### run_c4b_scheme1_mcpt 21:44:04
+[c4b-s1] loading dev bars
+[c4b-s1] dev trades: 106
+[c4b-s1] running scheme-1 MCPT on DEV (500 perms)...
+[c4b-s1] DEV: observed_pf=2.507 p_pf=0.1140
+[c4b-s1]       null median=1.607 mean=1.736 p95=2.986
+[c4b-s1] DEV: observed_mean_r=0.7445 p_mean_r=0.0020
+[c4b-s1]       null_mean_r median=0.2624 mean=0.2609 p95=0.5454
+[c4b-s1] loading holdout bars
+[c4b-s1] holdout trades: 29
+[c4b-s1] running scheme-1 MCPT on HOLDOUT (500 perms)...
+[c4b-s1] HOLDOUT: observed_pf=4.895 p_pf=0.1480
+[c4b-s1]            null median=2.013 mean=2.946 p95=8.463
+[c4b-s1] HOLDOUT: observed_mean_r=1.4313 p_mean_r=0.0020
+[c4b-s1]            null_mean_r median=0.3253 mean=0.3262 p95=0.9188
+[c4b-s1] wrote docs\superpowers\plans\c4b_scheme1_mcpt_report_2026-11-11.md
+exit=0
+##### run_c4b_paired_mcpt 21:44:06
+[c4b-paired] loading dev bars
+[c4b-paired] DEV observed: cum=0.58004 mean=0.000266 pf=1.200
+[c4b-paired]   trades=106 avg_hold=3.5 exposure=0.170
+[c4b-paired] running DEV null (500 perms, hold=4)...
+[c4b-paired] DEV p_cum=0.0060 p_mean=0.0060 p_pf=0.0100
+[c4b-paired]   null_cum median=0.00492 p95=0.36793
+[c4b-paired] loading holdout bars
+[c4b-paired] HOLDOUT observed: cum=0.34196 mean=0.000614 pf=1.480
+[c4b-paired]   trades=29 avg_hold=3.5 exposure=0.183
+[c4b-paired] running HOLDOUT null (500 perms, hold=4)...
+[c4b-paired] HOLDOUT p_cum=0.0000 p_mean=0.0000 p_pf=0.0040
+[c4b-paired]   null_cum median=0.01111 p95=0.17241
+[c4b-paired] wrote docs\superpowers\plans\c4b_paired_mcpt_report_2026-11-11.md
+exit=0

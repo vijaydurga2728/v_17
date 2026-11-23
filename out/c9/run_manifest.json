@@ -1,0 +1,21 @@
+{
+  "phase": "cycle9-phase4-dev",
+  "window": [
+    "2015-01-01",
+    "2022-12-31"
+  ],
+  "git_head": "b5371a0b12d7f33926e8224fdb37f0f3211f3eb5",
+  "git_dirty_paths": "M scripts/demo_poll_mt5.py\n M scripts/fix_demo_task.bat\n?? scripts/demo_poll_watchdog.py\n?? src/v17/live/rsi2_demo.py\n?? tests/unit/live/test_demo_poll_watchdog.py\n?? tests/unit/live/test_rsi2_demo.py",
+  "n_perms": 100000,
+  "official_gate_run": true,
+  "tier2_alpha": 0.05,
+  "tier3_alpha": 0.0003787878787878788,
+  "started_utc": "2026-11-17T15:32:02.966150+00:00",
+  "errors": [],
+  "finished_utc": "2026-11-17T15:32:12.800144+00:00",
+  "runtime_s": 9.9,
+  "tier1_pass": [],
+  "tier2_pass": [],
+  "tier3_pass": [],
+  "verdict": "NO SLOT PASSED DEV GATES"
+}

@@ -1,0 +1,1 @@
+USATECHIDXUSD AM: main 200 ref 200 keys_equal True max|dR| 0.0 -> MATCH

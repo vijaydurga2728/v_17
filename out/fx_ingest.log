@@ -1,0 +1,40 @@
+
+=== AUDUSD ===
+[ingest] AUDUSD: 4,389,534 paired M1 bars  (ask=4,389,534 bid=4,389,534)
+[ingest]   wrote dev: 3,740,936 rows
+[ingest]   wrote holdout: 648,598 rows
+
+=== EURUSD ===
+[ingest] EURUSD: 6,283,914 paired M1 bars  (ask=6,283,914 bid=6,283,914)
+[ingest]   wrote dev: 5,613,716 rows
+[ingest]   wrote holdout: 670,198 rows
+
+=== GBPUSD ===
+[ingest] GBPUSD: 4,784,694 paired M1 bars  (ask=4,784,694 bid=4,784,694)
+[ingest]   wrote dev: 4,114,496 rows
+[ingest]   wrote holdout: 670,198 rows
+
+=== NZDUSD ===
+[ingest] NZDUSD: 4,389,534 paired M1 bars  (ask=4,389,534 bid=4,389,534)
+[ingest]   wrote dev: 3,740,936 rows
+[ingest]   wrote holdout: 648,598 rows
+
+=== USDCAD ===
+[ingest] USDCAD: 6,260,993 paired M1 bars  (ask=6,260,993 bid=6,260,993)
+[ingest]   wrote dev: 5,612,395 rows
+[ingest]   wrote holdout: 648,598 rows
+
+=== USDCHF ===
+[ingest] USDCHF: 4,389,534 paired M1 bars  (ask=4,389,534 bid=4,389,534)
+[ingest]   wrote dev: 3,740,936 rows
+[ingest]   wrote holdout: 648,598 rows
+
+=== USDJPY ===
+[ingest] USDJPY: 4,389,534 paired M1 bars  (ask=4,389,534 bid=4,389,534)
+[ingest]   wrote dev: 3,740,936 rows
+[ingest]   wrote holdout: 648,598 rows
+
+=== EURGBP ===
+[ingest] EURGBP: 4,784,694 paired M1 bars  (ask=4,784,694 bid=4,784,694)
+[ingest]   wrote dev: 4,114,496 rows
+[ingest]   wrote holdout: 670,198 rows

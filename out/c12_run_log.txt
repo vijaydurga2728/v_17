@@ -1,0 +1,72 @@
+[c12] EURUSD L: n=95 PF=0.61 meanR=-0.131 R2=0.88 p=0.9245 pass=False
+[c12] EURUSD S: n=200 PF=1.07 meanR=+0.020 R2=0.01 p=0.3540 pass=False
+[c12] GBPUSD L: n=105 PF=1.08 meanR=+0.029 R2=0.33 p=0.2716 pass=False
+[c12] GBPUSD S: n=202 PF=1.04 meanR=+0.015 R2=0.39 p=0.2296 pass=False
+[c12] USDJPY L: n=91 PF=1.11 meanR=+0.036 R2=0.60 p=0.4655 pass=False
+[c12] USDJPY S: n=200 PF=1.00 meanR=-0.001 R2=0.01 p=0.2601 pass=False
+[c12] USDCHF L: n=96 PF=1.04 meanR=+0.011 R2=0.47 p=0.3041 pass=False
+[c12] USDCHF S: n=194 PF=0.94 meanR=-0.020 R2=0.12 p=0.3462 pass=False
+[c12] AUDUSD L: n=96 PF=0.95 meanR=-0.022 R2=0.15 p=0.5267 pass=False
+[c12] AUDUSD S: n=183 PF=1.02 meanR=+0.010 R2=0.01 p=0.4291 pass=False
+[c12] USDCAD L: n=83 PF=1.18 meanR=+0.052 R2=0.25 p=0.4535 pass=False
+[c12] USDCAD S: n=176 PF=1.17 meanR=+0.047 R2=0.55 p=0.2536 pass=False
+[c12] NZDUSD L: n=98 PF=1.00 meanR=-0.002 R2=0.24 p=0.2496 pass=False
+[c12] NZDUSD S: n=188 PF=1.06 meanR=+0.024 R2=0.33 p=0.1893 pass=False
+{
+ "EURUSD": {
+  "d1_bars": 4371,
+  "first": "2010-01-01",
+  "last": "2026-10-16",
+  "median_m1_per_bar": 1440.0,
+  "bars_lt_600_m1": 3,
+  "parity_with_4b_runner": true
+ },
+ "GBPUSD": {
+  "d1_bars": 3328,
+  "first": "2014-01-02",
+  "last": "2026-10-16",
+  "median_m1_per_bar": 1440.0,
+  "bars_lt_600_m1": 2,
+  "parity_with_4b_runner": true
+ },
+ "USDJPY": {
+  "d1_bars": 3053,
+  "first": "2015-01-02",
+  "last": "2026-09-25",
+  "median_m1_per_bar": 1440.0,
+  "bars_lt_600_m1": 2,
+  "parity_with_4b_runner": true
+ },
+ "USDCHF": {
+  "d1_bars": 3053,
+  "first": "2015-01-02",
+  "last": "2026-09-25",
+  "median_m1_per_bar": 1440.0,
+  "bars_lt_600_m1": 2,
+  "parity_with_4b_runner": true
+ },
+ "AUDUSD": {
+  "d1_bars": 3053,
+  "first": "2015-01-02",
+  "last": "2026-09-25",
+  "median_m1_per_bar": 1440.0,
+  "bars_lt_600_m1": 2,
+  "parity_with_4b_runner": true
+ },
+ "USDCAD": {
+  "d1_bars": 4356,
+  "first": "2010-01-01",
+  "last": "2026-09-25",
+  "median_m1_per_bar": 1440.0,
+  "bars_lt_600_m1": 4,
+  "parity_with_4b_runner": true
+ },
+ "NZDUSD": {
+  "d1_bars": 3053,
+  "first": "2015-01-02",
+  "last": "2026-09-25",
+  "median_m1_per_bar": 1440.0,
+  "bars_lt_600_m1": 2,
+  "parity_with_4b_runner": true
+ }
+}

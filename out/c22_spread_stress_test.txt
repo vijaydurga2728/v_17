@@ -1,0 +1,4 @@
+        Cost Multiplier Tier  Trades (n)  Trades/Mo  WinRate %  Profit Factor  Mean Return  Max DD (R)
+             Baseline (1.0x)         219       4.56       46.6           1.27        0.141        14.3
+ Stress Tier 1 (+50% / 1.5x)         227       4.73       45.8           1.17        0.095        11.0
+Stress Tier 2 (+100% / 2.0x)         239       4.98       42.7           0.98       -0.012        20.8

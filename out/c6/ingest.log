@@ -1,0 +1,14 @@
+﻿=== 2026-11-12T18:22:33 START ingest ===
+[ingest] AUDUSD start 2026-11-12T18:22:33
+[1;33mThank you for using SmartMoneyConcepts! ⭐ Please show your support by giving a star on the GitHub repository: [4;34mhttps://github.com/joshyattridge/smart-money-concepts[0m
+wrote 4389535 rows
+[ingest] AUDUSD done exit=0 2026-11-12T18:22:51
+[ingest] USDJPY start 2026-11-12T18:22:51
+[1;33mThank you for using SmartMoneyConcepts! ⭐ Please show your support by giving a star on the GitHub repository: [4;34mhttps://github.com/joshyattridge/smart-money-concepts[0m
+wrote 4389535 rows
+[ingest] USDJPY done exit=0 2026-11-12T18:23:21
+[ingest] USA500IDXUSD start 2026-11-12T18:23:22
+[1;33mThank you for using SmartMoneyConcepts! ⭐ Please show your support by giving a star on the GitHub repository: [4;34mhttps://github.com/joshyattridge/smart-money-concepts[0m
+wrote 4070143 rows
+[ingest] USA500IDXUSD done exit=0 2026-11-12T18:23:43
+=== 2026-11-12T18:23:43 END ingest ===

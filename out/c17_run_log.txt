@@ -1,0 +1,12 @@
+[c17] LDN USATECHIDXUSD n=  25 PF=1.03 meanR=+0.020 vs random -0.303 p=0.1208 DD=6.0 | L 11 @ -0.43 S 14 @ +0.37 | SL/TP/T 15/4/6 PASS=False
+[c17] LDN USA500IDXUSD  n= 102 PF=0.97 meanR=-0.027 vs random -0.440 p=0.0002 DD=17.5 | L 61 @ +0.10 S 41 @ -0.22 | SL/TP/T 69/22/11 PASS=False
+[c17] LDN EURUSD        n= 525 PF=0.71 meanR=-0.223 vs random -0.335 p=0.0326 DD=119.1 | L 284 @ -0.29 S 241 @ -0.15 | SL/TP/T 323/102/100 PASS=False
+[c17] LDN GBPUSD        n= 367 PF=0.61 meanR=-0.329 vs random -0.337 p=0.4615 DD=120.9 | L 209 @ -0.37 S 158 @ -0.28 | SL/TP/T 264/57/46 PASS=False
+[c17] AM  USATECHIDXUSD n= 200 PF=0.69 meanR=-0.254 vs random -0.143 p=0.8068 DD=55.7 | L 79 @ -0.19 S 121 @ -0.29 | SL/TP/T 153/17/30 PASS=False
+[c17] AM  USA500IDXUSD  n= 224 PF=0.80 meanR=-0.157 vs random -0.356 p=0.0360 DD=35.5 | L 90 @ -0.02 S 134 @ -0.25 | SL/TP/T 155/23/46 PASS=False
+[c17] AM  EURUSD        n= 580 PF=0.60 meanR=-0.325 vs random -0.266 p=0.8324 DD=199.0 | L 282 @ -0.30 S 298 @ -0.35 | SL/TP/T 390/57/133 PASS=False
+[c17] AM  GBPUSD        n= 444 PF=0.72 meanR=-0.223 vs random -0.265 p=0.2897 DD=99.0 | L 230 @ -0.19 S 214 @ -0.26 | SL/TP/T 302/51/91 PASS=False
+[c17] PM  USATECHIDXUSD n= 280 PF=0.68 meanR=-0.267 vs random -0.185 p=0.7976 DD=77.9 | L 118 @ -0.33 S 162 @ -0.22 | SL/TP/T 224/29/27 PASS=False
+[c17] PM  USA500IDXUSD  n= 248 PF=0.63 meanR=-0.331 vs random -0.394 p=0.2721 DD=88.4 | L 120 @ -0.30 S 128 @ -0.36 | SL/TP/T 195/27/26 PASS=False
+[c17] PM  EURUSD        n= 481 PF=0.51 meanR=-0.371 vs random -0.390 p=0.3715 DD=183.4 | L 220 @ -0.36 S 261 @ -0.38 | SL/TP/T 268/34/179 PASS=False
+[c17] PM  GBPUSD        n= 272 PF=0.43 meanR=-0.468 vs random -0.404 p=0.7968 DD=129.2 | L 130 @ -0.45 S 142 @ -0.48 | SL/TP/T 178/19/75 PASS=False

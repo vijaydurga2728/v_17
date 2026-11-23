@@ -1,0 +1,4 @@
+2026-11-17 21:02:02,966 INFO Phase 4 dev run: n_perms=100000 official=True head=b5371a0b12d7f33926e8224fdb37f0f3211f3eb5
+2026-11-17 21:02:11,916 INFO data audit: 1999 sessions, 0 exact dupes dropped, 0 missing days
+2026-11-17 21:02:12,796 INFO Tier 1 pass: 0 / 12
+2026-11-17 21:02:12,801 INFO verdict: NO SLOT PASSED DEV GATES

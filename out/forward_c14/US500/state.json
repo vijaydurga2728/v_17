@@ -1,0 +1,11 @@
+{
+  "last_processed_ts": 1794960000,
+  "last_processed_date": "2026-11-18",
+  "open": {
+    "entry_ts": 1794873600,
+    "entry_date": "2026-11-17",
+    "entry_price": 7423.8,
+    "r_dist": 74.172,
+    "bars_held": 2
+  }
+}

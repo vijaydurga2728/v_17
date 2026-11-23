@@ -1,3 +1,4 @@
+
 @echo off
 REM Right-click this file and pick "Run as administrator".
 REM Deletes the broken RSI2 Demo Poll task and creates a correct one.

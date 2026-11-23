@@ -1,0 +1,866 @@
+{
+ "baseline_commit": "0f7054c",
+ "c23_version": "23.1.0",
+ "charts": {
+  "US30_2018-10-12_c23_decision": {
+   "annotation_fp": "b993e731ce9136af",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1539356400000000000,
+   "end_ns": 1539374400000000000,
+   "event_ids": [
+    "US30_2018-10-12_000_bias",
+    "US30_2018-10-12_001_levels",
+    "US30_2018-10-12_002_sweep_scan",
+    "US30_2018-10-12_003_sweep",
+    "US30_2018-10-12_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2018/US30_2018-10-12_c23_decision.png",
+   "png_sha256": "b90fecaa8643daff",
+   "view": "decision"
+  },
+  "US30_2018-10-12_c23_outcome": {
+   "annotation_fp": "0fea2f8e8c7b2725",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1539356400000000000,
+   "end_ns": 1539374400000000000,
+   "event_ids": [
+    "US30_2018-10-12_000_bias",
+    "US30_2018-10-12_001_levels",
+    "US30_2018-10-12_002_sweep_scan",
+    "US30_2018-10-12_003_sweep",
+    "US30_2018-10-12_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2018/US30_2018-10-12_c23_outcome.png",
+   "png_sha256": "30dc6460a12f1782",
+   "view": "outcome"
+  },
+  "US30_2019-02-04_c23_decision": {
+   "annotation_fp": "39ddd5881c8e1d52",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1549296000000000000,
+   "end_ns": 1549314000000000000,
+   "event_ids": [
+    "US30_2019-02-04_000_bias",
+    "US30_2019-02-04_001_levels",
+    "US30_2019-02-04_002_sweep_scan",
+    "US30_2019-02-04_003_sweep",
+    "US30_2019-02-04_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2019/US30_2019-02-04_c23_decision.png",
+   "png_sha256": "41b9f1dc7b5025cc",
+   "view": "decision"
+  },
+  "US30_2019-02-04_c23_outcome": {
+   "annotation_fp": "2aac1fd3dd2e9ca4",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1549296000000000000,
+   "end_ns": 1549314000000000000,
+   "event_ids": [
+    "US30_2019-02-04_000_bias",
+    "US30_2019-02-04_001_levels",
+    "US30_2019-02-04_002_sweep_scan",
+    "US30_2019-02-04_003_sweep",
+    "US30_2019-02-04_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2019/US30_2019-02-04_c23_outcome.png",
+   "png_sha256": "2f98bbaab68ef3d6",
+   "view": "outcome"
+  },
+  "US30_2019-02-21_c23_decision": {
+   "annotation_fp": "84d5bd3d030921c6",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1550764800000000000,
+   "end_ns": 1550782800000000000,
+   "event_ids": [
+    "US30_2019-02-21_000_bias",
+    "US30_2019-02-21_001_levels",
+    "US30_2019-02-21_002_sweep_scan",
+    "US30_2019-02-21_003_sweep",
+    "US30_2019-02-21_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2019/US30_2019-02-21_c23_decision.png",
+   "png_sha256": "722e06918dc8cd35",
+   "view": "decision"
+  },
+  "US30_2019-02-21_c23_outcome": {
+   "annotation_fp": "cdbb29ee93ea6bf4",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1550764800000000000,
+   "end_ns": 1550782800000000000,
+   "event_ids": [
+    "US30_2019-02-21_000_bias",
+    "US30_2019-02-21_001_levels",
+    "US30_2019-02-21_002_sweep_scan",
+    "US30_2019-02-21_003_sweep",
+    "US30_2019-02-21_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2019/US30_2019-02-21_c23_outcome.png",
+   "png_sha256": "515b27a699c531d1",
+   "view": "outcome"
+  },
+  "US30_2019-03-06_c23_decision": {
+   "annotation_fp": "61fd8232921e15d2",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1551888000000000000,
+   "end_ns": 1551906000000000000,
+   "event_ids": [
+    "US30_2019-03-06_000_bias",
+    "US30_2019-03-06_001_levels",
+    "US30_2019-03-06_002_sweep_scan",
+    "US30_2019-03-06_003_sweep",
+    "US30_2019-03-06_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2019/US30_2019-03-06_c23_decision.png",
+   "png_sha256": "efb802f338cc8e1b",
+   "view": "decision"
+  },
+  "US30_2019-03-06_c23_outcome": {
+   "annotation_fp": "91b3a0bdfa77e28b",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1551888000000000000,
+   "end_ns": 1551906000000000000,
+   "event_ids": [
+    "US30_2019-03-06_000_bias",
+    "US30_2019-03-06_001_levels",
+    "US30_2019-03-06_002_sweep_scan",
+    "US30_2019-03-06_003_sweep",
+    "US30_2019-03-06_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2019/US30_2019-03-06_c23_outcome.png",
+   "png_sha256": "34a3d4508faeb7e6",
+   "view": "outcome"
+  },
+  "US30_2019-04-10_c23_decision": {
+   "annotation_fp": "69ef9e642794095d",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1554908400000000000,
+   "end_ns": 1554926400000000000,
+   "event_ids": [
+    "US30_2019-04-10_000_bias",
+    "US30_2019-04-10_001_levels",
+    "US30_2019-04-10_002_sweep_scan",
+    "US30_2019-04-10_003_sweep",
+    "US30_2019-04-10_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2019/US30_2019-04-10_c23_decision.png",
+   "png_sha256": "a7043619490c1819",
+   "view": "decision"
+  },
+  "US30_2019-04-10_c23_outcome": {
+   "annotation_fp": "77f3352322570d93",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1554908400000000000,
+   "end_ns": 1554926400000000000,
+   "event_ids": [
+    "US30_2019-04-10_000_bias",
+    "US30_2019-04-10_001_levels",
+    "US30_2019-04-10_002_sweep_scan",
+    "US30_2019-04-10_003_sweep",
+    "US30_2019-04-10_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2019/US30_2019-04-10_c23_outcome.png",
+   "png_sha256": "434375c3387cd640",
+   "view": "outcome"
+  },
+  "US30_2019-07-01_c23_decision": {
+   "annotation_fp": "323f0cd64e22cfc7",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1561993200000000000,
+   "end_ns": 1562011200000000000,
+   "event_ids": [
+    "US30_2019-07-01_000_bias",
+    "US30_2019-07-01_001_levels",
+    "US30_2019-07-01_002_sweep_scan",
+    "US30_2019-07-01_003_sweep",
+    "US30_2019-07-01_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2019/US30_2019-07-01_c23_decision.png",
+   "png_sha256": "2bd46c057b07b93f",
+   "view": "decision"
+  },
+  "US30_2019-07-01_c23_outcome": {
+   "annotation_fp": "8dd3371e5efd25c2",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1561993200000000000,
+   "end_ns": 1562011200000000000,
+   "event_ids": [
+    "US30_2019-07-01_000_bias",
+    "US30_2019-07-01_001_levels",
+    "US30_2019-07-01_002_sweep_scan",
+    "US30_2019-07-01_003_sweep",
+    "US30_2019-07-01_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2019/US30_2019-07-01_c23_outcome.png",
+   "png_sha256": "8c3c4ee8d12f8544",
+   "view": "outcome"
+  },
+  "US30_2019-10-30_c23_decision": {
+   "annotation_fp": "9e7e34c469720bc8",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1572447600000000000,
+   "end_ns": 1572465600000000000,
+   "event_ids": [
+    "US30_2019-10-30_000_bias",
+    "US30_2019-10-30_001_levels",
+    "US30_2019-10-30_002_sweep_scan",
+    "US30_2019-10-30_003_sweep",
+    "US30_2019-10-30_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2019/US30_2019-10-30_c23_decision.png",
+   "png_sha256": "8cd46aaace291e6f",
+   "view": "decision"
+  },
+  "US30_2019-10-30_c23_outcome": {
+   "annotation_fp": "43f53998a517bba3",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1572447600000000000,
+   "end_ns": 1572465600000000000,
+   "event_ids": [
+    "US30_2019-10-30_000_bias",
+    "US30_2019-10-30_001_levels",
+    "US30_2019-10-30_002_sweep_scan",
+    "US30_2019-10-30_003_sweep",
+    "US30_2019-10-30_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2019/US30_2019-10-30_c23_outcome.png",
+   "png_sha256": "36118264445a91d4",
+   "view": "outcome"
+  },
+  "US30_2019-11-05_c23_decision": {
+   "annotation_fp": "e95bc1cce877abf8",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1572969600000000000,
+   "end_ns": 1572987600000000000,
+   "event_ids": [
+    "US30_2019-11-05_000_bias",
+    "US30_2019-11-05_001_levels",
+    "US30_2019-11-05_002_sweep_scan",
+    "US30_2019-11-05_003_sweep",
+    "US30_2019-11-05_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2019/US30_2019-11-05_c23_decision.png",
+   "png_sha256": "4a5230cb66bc7c51",
+   "view": "decision"
+  },
+  "US30_2019-11-05_c23_outcome": {
+   "annotation_fp": "d3f60724f63db7e6",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1572969600000000000,
+   "end_ns": 1572987600000000000,
+   "event_ids": [
+    "US30_2019-11-05_000_bias",
+    "US30_2019-11-05_001_levels",
+    "US30_2019-11-05_002_sweep_scan",
+    "US30_2019-11-05_003_sweep",
+    "US30_2019-11-05_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2019/US30_2019-11-05_c23_outcome.png",
+   "png_sha256": "ee5ce8298fe7a4f1",
+   "view": "outcome"
+  },
+  "US30_2020-09-04_c23_decision": {
+   "annotation_fp": "aa5525a00e7959cb",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1599231600000000000,
+   "end_ns": 1599249600000000000,
+   "event_ids": [
+    "US30_2020-09-04_000_bias",
+    "US30_2020-09-04_001_levels",
+    "US30_2020-09-04_002_sweep_scan",
+    "US30_2020-09-04_003_sweep",
+    "US30_2020-09-04_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2020/US30_2020-09-04_c23_decision.png",
+   "png_sha256": "6bbba4e6c4be4c57",
+   "view": "decision"
+  },
+  "US30_2020-09-04_c23_outcome": {
+   "annotation_fp": "0982927aba3d91e5",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1599231600000000000,
+   "end_ns": 1599249600000000000,
+   "event_ids": [
+    "US30_2020-09-04_000_bias",
+    "US30_2020-09-04_001_levels",
+    "US30_2020-09-04_002_sweep_scan",
+    "US30_2020-09-04_003_sweep",
+    "US30_2020-09-04_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2020/US30_2020-09-04_c23_outcome.png",
+   "png_sha256": "f03eec6ee0a9df13",
+   "view": "outcome"
+  },
+  "US30_2020-09-24_c23_decision": {
+   "annotation_fp": "6016210abc11b841",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1600959600000000000,
+   "end_ns": 1600977600000000000,
+   "event_ids": [
+    "US30_2020-09-24_000_bias",
+    "US30_2020-09-24_001_levels",
+    "US30_2020-09-24_002_sweep_scan",
+    "US30_2020-09-24_003_sweep",
+    "US30_2020-09-24_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2020/US30_2020-09-24_c23_decision.png",
+   "png_sha256": "d32905f0ef8698e4",
+   "view": "decision"
+  },
+  "US30_2020-09-24_c23_outcome": {
+   "annotation_fp": "741e3e358b2a7150",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1600959600000000000,
+   "end_ns": 1600977600000000000,
+   "event_ids": [
+    "US30_2020-09-24_000_bias",
+    "US30_2020-09-24_001_levels",
+    "US30_2020-09-24_002_sweep_scan",
+    "US30_2020-09-24_003_sweep",
+    "US30_2020-09-24_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2020/US30_2020-09-24_c23_outcome.png",
+   "png_sha256": "5ca3c1c3b7192c9a",
+   "view": "outcome"
+  },
+  "US30_2020-10-19_c23_decision": {
+   "annotation_fp": "35c076070f311f94",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1603119600000000000,
+   "end_ns": 1603137600000000000,
+   "event_ids": [
+    "US30_2020-10-19_000_bias",
+    "US30_2020-10-19_001_levels",
+    "US30_2020-10-19_002_sweep_scan",
+    "US30_2020-10-19_003_sweep",
+    "US30_2020-10-19_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2020/US30_2020-10-19_c23_decision.png",
+   "png_sha256": "4e190ff19b5fd79c",
+   "view": "decision"
+  },
+  "US30_2020-10-19_c23_outcome": {
+   "annotation_fp": "993bd42a5d8c3c19",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1603119600000000000,
+   "end_ns": 1603137600000000000,
+   "event_ids": [
+    "US30_2020-10-19_000_bias",
+    "US30_2020-10-19_001_levels",
+    "US30_2020-10-19_002_sweep_scan",
+    "US30_2020-10-19_003_sweep",
+    "US30_2020-10-19_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2020/US30_2020-10-19_c23_outcome.png",
+   "png_sha256": "2a85397bfe15480a",
+   "view": "outcome"
+  },
+  "US30_2021-04-19_c23_decision": {
+   "annotation_fp": "81a1542a9c5dc4e6",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1618844400000000000,
+   "end_ns": 1618862400000000000,
+   "event_ids": [
+    "US30_2021-04-19_000_bias",
+    "US30_2021-04-19_001_levels",
+    "US30_2021-04-19_002_sweep_scan",
+    "US30_2021-04-19_003_sweep",
+    "US30_2021-04-19_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2021/US30_2021-04-19_c23_decision.png",
+   "png_sha256": "e6282ca6912e9822",
+   "view": "decision"
+  },
+  "US30_2021-04-19_c23_outcome": {
+   "annotation_fp": "a685d065f2494cc9",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1618844400000000000,
+   "end_ns": 1618862400000000000,
+   "event_ids": [
+    "US30_2021-04-19_000_bias",
+    "US30_2021-04-19_001_levels",
+    "US30_2021-04-19_002_sweep_scan",
+    "US30_2021-04-19_003_sweep",
+    "US30_2021-04-19_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2021/US30_2021-04-19_c23_outcome.png",
+   "png_sha256": "13ef7be902404d70",
+   "view": "outcome"
+  },
+  "US30_2021-10-04_c23_decision": {
+   "annotation_fp": "047056740f843c05",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1633357800000000000,
+   "end_ns": 1633377600000000000,
+   "event_ids": [
+    "US30_2021-10-04_000_bias",
+    "US30_2021-10-04_001_levels",
+    "US30_2021-10-04_002_sweep_scan",
+    "US30_2021-10-04_003_sweep",
+    "US30_2021-10-04_004_mss",
+    "US30_2021-10-04_005_fvg",
+    "US30_2021-10-04_006_premium_discount",
+    "US30_2021-10-04_007_rejected"
+   ],
+   "near_miss_stage": "premium_discount_fail",
+   "path": "US30/2021/US30_2021-10-04_c23_decision.png",
+   "png_sha256": "1e0c52580dd4378e",
+   "view": "decision"
+  },
+  "US30_2021-10-04_c23_outcome": {
+   "annotation_fp": "4c47c403c888fc05",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1633357800000000000,
+   "end_ns": 1633377600000000000,
+   "event_ids": [
+    "US30_2021-10-04_000_bias",
+    "US30_2021-10-04_001_levels",
+    "US30_2021-10-04_002_sweep_scan",
+    "US30_2021-10-04_003_sweep",
+    "US30_2021-10-04_004_mss",
+    "US30_2021-10-04_005_fvg",
+    "US30_2021-10-04_006_premium_discount",
+    "US30_2021-10-04_007_rejected"
+   ],
+   "near_miss_stage": "premium_discount_fail",
+   "path": "US30/2021/US30_2021-10-04_c23_outcome.png",
+   "png_sha256": "abed737603ed1c7e",
+   "view": "outcome"
+  },
+  "US30_2022-05-25_c23_decision": {
+   "annotation_fp": "7b6516303a29d457",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1653490800000000000,
+   "end_ns": 1653508800000000000,
+   "event_ids": [
+    "US30_2022-05-25_000_bias",
+    "US30_2022-05-25_001_levels",
+    "US30_2022-05-25_002_sweep_scan",
+    "US30_2022-05-25_003_sweep",
+    "US30_2022-05-25_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2022/US30_2022-05-25_c23_decision.png",
+   "png_sha256": "98ef1a1945c4ee92",
+   "view": "decision"
+  },
+  "US30_2022-05-25_c23_outcome": {
+   "annotation_fp": "688cb768ff20d8ec",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1653490800000000000,
+   "end_ns": 1653508800000000000,
+   "event_ids": [
+    "US30_2022-05-25_000_bias",
+    "US30_2022-05-25_001_levels",
+    "US30_2022-05-25_002_sweep_scan",
+    "US30_2022-05-25_003_sweep",
+    "US30_2022-05-25_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2022/US30_2022-05-25_c23_outcome.png",
+   "png_sha256": "d0a8343a0c56191e",
+   "view": "outcome"
+  },
+  "US30_2022-06-17_c23_decision": {
+   "annotation_fp": "f55ddfd4bcb5b1bc",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1655478000000000000,
+   "end_ns": 1655496000000000000,
+   "event_ids": [
+    "US30_2022-06-17_000_bias",
+    "US30_2022-06-17_001_levels",
+    "US30_2022-06-17_002_sweep_scan",
+    "US30_2022-06-17_003_sweep",
+    "US30_2022-06-17_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2022/US30_2022-06-17_c23_decision.png",
+   "png_sha256": "99ca438e2d341da6",
+   "view": "decision"
+  },
+  "US30_2022-06-17_c23_outcome": {
+   "annotation_fp": "d1f8bd47c17df29c",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1655478000000000000,
+   "end_ns": 1655496000000000000,
+   "event_ids": [
+    "US30_2022-06-17_000_bias",
+    "US30_2022-06-17_001_levels",
+    "US30_2022-06-17_002_sweep_scan",
+    "US30_2022-06-17_003_sweep",
+    "US30_2022-06-17_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2022/US30_2022-06-17_c23_outcome.png",
+   "png_sha256": "5d0948ab3b7d727b",
+   "view": "outcome"
+  },
+  "US30_2022-08-26_c23_decision": {
+   "annotation_fp": "77eaee2c5c94e943",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1661526000000000000,
+   "end_ns": 1661544000000000000,
+   "event_ids": [
+    "US30_2022-08-26_000_bias",
+    "US30_2022-08-26_001_levels",
+    "US30_2022-08-26_002_sweep_scan",
+    "US30_2022-08-26_003_sweep",
+    "US30_2022-08-26_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2022/US30_2022-08-26_c23_decision.png",
+   "png_sha256": "7a49005a581b1dc7",
+   "view": "decision"
+  },
+  "US30_2022-08-26_c23_outcome": {
+   "annotation_fp": "8d2c3c482b707428",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1661526000000000000,
+   "end_ns": 1661544000000000000,
+   "event_ids": [
+    "US30_2022-08-26_000_bias",
+    "US30_2022-08-26_001_levels",
+    "US30_2022-08-26_002_sweep_scan",
+    "US30_2022-08-26_003_sweep",
+    "US30_2022-08-26_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2022/US30_2022-08-26_c23_outcome.png",
+   "png_sha256": "548904356c10691f",
+   "view": "outcome"
+  },
+  "US30_2022-08-30_c23_decision": {
+   "annotation_fp": "b64815b993d7e946",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1661871600000000000,
+   "end_ns": 1661889600000000000,
+   "event_ids": [
+    "US30_2022-08-30_000_bias",
+    "US30_2022-08-30_001_levels",
+    "US30_2022-08-30_002_sweep_scan",
+    "US30_2022-08-30_003_sweep",
+    "US30_2022-08-30_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2022/US30_2022-08-30_c23_decision.png",
+   "png_sha256": "b2b5f3f32f2c0114",
+   "view": "decision"
+  },
+  "US30_2022-08-30_c23_outcome": {
+   "annotation_fp": "063f2a7d8bc70e79",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1661871600000000000,
+   "end_ns": 1661889600000000000,
+   "event_ids": [
+    "US30_2022-08-30_000_bias",
+    "US30_2022-08-30_001_levels",
+    "US30_2022-08-30_002_sweep_scan",
+    "US30_2022-08-30_003_sweep",
+    "US30_2022-08-30_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2022/US30_2022-08-30_c23_outcome.png",
+   "png_sha256": "011e48e9a668b746",
+   "view": "outcome"
+  },
+  "US30_2023-04-18_c23_decision": {
+   "annotation_fp": "fbb89b4786dcbbec",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1681830000000000000,
+   "end_ns": 1681848000000000000,
+   "event_ids": [
+    "US30_2023-04-18_000_bias",
+    "US30_2023-04-18_001_levels",
+    "US30_2023-04-18_002_sweep_scan",
+    "US30_2023-04-18_003_sweep",
+    "US30_2023-04-18_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2023/US30_2023-04-18_c23_decision.png",
+   "png_sha256": "591f9280f9e2cc6e",
+   "view": "decision"
+  },
+  "US30_2023-04-18_c23_outcome": {
+   "annotation_fp": "aa634c5b47e4282c",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1681830000000000000,
+   "end_ns": 1681848000000000000,
+   "event_ids": [
+    "US30_2023-04-18_000_bias",
+    "US30_2023-04-18_001_levels",
+    "US30_2023-04-18_002_sweep_scan",
+    "US30_2023-04-18_003_sweep",
+    "US30_2023-04-18_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2023/US30_2023-04-18_c23_outcome.png",
+   "png_sha256": "ab2b561aefb17dc9",
+   "view": "outcome"
+  },
+  "US30_2023-06-26_c23_decision": {
+   "annotation_fp": "628636aee188e8ae",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1687791600000000000,
+   "end_ns": 1687809600000000000,
+   "event_ids": [
+    "US30_2023-06-26_000_bias",
+    "US30_2023-06-26_001_levels",
+    "US30_2023-06-26_002_sweep_scan",
+    "US30_2023-06-26_003_sweep",
+    "US30_2023-06-26_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2023/US30_2023-06-26_c23_decision.png",
+   "png_sha256": "527aa2a85e680c72",
+   "view": "decision"
+  },
+  "US30_2023-06-26_c23_outcome": {
+   "annotation_fp": "044c0e90990d3e4f",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1687791600000000000,
+   "end_ns": 1687809600000000000,
+   "event_ids": [
+    "US30_2023-06-26_000_bias",
+    "US30_2023-06-26_001_levels",
+    "US30_2023-06-26_002_sweep_scan",
+    "US30_2023-06-26_003_sweep",
+    "US30_2023-06-26_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2023/US30_2023-06-26_c23_outcome.png",
+   "png_sha256": "bf5e042d332ca286",
+   "view": "outcome"
+  },
+  "US30_2024-02-05_c23_decision": {
+   "annotation_fp": "0cf5f817d8204c50",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1707148800000000000,
+   "end_ns": 1707166800000000000,
+   "event_ids": [
+    "US30_2024-02-05_000_bias",
+    "US30_2024-02-05_001_levels",
+    "US30_2024-02-05_002_sweep_scan",
+    "US30_2024-02-05_003_sweep",
+    "US30_2024-02-05_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2024/US30_2024-02-05_c23_decision.png",
+   "png_sha256": "28253893a4f64a75",
+   "view": "decision"
+  },
+  "US30_2024-02-05_c23_outcome": {
+   "annotation_fp": "90e22769c17fa94d",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1707148800000000000,
+   "end_ns": 1707166800000000000,
+   "event_ids": [
+    "US30_2024-02-05_000_bias",
+    "US30_2024-02-05_001_levels",
+    "US30_2024-02-05_002_sweep_scan",
+    "US30_2024-02-05_003_sweep",
+    "US30_2024-02-05_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2024/US30_2024-02-05_c23_outcome.png",
+   "png_sha256": "2a9577b87d576ee0",
+   "view": "outcome"
+  },
+  "US30_2024-04-09_c23_decision": {
+   "annotation_fp": "2ae6b1e2623b6683",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1712674800000000000,
+   "end_ns": 1712692800000000000,
+   "event_ids": [
+    "US30_2024-04-09_000_bias",
+    "US30_2024-04-09_001_levels",
+    "US30_2024-04-09_002_sweep_scan",
+    "US30_2024-04-09_003_sweep",
+    "US30_2024-04-09_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2024/US30_2024-04-09_c23_decision.png",
+   "png_sha256": "622aba035a57ebcc",
+   "view": "decision"
+  },
+  "US30_2024-04-09_c23_outcome": {
+   "annotation_fp": "d4fb42c6b452b475",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1712674800000000000,
+   "end_ns": 1712692800000000000,
+   "event_ids": [
+    "US30_2024-04-09_000_bias",
+    "US30_2024-04-09_001_levels",
+    "US30_2024-04-09_002_sweep_scan",
+    "US30_2024-04-09_003_sweep",
+    "US30_2024-04-09_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2024/US30_2024-04-09_c23_outcome.png",
+   "png_sha256": "d437f8727bb4134b",
+   "view": "outcome"
+  },
+  "US30_2024-04-18_c23_decision": {
+   "annotation_fp": "2e293571bfd94695",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1713452400000000000,
+   "end_ns": 1713470400000000000,
+   "event_ids": [
+    "US30_2024-04-18_000_bias",
+    "US30_2024-04-18_001_levels",
+    "US30_2024-04-18_002_sweep_scan",
+    "US30_2024-04-18_003_sweep",
+    "US30_2024-04-18_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2024/US30_2024-04-18_c23_decision.png",
+   "png_sha256": "8db5d49fb147886b",
+   "view": "decision"
+  },
+  "US30_2024-04-18_c23_outcome": {
+   "annotation_fp": "611cec6d66552e5f",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1713452400000000000,
+   "end_ns": 1713470400000000000,
+   "event_ids": [
+    "US30_2024-04-18_000_bias",
+    "US30_2024-04-18_001_levels",
+    "US30_2024-04-18_002_sweep_scan",
+    "US30_2024-04-18_003_sweep",
+    "US30_2024-04-18_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2024/US30_2024-04-18_c23_outcome.png",
+   "png_sha256": "8ca901893f95298b",
+   "view": "outcome"
+  },
+  "US30_2024-08-06_c23_decision": {
+   "annotation_fp": "11ed538ab61a7333",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1722956400000000000,
+   "end_ns": 1722974400000000000,
+   "event_ids": [
+    "US30_2024-08-06_000_bias",
+    "US30_2024-08-06_001_levels",
+    "US30_2024-08-06_002_sweep_scan",
+    "US30_2024-08-06_003_sweep",
+    "US30_2024-08-06_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2024/US30_2024-08-06_c23_decision.png",
+   "png_sha256": "09203c52af71eb75",
+   "view": "decision"
+  },
+  "US30_2024-08-06_c23_outcome": {
+   "annotation_fp": "522361b6a81ac774",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1722956400000000000,
+   "end_ns": 1722974400000000000,
+   "event_ids": [
+    "US30_2024-08-06_000_bias",
+    "US30_2024-08-06_001_levels",
+    "US30_2024-08-06_002_sweep_scan",
+    "US30_2024-08-06_003_sweep",
+    "US30_2024-08-06_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2024/US30_2024-08-06_c23_outcome.png",
+   "png_sha256": "7fd866adf013db30",
+   "view": "outcome"
+  },
+  "US30_2024-08-07_c23_decision": {
+   "annotation_fp": "885883728e4fa55d",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1723042800000000000,
+   "end_ns": 1723060800000000000,
+   "event_ids": [
+    "US30_2024-08-07_000_bias",
+    "US30_2024-08-07_001_levels",
+    "US30_2024-08-07_002_sweep_scan",
+    "US30_2024-08-07_003_sweep",
+    "US30_2024-08-07_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2024/US30_2024-08-07_c23_decision.png",
+   "png_sha256": "4d1fb822fc333e12",
+   "view": "decision"
+  },
+  "US30_2024-08-07_c23_outcome": {
+   "annotation_fp": "00269aaa274b437e",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1723042800000000000,
+   "end_ns": 1723060800000000000,
+   "event_ids": [
+    "US30_2024-08-07_000_bias",
+    "US30_2024-08-07_001_levels",
+    "US30_2024-08-07_002_sweep_scan",
+    "US30_2024-08-07_003_sweep",
+    "US30_2024-08-07_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2024/US30_2024-08-07_c23_outcome.png",
+   "png_sha256": "10c330bb5be088c4",
+   "view": "outcome"
+  },
+  "US30_2024-11-26_c23_decision": {
+   "annotation_fp": "d87cf917839e71be",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1732636800000000000,
+   "end_ns": 1732654800000000000,
+   "event_ids": [
+    "US30_2024-11-26_000_bias",
+    "US30_2024-11-26_001_levels",
+    "US30_2024-11-26_002_sweep_scan",
+    "US30_2024-11-26_003_sweep",
+    "US30_2024-11-26_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2024/US30_2024-11-26_c23_decision.png",
+   "png_sha256": "a5806e7870799db1",
+   "view": "decision"
+  },
+  "US30_2024-11-26_c23_outcome": {
+   "annotation_fp": "8f9caa1f8d8fc614",
+   "category": "rejected_after_sweep",
+   "cut_ns": 1732636800000000000,
+   "end_ns": 1732654800000000000,
+   "event_ids": [
+    "US30_2024-11-26_000_bias",
+    "US30_2024-11-26_001_levels",
+    "US30_2024-11-26_002_sweep_scan",
+    "US30_2024-11-26_003_sweep",
+    "US30_2024-11-26_004_rejected"
+   ],
+   "near_miss_stage": null,
+   "path": "US30/2024/US30_2024-11-26_c23_outcome.png",
+   "png_sha256": "d08fc62370425bb2",
+   "view": "outcome"
+  }
+ },
+ "config_fingerprint": "a25af5711afb32d4",
+ "data_fingerprint": "338f5b0f8502f75f",
+ "failures": {},
+ "renderer": "matplotlib 3.11.2"
+}

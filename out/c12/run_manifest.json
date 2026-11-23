@@ -1,0 +1,7 @@
+{
+  "git_head": "518417e8d54ebe25ca826e8c0316680f62ec557b",
+  "alpha": 0.0035714285714285718,
+  "n_perms": 10000,
+  "dev_pass": [],
+  "holdout_pass": []
+}

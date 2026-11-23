@@ -1,0 +1,4 @@
+slot,tier1_pass,seed,tier2_pass,tier3_pass,status
+G,False,20261117000,False,False,not_run: tier1_fail
+B,False,20261117001,False,False,not_run: tier1_fail
+Z,False,20261117002,False,False,not_run: tier1_fail

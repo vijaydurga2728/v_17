@@ -1,0 +1,43 @@
+2026-11-16T18:42:29 === LIGHTCMDUSD ===
+2026-11-16T18:42:51 [LIGHTCMDUSD] loaded 2806 D1 UTC-days (2015-01-01..2023-12-31) in 22.2s
+2026-11-16T18:42:51 [LIGHTCMDUSD] [1/18] le= 20 lx= 10 dr=long_only  trades=  37 pf=1.896 mean_r=+0.7777 sharpe=+3.591 max_dd=11.50R took=0.02s
+2026-11-16T18:42:51 [LIGHTCMDUSD] [2/18] le= 20 lx= 10 dr=short_only trades=  40 pf=1.343 mean_r=+0.4172 sharpe=+1.579 max_dd=17.73R took=0.02s
+2026-11-16T18:42:51 [LIGHTCMDUSD] [3/18] le= 20 lx= 10 dr=both       trades=  77 pf=1.563 mean_r=+0.5905 sharpe=+2.448 max_dd=19.84R took=0.02s
+2026-11-16T18:42:51 [LIGHTCMDUSD] [4/18] le= 20 lx= 20 dr=long_only  trades=  28 pf=1.743 mean_r=+0.9483 sharpe=+3.049 max_dd=12.37R took=0.02s
+2026-11-16T18:42:51 [LIGHTCMDUSD] [5/18] le= 20 lx= 20 dr=short_only trades=  28 pf=1.342 mean_r=+0.5637 sharpe=+1.495 max_dd=25.72R took=0.02s
+2026-11-16T18:42:51 [LIGHTCMDUSD] [6/18] le= 20 lx= 20 dr=both       trades=  56 pf=1.517 mean_r=+0.7560 sharpe=+2.206 max_dd=27.08R took=0.02s
+2026-11-16T18:42:51 [LIGHTCMDUSD] [7/18] le= 40 lx= 10 dr=long_only  trades=  29 pf=2.344 mean_r=+1.0352 sharpe=+4.571 max_dd=9.17R took=0.02s
+2026-11-16T18:42:51 [LIGHTCMDUSD] [8/18] le= 40 lx= 10 dr=short_only trades=  29 pf=1.132 mean_r=+0.1986 sharpe=+0.696 max_dd=16.70R took=0.02s
+2026-11-16T18:42:51 [LIGHTCMDUSD] [9/18] le= 40 lx= 10 dr=both       trades=  58 pf=1.543 mean_r=+0.6169 sharpe=+2.403 max_dd=13.82R took=0.02s
+2026-11-16T18:42:51 [LIGHTCMDUSD] [10/18] le= 40 lx= 20 dr=long_only  trades=  22 pf=2.158 mean_r=+1.3078 sharpe=+4.075 max_dd=9.57R took=0.02s
+2026-11-16T18:42:51 [LIGHTCMDUSD] [11/18] le= 40 lx= 20 dr=short_only trades=  21 pf=1.060 mean_r=+0.1183 sharpe=+0.313 max_dd=17.40R took=0.02s
+2026-11-16T18:42:51 [LIGHTCMDUSD] [12/18] le= 40 lx= 20 dr=both       trades=  43 pf=1.470 mean_r=+0.7269 sharpe=+2.090 max_dd=18.14R took=0.02s
+2026-11-16T18:42:51 [LIGHTCMDUSD] [13/18] le= 55 lx= 10 dr=long_only  trades=  23 pf=3.258 mean_r=+1.3035 sharpe=+6.021 max_dd=4.81R took=0.02s
+2026-11-16T18:42:51 [LIGHTCMDUSD] [14/18] le= 55 lx= 10 dr=short_only trades=  23 pf=1.295 mean_r=+0.4142 sharpe=+1.374 max_dd=18.36R took=0.02s
+2026-11-16T18:42:51 [LIGHTCMDUSD] [15/18] le= 55 lx= 10 dr=both       trades=  46 pf=1.867 mean_r=+0.8589 sharpe=+3.289 max_dd=10.08R took=0.02s
+2026-11-16T18:42:51 [LIGHTCMDUSD] [16/18] le= 55 lx= 20 dr=long_only  trades=  20 pf=2.037 mean_r=+1.1545 sharpe=+3.839 max_dd=10.46R took=0.02s
+2026-11-16T18:42:51 [LIGHTCMDUSD] [17/18] le= 55 lx= 20 dr=short_only trades=  17 pf=1.017 mean_r=+0.0371 sharpe=+0.098 max_dd=17.39R took=0.02s
+2026-11-16T18:42:51 [LIGHTCMDUSD] [18/18] le= 55 lx= 20 dr=both       trades=  37 pf=1.402 mean_r=+0.6411 sharpe=+1.908 max_dd=14.45R took=0.02s
+2026-11-16T18:42:51 [LIGHTCMDUSD] wrote out\c8\dev_grid_LIGHTCMDUSD.csv
+2026-11-16T18:42:51 === DOLLARIDXUSD ===
+2026-11-16T18:43:00 [DOLLARIDXUSD] loaded 1557 D1 UTC-days (2018-01-01..2023-12-31) in 9.0s
+2026-11-16T18:43:00 [DOLLARIDXUSD] [1/18] le= 20 lx= 10 dr=long_only  trades=  24 pf=0.996 mean_r=-0.0043 sharpe=-0.026 max_dd=14.52R took=0.01s
+2026-11-16T18:43:00 [DOLLARIDXUSD] [2/18] le= 20 lx= 10 dr=short_only trades=  24 pf=0.468 mean_r=-0.7444 sharpe=-4.899 max_dd=20.01R took=0.01s
+2026-11-16T18:43:00 [DOLLARIDXUSD] [3/18] le= 20 lx= 10 dr=both       trades=  48 pf=0.696 mean_r=-0.3744 sharpe=-2.375 max_dd=33.74R took=0.01s
+2026-11-16T18:43:00 [DOLLARIDXUSD] [4/18] le= 20 lx= 20 dr=long_only  trades=  19 pf=1.053 mean_r=+0.0670 sharpe=+0.290 max_dd=18.86R took=0.01s
+2026-11-16T18:43:00 [DOLLARIDXUSD] [5/18] le= 20 lx= 20 dr=short_only trades=  19 pf=0.480 mean_r=-1.1625 sharpe=-5.052 max_dd=27.00R took=0.01s
+2026-11-16T18:43:00 [DOLLARIDXUSD] [6/18] le= 20 lx= 20 dr=both       trades=  38 pf=0.687 mean_r=-0.5477 sharpe=-2.373 max_dd=42.73R took=0.01s
+2026-11-16T18:43:00 [DOLLARIDXUSD] [7/18] le= 40 lx= 10 dr=long_only  trades=  22 pf=0.521 mean_r=-0.6533 sharpe=-4.083 max_dd=23.27R took=0.01s
+2026-11-16T18:43:00 [DOLLARIDXUSD] [8/18] le= 40 lx= 10 dr=short_only trades=  17 pf=0.444 mean_r=-0.7631 sharpe=-4.836 max_dd=15.35R took=0.01s
+2026-11-16T18:43:00 [DOLLARIDXUSD] [9/18] le= 40 lx= 10 dr=both       trades=  39 pf=0.487 mean_r=-0.7012 sharpe=-4.467 max_dd=37.28R took=0.01s
+2026-11-16T18:43:00 [DOLLARIDXUSD] [10/18] le= 40 lx= 20 dr=long_only  trades=  18 pf=0.641 mean_r=-0.6694 sharpe=-2.857 max_dd=27.16R took=0.01s
+2026-11-16T18:43:00 [DOLLARIDXUSD] [11/18] le= 40 lx= 20 dr=short_only trades=  14 pf=0.510 mean_r=-1.1204 sharpe=-4.657 max_dd=18.38R took=0.01s
+2026-11-16T18:43:00 [DOLLARIDXUSD] [12/18] le= 40 lx= 20 dr=both       trades=  32 pf=0.577 mean_r=-0.8667 sharpe=-3.709 max_dd=43.92R took=0.01s
+2026-11-16T18:43:00 [DOLLARIDXUSD] [13/18] le= 55 lx= 10 dr=long_only  trades=  19 pf=0.488 mean_r=-0.7746 sharpe=-4.697 max_dd=22.71R took=0.01s
+2026-11-16T18:43:00 [DOLLARIDXUSD] [14/18] le= 55 lx= 10 dr=short_only trades=  13 pf=0.305 mean_r=-1.2296 sharpe=-6.489 max_dd=15.16R took=0.01s
+2026-11-16T18:43:00 [DOLLARIDXUSD] [15/18] le= 55 lx= 10 dr=both       trades=  32 pf=0.407 mean_r=-0.9594 sharpe=-5.549 max_dd=37.20R took=0.01s
+2026-11-16T18:43:00 [DOLLARIDXUSD] [16/18] le= 55 lx= 20 dr=long_only  trades=  16 pf=0.617 mean_r=-0.7924 sharpe=-3.193 max_dd=29.39R took=0.01s
+2026-11-16T18:43:00 [DOLLARIDXUSD] [17/18] le= 55 lx= 20 dr=short_only trades=  10 pf=0.396 mean_r=-1.6655 sharpe=-6.139 max_dd=16.02R took=0.01s
+2026-11-16T18:43:00 [DOLLARIDXUSD] [18/18] le= 55 lx= 20 dr=both       trades=  26 pf=0.517 mean_r=-1.1282 sharpe=-4.453 max_dd=45.92R took=0.01s
+2026-11-16T18:43:00 [DOLLARIDXUSD] wrote out\c8\dev_grid_DOLLARIDXUSD.csv
+2026-11-16T18:43:00 END grid

@@ -1,0 +1,3 @@
+{"timestamp": "2026-11-23T08:05:12.460131+00:00", "event": "ORDER_PLACED", "symbol": "EURUSD", "ticket": 2112455896, "direction": "SELL", "entry": 1.09964, "sl": 1.10068, "tp": 1.09757, "lots": 0.49, "risk_dollars": 50.25560000000001, "window": "LDN"}
+{"timestamp": "2026-11-23T09:03:13.156191+00:00", "event": "BREAKEVEN_MOVED", "ticket": 2112455896, "symbol": "EURUSD", "new_sl": 1.09969, "r": 1.0206185567009343}
+{"timestamp": "2026-11-23T15:49:51.158933+00:00", "event": "SPREAD_REJECTED", "symbol": "EURUSD", "spread": 0.00010000000000021103, "limit": 0.0001}

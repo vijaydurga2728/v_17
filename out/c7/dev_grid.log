@@ -1,0 +1,40 @@
+2026-11-16T17:01:35 START grid dev 2015-01-01..2023-12-31
+2026-11-16T17:01:35 loaded 2322 RTH days post-ATR warmup
+2026-11-16T17:01:35 [1/36] gm=0.0015 sr=0.5 dr=long_only  trades= 914 pf=1.091 mean_r=+0.0362 sharpe=+0.590 max_dd=16.12R took=0.01s
+2026-11-16T17:01:35 [2/36] gm=0.0015 sr=0.5 dr=short_only trades= 733 pf=0.922 mean_r=-0.0369 sharpe=-0.500 max_dd=37.50R took=0.00s
+2026-11-16T17:01:36 [3/36] gm=0.0015 sr=0.5 dr=both       trades=1647 pf=1.008 mean_r=+0.0036 sharpe=+0.054 max_dd=28.03R took=0.00s
+2026-11-16T17:01:36 [4/36] gm=0.0015 sr=1.0 dr=long_only  trades= 914 pf=1.033 mean_r=+0.0075 sharpe=+0.207 max_dd=10.73R took=0.01s
+2026-11-16T17:01:36 [5/36] gm=0.0015 sr=1.0 dr=short_only trades= 733 pf=0.948 mean_r=-0.0138 sharpe=-0.320 max_dd=19.64R took=0.00s
+2026-11-16T17:01:36 [6/36] gm=0.0015 sr=1.0 dr=both       trades=1647 pf=0.992 mean_r=-0.0020 sharpe=-0.050 max_dd=23.11R took=0.00s
+2026-11-16T17:01:36 [7/36] gm=0.0015 sr=1.5 dr=long_only  trades= 914 pf=1.008 mean_r=+0.0012 sharpe=+0.047 max_dd=9.41R took=0.00s
+2026-11-16T17:01:36 [8/36] gm=0.0015 sr=1.5 dr=short_only trades= 733 pf=0.912 mean_r=-0.0163 sharpe=-0.545 max_dd=18.35R took=0.00s
+2026-11-16T17:01:36 [9/36] gm=0.0015 sr=1.5 dr=both       trades=1647 pf=0.961 mean_r=-0.0066 sharpe=-0.238 max_dd=22.36R took=0.00s
+2026-11-16T17:01:36 [10/36] gm=0.0025 sr=0.5 dr=long_only  trades= 703 pf=1.144 mean_r=+0.0566 sharpe=+0.923 max_dd=11.60R took=0.01s
+2026-11-16T17:01:36 [11/36] gm=0.0025 sr=0.5 dr=short_only trades= 561 pf=0.888 mean_r=-0.0553 sharpe=-0.746 max_dd=38.61R took=0.00s
+2026-11-16T17:01:36 [12/36] gm=0.0025 sr=0.5 dr=both       trades=1264 pf=1.016 mean_r=+0.0069 sharpe=+0.103 max_dd=21.10R took=0.01s
+2026-11-16T17:01:36 [13/36] gm=0.0025 sr=1.0 dr=long_only  trades= 703 pf=1.077 mean_r=+0.0176 sharpe=+0.481 max_dd=10.06R took=0.00s
+2026-11-16T17:01:36 [14/36] gm=0.0025 sr=1.0 dr=short_only trades= 561 pf=0.880 mean_r=-0.0341 sharpe=-0.773 max_dd=25.06R took=0.00s
+2026-11-16T17:01:36 [15/36] gm=0.0025 sr=1.0 dr=both       trades=1264 pf=0.979 mean_r=-0.0053 sharpe=-0.133 max_dd=22.60R took=0.00s
+2026-11-16T17:01:36 [16/36] gm=0.0025 sr=1.5 dr=long_only  trades= 703 pf=1.053 mean_r=+0.0082 sharpe=+0.318 max_dd=9.55R took=0.00s
+2026-11-16T17:01:36 [17/36] gm=0.0025 sr=1.5 dr=short_only trades= 561 pf=0.839 mean_r=-0.0322 sharpe=-1.043 max_dd=21.75R took=0.00s
+2026-11-16T17:01:36 [18/36] gm=0.0025 sr=1.5 dr=both       trades=1264 pf=0.945 mean_r=-0.0097 sharpe=-0.344 max_dd=23.98R took=0.00s
+2026-11-16T17:01:36 [19/36] gm=0.004 sr=0.5 dr=long_only  trades= 464 pf=1.292 mean_r=+0.1066 sharpe=+1.759 max_dd=11.01R took=0.00s
+2026-11-16T17:01:36 [20/36] gm=0.004 sr=0.5 dr=short_only trades= 392 pf=1.015 mean_r=+0.0073 sharpe=+0.093 max_dd=19.96R took=0.00s
+2026-11-16T17:01:36 [21/36] gm=0.004 sr=0.5 dr=both       trades= 856 pf=1.145 mean_r=+0.0611 sharpe=+0.883 max_dd=15.62R took=0.00s
+2026-11-16T17:01:36 [22/36] gm=0.004 sr=1.0 dr=long_only  trades= 464 pf=1.257 mean_r=+0.0534 sharpe=+1.483 max_dd=6.43R took=0.00s
+2026-11-16T17:01:36 [23/36] gm=0.004 sr=1.0 dr=short_only trades= 392 pf=1.015 mean_r=+0.0042 sharpe=+0.091 max_dd=12.66R took=0.01s
+2026-11-16T17:01:36 [24/36] gm=0.004 sr=1.0 dr=both       trades= 856 pf=1.128 mean_r=+0.0309 sharpe=+0.750 max_dd=8.62R took=0.00s
+2026-11-16T17:01:36 [25/36] gm=0.004 sr=1.5 dr=long_only  trades= 464 pf=1.279 mean_r=+0.0383 sharpe=+1.536 max_dd=5.20R took=0.00s
+2026-11-16T17:01:36 [26/36] gm=0.004 sr=1.5 dr=short_only trades= 392 pf=0.947 mean_r=-0.0106 sharpe=-0.326 max_dd=11.42R took=0.00s
+2026-11-16T17:01:36 [27/36] gm=0.004 sr=1.5 dr=both       trades= 856 pf=1.095 mean_r=+0.0159 sharpe=+0.553 max_dd=7.99R took=0.00s
+2026-11-16T17:01:36 [28/36] gm=0.006 sr=0.5 dr=long_only  trades= 264 pf=1.242 mean_r=+0.0894 sharpe=+1.481 max_dd=7.62R took=0.00s
+2026-11-16T17:01:36 [29/36] gm=0.006 sr=0.5 dr=short_only trades= 244 pf=0.990 mean_r=-0.0048 sharpe=-0.063 max_dd=16.31R took=0.00s
+2026-11-16T17:01:36 [30/36] gm=0.006 sr=0.5 dr=both       trades= 508 pf=1.103 mean_r=+0.0442 sharpe=+0.647 max_dd=13.32R took=0.00s
+2026-11-16T17:01:36 [31/36] gm=0.006 sr=1.0 dr=long_only  trades= 264 pf=1.222 mean_r=+0.0472 sharpe=+1.277 max_dd=5.17R took=0.00s
+2026-11-16T17:01:36 [32/36] gm=0.006 sr=1.0 dr=short_only trades= 244 pf=1.006 mean_r=+0.0019 sharpe=+0.039 max_dd=9.57R took=0.00s
+2026-11-16T17:01:36 [33/36] gm=0.006 sr=1.0 dr=both       trades= 508 pf=1.102 mean_r=+0.0254 sharpe=+0.602 max_dd=7.49R took=0.00s
+2026-11-16T17:01:36 [34/36] gm=0.006 sr=1.5 dr=long_only  trades= 264 pf=1.298 mean_r=+0.0401 sharpe=+1.589 max_dd=4.32R took=0.01s
+2026-11-16T17:01:36 [35/36] gm=0.006 sr=1.5 dr=short_only trades= 244 pf=0.931 mean_r=-0.0144 sharpe=-0.434 max_dd=8.62R took=0.00s
+2026-11-16T17:01:36 [36/36] gm=0.006 sr=1.5 dr=both       trades= 508 pf=1.082 mean_r=+0.0139 sharpe=+0.472 max_dd=6.36R took=0.01s
+2026-11-16T17:01:36 wrote out\c7\dev_grid.csv (36 rows)
+2026-11-16T17:01:36 END grid

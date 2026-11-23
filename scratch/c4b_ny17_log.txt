@@ -1,0 +1,59 @@
+##### run_c4b_gates
+[c4b] base trades: 104
+[c4b] stress PF (2x slip): 1.231
+[c4b] gates G1=False G2=True G3=False G4=False G5=True
+[c4b] MCPT p_pf=0.3980 (alpha=0.00714) pass=False
+[c4b] base trades: 104
+[c4b] stress PF (2x slip): 1.032
+[c4b] gates G1=False G2=True G3=False G4=False G5=False
+[c4b] MCPT p_pf=0.4800 (alpha=0.00714) pass=False
+[c4b] base trades: 86
+[c4b] stress PF (2x slip): 1.100
+[c4b] gates G1=False G2=True G3=False G4=False G5=True
+[c4b] MCPT p_pf=0.6380 (alpha=0.00714) pass=False
+[c4b] base trades: 88
+[c4b] stress PF (2x slip): 0.782
+[c4b] gates G1=False G2=True G3=False G4=False G5=False
+[c4b] MCPT p_pf=0.3820 (alpha=0.00714) pass=False
+[c4b] base trades: 86
+[c4b] stress PF (2x slip): 0.799
+[c4b] gates G1=False G2=True G3=False G4=False G5=False
+[c4b] MCPT p_pf=0.4900 (alpha=0.00714) pass=False
+[c4b] base trades: 71
+[c4b] stress PF (2x slip): 1.377
+[c4b] gates G1=True G2=True G3=False G4=False G5=True
+[c4b] MCPT p_pf=0.5080 (alpha=0.00714) pass=False
+[c4b] === RSI2-USATECHIDXUSD ===
+[c4b] base trades: 76
+[c4b] stress PF (2x slip): 1.708
+[c4b] gates G1=True G2=True G3=False G4=True G5=True
+[c4b] MCPT p_pf=0.6440 (alpha=0.00714) pass=False
+[c4b] wrote out\c4b_gates\c4b_gate_summary.json
+##### run_c4b_holdout
+[c4b-ho] holdout bars: 461
+[c4b-ho] trades: 25
+[c4b-ho] PF=3.683 WR=0.880 max_dd_R=10.20 hard_frozen=False
+[c4b-ho] verdict: SHELVE
+[c4b-ho] wrote docs\superpowers\plans\c4b_holdout_report_2026-11-11.md
+##### run_c4b_scheme1_mcpt
+[c4b-s1] dev trades: 76
+[c4b-s1] running scheme-1 MCPT on DEV (500 perms)...
+[c4b-s1] DEV: observed_pf=1.708 p_pf=0.5060
+[c4b-s1] DEV: observed_mean_r=0.4159 p_mean_r=0.3160
+[c4b-s1]       null_mean_r median=0.3184 mean=0.3085 p95=0.6534
+[c4b-s1] loading holdout bars
+[c4b-s1] holdout trades: 25
+[c4b-s1] running scheme-1 MCPT on HOLDOUT (500 perms)...
+[c4b-s1] HOLDOUT: observed_pf=3.683 p_pf=0.2260
+[c4b-s1] HOLDOUT: observed_mean_r=1.2555 p_mean_r=0.0020
+[c4b-s1]            null_mean_r median=0.3184 mean=0.3018 p95=0.8830
+##### run_c4b_paired_mcpt
+[c4b-paired] DEV observed: cum=0.13672 mean=0.000075 pf=1.051
+[c4b-paired]   trades=76 avg_hold=3.6 exposure=0.149
+[c4b-paired] running DEV null (500 perms, hold=4)...
+[c4b-paired] DEV p_cum=0.2820 p_mean=0.2820 p_pf=0.3000
+[c4b-paired] loading holdout bars
+[c4b-paired] HOLDOUT observed: cum=0.24307 mean=0.000527 pf=1.377
+[c4b-paired]   trades=25 avg_hold=3.4 exposure=0.187
+[c4b-paired] running HOLDOUT null (500 perms, hold=3)...
+[c4b-paired] HOLDOUT p_cum=0.0080 p_mean=0.0080 p_pf=0.0360
