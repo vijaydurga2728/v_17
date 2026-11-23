@@ -1,0 +1,27 @@
+[17:15:39] load USATECHIDXUSD...
+  3,458,474 bars
+[17:15:40] scan VWAP MR (2σ fade + chop + trend-neutral filters)...
+  3865 trades in 25.4s  (skipped 1146 vol / 918 trend days)
+
+========================================================================
+VWAP MR — RESULTS (USATECHIDXUSD)
+========================================================================
+  trades: 3865
+  win rate: 45.3%
+  profit factor: 0.85
+  mean R: -0.083
+  sum R: -319.99
+  max DD (R): 346.96
+  trades/year: 386.6
+  trades/month: 32.2
+  directions: {'SHORT': 1956, 'LONG': 1909}
+  exits: {'SL': 2106, 'TP': 1741, 'TIME': 17, 'EOD': 1}
+------------------------------------------------------------------------
+  Annualized R: -32.00
+  @ 0.5% risk on $10k: $-1600/year
+  @ 1% risk:           $-3200/year
+------------------------------------------------------------------------
+DECISION: RED — PF 0.85 (need 1.3); trades/year 386.6 (need 100)
+------------------------------------------------------------------------
+Wall clock: 26.9s
+

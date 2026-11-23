@@ -1,0 +1,27 @@
+[17:21:38] load USATECHIDXUSD...
+  3,458,474 bars
+[17:21:40] scan gap fade v2 (CAUSAL SL from 09:30-09:34)...
+  1435 trades in 61.7s  (skipped 1142 small-gap days)
+
+========================================================================
+GAP FADE v2 (CAUSAL) — RESULTS (USATECHIDXUSD)
+========================================================================
+  trades: 1435
+  win rate: 24.6%
+  profit factor: 0.97
+  mean R: -0.025
+  sum R: -36.03
+  max DD (R): 107.80
+  trades/year: 143.5
+  trades/month: 11.96
+  directions: {'SHORT': 796, 'LONG': 639}
+  exits: {'SL': 1076, 'TP': 324, 'TIME': 35}
+------------------------------------------------------------------------
+  Annualized R: -3.60
+  @ 0.5% risk on $10k: $-180/year
+  @ 0.25% risk:       $-90/year
+------------------------------------------------------------------------
+DECISION: RED — PF 0.97 (need 1.3); trades/year 143.5 (need 30)
+------------------------------------------------------------------------
+Wall clock: 63.3s
+

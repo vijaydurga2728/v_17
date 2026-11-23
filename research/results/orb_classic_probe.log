@@ -1,0 +1,23 @@
+[16:56:41] load USATECHIDXUSD dev bars...
+  3,458,474 bars
+[16:56:43] scan USATECHIDXUSD ORB CLASSIC...
+  768 trades in 62.2s
+
+========================================================================
+ORB CLASSIC QUICK PROBE — RESULTS (USATECHIDXUSD)
+========================================================================
+  trades: 768
+  win rate: 54.0%
+  profit factor: 0.91
+  mean R: -0.021
+  sum R: -15.81
+  max DD (R): 30.54
+  trades/year: 76.8
+  years: 10.0
+  directions: {'LONG': 396, 'SHORT': 372}
+  exits: {'TIME': 379, 'TP': 292, 'SL': 97}
+------------------------------------------------------------------------
+DECISION: RED — PF 0.91 (need 1.3); trades/year 76.8 (need 50)
+------------------------------------------------------------------------
+Wall clock: 64.4s
+

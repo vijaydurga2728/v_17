@@ -1,0 +1,23 @@
+[17:12:29] load USATECHIDXUSD...
+  3,458,474 bars
+[17:12:31] scan v4 (classic + trend + BE-trail + 1R target)...
+  413 trades in 31.3s
+
+========================================================================
+ORB CLASSIC v4 — RESULTS (USATECHIDXUSD)  [v3 + BE trail @ +0.5R + TP 1R]
+========================================================================
+  trades: 413
+  win rate: 44.6%
+  profit factor: 0.99
+  mean R: -0.002
+  sum R: -0.72
+  max DD (R): 14.60
+  trades/year: 41.3
+  directions: {'LONG': 275, 'SHORT': 138}
+  exits: {'TIME': 269, 'SL': 51, 'BE': 50, 'TP': 43}
+  trailed to BE: 159/413
+------------------------------------------------------------------------
+DECISION: RED — PF 0.99 (need 1.3); trades/year 41.3 (need 50)
+------------------------------------------------------------------------
+Wall clock: 32.7s
+

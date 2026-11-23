@@ -1,0 +1,47 @@
+[18:16:34] load EURUSD M1 dev bars...
+  3,740,937 M1 bars
+[18:16:35] scan EURUSD H1 CHoCH+FVG faded...
+  722 trades in 2.3s
+
+EURUSD H1 CHoCH+FVG FADED:
+  trades: 722  (trades/year: 72.2, trades/month: 6.02)
+  WR: 28.3%
+  PF: 0.78
+  mean R: -0.155
+  sum R: -112.22
+  max DD (R): 123.22
+  sides: {'SHORT': 370, 'LONG': 352}
+  exits: {'SL': 518, 'TP': 202, 'TIME': 2}
+  Annualized R: -11.23  → at 0.5% risk on $10k: $-561/year
+[18:16:38] load GBPUSD M1 dev bars...
+  3,740,937 M1 bars
+[18:16:39] scan GBPUSD H1 CHoCH+FVG faded...
+  700 trades in 2.1s
+
+GBPUSD H1 CHoCH+FVG FADED:
+  trades: 700  (trades/year: 70.0, trades/month: 5.84)
+  WR: 23.9%
+  PF: 0.62
+  mean R: -0.292
+  sum R: -204.43
+  max DD (R): 204.43
+  sides: {'LONG': 353, 'SHORT': 347}
+  exits: {'SL': 533, 'TP': 163, 'TIME': 4}
+  Annualized R: -20.45  → at 0.5% risk on $10k: $-1023/year
+
+========================================================================
+
+COMBINED H1 CHoCH+FVG FADED:
+  trades: 1422  (trades/year: 71.1, trades/month: 5.92)
+  WR: 26.1%
+  PF: 0.70
+  mean R: -0.223
+  sum R: -316.65
+  max DD (R): 316.65
+  sides: {'SHORT': 717, 'LONG': 705}
+  exits: {'SL': 1051, 'TP': 365, 'TIME': 6}
+  Annualized R: -15.83  → at 0.5% risk on $10k: $-792/year
+
+DECISION: RED — PF 0.70 / trades 1422. Does not replicate paper's flagship on this data.
+
+Wall clock: 7.8s

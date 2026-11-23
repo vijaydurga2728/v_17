@@ -1,0 +1,69 @@
+[17:30:57] load EURUSD dev bars...
+  3,740,937 M1 bars
+  3127 D1 bars
+[17:31:01] load GBPUSD dev bars...
+  3,740,937 M1 bars
+  3127 D1 bars
+[17:31:05] load USATECHIDXUSD dev bars...
+  3,458,474 M1 bars
+  3122 D1 bars
+
+============================================================================
+D1 ENSEMBLE — RESULTS (3 symbols × 3 signals, vol-targeted)
+============================================================================
+
+Signal 1 (TS momentum)
+  Sharpe: +0.55
+  Annual return: +4.8%
+  Annual vol: 8.6%
+  Max DD: 16.1%
+  P(30-day return >= 10%): 0.3%
+
+Signal 2 (Mean reversion)
+  Sharpe: +0.43
+  Annual return: +1.7%
+  Annual vol: 3.9%
+  Max DD: 10.7%
+  P(30-day return >= 10%): 0.0%
+
+Signal 3 (Vol breakout)
+  Sharpe: +0.06
+  Annual return: +0.2%
+  Annual vol: 3.7%
+  Max DD: 12.6%
+  P(30-day return >= 10%): 0.1%
+
+EURUSD combined
+  Sharpe: +0.05
+  Annual return: +0.2%
+  Annual vol: 4.8%
+  Max DD: 18.3%
+  P(30-day return >= 10%): 0.0%
+
+GBPUSD combined
+  Sharpe: +0.42
+  Annual return: +2.0%
+  Annual vol: 4.8%
+  Max DD: 8.3%
+  P(30-day return >= 10%): 0.0%
+
+USATECHIDXUSD combined
+  Sharpe: +0.77
+  Annual return: +4.4%
+  Annual vol: 5.8%
+  Max DD: 18.2%
+  P(30-day return >= 10%): 0.0%
+
+PORTFOLIO (ensemble)
+  Sharpe: +0.67
+  Annual return: +2.2%
+  Annual vol: 3.3%
+  Max DD: 5.6%
+  P(30-day return >= 10%): 0.0%
+
+----------------------------------------------------------------------------
+DECISION: AMBER — portfolio Sharpe 0.67 in [0.5, 0.8); needs ensemble expansion
+P(30-day win >= 10%) = 0.0%  ← FTMO challenge win probability per month
+----------------------------------------------------------------------------
+Wall clock: 10.3s
+

@@ -1,0 +1,26 @@
+[17:18:26] load USATECHIDXUSD...
+  3,458,474 bars
+[17:18:27] scan gap fade (|gap| >= 0.3%, fade to prior close)...
+  1437 trades in 61.4s  (skipped 1142 small-gap days)
+
+========================================================================
+GAP FADE — RESULTS (USATECHIDXUSD)
+========================================================================
+  trades: 1437
+  win rate: 32.4%
+  profit factor: 1.36
+  mean R: +0.238
+  sum R: +342.67
+  max DD (R): 44.33
+  trades/year: 143.7
+  trades/month: 11.98
+  directions: {'SHORT': 797, 'LONG': 640}
+  exits: {'SL': 950, 'TP': 409, 'TIME': 78}
+------------------------------------------------------------------------
+  Annualized R: +34.27
+  @ 0.5% risk on $10k: $+1714/year
+------------------------------------------------------------------------
+DECISION: GREEN — PF 1.36 >= 1.3 AND 144 trades/year >= 30
+------------------------------------------------------------------------
+Wall clock: 63.0s
+

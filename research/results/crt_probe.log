@@ -1,0 +1,38 @@
+[18:42:25] load EURUSD...
+  3,740,937 M1 bars
+[18:42:26] scan EURUSD CRT FADE...
+  9340 trades in 10.8s
+
+EURUSD CRT FADE:
+  trades: 9340 (934.4/year)
+  WR: 33.8%  PF: 0.93  mean R: -0.042  sum R: -395.75
+  max DD (R): 405.60  exits: {'SL': 5946, 'TP': 2622, 'TIME': 772}
+  Annualized R: -39.59  → @0.5% risk on $10k: $-1980/year
+[18:42:37] scan EURUSD CRT CONTINUE...
+  4581 trades in 12.5s
+
+EURUSD CRT CONTINUE:
+  trades: 4581 (458.3/year)
+  WR: 19.8%  PF: 0.49  mean R: -0.405  sum R: -1857.00
+  max DD (R): 1861.00  exits: {'SL': 3673, 'TP': 908}
+  Annualized R: -185.78  → @0.5% risk on $10k: $-9289/year
+[18:42:50] load GBPUSD...
+  3,740,937 M1 bars
+[18:42:52] scan GBPUSD CRT FADE...
+  9352 trades in 12.7s
+
+GBPUSD CRT FADE:
+  trades: 9352 (935.6/year)
+  WR: 33.1%  PF: 0.89  mean R: -0.071  sum R: -659.34
+  max DD (R): 666.98  exits: {'SL': 6027, 'TP': 2529, 'TIME': 796}
+  Annualized R: -65.96  → @0.5% risk on $10k: $-3298/year
+[18:43:05] scan GBPUSD CRT CONTINUE...
+  4834 trades in 11.3s
+
+GBPUSD CRT CONTINUE:
+  trades: 4834 (483.6/year)
+  WR: 16.1%  PF: 0.38  mean R: -0.517  sum R: -2497.00
+  max DD (R): 2508.00  exits: {'SL': 4055, 'TP': 779}
+  Annualized R: -249.80  → @0.5% risk on $10k: $-12490/year
+
+Wall clock: 50.6s

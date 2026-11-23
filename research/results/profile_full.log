@@ -1,0 +1,8 @@
+[1;33mThank you for using SmartMoneyConcepts! ⭐ Please show your support by giving a star on the GitHub repository: [4;34mhttps://github.com/joshyattridge/smart-money-concepts[0m
+[11:00:15] Profiling SB-LDN-CE × 2 symbols × 7 folds
+  load EURUSD: 3.7s (3,740,937 bars)
+    fold 1 EURUSD: 61.0s (3 trades)
+    fold 2 EURUSD: 55.0s (0 trades)
+    fold 3 EURUSD: 159.3s (4 trades)
+    fold 4 EURUSD: 786.6s (1 trades)
+    fold 5 EURUSD: 1449.4s (2 trades)

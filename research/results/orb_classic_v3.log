@@ -1,0 +1,22 @@
+[17:07:29] load USATECHIDXUSD...
+  3,458,474 bars
+[17:07:30] scan v3 (classic + 20d-SMA trend filter)...
+  413 trades, 1174 filtered out by bias, in 60.7s
+
+========================================================================
+ORB CLASSIC v3 — RESULTS (USATECHIDXUSD)  [v1 + 20d-SMA trend filter]
+========================================================================
+  trades: 413  (filtered out: 1174)
+  win rate: 56.7%
+  profit factor: 1.04
+  mean R: +0.008
+  sum R: +3.30
+  max DD (R): 10.16
+  trades/year: 41.3
+  directions: {'LONG': 275, 'SHORT': 138}
+  exits: {'TIME': 203, 'TP': 159, 'SL': 51}
+------------------------------------------------------------------------
+DECISION: RED — PF 1.04 (need 1.3); trades/year 41.3 (need 50)
+------------------------------------------------------------------------
+Wall clock: 62.5s
+

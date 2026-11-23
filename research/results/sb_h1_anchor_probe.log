@@ -1,0 +1,46 @@
+[19:00:14] load EURUSD...
+  3,740,937 M1 bars
+[19:00:15] scan EURUSD...
+  1 trades in 34.7s
+
+EURUSD SB-H1anchor (video spec):
+  trades: 1  (0.1/year, 0.01/month)
+  WR: 100.0%
+  PF: inf
+  mean R: +1.593
+  sum R: +1.59
+  max DD (R): 0.00
+  exits: {'TP': 1}
+  trailed to BE: 0/1
+  directions: {'SHORT': 1}
+  Annualized R: +0.16  → @0.5% risk on $10k: $+8/year  @1%: $+16
+[19:00:50] load GBPUSD...
+  3,740,937 M1 bars
+[19:00:50] scan GBPUSD...
+  3 trades in 21.2s
+
+GBPUSD SB-H1anchor (video spec):
+  trades: 3  (0.3/year, 0.03/month)
+  WR: 66.7%
+  PF: 2.97
+  mean R: +0.656
+  sum R: +1.97
+  max DD (R): 0.00
+  exits: {'TP': 2, 'SL': 1}
+  trailed to BE: 0/3
+  directions: {'SHORT': 2, 'LONG': 1}
+  Annualized R: +0.20  → @0.5% risk on $10k: $+10/year  @1%: $+20
+
+COMBINED:
+  trades: 4  (0.2/year, 0.02/month)
+  WR: 75.0%
+  PF: 4.56
+  mean R: +0.891
+  sum R: +3.56
+  max DD (R): 1.00
+  exits: {'TP': 3, 'SL': 1}
+  trailed to BE: 0/4
+  directions: {'SHORT': 3, 'LONG': 1}
+  Annualized R: +0.18  → @0.5% risk on $10k: $+9/year  @1%: $+18
+
+Wall clock: 57.5s
