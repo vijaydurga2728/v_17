@@ -145,6 +145,7 @@ class LiveEconomicCalendar:
         self.cache_file = cache_file
         self.events: list[dict] = []
         self.last_fetch: float = 0.0
+        self.last_attempt: float = 0.0
         self.load_cache()
 
     def load_cache(self) -> None:
@@ -168,9 +169,13 @@ class LiveEconomicCalendar:
 
     def sync(self) -> None:
         now_ts = time.time()
-        # Refresh every 4 hours if already populated
-        if now_ts - self.last_fetch < 14400 and len(self.events) > 0:
+        # Refresh every 4 hours (an empty week is valid data, not a reason to
+        # re-fetch every poll); after a failed fetch, retry at most every 5 min.
+        if now_ts - self.last_fetch < 14400:
             return
+        if now_ts - self.last_attempt < 300:
+            return
+        self.last_attempt = now_ts
 
         import urllib.request
         url = "https://nfs.faireconomy.media/ff_calendar_thisweek.json"
@@ -228,6 +233,15 @@ def get_ny_now() -> datetime:
 
 def get_ist_now() -> datetime:
     return datetime.now(UTC).astimezone(IST)
+
+
+def spread_exceeds_limit(spread_px: float, limit: float, point: float) -> bool:
+    """True if live spread is strictly above the limit.
+
+    Half-point tolerance absorbs float error (ask - bid of 1.0 pip on EURUSD
+    evaluates to 0.00010000000000021, which a bare `>` wrongly rejects).
+    """
+    return spread_px > limit + 0.5 * point
 
 
 def is_in_window(now_dt: datetime, start_h: int, start_m: int, end_h: int, end_m: int) -> bool:
@@ -439,7 +453,7 @@ class FTMOLiveEngine:
 
         # 1. Strict Live Broker Spread Threshold Gate
         max_allowed_spread = MAX_ALLOWED_SPREAD.get(symbol, 999.0)
-        if spread_px > max_allowed_spread:
+        if spread_exceeds_limit(spread_px, max_allowed_spread, point):
             print(f"  [SPREAD GATE] Setup skipped on {symbol}: current spread {spread_px:.5f} > limit {max_allowed_spread:.5f}")
             log_audit_event("SPREAD_REJECTED", {"symbol": symbol, "spread": spread_px, "limit": max_allowed_spread})
             return None
@@ -921,6 +935,10 @@ class FTMOLiveEngine:
         now_ist = get_ist_now()
         today_str = now_ny.strftime("%Y-%m-%d")
         self.check_daily_reset(today_str)
+        # Refresh the news calendar while the daemon runs (sync() self-throttles to
+        # every 4h). Previously it synced only at startup, so a daemon left running
+        # across the Sunday week rollover kept last week's events and gated nothing.
+        self.calendar.sync()
 
         time_str = f"{now_ist.strftime('%H:%M:%S')} IST | {now_ny.strftime('%H:%M:%S')} NY"
         print(f"[{time_str}] Checking market & session windows...")
